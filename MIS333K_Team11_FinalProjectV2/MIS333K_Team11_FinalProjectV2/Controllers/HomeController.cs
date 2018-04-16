@@ -61,7 +61,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
         }
 
-        public ActionResult DisplaySearchResults(String SearchMovieTitle, String SearchTagline, /*int[] SearchGenre,*/ String SelectedYear, MPAArating SelectedMPAARating, String SearchActor)
+        public ActionResult DisplaySearchResults(String SearchMovieTitle, String SearchTagline, int[] SearchGenre, String SelectedYear, MPAArating SelectedMPAARating, String SearchActor)
         {
 
             //if they selected a search string, limit results to only repos that meet the criteria
@@ -89,15 +89,15 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             }
 
 
-            //if (SearchGenre != null)
-            //{
-            //    foreach(int GenreID in SearchGenre)
-            //    {
-            //        Genre GenreToFind = db.Genres.Find(GenreID);
-            //        query = query.Where(m => m.Genres.Contains(GenreToFind.Genre.GenreID));
-            //    }
+            if (SearchGenre != null)
+            {
+                foreach (int GenreID in SearchGenre)
+                {
+                    //Genre GenreToFind = db.Genres.Find(GenreID);
+                    query = query.Where(m => m.Genres.Select(g => g.GenreID).Contains(GenreID));
+                }
 
-            //}
+            }
 
             switch (SelectedMPAARating)
             {
