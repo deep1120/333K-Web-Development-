@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<MIS333K_Team11_FinalProjectV2.Models.Movie>
+@using MIS333K_Team11_FinalProjectV2.Models
 
 @{
     ViewBag.Title = "Index";
@@ -29,7 +30,7 @@
             @Html.DisplayNameFor(model => model.MovieTitle)
         </th>
         <th>
-            Genre
+            Genre(s)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.RunningTime)
@@ -45,28 +46,31 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.MovieTitle)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Genres)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RunningTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MPAAratings)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReleaseDate)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.MovieID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.MovieID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.MovieID })
-            </td>
-        </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MovieTitle)
+        </td>
+        <td>
+        @foreach (Genre gen in item.Genres)
+        {
+            @Html.DisplayFor(modelItem => gen.GenreName)
+        }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RunningTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MPAAratings)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReleaseDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.MovieID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.MovieID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.MovieID })
+        </td>
+    </tr>
     }
 
 

@@ -1,4 +1,6 @@
 ﻿@model MIS333K_Team11_FinalProjectV2.Models.Movie
+@using MIS333K_Team11_FinalProjectV2.Models
+
 
 @{
     ViewBag.Title = "Details";
@@ -24,14 +26,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.MovieTitle)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Genres)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Genres)
         </dd>
 
         <dt>
@@ -92,6 +86,21 @@
 
     </dl>
 </div>
+
+<div>
+    <table class="table table-sm table-striped">
+        <tr>
+            <th>Genre(s)</th>
+        </tr>
+        @foreach (Genre gen in Model.Genres)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => gen.GenreName)</td>
+            </tr>
+        }
+    </table>
+</div>
+
 <p>
     @Html.ActionLink("Back to List", "Index")
 </p>
