@@ -8,7 +8,7 @@ namespace MIS333K_Team11_FinalProjectV2.Models
 {
     public enum MPAArating
     {
-        Unrated, G, PG, PG13, R
+        Unrated, G, PG, PG13, R, All
     }
 
     public class Movie

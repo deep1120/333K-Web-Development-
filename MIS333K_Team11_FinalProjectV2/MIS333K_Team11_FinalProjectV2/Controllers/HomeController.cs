@@ -120,6 +120,10 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 case MPAArating.Unrated:
                     query = query.Where(m => m.MPAAratings == MPAArating.Unrated);
                     break;
+
+                case MPAArating.All:
+
+                    break;
             }
 
             if (SelectedYear != null && SelectedYear != "")
