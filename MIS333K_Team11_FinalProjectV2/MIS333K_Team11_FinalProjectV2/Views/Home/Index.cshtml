@@ -1,0 +1,73 @@
+﻿@model IEnumerable<MIS333K_Team11_FinalProjectV2.Models.Movie>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p> Display @ViewBag.SelectedMovies out of @ViewBag.AllMovies Movies</p>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+
+
+@using (Html.BeginForm())
+{
+    <p class="form-group">
+        Search: @Html.TextBox("SearchString", null, new { @class = "form-control" }) <br />
+        <input type="submit" value="Search" class="btn btn-default" />
+        @Html.ActionLink("Detailed Search", "DetailedSearch", null, new { @class = "btn btn-default" })
+        @Html.ActionLink("Show All", "Index", null, new { @class = "btn btn-default" })
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MovieTitle)
+        </th>
+        <th>
+            Genre
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RunningTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MPAAratings)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReleaseDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MovieTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genres)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RunningTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MPAAratings)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReleaseDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.MovieID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.MovieID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.MovieID })
+            </td>
+        </tr>
+    }
+
+
+</table>
