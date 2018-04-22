@@ -24,8 +24,8 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime OrderDate { get; set; }
 
-        //[Display(Name = "Registration Notes")] //this may not be needed
-        //public String RegistrationNotes { get; set; }
+        [Display(Name = "Order Notes")] //this may not be needed
+        public String OrderNotes { get; set; }
 
         //[Required(ErrorMessage = "Order status is required")]
         [Display(Name = "Order Status")]

@@ -15,7 +15,7 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         //special event can be a boolean (special or not)
         //how are we going to code/seed data for the two theaters?
         [Display(Name = "Ticket Seat")] //Do we need to code for special seating?
-        public Decimal TicketSeat { get; set; }
+        public int TicketSeat { get; set; }
 
         [Display(Name = "Total Fees")]
         [DisplayFormat(DataFormatString = "{0:C}")]

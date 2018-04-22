@@ -1,0 +1,85 @@
+﻿@model MIS333K_Team11_FinalProjectV2.Models.Order
+@using MIS333K_Team11_FinalProjectV2.Models
+
+@{
+                /**/
+
+                ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderNotes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderNotes)
+        </dd>
+
+    </dl>
+</div>
+
+<h4>Showings</h4>
+<table class="table table-sm table-striped table-hover">
+    <tr>
+        <th>Showing Name</th>
+        <th>Ticket Price</th>
+        <th>Ticket Seat</th>
+        <th>Total Fees</th>
+    </tr>
+    @foreach (Ticket td in Model.Tickets)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => td.Showing.ShowingName)</td>
+            <td>@Html.DisplayFor(modelItem => td.TicketPrice)</td>
+            <td>@Html.DisplayFor(modelItem => td.TicketSeat)</td>
+            <td>@Html.DisplayFor(modelItem => td.TotalFees)</td>
+        </tr>
+    }
+</table>
+
+<table class="table table-sm table-bordered" style="width:30%">
+    <tr>
+        <th colspan="2" style="text-align:center">Order Summary</th>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.OrderSubtotal)</td>
+        <td>@Html.DisplayFor(model => model.OrderSubtotal)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.SalesTax)</td>
+        <td>@Html.DisplayFor(model => model.SalesTax)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.OrderTotal)</td>
+        <td>@Html.DisplayFor(model => model.OrderTotal)</td>
+    </tr>
+
+</table>
+
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.OrderID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
