@@ -16,6 +16,10 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [Display(Name = "Showing Name")]
         public String ShowingName { get; set; } //TODO: not sure if this is needed
 
+        [Display(Name = "Show Date")]  //TODO: need to rerun migration
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
+        public DateTime ShowDate { get; set; }
+
         //[Display(Name = "Showing Time")] //Use one of these
         [Display(Name = "Start Time")]
         public DateTime StartTime { get; set; }
