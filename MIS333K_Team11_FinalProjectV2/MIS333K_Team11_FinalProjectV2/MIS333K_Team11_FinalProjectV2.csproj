@@ -227,6 +227,11 @@
     <Compile Include="Migrations\201804240258128_updatedatabase.Designer.cs">
       <DependentUpon>201804240258128_updatedatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804240330408_SeedCustomer1.cs" />
+    <Compile Include="Migrations\201804240330408_SeedCustomer1.Designer.cs">
+      <DependentUpon>201804240330408_SeedCustomer1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\AddCustomer.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\GenreData.cs" />
     <Compile Include="Migrations\MovieData.cs" />
@@ -322,6 +327,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804240258128_updatedatabase.resx">
       <DependentUpon>201804240258128_updatedatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804240330408_SeedCustomer1.resx">
+      <DependentUpon>201804240330408_SeedCustomer1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

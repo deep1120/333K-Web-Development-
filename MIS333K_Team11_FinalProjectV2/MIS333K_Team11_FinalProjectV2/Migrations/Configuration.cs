@@ -23,6 +23,9 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 
             SeedIdentity si = new SeedIdentity();
             si.AddAdmin(context);
+
+            AddCustomer ac = new AddCustomer();
+            ac.AddingCustomer(context);
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
         }
