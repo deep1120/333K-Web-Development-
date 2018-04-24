@@ -265,6 +265,10 @@
     <Content Include="Views\Showings\Details.cshtml" />
     <Content Include="Views\Showings\Edit.cshtml" />
     <Content Include="Views\Showings\Index.cshtml" />
+    <Content Include="Views\Genres\Create.cshtml" />
+    <Content Include="Views\Genres\Delete.cshtml" />
+    <Content Include="Views\Genres\Details.cshtml" />
+    <Content Include="Views\Genres\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
