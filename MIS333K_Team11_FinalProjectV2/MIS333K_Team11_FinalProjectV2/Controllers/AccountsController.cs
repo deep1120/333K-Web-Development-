@@ -123,7 +123,14 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                     Email = model.Email,
                     //Firstname is an example - you will need to add the rest
                     FirstName = model.FirstName,
-
+                    LastName = model.LastName,
+                    MiddleInitial = model.MiddleInitial,
+                    PhoneNumber = model.PhoneNumber,
+                    Birthday = model.Birthday,
+                    Street = model.Street,
+                    City = model.City,
+                    State = model.State,
+                    ZipCode = model.Zipcode
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
 
@@ -170,8 +177,6 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
             return View(ivm);
         }
-
-
 
         //Logic for change password
         // GET: /Accounts/ChangePassword

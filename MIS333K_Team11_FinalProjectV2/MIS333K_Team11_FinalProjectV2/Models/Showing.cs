@@ -16,11 +16,17 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [Display(Name = "Showing Name")]
         public String ShowingName { get; set; } //TODO: not sure if this is needed
 
+        [Display(Name = "Show Date")]
+        [DataType(DataType.Date)]
+        public DateTime ShowDate { get; set; }
+
         //[Display(Name = "Showing Time")] //Use one of these
         [Display(Name = "Start Time")]
+        [DataType(DataType.Time)]
         public DateTime StartTime { get; set; }
 
         [Display(Name = "End Time")] //a calculated value = start time + running time of movie
+        [DataType(DataType.Time)]
         public DateTime EndTime {get; set;}
 
         [Display(Name = "Running Time")]
