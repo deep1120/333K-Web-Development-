@@ -213,6 +213,10 @@
     <Compile Include="Migrations\201804232203228_REDO.Designer.cs">
       <DependentUpon>201804232203228_REDO.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804240224588_updatedatabase.cs" />
+    <Compile Include="Migrations\201804240224588_updatedatabase.Designer.cs">
+      <DependentUpon>201804240224588_updatedatabase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\GenreData.cs" />
     <Compile Include="Migrations\MovieData.cs" />
@@ -288,6 +292,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201804232203228_REDO.resx">
       <DependentUpon>201804232203228_REDO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804240224588_updatedatabase.resx">
+      <DependentUpon>201804240224588_updatedatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
