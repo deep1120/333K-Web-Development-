@@ -217,6 +217,10 @@
     <Compile Include="Migrations\201804240224588_updatedatabase.Designer.cs">
       <DependentUpon>201804240224588_updatedatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804240242379_datatype_date.cs" />
+    <Compile Include="Migrations\201804240242379_datatype_date.Designer.cs">
+      <DependentUpon>201804240242379_datatype_date.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\GenreData.cs" />
     <Compile Include="Migrations\MovieData.cs" />
@@ -295,6 +299,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804240224588_updatedatabase.resx">
       <DependentUpon>201804240224588_updatedatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804240242379_datatype_date.resx">
+      <DependentUpon>201804240242379_datatype_date.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
