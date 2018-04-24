@@ -38,12 +38,18 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.RunTime)
+            Running Time
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.RunTime)
+            @foreach (Movie mov in Model.SponsoringMovies)
+            {
+                @Html.DisplayFor(modelItem => mov.RunningTime)
+            }
         </dd>
+
+        @*<dd>
+            @Html.DisplayFor(model => model.RunTime)
+        </dd>*@
 
     </dl>
 </div>

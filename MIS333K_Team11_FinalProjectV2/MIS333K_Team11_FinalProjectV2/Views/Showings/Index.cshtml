@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<MIS333K_Team11_FinalProjectV2.Models.Showing>
+@using MIS333K_Team11_FinalProjectV2.Models
 
 @{
     ViewBag.Title = "Index";
@@ -28,25 +29,37 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.SponsoringMovies)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ShowDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RunTime)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ShowingID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ShowingID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ShowingID })
-            </td>
-        </tr>
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.SponsoringMovies)
+        </td>*@
+        <td>
+            @foreach (Movie mov in item.SponsoringMovies)
+            {
+                @Html.DisplayFor(modelItem => mov.MovieTitle)
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShowDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartTime)
+        </td>
+        <td>
+            @foreach (Movie mov in item.SponsoringMovies)
+            {
+                @Html.DisplayFor(modelItem => mov.RunningTime)
+            }
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.RunTime)
+        </td>*@
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ShowingID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ShowingID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ShowingID })
+        </td>
+    </tr>
     }
 
 </table>

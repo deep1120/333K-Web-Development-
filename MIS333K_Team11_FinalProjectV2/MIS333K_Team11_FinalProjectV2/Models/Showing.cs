@@ -30,7 +30,11 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         public DateTime? EndTime { get; set; }
 
         [Display(Name = "Running Time")]
-        public Int32 RunTime { get; set; }
+        public Int32 RunTime
+        {
+            //get { return SponsoringMovies.Sum(m=> m.RunningTime);}
+            get;set; 
+        }
 
         [Display(Name = "Ticket Price")]
         public Decimal TicketPrice { get; set; }
