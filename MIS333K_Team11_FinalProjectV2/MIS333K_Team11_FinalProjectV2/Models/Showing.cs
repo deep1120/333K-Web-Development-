@@ -27,13 +27,18 @@ namespace MIS333K_Team11_FinalProjectV2.Models
 
         [Display(Name = "End Time")] //a calculated value = start time + running time of movie
         [DataType(DataType.Time)]
-        public DateTime EndTime {get; set;}
+        public DateTime EndTime { get; set; }
 
         [Display(Name = "Running Time")]
         public Int32 RunTime { get; set; }
 
         [Display(Name = "Ticket Price")]
         public Decimal TicketPrice { get; set; }
+
+        [Required(ErrorMessage = "Theatre is Required")]
+        [EnumDataType(typeof(Theatre))]
+        [Display (Name = "What Theatre?" )]
+        public Theatre Theatre { get; set; }
 
         //May insert "Future showing"
         public virtual List <Movie> SponsoringMovies { get; set; }
@@ -53,4 +58,6 @@ namespace MIS333K_Team11_FinalProjectV2.Models
             }
         }
     }
+
+    public enum Theatre { Theatre1, Theatre2 }
 }
