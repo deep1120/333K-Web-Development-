@@ -50,11 +50,10 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ShowID, ShowDate, ShowTime, Theatre")] Showing showing, int? SelectedMovies)
+        public ActionResult Create([Bind(Include = "ShowingID, Theatre, ShowDate, StartTime")] Showing showing, int? SelectedMovies)
         {
             //ask for the next showing number
             //showing.ShowingNumber = Utilities.GenerateShowingNumber.GetNextShowingNumber();
-
 
             //add movie
             if (SelectedMovies != 0)

@@ -231,6 +231,14 @@
     <Compile Include="Migrations\201804240330408_SeedCustomer1.Designer.cs">
       <DependentUpon>201804240330408_SeedCustomer1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804240600354_ChangingDateTime.cs" />
+    <Compile Include="Migrations\201804240600354_ChangingDateTime.Designer.cs">
+      <DependentUpon>201804240600354_ChangingDateTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804240609459_Showing2.cs" />
+    <Compile Include="Migrations\201804240609459_Showing2.Designer.cs">
+      <DependentUpon>201804240609459_Showing2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AddCustomer.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\GenreData.cs" />
@@ -330,6 +338,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804240330408_SeedCustomer1.resx">
       <DependentUpon>201804240330408_SeedCustomer1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804240600354_ChangingDateTime.resx">
+      <DependentUpon>201804240600354_ChangingDateTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804240609459_Showing2.resx">
+      <DependentUpon>201804240609459_Showing2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

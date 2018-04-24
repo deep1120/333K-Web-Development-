@@ -15,13 +15,34 @@
         <dt>Email:</dt>
         <dd>@Model.Email</dd>
 
+        <dt>Street:</dt>
+        <dd>@Model.Street</dd>
+
+        <dt>City:</dt>
+        <dd>@Model.City</dd>
+
+        <dt>State:</dt>
+        <dd>@Model.State</dd>
+
+        <dt>Zipcode:</dt>
+        <dd>@Model.Zipcode</dd>
+
+        <dt>Phone Number:</dt>
+        <dd>@Model.PhoneNumber</dd>
+
+        <dt>Birthday:</dt>
+        <dd>@Model.Birthday</dd>
+
+        <dt>PopcornPoints:</dt>
+        <dd>@Model.PopcornPoints</dd>
+
         <dt>Password:</dt>
         <dd>
             [
             @if (Model.HasPassword)
-            {
-                @Html.ActionLink("Change your password", "ChangePassword")
-            }
+        {
+            @Html.ActionLink("Change your password", "ChangePassword")
+    }
             ]
 
         </dd>

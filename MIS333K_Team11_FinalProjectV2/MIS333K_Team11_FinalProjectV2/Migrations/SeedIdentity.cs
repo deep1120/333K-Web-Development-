@@ -34,6 +34,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
                 manager.LastName = "AdminLastName";
                 manager.Birthday = new DateTime(1991, 1, 1);
                 manager.PhoneNumber = "(512)555-5555";
+                manager.PopcornPoints = 0;
 
                 var result = UserManager.Create(manager, "Abc123!");
                 db.SaveChanges();
