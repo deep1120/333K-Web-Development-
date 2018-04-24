@@ -250,11 +250,6 @@
     <Content Include="Views\Movies\Details.cshtml" />
     <Content Include="Views\Movies\Edit.cshtml" />
     <Content Include="Views\Movies\Index.cshtml" />
-    <Content Include="Views\Showings\Create.cshtml" />
-    <Content Include="Views\Showings\Delete.cshtml" />
-    <Content Include="Views\Showings\Details.cshtml" />
-    <Content Include="Views\Showings\Edit.cshtml" />
-    <Content Include="Views\Showings\Index.cshtml" />
     <Content Include="Views\Movies\DetailedSearch.cshtml" />
     <Content Include="Views\Accounts\ChangePassword.cshtml" />
     <Content Include="Views\Accounts\Index.cshtml" />
@@ -265,6 +260,11 @@
     <Content Include="Views\RoleAdmin\Index.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Showings\Create.cshtml" />
+    <Content Include="Views\Showings\Delete.cshtml" />
+    <Content Include="Views\Showings\Details.cshtml" />
+    <Content Include="Views\Showings\Edit.cshtml" />
+    <Content Include="Views\Showings\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
