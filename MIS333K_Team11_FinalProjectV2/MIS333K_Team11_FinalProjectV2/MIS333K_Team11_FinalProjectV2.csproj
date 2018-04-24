@@ -213,9 +213,21 @@
     <Compile Include="Migrations\201804232203228_REDO.Designer.cs">
       <DependentUpon>201804232203228_REDO.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201804240224588_updatedatabase.cs" />
-    <Compile Include="Migrations\201804240224588_updatedatabase.Designer.cs">
-      <DependentUpon>201804240224588_updatedatabase.cs</DependentUpon>
+    <Compile Include="Migrations\201804240114029_FixIdentityProperties.cs" />
+    <Compile Include="Migrations\201804240114029_FixIdentityProperties.Designer.cs">
+      <DependentUpon>201804240114029_FixIdentityProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804240215320_ChangePasswordRequirement.cs" />
+    <Compile Include="Migrations\201804240215320_ChangePasswordRequirement.Designer.cs">
+      <DependentUpon>201804240215320_ChangePasswordRequirement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804240229467_UpdatePassword.cs" />
+    <Compile Include="Migrations\201804240229467_UpdatePassword.Designer.cs">
+      <DependentUpon>201804240229467_UpdatePassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804240236037_AddedDateFormat.cs" />
+    <Compile Include="Migrations\201804240236037_AddedDateFormat.Designer.cs">
+      <DependentUpon>201804240236037_AddedDateFormat.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201804240242379_datatype_date.cs" />
     <Compile Include="Migrations\201804240242379_datatype_date.Designer.cs">
@@ -258,6 +270,11 @@
     <Content Include="Views\Movies\Details.cshtml" />
     <Content Include="Views\Movies\Edit.cshtml" />
     <Content Include="Views\Movies\Index.cshtml" />
+    <Content Include="Views\Showings\Create.cshtml" />
+    <Content Include="Views\Showings\Delete.cshtml" />
+    <Content Include="Views\Showings\Details.cshtml" />
+    <Content Include="Views\Showings\Edit.cshtml" />
+    <Content Include="Views\Showings\Index.cshtml" />
     <Content Include="Views\Movies\DetailedSearch.cshtml" />
     <Content Include="Views\Accounts\ChangePassword.cshtml" />
     <Content Include="Views\Accounts\Index.cshtml" />
@@ -268,15 +285,6 @@
     <Content Include="Views\RoleAdmin\Index.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Showings\Create.cshtml" />
-    <Content Include="Views\Showings\Delete.cshtml" />
-    <Content Include="Views\Showings\Details.cshtml" />
-    <Content Include="Views\Showings\Edit.cshtml" />
-    <Content Include="Views\Showings\Index.cshtml" />
-    <Content Include="Views\Genres\Create.cshtml" />
-    <Content Include="Views\Genres\Delete.cshtml" />
-    <Content Include="Views\Genres\Details.cshtml" />
-    <Content Include="Views\Genres\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -297,8 +305,17 @@
     <EmbeddedResource Include="Migrations\201804232203228_REDO.resx">
       <DependentUpon>201804232203228_REDO.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804240224588_updatedatabase.resx">
-      <DependentUpon>201804240224588_updatedatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201804240114029_FixIdentityProperties.resx">
+      <DependentUpon>201804240114029_FixIdentityProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804240215320_ChangePasswordRequirement.resx">
+      <DependentUpon>201804240215320_ChangePasswordRequirement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804240229467_UpdatePassword.resx">
+      <DependentUpon>201804240229467_UpdatePassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804240236037_AddedDateFormat.resx">
+      <DependentUpon>201804240236037_AddedDateFormat.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804240242379_datatype_date.resx">
       <DependentUpon>201804240242379_datatype_date.cs</DependentUpon>

@@ -41,15 +41,15 @@ namespace MIS333K_Team11_FinalProjectV2
                 RequireUniqueEmail = true
             };
 
-            // TODO: Configure validation logic for passwords
-            manager.PasswordValidator = new PasswordValidator
-            {
-                RequiredLength = 6,
-                RequireNonLetterOrDigit = false,
-                RequireDigit = true,
-                RequireLowercase = true,
-                RequireUppercase = true
-            };
+            //// TODO: Configure validation logic for passwords
+            //manager.PasswordValidator = new PasswordValidator
+            //{
+            //    RequiredLength = 6,
+            //    RequireNonLetterOrDigit = false,
+            //    RequireDigit = true,
+            //    RequireLowercase = true,
+            //    RequireUppercase = true
+            //};
 
 
             return manager;

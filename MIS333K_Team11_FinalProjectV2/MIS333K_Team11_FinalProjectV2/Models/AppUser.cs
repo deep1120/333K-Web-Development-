@@ -31,7 +31,7 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         public String LastName { get; set; }
 
         [Display(Name = "Middle Initial")]
-        public String MiddleInitital { get; set; }
+        public String MiddleInitial { get; set; }
 
         [Display(Name = "Birthday")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
