@@ -11,7 +11,6 @@ using MIS333K_Team11_FinalProjectV2.Models;
 
 namespace MIS333K_Team11_FinalProjectV2.Controllers
 {
-    public enum YearRank { GreaterThan, LesserThan}
     public class MoviesController : Controller
     {
         private AppDbContext db = new AppDbContext();
@@ -55,7 +54,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             return View();
         }
 
-        public ActionResult DisplaySearchResults(String SearchMovieTitle, String SearchTagline, int[] SearchGenre, String SelectedYear, YearRank SelectedSortOrder, MPAArating SelectedMPAARating, String SearchActor)
+        public ActionResult DisplaySearchResults(String SearchMovieTitle, String SearchTagline, int[] SearchGenre, String SelectedYear, MPAArating SelectedMPAARating, String SearchActor)
         {
 
             //if they selected a search string, limit results to only repos that meet the criteria
@@ -115,7 +114,6 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                     break;
             }
 
-
             if (SelectedYear != null && SelectedYear != "")
             {
                 Int32 intYear;
@@ -129,17 +127,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                     ViewBag.AllGenres = GetAllGenres();
                     return View("DetailedSearch");
                 }
-
-                switch(SelectedSortOrder)
-                {
-                    case YearRank.GreaterThan:
-                        query = query.Where(r => r.ReleaseDate.Year >= intYear);
-                        break;
-                    case YearRank.LesserThan:
-                        query = query.Where(r => r.ReleaseDate.Year <= intYear);
-                        break;
-                }
-                //query = query.Where(m => m.ReleaseDate.Year == intYear);
+                query = query.Where(m => m.ReleaseDate.Year == intYear);
             }
 
             List<Movie> SelectedMovies = query.ToList();

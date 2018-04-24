@@ -48,16 +48,16 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ShowingID, ShowingNumber, ShowingName, TicketPrice, RunTime")] Showing showing, int? SelectedMovies)
+        public ActionResult Create([Bind(Include = "ShowingID, ShowingNumber, ShowingName, TicketPrice, RunTime")] Showing showing, int[] SelectedMovies)
         {
             //ask for the next showing number
             showing.ShowingNumber = Utilities.GenerateShowingNumber.GetNextShowingNumber();
 
             //add movie
-            if (SelectedMovies != 0)
+            foreach (int i in SelectedMovies) 
             {
                 //find the movie
-                Movie mov = db.Movies.Find(SelectedMovies);
+                Movie mov = db.Movies.Find(i);
                 showing.SponsoringMovies.Add(mov);
             }
 
@@ -94,7 +94,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ShowingID, ShowingNumber, ShowingName, TicketPrice, RunTime")] Showing showing, int? SelectedMovies)
+        public ActionResult Edit([Bind(Include = "ShowingID, ShowingNumber, ShowingName, TicketPrice, RunTime")] Showing showing, int[] SelectedMovies)
         {
             if (ModelState.IsValid)
             {
@@ -104,11 +104,10 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 //remove the existing movies
                 showingToChange.SponsoringMovies.Clear();
 
-                if (SelectedMovies != 0)
+                foreach (int i in SelectedMovies)
                 {
-                    //find the movie
-                    Movie mov = db.Movies.Find(SelectedMovies);
-                    showing.SponsoringMovies.Add(mov);
+                    Movie mov = db.Movies.Find(i);
+                    showingToChange.SponsoringMovies.Add(mov);
                 }
 
                 //change scalar properties
@@ -151,14 +150,14 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             return RedirectToAction("Index");
         }
 
-        public SelectList GetAllMovies()
+        public MultiSelectList GetAllMovies()
         {
             List<Movie> allMovs = db.Movies.OrderBy(m => m.MovieTitle).ToList();
-            SelectList selMovs = new SelectList(allMovs, "MovieID", "MovieTitle");
+            MultiSelectList selMovs = new MultiSelectList(allMovs, "MovieID", "MovieTitle");
             return selMovs;
         }
 
-        public SelectList GetAllMovies(Showing showing)
+        public MultiSelectList GetAllMovies(Showing showing)
         {
             List<Movie> allMovs = db.Movies.OrderBy(m => m.MovieTitle).ToList();
 
@@ -172,7 +171,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             }
 
             //create the multiselect list 
-            SelectList selMovs = new SelectList(allMovs, "MovieID", "MovieTitle", SelectedMovies);
+            MultiSelectList selMovs = new MultiSelectList(allMovs, "MovieID", "MovieTitle", SelectedMovies);
 
             //return the multiselect list
             return selMovs;

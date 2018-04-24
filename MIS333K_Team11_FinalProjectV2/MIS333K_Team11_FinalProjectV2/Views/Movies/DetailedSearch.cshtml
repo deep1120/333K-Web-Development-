@@ -23,11 +23,6 @@
     </div>
 
     <div class="form-group">
-        <label class="radio">@Html.RadioButton("SelectedSortOrder", YearRank.GreaterThan, true)Greater Than</label>
-        <label class="radio">@Html.RadioButton("SelectedSortOrder", YearRank.LesserThan)Lesser Than</label>
-    </div>
-
-    <div class="form-group">
         <label class="control-label col-md-2">Genres</label>
         <div class="col-md-10">
             @Html.ListBox("SearchGenre", (MultiSelectList)ViewBag.AllGenres, new { @class = "form-control" })
