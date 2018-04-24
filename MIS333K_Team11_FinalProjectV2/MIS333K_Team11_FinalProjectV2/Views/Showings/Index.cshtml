@@ -19,11 +19,17 @@
             @Html.DisplayNameFor(model => model.ShowDate)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Theatre)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.StartTime)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RunTime)
+            Running Time
         </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.RunTime)
+        </th>*@
         <th></th>
     </tr>
 
@@ -35,21 +41,24 @@
         </td>*@
         <td>
             @foreach (Movie mov in item.SponsoringMovies)
-            {
-                @Html.DisplayFor(modelItem => mov.MovieTitle)
-            }
+        {
+            @Html.DisplayFor(modelItem => mov.MovieTitle)
+    }
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ShowDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Theatre)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.StartTime)
         </td>
         <td>
             @foreach (Movie mov in item.SponsoringMovies)
-            {
-                @Html.DisplayFor(modelItem => mov.RunningTime)
-            }
+        {
+            @Html.DisplayFor(modelItem => mov.RunningTime)
+    }
         </td>
         @*<td>
             @Html.DisplayFor(modelItem => item.RunTime)

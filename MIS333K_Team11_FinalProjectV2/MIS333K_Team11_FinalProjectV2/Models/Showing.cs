@@ -41,7 +41,7 @@ namespace MIS333K_Team11_FinalProjectV2.Models
 
         [Required(ErrorMessage = "Theatre is Required")]
         [EnumDataType(typeof(Theatre))]
-        [Display (Name = "What Theatre?" )]
+        [Display (Name = "Theatre" )]
         public Theatre Theatre { get; set; }
 
         //May insert "Future showing"
