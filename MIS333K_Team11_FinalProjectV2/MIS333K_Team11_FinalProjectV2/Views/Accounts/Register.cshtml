@@ -1,5 +1,15 @@
 ﻿@model MIS333K_Team11_FinalProjectV2.Models.RegisterViewModel
 @{
+    /**/
+
+    /**/
+
+    /**/
+
+    /**/
+
+    /**/
+
     ViewBag.Title = "Register";
 }
 
@@ -29,16 +39,45 @@
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
         </div>
-   <div class="form-group">
+    </div>
+    <div class="form-group">
         @Html.LabelFor(m => m.MiddleInitial, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.MiddleInitial, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        Birthday:<input type="date" name="Birthday" class="form-control" />
+        <br />
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Street, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Street, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.City, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.State, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.State, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Zipcode, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Zipcode, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">

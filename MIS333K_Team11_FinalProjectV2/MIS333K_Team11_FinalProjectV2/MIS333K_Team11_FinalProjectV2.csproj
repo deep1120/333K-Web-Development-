@@ -213,6 +213,22 @@
     <Compile Include="Migrations\201804232203228_REDO.Designer.cs">
       <DependentUpon>201804232203228_REDO.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804240114029_FixIdentityProperties.cs" />
+    <Compile Include="Migrations\201804240114029_FixIdentityProperties.Designer.cs">
+      <DependentUpon>201804240114029_FixIdentityProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804240215320_ChangePasswordRequirement.cs" />
+    <Compile Include="Migrations\201804240215320_ChangePasswordRequirement.Designer.cs">
+      <DependentUpon>201804240215320_ChangePasswordRequirement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804240229467_UpdatePassword.cs" />
+    <Compile Include="Migrations\201804240229467_UpdatePassword.Designer.cs">
+      <DependentUpon>201804240229467_UpdatePassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804240236037_AddedDateFormat.cs" />
+    <Compile Include="Migrations\201804240236037_AddedDateFormat.Designer.cs">
+      <DependentUpon>201804240236037_AddedDateFormat.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\GenreData.cs" />
     <Compile Include="Migrations\MovieData.cs" />
@@ -284,6 +300,18 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201804232203228_REDO.resx">
       <DependentUpon>201804232203228_REDO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804240114029_FixIdentityProperties.resx">
+      <DependentUpon>201804240114029_FixIdentityProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804240215320_ChangePasswordRequirement.resx">
+      <DependentUpon>201804240215320_ChangePasswordRequirement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804240229467_UpdatePassword.resx">
+      <DependentUpon>201804240229467_UpdatePassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804240236037_AddedDateFormat.resx">
+      <DependentUpon>201804240236037_AddedDateFormat.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
