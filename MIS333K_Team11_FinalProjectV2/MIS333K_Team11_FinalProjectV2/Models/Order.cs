@@ -52,8 +52,8 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         }
 
         public virtual List<Ticket> Tickets { get; set; }
-        public virtual User Purchased { get; set; }
-        public virtual User Gifted { get; set; }
+        public virtual AppUser Purchased { get; set; }
+        public virtual AppUser Gifted { get; set; }
 
         public Order()
         {

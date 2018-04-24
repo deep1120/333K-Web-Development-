@@ -25,7 +25,7 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         //[Display(Name = "Customer Voting")] 
         //public CustomerVoting Customervoting { get; set; }
 
-        public virtual User User { get; set; }
+        public virtual AppUser AppUser { get; set; }
         public virtual Movie Movie { get; set; }
 
         //public Review()

@@ -20,6 +20,9 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 
             MovieData AddMovies = new MovieData();
             AddMovies.SeedMovies(context);
+
+            SeedIdentity si = new SeedIdentity();
+            si.AddAdmin(context);
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
         }
