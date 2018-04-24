@@ -9,6 +9,8 @@ using System.Web.Mvc;
 using MIS333K_Team11_FinalProjectV2.DAL;
 using MIS333K_Team11_FinalProjectV2.Models;
 
+public enum Theatre { Theatre1, Theatre2 }
+
 namespace MIS333K_Team11_FinalProjectV2.Controllers
 {
     public class ShowingsController : Controller
@@ -48,10 +50,18 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ShowingID, ShowingNumber, ShowingName, TicketPrice, RunTime")] Showing showing, int? SelectedMovies)
+        public ActionResult Create([Bind(Include = "ShowingID, ShowingNumber, ShowingName, TicketPrice, RunTime")] Showing showing, int? SelectedMovies, Theatre SelectedTheatre)
         {
             //ask for the next showing number
-            showing.ShowingNumber = Utilities.GenerateShowingNumber.GetNextShowingNumber();
+            //showing.ShowingNumber = Utilities.GenerateShowingNumber.GetNextShowingNumber();
+
+            switch(SelectedTheatre)
+            {
+                case Theatre.Theatre1:
+                    break;
+                case Theatre.Theatre2:
+                    break;
+            }
 
             //add movie
             if (SelectedMovies != 0)
