@@ -15,12 +15,6 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
     {
         private AppDbContext db = new AppDbContext();
 
-        public MultiSelectList GetAllGenres()
-        {
-            List<Genre> AllGenres = db.Genres.OrderBy(m => m.GenreName).ToList();
-            MultiSelectList selGenres = new MultiSelectList(AllGenres, "GenreID", "GenreName");
-            return selGenres;
-        }
 
         // GET: Genres
         public ActionResult Index()
@@ -130,6 +124,13 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public MultiSelectList GetAllGenres()
+        {
+            List<Genre> AllGenres = db.Genres.OrderBy(m => m.GenreName).ToList();
+            MultiSelectList selGenres = new MultiSelectList(AllGenres, "GenreID", "GenreName");
+            return selGenres;
         }
     }
 }

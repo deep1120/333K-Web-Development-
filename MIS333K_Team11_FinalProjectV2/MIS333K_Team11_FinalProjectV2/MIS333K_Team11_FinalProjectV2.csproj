@@ -256,6 +256,7 @@
     <Content Include="Views\Showings\Edit.cshtml" />
     <Content Include="Views\Showings\Index.cshtml" />
     <Content Include="Views\Movies\DetailedSearch.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Accounts\ChangePassword.cshtml" />
     <Content Include="Views\Accounts\Index.cshtml" />
     <Content Include="Views\Accounts\Login.cshtml" />
@@ -265,6 +266,12 @@
     <Content Include="Views\RoleAdmin\Index.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
+=======
+    <Content Include="Views\Genres\Index.cshtml" />
+    <Content Include="Views\Genres\Details.cshtml" />
+    <Content Include="Views\Genres\Create.cshtml" />
+    <Content Include="Views\Genres\Delete.cshtml" />
+>>>>>>> 769d989e1b835c57206aabfe21ec7475b70ed703
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
