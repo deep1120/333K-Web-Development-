@@ -34,6 +34,29 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             return View(SelectedMovies.OrderByDescending(m => m.MovieTitle));
         }
 
+        // GET: Movies/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Movies/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "MovieID,MovieName")] Movie movie)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Movies.Add(movie);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(movie);
+        }
+
         public ActionResult Details(int? id)
         {
             if (id == null)
