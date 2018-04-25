@@ -1,0 +1,21 @@
+﻿@using MIS333K_Team11_FinalProjectV2.Controllers
+@using MIS333K_Team11_FinalProjectV2.Models
+
+@{
+    ViewBag.Title = "Date Search";
+}
+
+<h2>Date Search</h2>
+@using (Html.BeginForm("DateSearch", "Showings", FormMethod.Get))
+{
+<p class="form-group">
+
+    <div class="form-group">
+        Movie Date: <input type="date" name="datSelectedDate" class="form-control" />
+        <br />
+    </div>
+
+    <input type="submit" value="Search" class="btn btn-default" />
+
+</p>
+}
