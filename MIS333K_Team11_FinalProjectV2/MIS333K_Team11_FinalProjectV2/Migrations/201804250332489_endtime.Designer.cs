@@ -7,13 +7,13 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class gotridofquestionmarks : IMigrationMetadata
+    public sealed partial class endtime : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(gotridofquestionmarks));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(endtime));
         
         string IMigrationMetadata.Id
         {
-            get { return "201804250249249_gotridofquestionmarks"; }
+            get { return "201804250332489_endtime"; }
         }
         
         string IMigrationMetadata.Source

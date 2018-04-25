@@ -27,7 +27,7 @@ namespace MIS333K_Team11_FinalProjectV2.Models
 
         [Display(Name = "End Time")] //a calculated value = start time + running time of movie
         [DataType(DataType.Time)]
-        public DateTime EndTime { get; set; }
+        public DateTime? EndTime { get; set; }
 
         [Display(Name = "Running Time")]
         public Int32 RunTime
