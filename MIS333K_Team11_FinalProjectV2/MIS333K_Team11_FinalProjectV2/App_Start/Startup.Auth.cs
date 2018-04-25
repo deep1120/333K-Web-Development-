@@ -6,8 +6,9 @@ using Microsoft.Owin.Security.Cookies;
 using Owin;
 
 // Change these using statements to match your project
-using MIS333K_Team11_FinalProjectV2.DAL;
+//using MIS333K_Team11_FinalProjectV2.DAL;
 using MIS333K_Team11_FinalProjectV2.Models;
+using static MIS333K_Team11_FinalProjectV2.Models.AppUser;
 
 // Change this namespace to match your project
 namespace MIS333K_Team11_FinalProjectV2
@@ -42,10 +43,7 @@ namespace MIS333K_Team11_FinalProjectV2
                         validateInterval: TimeSpan.FromMinutes(30),
                         regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
                 }
-            });            
-            app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
-
-           
+            });                  
         }
     }
 }

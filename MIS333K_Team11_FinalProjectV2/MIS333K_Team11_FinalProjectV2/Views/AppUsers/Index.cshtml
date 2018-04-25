@@ -1,0 +1,25 @@
+﻿@model IEnumerable<MIS333K_Team11_FinalProjectV2.Models.AppUser>
+@using MIS333K_Team11_FinalProjectV2.Models
+@using Microsoft.AspNet.Identity
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Your Account</h2>
+
+<button onclick="location.href='@Url.Action("Details", new { id = User.Identity.GetUserId() })';return false;">Account Details</button>
+
+
+@if (User.IsInRole("Manager") || User.IsInRole("Employee"))
+{
+
+    <button onclick="location.href='@Url.Action("ManagerEdit", new { id = User.Identity.GetUserId() })';return false;">Edit Information</button>
+
+}
+else
+{
+    <button onclick="location.href='@Url.Action("Details", new { id = User.Identity.GetUserId() })';return false;">Edit Information</button>
+}
+
+<button onclick="location.href='@Url.Action("ChangePassword", "Account", new { id = User.Identity.GetUserId() })';return false;">Change Password</button>

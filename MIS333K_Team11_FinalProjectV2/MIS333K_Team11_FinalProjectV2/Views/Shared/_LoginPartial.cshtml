@@ -6,9 +6,22 @@
         @Html.AntiForgeryToken()
 
         <ul class="nav navbar-nav navbar-right">
+            @if (!User.IsInRole("Manager") && !User.IsInRole("Employee"))
+            {
+                <li>
+                    <a href="@Url.Action("Index", "ShoppingCart")"> @*may not be the right variable*@
+                        <span class="fa fa-shopping-cart"></span>
+                    </a>
+                </li>
+            }
+
             <li>
                 @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Accounts", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link" })
             </li>
+    @if (User.IsInRole("Mangager"))
+    {
+    <li>@Html.ActionLink("Manage Roles", "Index", "RoleAdmin")</li>
+    }
             <li><a href="javascript:document.getElementById('logoutForm').submit()"><span class="nav-link">Log Off</span></a></li>
         </ul>
     }
@@ -16,6 +29,15 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
+        @if(!User.IsInRole("Manager") && !User.IsInRole("Employee"))
+        {
+            <li>
+                <a href="@Url.Action("Index", "ShoppingCart")">
+                    <span class="fa fa-shopping-cart"></span>
+                </a>
+            </li>
+        }
+
         <li>@Html.ActionLink("Register", "Register", "Accounts", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link" })</li>
         <li>@Html.ActionLink("Log in", "Login", "Accounts", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link" })</li>
     </ul>

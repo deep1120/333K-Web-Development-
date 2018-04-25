@@ -6,10 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using MIS333K_Team11_FinalProjectV2.DAL;
+//using MIS333K_Team11_FinalProjectV2.DAL;
 using MIS333K_Team11_FinalProjectV2.Models;
-
-
+using static MIS333K_Team11_FinalProjectV2.Models.AppUser;
 
 namespace MIS333K_Team11_FinalProjectV2.Controllers
 {
@@ -74,10 +73,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 return RedirectToAction("Create", "Showing");
             }
 
- 
-
-
-
+            //TODO: Figure out why time isn't working
             DateTime start = Convert.ToDateTime("09:00:00 AM");
             DateTime end = Convert.ToDateTime("12:00:00 AM");
 
@@ -98,7 +94,10 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 return RedirectToAction("Index");
             }
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> e595bbcfbdc1b816c803a6de1c0e2f3593d8e21d
             //populate the viewbag with the movie list
             ViewBag.AllMovies = GetAllMovies(showing);
             return View(showing);

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using MIS333K_Team11_FinalProjectV2.DAL;
+//using MIS333K_Team11_FinalProjectV2.DAL;
 
 namespace MIS333K_Team11_FinalProjectV2.Utilities
 {
@@ -11,7 +11,7 @@ namespace MIS333K_Team11_FinalProjectV2.Utilities
         public static Int32 GetNextOrderNumber()
         {
             //we need a db context to connect to the database
-            AppDbContext db = new AppDbContext();
+            Models.AppUser.AppDbContext db = new Models.AppUser.AppDbContext();
 
             Int32 intMaxOrderNumber; //the current maximum course number
             Int32 intNextOrderNumber; //the course number for the next class

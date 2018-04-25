@@ -6,49 +6,40 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System.ComponentModel.DataAnnotations;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
+using System.Linq;
 
 namespace MIS333K_Team11_FinalProjectV2.Models
 {
     public class AppUser : IdentityUser
     {
-        //testing comment to see update on github
-        //NEED TO ADD CREDIT CARD IN THE MODEL CLASS
-
-        //will inherit from identity user
-        //public Int32 UserID { get; set; } //Is the primary key email or UserID, if Email add in [key]
-
-        ////[Required(ErrorMessage = "Email is required")]
-        ////[Display(Name = "Email")]
-        //public String Email { get; set; }
-
-        ////[Display(Name = "Password")]
-        //public String Password { get; set; }
-
+        [Required]
         [Display(Name = "First Name")]
         public String FirstName { get; set; }
-
-        [Display(Name = "Last Name")]
-        public String LastName { get; set; }
 
         [Display(Name = "Middle Initial")]
         public String MiddleInitial { get; set; }
 
-        [Display(Name = "Birthday")]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
-        public DateTime Birthday { get; set; }
+        [Required]
+        [Display(Name = "Last Name")]
+        public String LastName { get; set; }
 
+        //[Required]
         [Display(Name = "Street")]
         public String Street { get; set; }
 
         [Display(Name = "City")]
         public String City { get; set; }
 
-        //would state be an enum then?
         [Display(Name = "State")] //add validation must be a state in the US if chosen US
         public String State { get; set; }
 
         [Display(Name = "Zip Code")] //add validation XX values
         public String ZipCode { get; set; }
+
+        [Display(Name = "Birthday")]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
+        public DateTime Birthday { get; set; }
 
         [Display(Name = "Popcorn Points")]
         public Int32 PopcornPoints { get; set; }
@@ -56,6 +47,8 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         public virtual List<Review> Reviews { get; set; }
         public virtual List<Order> Purchased { get; set; }
         public virtual List<Order> Gifted { get; set; }
+        public virtual List<Order> Orders { get; set; }
+        public virtual List<Card> Cards { get; set; }
 
         public AppUser() //Reference to HW 6
         {
@@ -72,10 +65,16 @@ namespace MIS333K_Team11_FinalProjectV2.Models
             {
                 Gifted = new List<Order>();
             }
-
+            if (Orders == null)
+            {
+                Gifted = new List<Order>();
+            }
+            if(Cards == null)
+            {
+                Cards = new List<Card>();
+            }
         }
 
-        //This method allows you to create a new user
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<AppUser> manager)
         {
             // NOTE: The authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -83,5 +82,60 @@ namespace MIS333K_Team11_FinalProjectV2.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        // NOTE: Here's your db context for the project.  All of your db sets should go in here
+        public class AppDbContext : IdentityDbContext<AppUser>
+        {
+            public override int SaveChanges()
+            {
+                try
+                {
+                    return base.SaveChanges();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    // Retrieve the error messages as a list of strings.
+                    var errorMessages = ex.EntityValidationErrors
+                            .SelectMany(x => x.ValidationErrors)
+                            .Select(x => x.ErrorMessage);
+
+                    // Join the list to a single string.
+                    var fullErrorMessage = string.Join("; ", errorMessages);
+
+                    // Combine the original exception message with the new one.
+                    var exceptionMessage = string.Concat(ex.Message, " The validation errors are: ", fullErrorMessage);
+
+                    // Throw a new DbEntityValidationException with the improved exception message.
+                    throw new DbEntityValidationException(exceptionMessage, ex.EntityValidationErrors);
+                }
+            }
+
+            // Add dbsets here. Remember, Identity adds a db set for users, 
+            //so you shouldn't add that one - you will get an error
+            public DbSet<Genre> Genres { get; set; }
+            public DbSet<Movie> Movies { get; set; }
+            public DbSet<Order> Orders { get; set; }
+            //public DbSet<Order> Purchased { get; set; }
+            //public DbSet<Order> Gifted { get; set; }
+            public DbSet<Review> Reviews { get; set; }
+            public DbSet<Showing> Showings { get; set; }
+            public DbSet<Ticket> Tickets { get; set; }
+            public DbSet<Card> Cards { get; set; }
+            //NOTE: This is a dbSet that you need to make roles work
+            public DbSet<AppRole> AppRoles { get; set; }
+
+            public AppDbContext()
+                : base("MyDbConnection", throwIfV1Schema: false)
+            {
+            }
+
+            public static AppDbContext Create()
+            {
+                return new AppDbContext();
+            }
+
+            //public System.Data.Entity.DbSet<MIS333K_Team11_FinalProjectV2.Models.AppUser> AppUsers { get; set; }
+        }
     }
 }
+

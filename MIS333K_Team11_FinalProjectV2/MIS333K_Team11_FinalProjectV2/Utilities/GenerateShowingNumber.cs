@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using MIS333K_Team11_FinalProjectV2.DAL;
+//using MIS333K_Team11_FinalProjectV2.DAL;
 using MIS333K_Team11_FinalProjectV2.Models;
 
 namespace MIS333K_Team11_FinalProjectV2.Utilities
@@ -12,7 +12,7 @@ namespace MIS333K_Team11_FinalProjectV2.Utilities
         public static Int32 GetNextShowingNumber()
         {
             //we need a db context to connect to the database
-            AppDbContext db = new AppDbContext();
+            AppUser.AppDbContext db = new AppUser.AppDbContext();
 
             Int32 intMaxShowingNumber; //the current maximum course number
             Int32 intNextShowingNumber; //the course number for the next class
