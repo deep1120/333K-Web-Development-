@@ -93,9 +93,34 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 return RedirectToAction("Index");
             }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> e595bbcfbdc1b816c803a6de1c0e2f3593d8e21d
             //populate the viewbag with the movie list
             ViewBag.AllMovies = GetAllMovies(showing);
             return View(showing);
+        }
+
+        public ActionResult DateSearch(DateTime? datSelectedDate)
+        {
+
+            var query = from s in db.Showings
+                        select s;
+
+            if (datSelectedDate !=null)
+            {
+                query = query.Where(m => m.ShowDate == datSelectedDate);
+            }
+
+            List<Showing> SelectedShowings = query.ToList();
+            //order list
+            SelectedShowings.OrderByDescending(m => m.TicketPrice);
+
+            //ViewBag.AllShowings = db.Showings.Count();
+            //ViewBag.SelectedMovies = SelectedShowings.Count();
+            //send list to view
+            return View("Index", SelectedShowings);
         }
 
         // GET: Showings/Edit/5
