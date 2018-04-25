@@ -12,6 +12,7 @@ using static MIS333K_Team11_FinalProjectV2.Models.AppUser;
 
 namespace MIS333K_Team11_FinalProjectV2.Controllers
 {
+    public enum YearRank { GreaterThan, LesserThan}
     public class MoviesController : Controller
     {
         private AppDbContext db = new AppDbContext();
@@ -78,7 +79,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             return View();
         }
 
-        public ActionResult DisplaySearchResults(String SearchMovieTitle, String SearchTagline, int[] SearchGenre, String SelectedYear, MPAArating SelectedMPAARating, String SearchActor)
+        public ActionResult DisplaySearchResults(String SearchMovieTitle, String SearchTagline, int[] SearchGenre, String SelectedYear, MPAArating SelectedMPAARating, String SearchActor, YearRank SelectedSortOrder)
         {
 
             //if they selected a search string, limit results to only repos that meet the criteria
@@ -151,7 +152,17 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                     ViewBag.AllGenres = GetAllGenres();
                     return View("DetailedSearch");
                 }
-                query = query.Where(m => m.ReleaseDate.Year == intYear);
+                switch(SelectedSortOrder)
+                {
+                    case YearRank.GreaterThan:
+                        query = query.Where(r => r.ReleaseDate.Year >= intYear);
+                        break;
+                    case YearRank.LesserThan:
+                        query = query.Where(r => r.ReleaseDate.Year <= intYear);
+                        break;
+                }
+
+                //query = query.Where(m => m.ReleaseDate.Year == intYear);
             }
 
             List<Movie> SelectedMovies = query.ToList();
