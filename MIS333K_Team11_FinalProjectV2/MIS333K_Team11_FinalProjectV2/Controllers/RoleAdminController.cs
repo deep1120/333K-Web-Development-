@@ -88,9 +88,6 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             return View("Error", new string[] { "Role Not Found" });
         }
 
-
-
-
         private void AddErrorsFromResult(IdentityResult result)
         {
             foreach (string error in result.Errors)

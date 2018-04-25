@@ -5,14 +5,14 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<MIS333K_Team11_FinalProjectV2.DAL.AppDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<MIS333K_Team11_FinalProjectV2.Models.AppUser.AppDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(MIS333K_Team11_FinalProjectV2.DAL.AppDbContext context)
+        protected override void Seed(MIS333K_Team11_FinalProjectV2.Models.AppUser.AppDbContext context)
         {
             //  This method will be called after migrating to the latest version.
             GenreData AddGenres = new GenreData();

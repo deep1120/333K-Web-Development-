@@ -12,8 +12,9 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security;
 
 // Change this using statement to match your project
-using MIS333K_Team11_FinalProjectV2.DAL;
+//using MIS333K_Team11_FinalProjectV2.DAL;
 using MIS333K_Team11_FinalProjectV2.Models;
+using static MIS333K_Team11_FinalProjectV2.Models.AppUser;
 
 // Change this namespace to match your project
 namespace MIS333K_Team11_FinalProjectV2
@@ -26,7 +27,6 @@ namespace MIS333K_Team11_FinalProjectV2
             : base(store)
         {
         }
-
 
         //  Change any settings related to your user password rules, etc.
         public static AppUserManager Create(IdentityFactoryOptions<AppUserManager> options, IOwinContext context)
@@ -41,17 +41,15 @@ namespace MIS333K_Team11_FinalProjectV2
                 RequireUniqueEmail = true
             };
 
-            //// TODO: Configure validation logic for passwords
-            //manager.PasswordValidator = new PasswordValidator
-            //{
-            //    RequiredLength = 6,
-            //    RequireNonLetterOrDigit = false,
-            //    RequireDigit = true,
-            //    RequireLowercase = true,
-            //    RequireUppercase = true
-            //};
-
-
+            // TODO: Configure validation logic for passwords
+            manager.PasswordValidator = new PasswordValidator
+            {
+                RequiredLength = 5,
+                RequireNonLetterOrDigit = false,
+                RequireDigit = false,
+                RequireLowercase = false,
+                RequireUppercase = false
+            };
             return manager;
         }
     }

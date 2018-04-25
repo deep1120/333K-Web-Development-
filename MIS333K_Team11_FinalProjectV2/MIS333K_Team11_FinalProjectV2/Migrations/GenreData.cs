@@ -1,5 +1,5 @@
 ﻿using MIS333K_Team11_FinalProjectV2.Models;
-using MIS333K_Team11_FinalProjectV2.DAL;
+//using MIS333K_Team11_FinalProjectV2.DAL;
 using System.Data.Entity.Migrations;
 using System.Linq;
 
@@ -7,7 +7,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 {
     public class GenreData
     {
-        public void SeedGenres(AppDbContext db)
+        public void SeedGenres(AppUser.AppDbContext db)
         {
             Genre gen1 = new Genre();
             gen1.GenreName = "Action";

@@ -27,6 +27,11 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [Display(Name = "Order Notes")] //this may not be needed
         public String OrderNotes { get; set; }
 
+        [Display(Name = "Card Number")]
+        public String CardNumber { get; set; }
+
+        public Decimal Total { get; set; } //this isn't right at all, just put this here so code would be happy
+
         //[Required(ErrorMessage = "Order status is required")]
         [Display(Name = "Order Status")]
         public OrderStatus Orderstatus { get; set; }

@@ -1,5 +1,5 @@
 using MIS333K_Team11_FinalProjectV2.Models;
-using MIS333K_Team11_FinalProjectV2.DAL;
+//using MIS333K_Team11_FinalProjectV2.DAL;
 using System.Data.Entity.Migrations;
 using System;
 using System.Linq;
@@ -8,7 +8,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 {
 	public class MovieData
 	{
-		public void SeedMovies(AppDbContext db)
+		public void SeedMovies(AppUser.AppDbContext db)
 		{
 			Movie m1 = new Movie();
 			m1.MovieNumber = 3001;

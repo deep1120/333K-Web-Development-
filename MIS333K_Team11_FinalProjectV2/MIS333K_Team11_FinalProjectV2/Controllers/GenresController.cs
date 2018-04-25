@@ -6,8 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using MIS333K_Team11_FinalProjectV2.DAL;
+//using MIS333K_Team11_FinalProjectV2.DAL;
 using MIS333K_Team11_FinalProjectV2.Models;
+using static MIS333K_Team11_FinalProjectV2.Models.AppUser;
 
 namespace MIS333K_Team11_FinalProjectV2.Controllers
 {

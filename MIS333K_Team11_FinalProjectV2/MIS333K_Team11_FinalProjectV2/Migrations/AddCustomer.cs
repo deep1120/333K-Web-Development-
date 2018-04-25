@@ -3,9 +3,10 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System.Linq;
 
 // Change these using statements to match your project
-using MIS333K_Team11_FinalProjectV2.DAL;
+/*using MIS333K_Team11_FinalProjectV2.DAL*/
 using MIS333K_Team11_FinalProjectV2.Models;
 using System;
+using static MIS333K_Team11_FinalProjectV2.Models.AppUser;
 
 // Change this namespace to match your project
 namespace MIS333K_Team11_FinalProjectV2.Migrations
@@ -39,6 +40,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
                 manager.City = "Austin";
                 manager.State = "TX";
                 manager.ZipCode = "78705";
+                manager.PopcornPoints = 110;
 
                 var result = UserManager.Create(manager, "hello1");
                 db.SaveChanges();

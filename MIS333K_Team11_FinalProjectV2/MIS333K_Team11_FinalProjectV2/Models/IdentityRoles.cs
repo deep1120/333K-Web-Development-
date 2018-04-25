@@ -9,7 +9,8 @@ using Microsoft.Owin;
 using System.Web.Mvc;
 
 //Change this using statement to match your project
-using MIS333K_Team11_FinalProjectV2.DAL;
+//using MIS333K_Team11_FinalProjectV2.DAL;
+using static MIS333K_Team11_FinalProjectV2.Models.AppUser;
 
 //Change this namespace to match your project
 namespace MIS333K_Team11_FinalProjectV2.Models
@@ -30,7 +31,6 @@ namespace MIS333K_Team11_FinalProjectV2.Models
             return new AppRoleManager(new RoleStore<AppRole>(context.Get<AppDbContext>()));
         }
     }
-
 
     public static class IdentityHelpers
     {
