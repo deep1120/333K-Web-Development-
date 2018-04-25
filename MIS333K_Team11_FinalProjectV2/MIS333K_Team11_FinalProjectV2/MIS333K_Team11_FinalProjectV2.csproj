@@ -243,6 +243,10 @@
     <Compile Include="Migrations\201804250115009_updateddatetime.Designer.cs">
       <DependentUpon>201804250115009_updateddatetime.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804250249249_gotridofquestionmarks.cs" />
+    <Compile Include="Migrations\201804250249249_gotridofquestionmarks.Designer.cs">
+      <DependentUpon>201804250249249_gotridofquestionmarks.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AddCustomer.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\GenreData.cs" />
@@ -351,6 +355,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804250115009_updateddatetime.resx">
       <DependentUpon>201804250115009_updateddatetime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804250249249_gotridofquestionmarks.resx">
+      <DependentUpon>201804250249249_gotridofquestionmarks.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

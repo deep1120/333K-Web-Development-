@@ -63,6 +63,32 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 showing.SponsoringMovies.Add(mov);
             }
 
+            DateTime now = DateTime.Now;
+            Showing date = new Showing();
+            DateTime showdate = date.ShowDate;
+
+            if (now.Date < date.ShowDate)
+            {
+                ViewBag.ErrorMessage = "Unable to add Time";
+                return RedirectToAction("Create", "Showing");
+            }
+
+ 
+
+
+
+            DateTime start = Convert.ToDateTime("09:00:00 AM");
+            DateTime end = Convert.ToDateTime("12:00:00 AM");
+
+            Showing ShowTime = new Showing();
+            DateTime val = ShowTime.StartTime;
+
+            if ((val < start) && (val > end))
+            {
+                ViewBag.ErrorMessage = "Unable to add Time";
+                return RedirectToAction("Create", "Showing");
+            }
+
             if (ModelState.IsValid)
             {
                 db.Showings.Add(showing);
@@ -70,17 +96,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 return RedirectToAction("Index");
             }
 
-            DateTime start = new DateTime(9, 0, 0);
-            DateTime end = new DateTime(24, 0, 0);
-
-            Showing ShowTime = new Showing();
-            DateTime val = ShowTime.StartTime;
-
-            if ((val < start) && (val > end))
-            {
-                ViewBag.ErrorMessage = "Unable to add all the Time's";
-                return RedirectToAction("Create", "Showing");
-            }
+         
 
 
             //populate the viewbag with the movie list
