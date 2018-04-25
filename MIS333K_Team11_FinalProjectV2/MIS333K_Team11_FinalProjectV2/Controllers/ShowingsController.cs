@@ -70,22 +70,23 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             if (now < showdate)
             {
                 ViewBag.ErrorMessage = "Unable to add Time";
-                return RedirectToAction("Create", "Showing");
+                return RedirectToAction("Create", "Showings");
             }
 
             //TODO: Figure out why time isn't working
             DateTime start = Convert.ToDateTime("09:00:00 AM");
             DateTime end = Convert.ToDateTime("12:00:00 AM");
 
-            //Showing ShowTime = new Showing();
-            //DateTime val = ShowTime.StartTime;
-            //DateTime val = showing.StartTime;
+            Showing ShowTime = new Showing();
+            DateTime val = ShowTime.ShowDate;
+            
 
-            //if ((val < start) || (val > end))
-            //{
-            //    ViewBag.ErrorMessage = "Unable to add Time";
-            //    return RedirectToAction("Create", "Showing");
-            //}
+            if ((val < start) || (val > end))
+            {
+                ViewBag.ErrorMessage = "Unable to add Time";
+                return RedirectToAction("Create", "Showings");
+            }
+
 
             if (ModelState.IsValid)
             {
@@ -93,6 +94,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
 
 
             //populate the viewbag with the movie list
