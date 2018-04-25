@@ -156,6 +156,10 @@
     <Compile Include="Migrations\201804252244543_ChangeTicketSeatToString.Designer.cs">
       <DependentUpon>201804252244543_ChangeTicketSeatToString.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804252259100_add_datetime.cs" />
+    <Compile Include="Migrations\201804252259100_add_datetime.Designer.cs">
+      <DependentUpon>201804252259100_add_datetime.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Utilities\Seat.cs" />
     <Compile Include="Views\Utilities\SeatHelper.cs" />
     <Compile Include="Views\AppUsers\ManagerIndex.cs" />
@@ -403,6 +407,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804252244543_ChangeTicketSeatToString.resx">
       <DependentUpon>201804252244543_ChangeTicketSeatToString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804252259100_add_datetime.resx">
+      <DependentUpon>201804252259100_add_datetime.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

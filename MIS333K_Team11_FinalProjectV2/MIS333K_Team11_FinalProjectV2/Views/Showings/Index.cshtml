@@ -23,9 +23,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Theatre)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.StartTime)
-        </th>
+        </th>*@
         <th>
             Running Time
         </th>
@@ -53,9 +53,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.Theatre)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.StartTime)
-        </td>
+        </td>*@
         <td>
             @foreach (Movie mov in item.SponsoringMovies)
             {

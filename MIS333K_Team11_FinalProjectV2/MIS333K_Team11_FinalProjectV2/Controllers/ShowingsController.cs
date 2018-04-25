@@ -79,13 +79,13 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
             //Showing ShowTime = new Showing();
             //DateTime val = ShowTime.StartTime;
-            DateTime val = showing.StartTime;
+            //DateTime val = showing.StartTime;
 
-            if ((val < start) || (val > end))
-            {
-                ViewBag.ErrorMessage = "Unable to add Time";
-                return RedirectToAction("Create", "Showing");
-            }
+            //if ((val < start) || (val > end))
+            //{
+            //    ViewBag.ErrorMessage = "Unable to add Time";
+            //    return RedirectToAction("Create", "Showing");
+            //}
 
             if (ModelState.IsValid)
             {
@@ -94,10 +94,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 return RedirectToAction("Index");
             }
 
-//<<<<<<< HEAD
-//=======
 
-//>>>>>>> e595bbcfbdc1b816c803a6de1c0e2f3593d8e21d
             //populate the viewbag with the movie list
             ViewBag.AllMovies = GetAllMovies(showing);
             return View(showing);
