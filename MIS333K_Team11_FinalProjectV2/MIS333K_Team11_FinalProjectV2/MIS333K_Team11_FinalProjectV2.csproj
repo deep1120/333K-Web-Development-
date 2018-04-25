@@ -148,6 +148,10 @@
     <Compile Include="Migrations\201804250738312_ChangeEmailAddress.Designer.cs">
       <DependentUpon>201804250738312_ChangeEmailAddress.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804251443416_FixIdentity.cs" />
+    <Compile Include="Migrations\201804251443416_FixIdentity.Designer.cs">
+      <DependentUpon>201804251443416_FixIdentity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\AppUsers\ManagerIndex.cs" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -386,6 +390,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804250738312_ChangeEmailAddress.resx">
       <DependentUpon>201804250738312_ChangeEmailAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804251443416_FixIdentity.resx">
+      <DependentUpon>201804251443416_FixIdentity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
