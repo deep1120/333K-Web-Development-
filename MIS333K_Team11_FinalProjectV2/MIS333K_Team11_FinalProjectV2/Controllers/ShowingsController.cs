@@ -70,6 +70,19 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 return RedirectToAction("Index");
             }
 
+            DateTime start = new DateTime(9, 0, 0);
+            DateTime end = new DateTime(24, 0, 0);
+
+            Showing ShowTime = new Showing();
+            DateTime val = ShowTime.StartTime;
+
+            if ((val < start) && (val > end))
+            {
+                ViewBag.ErrorMessage = "Unable to add all the Time's";
+                return RedirectToAction("Create", "Showing");
+            }
+
+
             //populate the viewbag with the movie list
             ViewBag.AllMovies = GetAllMovies(showing);
             return View(showing);
