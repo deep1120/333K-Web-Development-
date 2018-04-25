@@ -73,10 +73,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 return RedirectToAction("Create", "Showing");
             }
 
- 
-
-
-
+            //TODO: Figure out why time isn't working
             DateTime start = Convert.ToDateTime("09:00:00 AM");
             DateTime end = Convert.ToDateTime("12:00:00 AM");
 
@@ -95,9 +92,6 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-         
-
 
             //populate the viewbag with the movie list
             ViewBag.AllMovies = GetAllMovies(showing);
