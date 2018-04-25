@@ -94,10 +94,10 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 return RedirectToAction("Index");
             }
 
-<<<<<<< HEAD
-=======
+//<<<<<<< HEAD
+//=======
 
->>>>>>> e595bbcfbdc1b816c803a6de1c0e2f3593d8e21d
+//>>>>>>> e595bbcfbdc1b816c803a6de1c0e2f3593d8e21d
             //populate the viewbag with the movie list
             ViewBag.AllMovies = GetAllMovies(showing);
             return View(showing);
