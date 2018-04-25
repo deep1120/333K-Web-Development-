@@ -64,10 +64,11 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             }
 
             DateTime now = DateTime.Now;
-            Showing date = new Showing();
-            DateTime showdate = date.ShowDate;
+            //Showing date = new Showing();
+            //DateTime showdate = date.ShowDate;
+            DateTime showdate = showing.ShowDate;
 
-            if (now.Date < date.ShowDate)
+            if (now < showdate)
             {
                 ViewBag.ErrorMessage = "Unable to add Time";
                 return RedirectToAction("Create", "Showing");
@@ -80,10 +81,11 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             DateTime start = Convert.ToDateTime("09:00:00 AM");
             DateTime end = Convert.ToDateTime("12:00:00 AM");
 
-            Showing ShowTime = new Showing();
-            DateTime val = ShowTime.StartTime;
+            //Showing ShowTime = new Showing();
+            //DateTime val = ShowTime.StartTime;
+            DateTime val = showing.StartTime;
 
-            if ((val < start) && (val > end))
+            if ((val < start) || (val > end))
             {
                 ViewBag.ErrorMessage = "Unable to add Time";
                 return RedirectToAction("Create", "Showing");
