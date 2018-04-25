@@ -96,7 +96,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 td.TicketPrice = td.Showing.TicketPrice;
 
                 //update the total fees
-                td.TotalFees = td.TicketPrice * td.TicketSeat;
+                td.TotalFees = td.TicketPrice /** td.TicketSeat*/;
 
                 db.Entry(ticket).State = EntityState.Modified;
                 db.SaveChanges();

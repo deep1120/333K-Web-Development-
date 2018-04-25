@@ -103,6 +103,11 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             return View(showing);
         }
 
+        public ActionResult DateSearch()
+        {
+            return View();
+        }
+        [HttpPost]
         public ActionResult DateSearch(DateTime? datSelectedDate)
         {
 

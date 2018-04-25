@@ -100,7 +100,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             td.TicketPrice = showing.TicketPrice;
 
             //Set the value of the total fees
-            td.TotalFees = td.TicketPrice * td.TicketSeat; 
+            td.TotalFees = td.TicketPrice /** td.TicketSeat*/; 
 
             if (ModelState.IsValid) //model meets all requirements
             {
