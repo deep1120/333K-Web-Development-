@@ -160,6 +160,10 @@
     <Compile Include="Migrations\201804252259100_add_datetime.Designer.cs">
       <DependentUpon>201804252259100_add_datetime.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804252310573_AddAvgUserRating.cs" />
+    <Compile Include="Migrations\201804252310573_AddAvgUserRating.Designer.cs">
+      <DependentUpon>201804252310573_AddAvgUserRating.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Utilities\Seat.cs" />
     <Compile Include="Views\Utilities\SeatHelper.cs" />
     <Compile Include="Views\AppUsers\ManagerIndex.cs" />
@@ -410,6 +414,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804252259100_add_datetime.resx">
       <DependentUpon>201804252259100_add_datetime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804252310573_AddAvgUserRating.resx">
+      <DependentUpon>201804252310573_AddAvgUserRating.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
