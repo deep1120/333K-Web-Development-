@@ -56,6 +56,11 @@ namespace MIS333K_Team11_FinalProjectV2.Models
             get { return OrderSubtotal + SalesTax; }
         }
 
+        [Required(ErrorMessage = "Gift is required.")]
+        [Display(Name = "Is this order a gift?")]
+        public Boolean Gift { get; set; }
+
+
         public virtual List<Ticket> Tickets { get; set; }
         public virtual AppUser Purchased { get; set; }
         public virtual AppUser Gifted { get; set; }
