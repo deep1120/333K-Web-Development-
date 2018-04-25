@@ -18,26 +18,30 @@ namespace MIS333K_Team11_FinalProjectV2.Models
 
         [Display(Name = "Show Date")]
         [DataType(DataType.Date)]
-        public DateTime? ShowDate { get; set; }
+        public DateTime ShowDate { get; set; }
 
         //[Display(Name = "Showing Time")] //Use one of these
         [Display(Name = "Start Time")]
         [DataType(DataType.Time)]
-        public DateTime? StartTime { get; set; }
+        public DateTime StartTime { get; set; }
 
         [Display(Name = "End Time")] //a calculated value = start time + running time of movie
         [DataType(DataType.Time)]
         public DateTime? EndTime { get; set; }
 
         [Display(Name = "Running Time")]
-        public Int32 RunTime { get; set; }
+        public Int32 RunTime
+        {
+            //get { return SponsoringMovies.Sum(m=> m.RunningTime);}
+            get;set; 
+        }
 
         [Display(Name = "Ticket Price")]
         public Decimal TicketPrice { get; set; }
 
         [Required(ErrorMessage = "Theatre is Required")]
         [EnumDataType(typeof(Theatre))]
-        [Display (Name = "What Theatre?" )]
+        [Display (Name = "Theatre" )]
         public Theatre Theatre { get; set; }
 
         //May insert "Future showing"

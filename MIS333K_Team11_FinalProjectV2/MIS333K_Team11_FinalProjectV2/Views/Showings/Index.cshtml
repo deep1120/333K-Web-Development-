@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<MIS333K_Team11_FinalProjectV2.Models.Showing>
+@using MIS333K_Team11_FinalProjectV2.Models
 
 @{
     ViewBag.Title = "Index";
@@ -7,8 +8,10 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-info" })
+    @Html.ActionLink("Search By Date", "DateSearch", null, new { @class = "btn btn-info" })
 </p>
+
 <table class="table">
     <tr>
         <th>
@@ -18,35 +21,56 @@
             @Html.DisplayNameFor(model => model.ShowDate)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Theatre)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.StartTime)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RunTime)
+            Running Time
         </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.RunTime)
+        </th>*@
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.SponsoringMovies)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ShowDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RunTime)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ShowingID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ShowingID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ShowingID })
-            </td>
-        </tr>
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.SponsoringMovies)
+        </td>*@
+        <td>
+            @foreach (Movie mov in item.SponsoringMovies)
+            {
+                @Html.DisplayFor(modelItem => mov.MovieTitle)
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShowDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Theatre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartTime)
+        </td>
+        <td>
+            @foreach (Movie mov in item.SponsoringMovies)
+            {
+                @Html.DisplayFor(modelItem => mov.RunningTime)
+            }
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.RunTime)
+        </td>*@
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ShowingID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ShowingID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ShowingID })
+        </td>
+    </tr>
     }
 
 </table>

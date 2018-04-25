@@ -62,6 +62,29 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 showing.SponsoringMovies.Add(mov);
             }
 
+            DateTime now = DateTime.Now;
+            Showing date = new Showing();
+            DateTime showdate = date.ShowDate;
+
+            if (now.Date < date.ShowDate)
+            {
+                ViewBag.ErrorMessage = "Unable to add Time";
+                return RedirectToAction("Create", "Showing");
+            }
+
+            //TODO: Figure out why time isn't working
+            DateTime start = Convert.ToDateTime("09:00:00 AM");
+            DateTime end = Convert.ToDateTime("12:00:00 AM");
+
+            Showing ShowTime = new Showing();
+            DateTime val = ShowTime.StartTime;
+
+            if ((val < start) && (val > end))
+            {
+                ViewBag.ErrorMessage = "Unable to add Time";
+                return RedirectToAction("Create", "Showing");
+            }
+
             if (ModelState.IsValid)
             {
                 db.Showings.Add(showing);
@@ -69,9 +92,34 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 return RedirectToAction("Index");
             }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> e595bbcfbdc1b816c803a6de1c0e2f3593d8e21d
             //populate the viewbag with the movie list
             ViewBag.AllMovies = GetAllMovies(showing);
             return View(showing);
+        }
+
+        public ActionResult DateSearch(DateTime? datSelectedDate)
+        {
+
+            var query = from s in db.Showings
+                        select s;
+
+            if (datSelectedDate !=null)
+            {
+                query = query.Where(m => m.ShowDate == datSelectedDate);
+            }
+
+            List<Showing> SelectedShowings = query.ToList();
+            //order list
+            SelectedShowings.OrderByDescending(m => m.TicketPrice);
+
+            //ViewBag.AllShowings = db.Showings.Count();
+            //ViewBag.SelectedMovies = SelectedShowings.Count();
+            //send list to view
+            return View("Index", SelectedShowings);
         }
 
         // GET: Showings/Edit/5
