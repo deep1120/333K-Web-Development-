@@ -172,6 +172,10 @@
     <Compile Include="Migrations\201804260148087_AddCardNumberProperty.Designer.cs">
       <DependentUpon>201804260148087_AddCardNumberProperty.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804260306166_updateddate.cs" />
+    <Compile Include="Migrations\201804260306166_updateddate.Designer.cs">
+      <DependentUpon>201804260306166_updateddate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Utilities\Seat.cs" />
     <Compile Include="Views\Utilities\SeatHelper.cs" />
     <Compile Include="Views\AppUsers\ManagerIndex.cs" />
@@ -431,6 +435,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804260148087_AddCardNumberProperty.resx">
       <DependentUpon>201804260148087_AddCardNumberProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804260306166_updateddate.resx">
+      <DependentUpon>201804260306166_updateddate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

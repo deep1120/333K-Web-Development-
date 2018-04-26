@@ -54,8 +54,9 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             //ask for the next showing number
             //showing.ShowingNumber = Utilities.GenerateShowingNumber.GetNextShowingNumber();
 
-            //add movie
-            if (SelectedMovies != 0)
+           
+                //add movie
+                if (SelectedMovies != 0)
             {
                 //find the movie
                 Movie mov = db.Movies.Find(SelectedMovies);
@@ -66,6 +67,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             //Showing date = new Showing();
             //DateTime showdate = date.ShowDate;
             DateTime showdate = showing.ShowDate;
+
 
             if (now < showdate)
             {
@@ -79,7 +81,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
             Showing ShowTime = new Showing();
             DateTime val = ShowTime.ShowDate;
-            
+
 
             if ((val < start) || (val > end))
             {
@@ -87,9 +89,9 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 return RedirectToAction("Create", "Showings");
             }
 
-
             if (ModelState.IsValid)
             {
+
                 db.Showings.Add(showing);
                 db.SaveChanges();
                 return RedirectToAction("Index");

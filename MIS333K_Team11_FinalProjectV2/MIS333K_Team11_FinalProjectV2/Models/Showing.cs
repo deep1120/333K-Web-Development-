@@ -8,6 +8,10 @@ namespace MIS333K_Team11_FinalProjectV2.Models
 {
     public class Showing
     {
+
+        
+
+    
         public Int32 ShowingID { get; set; }
 
         [Display(Name = "Showing Number")]
