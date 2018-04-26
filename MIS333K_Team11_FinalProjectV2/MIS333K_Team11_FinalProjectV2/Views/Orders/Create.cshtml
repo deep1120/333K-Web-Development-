@@ -15,24 +15,36 @@
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Gift, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <div class="checkbox">
-                @Html.EditorFor(model => model.Gift)
-                @Html.ValidationMessageFor(model => model.Gift, "", new { @class = "text-danger" })
+    @using (Html.BeginForm())
+    {
+        @Html.CheckBoxFor(model => model.Gift)
+        <br />
+        @Html.TextBoxFor(model => model.GiftEmail)
+        <br />
+    }
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>
+    $(function () {
+        $("#Gift").click(function () {
+            if ($(this).is(':checked')) {
+                $("#GiftEmail").show();
+            }
+            else {
+                $("#GiftEmail").hide();
+            }
+        });
+    });
+    </script>
+
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.OrderNotes, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.OrderNotes, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.OrderNotes, "", new { @class = "text-danger" })
             </div>
-        </div>
-    </div>
-
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.OrderNotes, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextAreaFor(model => model.OrderNotes, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.OrderNotes, "", new { @class = "text-danger" })
-        </div>
-    </div>
+        </div>*@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">

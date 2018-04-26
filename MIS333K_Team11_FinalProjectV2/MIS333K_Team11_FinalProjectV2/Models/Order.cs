@@ -60,6 +60,11 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [Display(Name = "Is this order a gift?")]
         public Boolean Gift { get; set; }
 
+        [Display(Name = "Please enter the email address of the gift recipient")]
+        [DataType(DataType.EmailAddress)]
+        [EmailAddress(ErrorMessage ="Enter a valid email address")]
+        public String GiftEmail { get; set; }
+
 
         public virtual List<Ticket> Tickets { get; set; }
         public virtual AppUser Purchased { get; set; }
