@@ -22,7 +22,7 @@
             {
                 @Html.HiddenFor(model => model.FirstName)
                 @Html.HiddenFor(model => model.LastName)
-                @Html.HiddenFor(model => model.EmailAddress)
+                @Html.HiddenFor(model => model.Email)
             }
             else
             {
@@ -38,8 +38,8 @@
                 </dd>
                 <dt>Email:</dt>
                 <dd>
-                    @Html.TextBoxFor(model => model.EmailAddress, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                 </dd>
 
             }

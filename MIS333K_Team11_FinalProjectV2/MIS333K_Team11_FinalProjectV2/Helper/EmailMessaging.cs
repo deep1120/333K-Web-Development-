@@ -9,7 +9,7 @@ namespace MIS333K_Team11_FinalProjectV2
         private const string _emailServiceLogin = "Mis2018Team11@gmail.com";
         private const string _emailServicePassword = "mis333kteam11";
         private const string _senderEmail = "noreplay@team11movietheater.com";
-        public static void SendEmail(String toEmailAddress, String emailSubject, String emailBody)
+        public static void SendEmail(String toEmail, String emailSubject, String emailBody)
         {
             try
             {
@@ -35,7 +35,7 @@ namespace MIS333K_Team11_FinalProjectV2
 
                 mm.From = senderEmail;
 
-                mm.To.Add(new MailAddress(toEmailAddress));
+                mm.To.Add(new MailAddress(toEmail));
 
                 mm.Body = finalMessage; //adds a footer
 

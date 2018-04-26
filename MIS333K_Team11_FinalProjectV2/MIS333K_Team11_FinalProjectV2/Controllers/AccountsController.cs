@@ -104,7 +104,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             }
             try
             {
-                AppUser userLoggingIn = db.Users.FirstOrDefault(x => x.Email == model.EmailAddress);
+                AppUser userLoggingIn = db.Users.FirstOrDefault(x => x.Email == model.Email);
                 if(await UserManager.IsInRoleAsync(userLoggingIn.Id, "DisabledEmployee"))
                 {
                     return View("Error", new string[] { "Your employee account has been disabled." });
@@ -117,7 +117,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.EmailAddress, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -148,17 +148,17 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 //TODO: Add fields to user here so they will be saved to do the database
                 var user = new AppUser
                 {
-                    UserName = model.EmailAddress,
-                    Email = model.EmailAddress,
+                    UserName = model.Email,
+                    Email = model.Email,
                     FirstName = model.FirstName,
-                    LastName = model.LastName,
                     MiddleInitial = model.MiddleInitial,
+                    LastName = model.LastName,
                     PhoneNumber = model.PhoneNumber,
-                    Birthday = model.Birthday,
                     Street = model.Street,
                     City = model.City,
                     State = model.State,
                     ZipCode = model.ZipCode,
+                    Birthday = model.Birthday,
                     PopcornPoints = model.PopcornPoints             
                 };
 
@@ -307,7 +307,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 LastName = user.LastName,
                 City = user.City,
                 State = user.State,
-                EmailAddress = user.Email,
+                Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
                 Street = user.Street,
                 UserModelID = user.Id,
@@ -337,24 +337,27 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         public ActionResult Edit(string id)
         {
             var userId = id;
+
             if (string.IsNullOrEmpty(id))
             {
                 userId = User.Identity.GetUserId();
             }
+
             var user = db.Users.SingleOrDefault(u => u.Id == userId);
+
             var model = new UserModel()
             {
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 City = user.City,
                 State = user.State,
-                EmailAddress = user.Email,
+                Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
                 Street = user.Street,
                 UserModelID = user.Id,
                 ZipCode = user.ZipCode,
                 HasPassword = (user.PasswordHash != null),
-                Cards = user.Cards,
+                Cards = user.Cards
             };
 
             if(UserManager.IsInRole(user.Id, "Manager"))
@@ -376,15 +379,14 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         //POST: Edit Account Details
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "FirstName,LastName,Email,PhoneNumber,Street,ZipCode,City,State,UserID")] UserModel model)
+        public async Task<ActionResult> Edit([Bind(Include = "FirstName,LastName,Email,PhoneNumber,Street,ZipCode,City,State,UserModelID")] UserModel model)
         {
             if (ModelState.IsValid)
             {
                 var user = UserManager.FindById(model.UserModelID);
-
                 user.FirstName = model.FirstName;
                 user.LastName = model.LastName;
-                user.Email = model.EmailAddress;
+                user.Email = model.Email;
                 user.PhoneNumber = model.PhoneNumber;
                 user.Street = model.Street;
                 user.ZipCode = model.ZipCode;

@@ -12,7 +12,7 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [Required]
         [Display(Name = "Email")]
         [EmailAddress]
-        public string EmailAddress { get; set; }
+        public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -29,7 +29,7 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
-        public string EmailAddress { get; set; }
+        public string Email { get; set; }
 
         //NOTE: Here is the logic for putting in a password
         [Required]
@@ -129,7 +129,7 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
-        public string EmailAddress { get; set; }
+        public string Email { get; set; }
 
         [Required(ErrorMessage = "First name is required.")]
         [Display(Name = "First Name")]
@@ -187,7 +187,7 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
-        public string EmailAddress { get; set; }
+        public string Email { get; set; }
 
         [Required(ErrorMessage = "First name is required.")]
         [Display(Name = "First Name")]
