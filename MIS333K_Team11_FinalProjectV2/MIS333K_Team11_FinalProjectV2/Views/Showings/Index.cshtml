@@ -29,9 +29,10 @@
         <th>
             Running Time
         </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.RunTime)
-        </th>*@
+        <th>
+            MPAA Rating
+        </th>
+
         <th></th>
     </tr>
 
@@ -43,9 +44,9 @@
         </td>*@
         <td>
             @foreach (Movie mov in item.SponsoringMovies)
-            {
-                @Html.DisplayFor(modelItem => mov.MovieTitle)
-            }
+        {
+            @Html.DisplayFor(modelItem => mov.MovieTitle)
+    }
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ShowDate)
@@ -58,9 +59,15 @@
         </td>*@
         <td>
             @foreach (Movie mov in item.SponsoringMovies)
-            {
-                @Html.DisplayFor(modelItem => mov.RunningTime)
-            }
+        {
+            @Html.DisplayFor(modelItem => mov.RunningTime)
+    }
+        </td>
+        <td>
+            @foreach (Movie mov in item.SponsoringMovies)
+        {
+            @Html.DisplayFor(modelItem => mov.MPAAratings)
+    }
         </td>
         @*<td>
             @Html.DisplayFor(modelItem => item.RunTime)

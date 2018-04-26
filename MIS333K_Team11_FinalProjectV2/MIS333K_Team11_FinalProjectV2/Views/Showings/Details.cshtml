@@ -2,7 +2,7 @@
 @using MIS333K_Team11_FinalProjectV2.Models
 
 @{
-                /**/
+                
 
                 ViewBag.Title = "Details";
 }
@@ -13,29 +13,37 @@
     <h4>Course</h4>
     <hr />
     <dl class="dl-horizontal">
+        <div>
+            <table class="table table-sm table-striped">
+                <tr>
+                    <th>Movie</th>
+                </tr>
+                @foreach (Movie mov in Model.SponsoringMovies)
+                     {
+                            <tr>
+                            <td>@Html.DisplayFor(modelItem => mov.MovieTitle)</td>
+                            </tr>
+                     }
+            </table>
+
+        </div>
         <dt>
-            @Html.DisplayNameFor(model => model.ShowingNumber)
+            @Html.DisplayNameFor(model => model.ShowDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ShowingNumber)
+            @Html.DisplayFor(model => model.ShowDate)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ShowingName)
+            @Html.DisplayNameFor(model => model.Theatre)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ShowingName)
+            @Html.DisplayFor(model => model.Theatre)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TicketPrice)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TicketPrice)
-        </dd>
 
         <dt>
             Running Time
@@ -47,27 +55,11 @@
             }
         </dd>
 
-        @*<dd>
-            @Html.DisplayFor(model => model.RunTime)
-        </dd>*@
 
     </dl>
 </div>
 
-<div>
-    <table class="table table-sm table-striped">
-        <tr>
-            <th>Sponsoring Movie(s)</th>
-        </tr>
-        @foreach (Movie mov in Model.SponsoringMovies)
-        {
-            <tr>
-                <td>@Html.DisplayFor(modelItem => mov.MovieTitle)</td>
-            </tr>
-        }
-    </table>
 
-</div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ShowingID }) |
     @Html.ActionLink("Back to List", "Index")
