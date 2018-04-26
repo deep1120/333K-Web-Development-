@@ -26,7 +26,7 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [DataType(DataType.EmailAddress, ErrorMessage = "Enter a valid email address")]
         [EmailAddress(ErrorMessage = "Please enter a valid email address")]
         [Display(Name = "Email Address")]
-        public String EmailAddress { get; set; }
+        public String Email { get; set; }
 
         [DataType(DataType.PhoneNumber)]
         [Display(Name = "Phone Number")]

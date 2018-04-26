@@ -7,13 +7,13 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class ChangeEmail : IMigrationMetadata
+    public sealed partial class Identity2 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ChangeEmail));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Identity2));
         
         string IMigrationMetadata.Id
         {
-            get { return "201804250738312_ChangeEmail"; }
+            get { return "201804260141590_Identity2"; }
         }
         
         string IMigrationMetadata.Source

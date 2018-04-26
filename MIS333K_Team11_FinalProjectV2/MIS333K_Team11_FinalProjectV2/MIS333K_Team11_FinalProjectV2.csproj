@@ -144,10 +144,6 @@
     <Compile Include="Migrations\201804250718447_IdentityRound2.Designer.cs">
       <DependentUpon>201804250718447_IdentityRound2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201804250738312_ChangeEmailAddress.cs" />
-    <Compile Include="Migrations\201804250738312_ChangeEmailAddress.Designer.cs">
-      <DependentUpon>201804250738312_ChangeEmailAddress.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201804251443416_FixIdentity.cs" />
     <Compile Include="Migrations\201804251443416_FixIdentity.Designer.cs">
       <DependentUpon>201804251443416_FixIdentity.cs</DependentUpon>
@@ -168,9 +164,13 @@
     <Compile Include="Migrations\201804252336113_giftcheckbox.Designer.cs">
       <DependentUpon>201804252336113_giftcheckbox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201804260051553_giftemail.cs" />
-    <Compile Include="Migrations\201804260051553_giftemail.Designer.cs">
-      <DependentUpon>201804260051553_giftemail.cs</DependentUpon>
+    <Compile Include="Migrations\201804260141590_Identity2.cs" />
+    <Compile Include="Migrations\201804260141590_Identity2.Designer.cs">
+      <DependentUpon>201804260141590_Identity2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804260148087_AddCardNumberProperty.cs" />
+    <Compile Include="Migrations\201804260148087_AddCardNumberProperty.Designer.cs">
+      <DependentUpon>201804260148087_AddCardNumberProperty.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Utilities\Seat.cs" />
     <Compile Include="Views\Utilities\SeatHelper.cs" />
@@ -411,9 +411,6 @@
     <EmbeddedResource Include="Migrations\201804250718447_IdentityRound2.resx">
       <DependentUpon>201804250718447_IdentityRound2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804250738312_ChangeEmailAddress.resx">
-      <DependentUpon>201804250738312_ChangeEmailAddress.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804251443416_FixIdentity.resx">
       <DependentUpon>201804251443416_FixIdentity.cs</DependentUpon>
     </EmbeddedResource>
@@ -429,8 +426,11 @@
     <EmbeddedResource Include="Migrations\201804252336113_giftcheckbox.resx">
       <DependentUpon>201804252336113_giftcheckbox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804260051553_giftemail.resx">
-      <DependentUpon>201804260051553_giftemail.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201804260141590_Identity2.resx">
+      <DependentUpon>201804260141590_Identity2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804260148087_AddCardNumberProperty.resx">
+      <DependentUpon>201804260148087_AddCardNumberProperty.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

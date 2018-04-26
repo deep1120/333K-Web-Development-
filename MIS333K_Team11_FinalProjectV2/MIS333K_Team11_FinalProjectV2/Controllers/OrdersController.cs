@@ -40,12 +40,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         // GET: Orders/Create
         public ActionResult Create()
         {
-            var model = new Order
-            {
-                Gift = false
-            };
-            return View(model);
-            //return View();
+            return View();
         }
 
         // POST: Orders/Create
@@ -55,6 +50,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "OrderID,OrderNumber,OrderDate,OrderNotes,Orderstatus")] Order order)
         {
+
             //Find next order number
             order.OrderNumber = Utilities.GenerateNextOrderNumber.GetNextOrderNumber();
 
@@ -68,13 +64,8 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 return RedirectToAction("AddToOrder", new { OrderID = order.OrderID });
             }
 
-            //return View(order);
-            if (order.Gift)
-            {
-                string text = order.GiftEmail;
-            }
-
             return View(order);
+
         }
 
         public ActionResult AddToOrder(int OrderID)
