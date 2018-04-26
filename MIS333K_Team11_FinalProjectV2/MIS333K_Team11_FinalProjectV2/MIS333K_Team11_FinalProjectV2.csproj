@@ -168,6 +168,10 @@
     <Compile Include="Migrations\201804252336113_giftcheckbox.Designer.cs">
       <DependentUpon>201804252336113_giftcheckbox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804260051553_giftemail.cs" />
+    <Compile Include="Migrations\201804260051553_giftemail.Designer.cs">
+      <DependentUpon>201804260051553_giftemail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Utilities\Seat.cs" />
     <Compile Include="Views\Utilities\SeatHelper.cs" />
     <Compile Include="Views\AppUsers\ManagerIndex.cs" />
@@ -424,6 +428,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804252336113_giftcheckbox.resx">
       <DependentUpon>201804252336113_giftcheckbox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804260051553_giftemail.resx">
+      <DependentUpon>201804260051553_giftemail.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

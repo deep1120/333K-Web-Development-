@@ -40,7 +40,12 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         // GET: Orders/Create
         public ActionResult Create()
         {
-            return View();
+            var model = new Order
+            {
+                Gift = false
+            };
+            return View(model);
+            //return View();
         }
 
         // POST: Orders/Create
@@ -61,6 +66,12 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 db.Orders.Add(order);
                 db.SaveChanges();
                 return RedirectToAction("AddToOrder", new { OrderID = order.OrderID });
+            }
+
+            //return View(order);
+            if (order.Gift)
+            {
+                string text = order.GiftEmail;
             }
 
             return View(order);
