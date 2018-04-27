@@ -15,7 +15,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.SponsoringMovies)
+            @Html.DisplayNameFor(model => model.SponsoringMovie)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ShowDate)
@@ -43,10 +43,7 @@
             @Html.DisplayFor(modelItem => item.SponsoringMovies)
         </td>*@
         <td>
-            @foreach (Movie mov in item.SponsoringMovies)
-        {
-            @Html.DisplayFor(modelItem => mov.MovieTitle)
-    }
+            @Html.DisplayFor(modelItem => item.SponsoringMovie.MovieTitle)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ShowDate)
@@ -58,16 +55,11 @@
             @Html.DisplayFor(modelItem => item.StartTime)
         </td>*@
         <td>
-            @foreach (Movie mov in item.SponsoringMovies)
-        {
-            @Html.DisplayFor(modelItem => mov.RunningTime)
-    }
+            @Html.DisplayFor(modelItem => item.SponsoringMovie.RunningTime)
+
         </td>
         <td>
-            @foreach (Movie mov in item.SponsoringMovies)
-        {
-            @Html.DisplayFor(modelItem => mov.MPAAratings)
-    }
+            @Html.DisplayFor(modelItem => item.SponsoringMovie.MPAAratings)
         </td>
         @*<td>
             @Html.DisplayFor(modelItem => item.RunTime)
