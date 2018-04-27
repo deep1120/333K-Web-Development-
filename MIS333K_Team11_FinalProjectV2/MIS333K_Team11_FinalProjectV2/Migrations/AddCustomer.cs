@@ -3,7 +3,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System.Linq;
 
 // Change these using statements to match your project
-//using MIS333K_Team11_FinalProjectV2.DAL;
+/*using MIS333K_Team11_FinalProjectV2.DAL*/
 using MIS333K_Team11_FinalProjectV2.Models;
 using System;
 using static MIS333K_Team11_FinalProjectV2.Models.AppUser;
@@ -12,9 +12,9 @@ using static MIS333K_Team11_FinalProjectV2.Models.AppUser;
 namespace MIS333K_Team11_FinalProjectV2.Migrations
 {
     //add identity data
-    public class SeedIdentity
+    public class AddCustomer
     {
-        public void AddAdmin(AppDbContext db)
+        public void AddingCustomer(AppDbContext db)
         {
             //create a user manager and a role manager to use for this method
             AppUserManager UserManager = new AppUserManager(new UserStore<AppUser>(db));
@@ -23,23 +23,28 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
             AppRoleManager RoleManager = new AppRoleManager(new RoleStore<AppRole>(db));
 
             //check to see if the manager has been added
-            AppUser manager = db.Users.FirstOrDefault(u => u.Email == "admin@example.com");
+            AppUser manager = db.Users.FirstOrDefault(u => u.Email == "cbaker@example.com");
 
             //if manager hasn't been created, then add them
             if (manager == null)
             {
                 //TODO: Add any additional fields for user here
                 manager = new AppUser();
-                manager.UserName = "admin@example.com";
-                manager.FirstName = "AdminFirstName";
-                manager.LastName = "AdminLastName";
-                manager.Birthday = new DateTime(1991, 1, 1);
-                manager.PhoneNumber = "(512)555-5555";
-                manager.PopcornPoints = 0;
+                manager.UserName = "cbaker@example.com";
+                manager.FirstName = "Christopher";
+                manager.LastName = "Baker";
+                manager.MiddleInitial = "L";
+                manager.Birthday = new DateTime(1949, 11, 23);
+                manager.PhoneNumber = "(512)5550180";
+                manager.Street = "1245 Lake Anchorage Blvd.";
+                manager.City = "Austin";
+                manager.State = StateAbbr.TX;
+                manager.ZipCode = "78705";
+                manager.PopcornPoints = 110;
 
-                var result = UserManager.Create(manager, "Abc123!");
+                var result = UserManager.Create(manager, "hello1");
                 db.SaveChanges();
-                manager = db.Users.First(u => u.UserName == "admin@example.com");
+                manager = db.Users.First(u => u.UserName == "cbaker@example.com");
             }
 
             //TODO: Add the needed roles

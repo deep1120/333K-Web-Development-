@@ -174,7 +174,6 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             //send list to view
             return View("Index", SelectedMovies);
         }
-
         public MultiSelectList GetAllGenres()
         {
             List<Genre> AllGenres = db.Genres.OrderBy(m => m.GenreName).ToList();

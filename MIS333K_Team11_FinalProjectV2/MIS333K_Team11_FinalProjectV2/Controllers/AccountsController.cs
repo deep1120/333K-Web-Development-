@@ -143,13 +143,6 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            //You must be 13 to add an account
-            if (model.Birthday.AddYears(13) > DateTime.Today) //they aren't 13 
-            {
-                ViewBag.BirthdayError = "You must be 13 years old to create an account";
-                return View(model);
-            }
-
             if (ModelState.IsValid)
             {
                 //TODO: Add fields to user here so they will be saved to do the database
@@ -172,9 +165,9 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
 
                 //TODO:  Once you get roles working, you may want to add users to roles upon creation
-                await UserManager.AddToRoleAsync(user.Id, "Customer");
+                //await UserManager.AddToRoleAsync(user.Id, "Customer");
                 // --OR--
-                await UserManager.AddToRoleAsync(user.Id, "Employee");
+                //await UserManager.AddToRoleAsync(user.Id, "Employee");
 
                 if (result.Succeeded)
                 {
@@ -442,7 +435,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddCard([Bind(Include = "CardID,AppUserId,CardNumber,Type")] Card card)
+        public ActionResult AddCard([Bind(Include = "CardID,AppUserId,CardNumber,Type,ExpDate,CVV")] Card card)
         {
             if (ModelState.IsValid)
             {
