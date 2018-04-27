@@ -9,12 +9,14 @@ namespace MIS333K_Team11_FinalProjectV2.Models
 {
     //public enum CustomerVoting  //not needed
     //{
-       
+
     //}
     public class Review
     {
         public Int32 ReviewID { get; set; }
 
+        [Range(1, 5, ErrorMessage = "Value should be between 1-5")]
+        [Required(ErrorMessage = "You must specify a rating between 1-5")]
         [Display(Name = "Star Rating")]
         public Int32 StarRating { get; set; }
 

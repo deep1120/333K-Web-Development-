@@ -9,7 +9,7 @@ namespace MIS333K_Team11_FinalProjectV2.Utilities
 {
     public class SeatHelper
     {
-        public SelectList FindAvailableSeats(List<Ticket> tickets) //tickets is the list of 
+        public static SelectList FindAvailableSeats(List<Ticket> tickets) //tickets is the list of 
         {
             List<Seat> TakenSeats = new List<Seat>();
 
@@ -29,7 +29,7 @@ namespace MIS333K_Team11_FinalProjectV2.Utilities
         }
 
 
-        public List<Seat> GetAllSeats()
+        public static List<Seat> GetAllSeats()
         {
             List<Seat> AllSeats = new List<Seat>();
 
@@ -132,7 +132,7 @@ namespace MIS333K_Team11_FinalProjectV2.Utilities
             return AllSeats;
         }
 
-        public Int32 GetSeatID(String seatName)
+        public static Int32 GetSeatID(String seatName)
         {
             if (seatName == "A1") return 0; 
             if (seatName == "A2") return 1;
@@ -171,6 +171,46 @@ namespace MIS333K_Team11_FinalProjectV2.Utilities
             else
                 return 0;
 
+        }
+
+        public static String GetSeatName(int SeatID)
+        {
+            if (SeatID == 0) return "A1";
+            if (SeatID == 1) return "A2";
+            if (SeatID == 2) return "A3";
+            if (SeatID == 3) return "A4";
+            if (SeatID == 4) return "A5";
+            if (SeatID == 5) return "A6";
+            if (SeatID == 6) return "A7";
+            if (SeatID == 7) return "A8";
+            if (SeatID == 8) return "B1";
+            if (SeatID == 9) return "B2";
+            if (SeatID == 10) return "B3";
+            if (SeatID == 11) return "B4";
+            if (SeatID == 12) return "B5";
+            if (SeatID == 13) return "B6";
+            if (SeatID == 14) return "B7";
+            if (SeatID == 15) return "B8";
+            if (SeatID == 16) return "C1";
+            if (SeatID == 17) return "C2";
+            if (SeatID == 18) return "C3";
+            if (SeatID == 19) return "C4";
+            if (SeatID == 20) return "C5";
+            if (SeatID == 21) return "C6";
+            if (SeatID == 22) return "C7";
+            if (SeatID == 23) return "C8";
+            if (SeatID == 24) return "D1";
+            if (SeatID == 25) return "D2";
+            if (SeatID == 26) return "D3";
+            if (SeatID == 27) return "D4";
+            if (SeatID == 28) return "D5";
+            if (SeatID == 29) return "D6";
+            if (SeatID == 30) return "D7";
+            if (SeatID == 31) return "D8";
+
+
+            else
+                return "";
         }
     }
 }

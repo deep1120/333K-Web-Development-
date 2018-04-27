@@ -15,7 +15,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.SponsoringMovies)
+            @Html.DisplayNameFor(model => model.SponsoringMovie)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ShowDate)
@@ -24,8 +24,8 @@
             @Html.DisplayNameFor(model => model.Theatre)
         </th>
         @*<th>
-            @Html.DisplayNameFor(model => model.StartTime)
-        </th>*@
+                @Html.DisplayNameFor(model => model.StartTime)
+            </th>*@
         <th>
             Running Time
         </th>
@@ -38,46 +38,38 @@
 
     @foreach (var item in Model)
     {
-    <tr>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.SponsoringMovies)
-        </td>*@
-        <td>
-            @foreach (Movie mov in item.SponsoringMovies)
-        {
-            @Html.DisplayFor(modelItem => mov.MovieTitle)
-    }
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ShowDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Theatre)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.StartTime)
-        </td>*@
-        <td>
-            @foreach (Movie mov in item.SponsoringMovies)
-        {
-            @Html.DisplayFor(modelItem => mov.RunningTime)
-    }
-        </td>
-        <td>
-            @foreach (Movie mov in item.SponsoringMovies)
-        {
-            @Html.DisplayFor(modelItem => mov.MPAAratings)
-    }
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.RunTime)
-        </td>*@
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ShowingID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.ShowingID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ShowingID })
-        </td>
-    </tr>
+        <tr>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.SponsoringMovies)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.SponsoringMovie.MovieTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Theatre)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.StartTime)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.SponsoringMovie.RunningTime)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SponsoringMovie.MPAAratings)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.RunTime)
+                </td>*@
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ShowingID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ShowingID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ShowingID })
+            </td>
+        </tr>
     }
 
 </table>
