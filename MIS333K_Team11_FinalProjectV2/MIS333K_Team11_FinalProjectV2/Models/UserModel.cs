@@ -35,15 +35,17 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [DisplayFormat(DataFormatString = "{0:###-###-####}", ApplyFormatInEditMode = true)] //this doesn't seem to ensure that a proper phone number is entered
         public String PhoneNumber { get; set; }
 
-        //[Required(ErrorMessage = "Please enter street")]
+        [Required(ErrorMessage = "Please enter street")]
         [Display(Name = "Street")]
         public String Street { get; set; }
 
         [Required(ErrorMessage = "Please enter city")]
+        [Display(Name = "City")]
         public String City { get; set; }
 
         [Required(ErrorMessage = "Please enter state")]
-        public String State { get; set; }
+        [Display(Name = "State")]
+        public StateAbbr State { get; set; }
 
         [Required(ErrorMessage = "Please enter zip code")]
         [Display(Name = "Zip Code")]

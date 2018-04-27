@@ -65,9 +65,9 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
             if (showing.ShowDate >= Convert.ToDateTime("9:00 AM") && showing.ShowDate <= Convert.ToDateTime("12:00 AM"))
             {
+
                 if (ModelState.IsValid)
                 {
-
                     db.Showings.Add(showing);
                     db.SaveChanges();
                     return RedirectToAction("Index");

@@ -38,7 +38,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
                 manager.PhoneNumber = "(512)5550180";
                 manager.Street = "1245 Lake Anchorage Blvd.";
                 manager.City = "Austin";
-                manager.State = "TX";
+                manager.State = StateAbbr.TX;
                 manager.ZipCode = "78705";
                 manager.PopcornPoints = 110;
 

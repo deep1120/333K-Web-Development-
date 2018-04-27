@@ -39,35 +39,36 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         // GET: Orders/Create
-        public ActionResult Create()
+        public ActionResult Create(Order order)
         {
-            return View();
+            //return View();
+            return RedirectToAction("AddToOrder", new { OrderID = order.OrderID });
         }
 
         // POST: Orders/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OrderID,OrderNumber,OrderDate,OrderNotes,Orderstatus")] Order order)
-        {
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "OrderID,OrderNumber,OrderDate/*,OrderNotes*/,Orderstatus")] Order order)
+        //{
 
-            //Find next order number
-            order.OrderNumber = Utilities.GenerateNextOrderNumber.GetNextOrderNumber();
+        //    //Find next order number
+        //    order.OrderNumber = Utilities.GenerateNextOrderNumber.GetNextOrderNumber();
 
-            //record date of order
-            order.OrderDate = DateTime.Today;
+        //    //record date of order
+        //    order.OrderDate = DateTime.Today;
 
-            if (ModelState.IsValid)
-            {
-                db.Orders.Add(order);
-                db.SaveChanges();
-                return RedirectToAction("AddToOrder", new { OrderID = order.OrderID });
-            }
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Orders.Add(order);
+        //        db.SaveChanges();
+        //        return RedirectToAction("AddToOrder", new { OrderID = order.OrderID });
+        //    }
 
-            return View(order);
+        //    return View(order);
 
-        }
+        //}
 
         public ActionResult AddToOrder(int OrderID)
         {
@@ -101,12 +102,12 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
             //Seat seat = new Seat();
             //td.TicketSeat = seat.SeatName;
-            for (int i=0; i< SelectedTickets.Length; i++)
+            for (int i = 0; i < SelectedTickets.Length; i++)
             {
                 Seat seat = db.Seats.Find(SelectedTickets[i]);
                 Ticket ticket = new Ticket();
                 ticket.TicketSeat = seat.SeatName;
-            }            
+            }
 
             //Find the order associated with the ticket
             Order ord = db.Orders.Find(td.Order.OrderID);
@@ -123,7 +124,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 //add the registration detail to the database
                 db.Tickets.Add(td);
                 db.SaveChanges();
-                return RedirectToAction("Details", "Registrations", new { id = ord.OrderID });
+                return RedirectToAction("Details", "Orders", new { id = ord.OrderID });
             }
 
             //model state is not valide
@@ -151,7 +152,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "OrderID,OrderNumber,OrderDate,OrderNotes,Orderstatus")] Order order)
+        public ActionResult Edit([Bind(Include = "OrderID,OrderNumber,OrderDate/*,OrderNotes*/,Orderstatus")] Order order)
         {
             if (ModelState.IsValid)
             {

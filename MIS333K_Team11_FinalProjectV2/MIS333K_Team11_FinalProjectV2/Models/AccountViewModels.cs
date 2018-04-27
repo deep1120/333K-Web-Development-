@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity;
 // Change this namespace to match your project
 namespace MIS333K_Team11_FinalProjectV2.Models
 {
+    public enum StateAbbr { AK, AL, AR, AZ, CA, CO, CT, DC, DE, FL, GA, HI, IA, ID, IL, IN, KS, KY, LA, MA, MD, ME, MI, MN, MO, MS, MT, NC, ND, NE, NH, NJ, NM, NV, NY, OH, OK, OR, PA, RI, SC, SD, TN, TX, UT, VA, VT, WA, WI, WV, WY }
 
     public class LoginViewModel
     {
@@ -64,7 +65,7 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
 
-        //[Required(ErrorMessage = "Please enter street")]
+        [Required(ErrorMessage = "Please enter street")]
         [Display(Name = "Street")]
         public String Street { get; set; }
 
@@ -74,14 +75,14 @@ namespace MIS333K_Team11_FinalProjectV2.Models
 
         [Required(ErrorMessage = "Please enter state")]
         [Display(Name = "State")]
-        public String State { get; set; }
+        public StateAbbr State { get; set; }
 
         [Required(ErrorMessage = "Please enter zipcode")]
         [Display(Name = "Zipcode")]
         [RegularExpression(@"^\d{5}(-\d{4})?$", ErrorMessage = "Please enter a valid zipcode")]
         public String ZipCode { get; set; }
 
-        //[Required(ErrorMessage = "Birthday is required")]
+        [Required(ErrorMessage = "Birthday is required")]
         [Display(Name = "Birthday")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime Birthday { get; set; }
@@ -148,7 +149,7 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
 
-        //[Required(ErrorMessage = "Please enter street")]
+        [Required(ErrorMessage = "Please enter street")]
         [Display(Name = "Street")]
         public String Street { get; set; }
 
@@ -158,14 +159,14 @@ namespace MIS333K_Team11_FinalProjectV2.Models
 
         [Required(ErrorMessage = "Please enter state")]
         [Display(Name = "State")]
-        public String State { get; set; }
+        public StateAbbr State { get; set; }
 
         [Required(ErrorMessage = "Please enter zipcode")]
         [Display(Name = "Zipcode")]
         [RegularExpression(@"^\d{5}(-\d{4})?$", ErrorMessage = "Please enter a valid zipcode")]
         public String ZipCode { get; set; }
 
-        //[Required(ErrorMessage = "Birthday is required")]
+        [Required(ErrorMessage = "Birthday is required")]
         [Display(Name = "Birthday")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime Birthday { get; set; }
@@ -206,7 +207,7 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
 
-        //[Required(ErrorMessage = "Please enter street")]
+        [Required(ErrorMessage = "Please enter street")]
         [Display(Name = "Street")]
         public String Street { get; set; }
 
@@ -216,20 +217,31 @@ namespace MIS333K_Team11_FinalProjectV2.Models
 
         [Required(ErrorMessage = "Please enter state")]
         [Display(Name = "State")]
-        public String State { get; set; }
+        public StateAbbr State { get; set; }
 
         [Required(ErrorMessage = "Please enter zipcode")]
         [Display(Name = "Zipcode")]
         [RegularExpression(@"^\d{5}(-\d{4})?$", ErrorMessage = "Please enter a valid zipcode")]
         public String ZipCode { get; set; }
 
-        //[Required(ErrorMessage = "Birthday is required")]
+        [Required(ErrorMessage = "Birthday is required")]
         [Display(Name = "Birthday")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime Birthday { get; set; }
 
         [Display(Name = "Popcorn Points")]
         public Int32 PopcornPoints { get; set; }
+
+        //NOTE: Here is the logic for putting in a password
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
+        public string Password { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm password")]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        public string ConfirmPassword { get; set; }
     }
 }
 

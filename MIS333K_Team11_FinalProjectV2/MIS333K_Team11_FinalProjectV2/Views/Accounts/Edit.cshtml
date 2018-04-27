@@ -62,7 +62,7 @@
 
             <dt>State:</dt>
             <dd>
-                @Html.TextBoxFor(model => model.State, new { @class = "form-control" })
+                @Html.EnumDropDownListFor(model => model.State, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
             </dd>
 
