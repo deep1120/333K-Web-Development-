@@ -184,6 +184,10 @@
     <Compile Include="Migrations\201804270636129_ShowingModel.Designer.cs">
       <DependentUpon>201804270636129_ShowingModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804272004554_ChangeShowing3.cs" />
+    <Compile Include="Migrations\201804272004554_ChangeShowing3.Designer.cs">
+      <DependentUpon>201804272004554_ChangeShowing3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Utilities\Scheduler.cs" />
     <Compile Include="Views\Utilities\Seat.cs" />
     <Compile Include="Views\Utilities\SeatHelper.cs" />
@@ -249,7 +253,7 @@
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\ShowingsController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
-    <Compile Include="DAL\AppDbContext.cs" />
+    <Compile Include="Migrations\DAL\AppDbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -378,6 +382,11 @@
     <Content Include="Views\Genres\Delete.cshtml" />
     <Content Include="Views\Genres\Details.cshtml" />
     <Content Include="Views\Genres\Index.cshtml" />
+    <Content Include="Views\Reviews\Create.cshtml" />
+    <Content Include="Views\Reviews\Delete.cshtml" />
+    <Content Include="Views\Reviews\Details.cshtml" />
+    <Content Include="Views\Reviews\Edit.cshtml" />
+    <Content Include="Views\Reviews\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -460,6 +469,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804270636129_ShowingModel.resx">
       <DependentUpon>201804270636129_ShowingModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804272004554_ChangeShowing3.resx">
+      <DependentUpon>201804272004554_ChangeShowing3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -60,7 +60,10 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             {
                 //find the movie
                 Movie mov = db.Movies.Find(SelectedMovies);
-                showing.SponsoringMovies.Add(mov);
+                //showing.SponsoringMovies.Add(mov);
+
+                //add in as a single value after changing the relationship in the showing.cs
+                showing.SponsoringMovie = mov;
             }
 
             if (showing.ShowDate >= Convert.ToDateTime("9:00 AM") && showing.ShowDate <= Convert.ToDateTime("12:00 AM"))
@@ -68,11 +71,35 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 //find the showings that are on the same day and in the same theater and then compare then with each other
                 //by making sure the end time of one showing isn't going to conflict with another showing's start time
 
-                //List<Showing> showingDays = new List<Showing>();
-                //for (i in db.Showings)
+                List<Showing> allShowings = db.Showings.ToList();
+                List<Showing> showingsDays = allShowings.Where(s => s.ShowDate == showing.ShowDate).ToList();
+                showingsDays = showingsDays.Where(s => s.Theatre == showing.Theatre).ToList();
+
+                DateTime showing_start = showing.ShowDate;
+                DateTime showing_end = showing.ShowDate.AddMinutes(showing.SponsoringMovie.RunningTime);
+
+                foreach (Showing sh in showingsDays)
+                {
+                    //DateTime showing_start = showing.ShowDate;
+                    //DateTime showing_end = showing.EndTime.Value;
+
+                    DateTime sh_start = sh.ShowDate;
+                    DateTime sh_end = sh.ShowDate.AddMinutes(showing.SponsoringMovie.RunningTime);
+
+                    if(showing_start > sh_end || showing_end < sh_start)
+                    {
+                        if (ModelState.IsValid)
+                        {
+                            db.Showings.Add(showing);
+                            db.SaveChanges();
+                            return RedirectToAction("Index");
+                        }
+                    }
+                }
+                //List<Showing> showingDays = db.Showings.Where Showing.ShowDate.Day == i.ShowDate.Day &&  showing.Theatre == i.Theatre ).tolist()
+                //foreach (Showing sh in ShowingDays
                 //{
-                //    if(showing.ShowDate.Day == i.ShowDate.Day &&  showing.Theatre == i.Theatre)
-                //    {
+                //    
                 //        //if statement comparing the showing time you're trying to create with 
                 //        //if time doesn't overlap, add the showing with modelstate.isvalid and redirect
 
@@ -88,7 +115,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 //        //do we not need it? cuz there is an else in previous if loop
                 //    }
                 //}
-                
+
                 //foreach (show in showingDays)
                 //{
                 //    if (/*compare one show to the rest* AND theaters are not the same*/)
@@ -112,12 +139,15 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 //    }
                 //}
 
-                if (ModelState.IsValid)
-                {
-                    db.Showings.Add(showing);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
+                ViewBag.AllMovies = GetAllMovies(showing);
+                return View(showing);
+
+                //if (ModelState.IsValid)
+                //{
+                //    db.Showings.Add(showing);
+                //    db.SaveChanges();
+                //    return RedirectToAction("Index");
+                //}
 
             }
 
@@ -128,54 +158,17 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
             }
 
-            //List<Showing> showings = db.Showings.ToList();
-            ////should we populate 32 ticket seats in here for every showing object we create?
-
-            //DateTime now = DateTime.Now;
-            ////Showing date = new Showing();
-            ////DateTime showdate = date.ShowDate;
-            //DateTime showdate = showing.ShowDate;
-
-
-            //if (now < showdate)
-            //{
-            //    ViewBag.ErrorMessage = "Unable to add Time";
-            //    return RedirectToAction("Create", "Showings");
-            //}
-
-            ////TODO: Figure out why time isn't working
-            //DateTime start = Convert.ToDateTime("09:00:00 AM");
-            //DateTime end = Convert.ToDateTime("12:00:00 AM");
-
-            //Showing ShowTime = new Showing();
-            //DateTime val = ShowTime.ShowDate;
-
-
-            //if ((val < start) || (val > end))
-            //{
-            //    ViewBag.ErrorMessage = "Unable to add Time";
-            //    return RedirectToAction("Create", "Showings");
-            //}
-
-            //if (ModelState.IsValid)
-            //{
-
-            //    db.Showings.Add(showing);
-            //db.SaveChanges();
-            //return RedirectToAction("Index");
-            //}
-
-
-
             ////populate the viewbag with the movie list
-            ViewBag.AllMovies = GetAllMovies(showing);
-            return View(showing);
+            //ViewBag.AllMovies = GetAllMovies(showing);
+            //return View(showing);
         }
 
+        //GET
         public ActionResult DateSearch()
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult DateSearch(DateTime? datSelectedDate)
         {
@@ -226,19 +219,20 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 //find the showing to edit
                 Showing showingToChange = db.Showings.Find(showing.ShowingID);
 
-                //remove the existing movies
-                showingToChange.SponsoringMovies.Clear();
+                //remove the existing movie
+                showingToChange.SponsoringMovie = showing.SponsoringMovie;
 
                 if (SelectedMovies != 0)
                 {
                     //find the movie
                     Movie mov = db.Movies.Find(SelectedMovies);
-                    showing.SponsoringMovies.Add(mov);
+                    showing.SponsoringMovie = mov;
                 }
 
                 //change scalar properties
                 showingToChange.Theatre = showing.Theatre;
                 showingToChange.ShowDate = showing.ShowDate;
+                showingToChange.ShowingName = showing.SponsoringMovie.MovieTitle;
                 //showingToChange.RunTime = showing.RunTime;
 
                 db.Entry(showing).State = EntityState.Modified;
@@ -290,11 +284,14 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             //convert list of selected movies to ints
             List<Int32> SelectedMovies = new List<Int32>();
 
+            Movie mov = db.Movies.Find(showing.SponsoringMovie);
+
+            SelectedMovies.Add(mov.MovieID);
             //loop through the showing's movie and add the movie id
-            foreach (Movie mov in showing.SponsoringMovies)
-            {
-                SelectedMovies.Add(mov.MovieID);
-            }
+            //foreach (Movie mov in showing.SponsoringMovie)
+            //{
+            //    SelectedMovies.Add(mov.MovieID);
+            //}
 
             //create the multiselect list 
             SelectList selMovs = new SelectList(allMovs, "MovieID", "MovieTitle", SelectedMovies);
