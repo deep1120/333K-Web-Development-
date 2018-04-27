@@ -34,21 +34,16 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         //[DataType(DataType.Time)]
         //public DateTime StartTime { get; set; }
 
-        //[Display(Name = "End Time")] //a calculated value = start time + running time of movie
-        //[DataType(DataType.Time)]
-        //public DateTime EndTime
-        //{
-        //    //get { return ShowDate.AddMinutes(RunTime); }
-        //    get; set;
-        //}
+        [Display(Name = "End Time")] //a calculated value = start time + running time of movie
+        [DataType(DataType.Time)]
+        public DateTime? EndTime { get; set; }
 
-        //[Display(Name = "Running Time")]
-        //public Int32 RunTime
-        //{
-        //    //get { return SponsoringMovie.RunningTime;  }
-        //    //get { return SponsoringMovies.Sum(m=> m.RunningTime);}
-        //    get;set; 
-        //}
+        [Display(Name = "Running Time")]
+        public Int32 RunTime
+        {
+            //get { return SponsoringMovies.Sum(m=> m.RunningTime);}
+            get;set; 
+        }
 
         [Display(Name = "Ticket Price")]
         public Decimal TicketPrice { get; set; }
@@ -59,15 +54,15 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         public Theatre Theatre { get; set; }
 
         //May insert "Future showing"
-        public virtual Movie SponsoringMovie { get; set; }
+        public virtual List <Movie> SponsoringMovies { get; set; }
         public virtual List<Ticket> Tickets { get; set; }
 
         public Showing()
         {
-            //if (SponsoringMovies == null)
-            //{
-            //    SponsoringMovies = new List<Movie>();
-            //}
+            if (SponsoringMovies == null)
+            {
+                SponsoringMovies = new List<Movie>();
+            }
 
             if (Tickets == null)
             {

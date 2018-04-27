@@ -8,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
-using MIS333K_Team11_FinalProjectV2.Utilities;
 
 namespace MIS333K_Team11_FinalProjectV2.Models
 {
@@ -128,7 +127,6 @@ namespace MIS333K_Team11_FinalProjectV2.Models
             public DbSet<Card> Cards { get; set; }
             //NOTE: This is a dbSet that you need to make roles work
             public DbSet<AppRole> AppRoles { get; set; }
-            //public DbSet<Seat> Seats { get; set; }
 
             public AppDbContext()
                 : base("MyDbConnection", throwIfV1Schema: false)
