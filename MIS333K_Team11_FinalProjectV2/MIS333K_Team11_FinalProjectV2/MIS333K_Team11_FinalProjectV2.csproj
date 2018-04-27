@@ -180,6 +180,11 @@
     <Compile Include="Migrations\201804270107119_NewMigration.Designer.cs">
       <DependentUpon>201804270107119_NewMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804270636129_ShowingModel.cs" />
+    <Compile Include="Migrations\201804270636129_ShowingModel.Designer.cs">
+      <DependentUpon>201804270636129_ShowingModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Utilities\Scheduler.cs" />
     <Compile Include="Views\Utilities\Seat.cs" />
     <Compile Include="Views\Utilities\SeatHelper.cs" />
     <Compile Include="Views\AppUsers\ManagerIndex.cs" />
@@ -452,6 +457,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804270107119_NewMigration.resx">
       <DependentUpon>201804270107119_NewMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804270636129_ShowingModel.resx">
+      <DependentUpon>201804270636129_ShowingModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

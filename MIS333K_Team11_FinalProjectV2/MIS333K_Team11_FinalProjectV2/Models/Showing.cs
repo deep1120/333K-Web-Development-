@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MIS333K_Team11_FinalProjectV2.Models
 {
-<<<<<<< HEAD
+    public enum Theatre { Theatre1, Theatre2 }
     public class Showing
     {
         public class CustomDateRangeAttribute : RangeAttribute
@@ -15,13 +15,6 @@ namespace MIS333K_Team11_FinalProjectV2.Models
             { }
         }
 
-=======
-
-    public enum Theatre { Theatre1, Theatre2 }
-
-    public class Showing
-    {
->>>>>>> 916b8ddac93c6d14f26b63ba7edbdaf87f8e5101
         public Int32 ShowingID { get; set; }
 
         [Display(Name = "Showing Number")]
