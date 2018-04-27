@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 //using MIS333K_Team11_FinalProjectV2.DAL;
 using MIS333K_Team11_FinalProjectV2.Models;
+using MIS333K_Team11_FinalProjectV2.Utilities;
 using static MIS333K_Team11_FinalProjectV2.Models.AppUser;
 
 namespace MIS333K_Team11_FinalProjectV2.Controllers
@@ -56,7 +57,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
             //record date of order
             order.OrderDate = DateTime.Today;
-            
+
             if (ModelState.IsValid)
             {
                 db.Orders.Add(order);
@@ -79,6 +80,9 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             //Set the new order detail's order to the new ord we just found
             td.Order = ord;
 
+            //populate viewbag with the list of all tickets available
+            ViewBag.AllSeats = GetAllTicketSeats();
+
             //Populate the view bag with the list of courses
             ViewBag.AllShowings = GetAllShowings();
 
@@ -87,7 +91,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddToOrder(Ticket td, int SelectedShowing)
+        public ActionResult AddToOrder(Ticket td, int SelectedShowing, int[] SelectedTickets)
         {
             //Find the course associated with the int SelectedShowing
             Showing showing = db.Showings.Find(SelectedShowing);
@@ -189,6 +193,15 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             db.Orders.Remove(order);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public MultiSelectList GetAllTicketSeats()
+        {
+            List<Seat> allSeats = SeatHelper.GetAllSeats();
+
+            MultiSelectList selSeats = new MultiSelectList(allSeats, "SeatID", "SeatName");
+
+            return selSeats;
         }
 
         //method to get all courses for the ViewBag
