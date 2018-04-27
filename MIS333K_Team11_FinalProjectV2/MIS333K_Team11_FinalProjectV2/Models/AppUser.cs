@@ -24,19 +24,23 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [Display(Name = "Last Name")]
         public String LastName { get; set; }
 
-        //[Required]
+        [Required]
         [Display(Name = "Street")]
         public String Street { get; set; }
 
+        [Required]
         [Display(Name = "City")]
         public String City { get; set; }
 
-        [Display(Name = "State")] //add validation must be a state in the US if chosen US
-        public String State { get; set; }
+        [Required]
+        [Display(Name = "State")]
+        public StateAbbr State { get; set; }
 
+        [Required]
         [Display(Name = "Zip Code")] //add validation XX values
         public String ZipCode { get; set; }
 
+        [Required]
         [Display(Name = "Birthday")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime Birthday { get; set; }

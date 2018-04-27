@@ -6,12 +6,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MIS333K_Team11_FinalProjectV2.Models
 {
+
+    public enum Theatre { Theatre1, Theatre2 }
+
     public class Showing
     {
-
-        
-
-    
         public Int32 ShowingID { get; set; }
 
         [Display(Name = "Showing Number")]
@@ -43,7 +42,7 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [Display(Name = "Ticket Price")]
         public Decimal TicketPrice { get; set; }
 
-        [Required(ErrorMessage = "Theatre is Required")]
+        [Required(ErrorMessage = "Theatre # is Required")]
         [EnumDataType(typeof(Theatre))]
         [Display (Name = "Theatre" )]
         public Theatre Theatre { get; set; }
@@ -65,6 +64,4 @@ namespace MIS333K_Team11_FinalProjectV2.Models
             }
         }
     }
-
-    public enum Theatre { Theatre1, Theatre2 }
 }

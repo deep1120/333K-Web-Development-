@@ -28,13 +28,14 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         public String Genre { get; set; }
 
         //[Required(ErrorMessage = "Movie Overview is required")]
+        [Display(Name = "Movie Overview")]
         public String MovieOverview { get; set; }
 
         //[Required(ErrorMessage = "Movie Running Time must be a valid whole number")] //valid whole number
         [Display(Name = "Movie Running Time")]
         public Int32 RunningTime { get; set; }
 
-        //[Required(ErrorMessage = "Movie Tagline is required")]
+        [Display(Name = "Tagline")]
         public String Tagline { get; set; }
 
         //[Required(ErrorMessage = "Movie MPAA Rating is required")]

@@ -15,10 +15,13 @@ namespace MIS333K_Team11_FinalProjectV2.Models
 
         public enum CardType  //list of cards
         {
+            [Display(Name = "Visa")]
             Visa,
+            [Display(Name ="Mastercard")]
             Mastercard,
             [Display(Name = "American Express")]
             AmericanExpress,
+            [Display(Name = "Discover")]
             Discover
         }
 
@@ -33,7 +36,6 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         {
             get { return (string.IsNullOrEmpty(_CardNumber)) ? string.Empty : string.Concat(string.Empty.PadLeft(_CardNumber.Length - 4, '*'), _CardNumber.Substring(_CardNumber.Length - 4)); }
             set { _CardNumber = value; }
-
         }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
@@ -65,14 +67,6 @@ namespace MIS333K_Team11_FinalProjectV2.Models
                     ("Card number does not match card type.");
             }
         }
-
-        //[Required]
-        //[Display(Name = "Expiration Date")]
-        //public string ExpDate { get; set; }
-
-        //[Required]
-        //[RegularExpression(@"^\d{3}$", ErrorMessage = "Enter a valid CVV (3 digit numeric data)")]
-        //public string CVV { get; set; }
 
         public virtual AppUser AppUser { get; set; } //each card can have one user
     }
