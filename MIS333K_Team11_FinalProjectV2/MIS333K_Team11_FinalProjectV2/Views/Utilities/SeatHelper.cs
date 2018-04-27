@@ -29,7 +29,7 @@ namespace MIS333K_Team11_FinalProjectV2.Utilities
         }
 
 
-        public List<Seat> GetAllSeats()
+        public static List<Seat> GetAllSeats()
         {
             List<Seat> AllSeats = new List<Seat>();
 
