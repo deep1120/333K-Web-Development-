@@ -180,6 +180,11 @@
     <Compile Include="Migrations\201804270117422_OrderReviewShowingModels.Designer.cs">
       <DependentUpon>201804270117422_OrderReviewShowingModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804270230326_AddedSchedulerAndChangedSomeModels.cs" />
+    <Compile Include="Migrations\201804270230326_AddedSchedulerAndChangedSomeModels.Designer.cs">
+      <DependentUpon>201804270230326_AddedSchedulerAndChangedSomeModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Utilities\Scheduler.cs" />
     <Compile Include="Views\Utilities\Seat.cs" />
     <Compile Include="Views\Utilities\SeatHelper.cs" />
     <Compile Include="Views\AppUsers\ManagerIndex.cs" />
@@ -454,6 +459,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804270117422_OrderReviewShowingModels.resx">
       <DependentUpon>201804270117422_OrderReviewShowingModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804270230326_AddedSchedulerAndChangedSomeModels.resx">
+      <DependentUpon>201804270230326_AddedSchedulerAndChangedSomeModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

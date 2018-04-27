@@ -93,16 +93,26 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         [HttpPost]
         public ActionResult AddToOrder(Ticket td, int SelectedShowing, int[] SelectedTickets)
         {
-            //Find the course associated with the int SelectedShowing
+            //Find the ahowing associated with the int SelectedShowing
             Showing showing = db.Showings.Find(SelectedShowing);
 
-            //Set the course property of the registration detail to this newly found course 
+            //Set the showing property of the ticket to this newly found course 
             td.Showing = showing;
 
-            //Find the order associated with the order detail
+            //Seat seat = new Seat();
+            //td.TicketSeat = seat.SeatName;
+            for (int i=0; i< SelectedTickets.Length; i++)
+            {
+                Seat seat = db.Seats.Find(SelectedTickets[i]);
+                Ticket ticket = new Ticket();
+                ticket.TicketSeat = seat.SeatName;
+            }            
+
+            //Find the order associated with the ticket
             Order ord = db.Orders.Find(td.Order.OrderID);
 
             //Set the value of the course fee
+            //LOGIC GOES HERE
             td.TicketPrice = showing.TicketPrice;
 
             //Set the value of the total fees

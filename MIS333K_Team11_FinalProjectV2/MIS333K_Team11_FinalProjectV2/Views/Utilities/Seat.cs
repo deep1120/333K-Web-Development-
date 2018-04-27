@@ -12,5 +12,6 @@ namespace MIS333K_Team11_FinalProjectV2.Utilities
         public String SeatName { get; set; }
 
         public Ticket Ticket; //why doesn't it need virtual?
+        public Showing Showing;
     }
 }
