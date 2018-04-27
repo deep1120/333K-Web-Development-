@@ -55,51 +55,73 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             //showing.ShowingNumber = Utilities.GenerateShowingNumber.GetNextShowingNumber();
 
            
-                //add movie
-                if (SelectedMovies != 0)
+            //add movie
+            if (SelectedMovies != 0)
             {
                 //find the movie
                 Movie mov = db.Movies.Find(SelectedMovies);
                 showing.SponsoringMovies.Add(mov);
             }
 
-            DateTime now = DateTime.Now;
-            //Showing date = new Showing();
-            //DateTime showdate = date.ShowDate;
-            DateTime showdate = showing.ShowDate;
-
-
-            if (now < showdate)
+            if (showing.ShowDate >= Convert.ToDateTime("9:00 AM") && showing.ShowDate <= Convert.ToDateTime("12:00 AM"))
             {
-                ViewBag.ErrorMessage = "Unable to add Time";
-                return RedirectToAction("Create", "Showings");
+                if (ModelState.IsValid)
+                {
+
+                    db.Showings.Add(showing);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
             }
 
-            //TODO: Figure out why time isn't working
-            DateTime start = Convert.ToDateTime("09:00:00 AM");
-            DateTime end = Convert.ToDateTime("12:00:00 AM");
-
-            Showing ShowTime = new Showing();
-            DateTime val = ShowTime.ShowDate;
-
-
-            if ((val < start) || (val > end))
+            else
             {
-                ViewBag.ErrorMessage = "Unable to add Time";
-                return RedirectToAction("Create", "Showings");
+                ViewBag.AllMovies = GetAllMovies(showing);
+                return View(showing);
+
             }
 
-            if (ModelState.IsValid)
-            {
+            //List<Showing> showings = db.Showings.ToList();
+            ////should we populate 32 ticket seats in here for every showing object we create?
 
-                db.Showings.Add(showing);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+            //DateTime now = DateTime.Now;
+            ////Showing date = new Showing();
+            ////DateTime showdate = date.ShowDate;
+            //DateTime showdate = showing.ShowDate;
+
+
+            //if (now < showdate)
+            //{
+            //    ViewBag.ErrorMessage = "Unable to add Time";
+            //    return RedirectToAction("Create", "Showings");
+            //}
+
+            ////TODO: Figure out why time isn't working
+            //DateTime start = Convert.ToDateTime("09:00:00 AM");
+            //DateTime end = Convert.ToDateTime("12:00:00 AM");
+
+            //Showing ShowTime = new Showing();
+            //DateTime val = ShowTime.ShowDate;
+
+
+            //if ((val < start) || (val > end))
+            //{
+            //    ViewBag.ErrorMessage = "Unable to add Time";
+            //    return RedirectToAction("Create", "Showings");
+            //}
+
+            //if (ModelState.IsValid)
+            //{
+
+            //    db.Showings.Add(showing);
+            //db.SaveChanges();
+            //return RedirectToAction("Index");
+            //}
 
 
 
-            //populate the viewbag with the movie list
+            ////populate the viewbag with the movie list
             ViewBag.AllMovies = GetAllMovies(showing);
             return View(showing);
         }

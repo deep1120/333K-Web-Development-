@@ -30,8 +30,8 @@
 
 //                x => x.ShowingID == showing.ShowingID
 //                && (
-//                    (x.EndTime >= showing.ShowDate.TimeOfDay && x.EndTime <= showing.EndTime)
-//                    || (x.StartTime >= showing.StartTime && x.StartTime <= showing.EndTime)
+//                    (x.EndTime >= showing.ShowDate && x.EndTime <= showing.EndTime)
+//                    || (x.ShowDate >= showing.ShowDate && x.ShowDate <= showing.EndTime)
 //                ));
 //        }
 //        public static bool Add(Showing showing, out string error)
@@ -42,10 +42,10 @@
 //                error = "Already scheduled";
 //                return false;
 //            }
-//            if (!showing.EndTime.HasValue)
-//            {
-//                showing.EndTime = showing.StartTime.Value.AddMinutes(showing.RunTime);
-//            }
+//            //if (!showing.EndTime.HasValue)
+//            //{
+//            //    showing.EndTime = showing.ShowDate.Value.AddMinutes(showing.RunTime);
+//            //}
 //            var endTime = showing.EndTime.Value;
 //            var midmight = new DateTime(endTime.Year, endTime.Month, endTime.Day, 0, 0, 0).AddDays(1);
 //            if (endTime >= midmight)
@@ -58,7 +58,7 @@
 //                .OrderByDescending(x => x.EndTime).First();
 //            if (lastShowing != null)
 //            {
-//                var gap = showing.StartTime.Value.Subtract(lastShowing.EndTime.Value).TotalMinutes;
+//                var gap = showing.ShowDate.Value.Subtract(lastShowing.EndTime.Value).TotalMinutes;
 //                if (gap < 25 || gap > 45)
 //                {
 //                    error = "Gap shorter than 25 min or longer than 45 min";

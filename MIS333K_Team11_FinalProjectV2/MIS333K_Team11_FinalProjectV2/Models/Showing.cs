@@ -9,10 +9,12 @@ namespace MIS333K_Team11_FinalProjectV2.Models
 {
     public class Showing
     {
+        public class CustomDateRangeAttribute : RangeAttribute
+        {
+            public CustomDateRangeAttribute() : base(typeof(DateTime), DateTime.Now.AddDays(7).ToString(), DateTime.Now.AddDays(14).ToString())
+            { }
+        }
 
-        
-
-    
         public Int32 ShowingID { get; set; }
 
         [Display(Name = "Showing Number")]              //not sure if needed
@@ -21,6 +23,8 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [Display(Name = "Showing Name")]
         public String ShowingName { get; set; } //TODO: not sure if this is needed
 
+        [Required(ErrorMessage = "Showing must be scheduled")]
+        [CustomDateRange(ErrorMessage = "Showing must be scheduled starting a week from today and through the next 7 days afterwards")]
         [Display(Name = "Show Date")]
         [DataType(DataType.DateTime)]
         public DateTime ShowDate { get; set; }
