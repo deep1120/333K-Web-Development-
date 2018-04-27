@@ -9,7 +9,7 @@ namespace MIS333K_Team11_FinalProjectV2.Utilities
 {
     public class SeatHelper
     {
-        public SelectList FindAvailableSeats(List<Ticket> tickets) //tickets is the list of 
+        public static MultiSelectList FindAvailableSeats(List<Ticket> tickets) //tickets is the list
         {
             List<Seat> TakenSeats = new List<Seat>();
 
@@ -23,13 +23,13 @@ namespace MIS333K_Team11_FinalProjectV2.Utilities
 
             List<Seat> AvailableSeats = GetAllSeats().Except(TakenSeats).ToList();
 
-            SelectList slAvailableSeats = new SelectList(AvailableSeats, "SeatID", "SeatName");
+            MultiSelectList slAvailableSeats = new MultiSelectList(AvailableSeats, "SeatID", "SeatName");
             return slAvailableSeats;
 
         }
 
 
-        public List<Seat> GetAllSeats()
+        public static List<Seat> GetAllSeats()
         {
             List<Seat> AllSeats = new List<Seat>();
 
@@ -132,7 +132,7 @@ namespace MIS333K_Team11_FinalProjectV2.Utilities
             return AllSeats;
         }
 
-        public Int32 GetSeatID(String seatName)
+        public static Int32 GetSeatID(String seatName)
         {
             if (seatName == "A1") return 0; 
             if (seatName == "A2") return 1;
@@ -171,6 +171,15 @@ namespace MIS333K_Team11_FinalProjectV2.Utilities
             else
                 return 0;
 
+        }
+
+        public static String GetSeatName(int SeatID)
+        {
+            if (SeatID == 0) return "A1";
+            if (SeatID == 1) return "A2";
+            if (SeatID == 2) return "A3";
+            else
+                return "";
         }
     }
 }

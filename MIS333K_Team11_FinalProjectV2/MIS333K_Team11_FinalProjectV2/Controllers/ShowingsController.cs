@@ -65,6 +65,52 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
             if (showing.ShowDate >= Convert.ToDateTime("9:00 AM") && showing.ShowDate <= Convert.ToDateTime("12:00 AM"))
             {
+                //find the showings that are on the same day and in the same theater and then compare then with each other
+                //by making sure the end time of one showing isn't going to conflict with another showing's start time
+
+                //List<Showing> showingDays = new List<Showing>();
+                //for (i in db.Showings)
+                //{
+                //    if(showing.ShowDate.Day == i.ShowDate.Day &&  showing.Theatre == i.Theatre)
+                //    {
+                //        //if statement comparing the showing time you're trying to create with 
+                //        //if time doesn't overlap, add the showing with modelstate.isvalid and redirect
+
+                //        //else 
+                //        //viewbag and return view(showing)
+                //        //doesn't the return stop the whole loop though? or does it allow loop to iterate?
+                //        //or do we iterate here
+                //    }
+                //    //or do we iterate here?
+                //    else
+                //    {
+                //        //do we allow them to add in showing
+                //        //do we not need it? cuz there is an else in previous if loop
+                //    }
+                //}
+                
+                //foreach (show in showingDays)
+                //{
+                //    if (/*compare one show to the rest* AND theaters are not the same*/)
+                //    {
+                //        if (ModelState.IsValid)
+                //        {
+                //            db.Showings.Add(showing);
+                //            db.SaveChanges();
+                //            return RedirectToAction("Index");
+                //        }
+                //        else
+                //        {
+                //            ViewBag.AllMovies = GetAllMovies(showing);
+                //            return View(showing);
+                //        }
+                //    }
+                //    else
+                //    {
+                //        ViewBag.AllMovies = GetAllMovies(showing);
+                //        return View(showing);
+                //    }
+                //}
 
                 if (ModelState.IsValid)
                 {
