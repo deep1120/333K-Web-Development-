@@ -8,7 +8,6 @@ using System.Web;
 using System.Web.Mvc;
 //using MIS333K_Team11_FinalProjectV2.DAL;
 using MIS333K_Team11_FinalProjectV2.Models;
-using MIS333K_Team11_FinalProjectV2.Utilities;
 using static MIS333K_Team11_FinalProjectV2.Models.AppUser;
 
 namespace MIS333K_Team11_FinalProjectV2.Controllers
@@ -39,36 +38,35 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         // GET: Orders/Create
-        public ActionResult Create(Order order)
+        public ActionResult Create()
         {
-            //return View();
-            return RedirectToAction("AddToOrder", new { OrderID = order.OrderID });
+            return View();
         }
 
         // POST: Orders/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "OrderID,OrderNumber,OrderDate/*,OrderNotes*/,Orderstatus")] Order order)
-        //{
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "OrderID,OrderNumber,OrderDate,OrderNotes,Orderstatus")] Order order)
+        {
 
-        //    //Find next order number
-        //    order.OrderNumber = Utilities.GenerateNextOrderNumber.GetNextOrderNumber();
+            //Find next order number
+            order.OrderNumber = Utilities.GenerateNextOrderNumber.GetNextOrderNumber();
 
-        //    //record date of order
-        //    order.OrderDate = DateTime.Today;
+            //record date of order
+            order.OrderDate = DateTime.Today;
+            
+            if (ModelState.IsValid)
+            {
+                db.Orders.Add(order);
+                db.SaveChanges();
+                return RedirectToAction("AddToOrder", new { OrderID = order.OrderID });
+            }
 
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Orders.Add(order);
-        //        db.SaveChanges();
-        //        return RedirectToAction("AddToOrder", new { OrderID = order.OrderID });
-        //    }
+            return View(order);
 
-        //    return View(order);
-
-        //}
+        }
 
         public ActionResult AddToOrder(int OrderID)
         {
@@ -81,9 +79,6 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             //Set the new order detail's order to the new ord we just found
             td.Order = ord;
 
-            //populate viewbag with the list of all tickets available
-            ViewBag.AllSeats = GetAllTicketSeats();
-
             //Populate the view bag with the list of courses
             ViewBag.AllShowings = GetAllShowings();
 
@@ -92,28 +87,18 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddToOrder(Ticket td, int SelectedShowing, int[] SelectedTickets)
+        public ActionResult AddToOrder(Ticket td, int SelectedShowing)
         {
-            //Find the ahowing associated with the int SelectedShowing
+            //Find the course associated with the int SelectedShowing
             Showing showing = db.Showings.Find(SelectedShowing);
 
-            //Set the showing property of the ticket to this newly found course 
+            //Set the course property of the registration detail to this newly found course 
             td.Showing = showing;
 
-            //Seat seat = new Seat();
-            //td.TicketSeat = seat.SeatName;
-            for (int i = 0; i < SelectedTickets.Length; i++)
-            {
-                Seat seat = db.Seats.Find(SelectedTickets[i]);
-                Ticket ticket = new Ticket();
-                ticket.TicketSeat = seat.SeatName;
-            }
-
-            //Find the order associated with the ticket
+            //Find the order associated with the order detail
             Order ord = db.Orders.Find(td.Order.OrderID);
 
             //Set the value of the course fee
-            //LOGIC GOES HERE
             td.TicketPrice = showing.TicketPrice;
 
             //Set the value of the total fees
@@ -124,7 +109,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 //add the registration detail to the database
                 db.Tickets.Add(td);
                 db.SaveChanges();
-                return RedirectToAction("Details", "Orders", new { id = ord.OrderID });
+                return RedirectToAction("Details", "Registrations", new { id = ord.OrderID });
             }
 
             //model state is not valide
@@ -152,7 +137,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "OrderID,OrderNumber,OrderDate/*,OrderNotes*/,Orderstatus")] Order order)
+        public ActionResult Edit([Bind(Include = "OrderID,OrderNumber,OrderDate,OrderNotes,Orderstatus")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -204,15 +189,6 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             db.Orders.Remove(order);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        public MultiSelectList GetAllTicketSeats()
-        {
-            List<Seat> allSeats = SeatHelper.GetAllSeats();
-
-            MultiSelectList selSeats = new MultiSelectList(allSeats, "SeatID", "SeatName");
-
-            return selSeats;
         }
 
         //method to get all courses for the ViewBag

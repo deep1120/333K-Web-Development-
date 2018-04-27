@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
-using MIS333K_Team11_FinalProjectV2.Utilities;
 
 namespace MIS333K_Team11_FinalProjectV2.Models
 {
@@ -25,7 +24,7 @@ namespace MIS333K_Team11_FinalProjectV2.Models
 >>>>>>> 916b8ddac93c6d14f26b63ba7edbdaf87f8e5101
         public Int32 ShowingID { get; set; }
 
-        [Display(Name = "Showing Number")]              //not sure if needed
+        [Display(Name = "Showing Number")]
         public Int32 ShowingNumber { get; set; }
 
         [Display(Name = "Showing Name")]
@@ -44,26 +43,19 @@ namespace MIS333K_Team11_FinalProjectV2.Models
 
         [Display(Name = "End Time")] //a calculated value = start time + running time of movie
         [DataType(DataType.Time)]
-        public DateTime? EndTime
-        {
-            get { return ShowDate.AddMinutes(SponsoringMovies.Sum(m => m.RunningTime)); }
-        }
+        public DateTime? EndTime { get; set; }
 
-        [Display(Name = "Running Time")]                              //not sure if needed either since related to movie
+        [Display(Name = "Running Time")]
         public Int32 RunTime
         {
             //get { return SponsoringMovies.Sum(m=> m.RunningTime);}
             get;set; 
         }
 
-        [Display(Name = "Ticket Price")]               //not sure if needed since will be from ticket.cs
+        [Display(Name = "Ticket Price")]
         public Decimal TicketPrice { get; set; }
 
         [Required(ErrorMessage = "Theatre # is Required")]
-        [Display(Name = "IsPublished")]
-        public bool IsPublished { get; set; }
-
-        [Required(ErrorMessage = "Theatre is Required")]
         [EnumDataType(typeof(Theatre))]
         [Display (Name = "Theatre" )]
         public Theatre Theatre { get; set; }
@@ -71,7 +63,6 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         //May insert "Future showing"
         public virtual List <Movie> SponsoringMovies { get; set; }
         public virtual List<Ticket> Tickets { get; set; }
-        public virtual List<Seat> Seats { get; set; }
 
         public Showing()
         {
