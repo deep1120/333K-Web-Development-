@@ -36,6 +36,11 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
                 manager.Birthday = new DateTime(1991, 1, 1);
                 manager.PhoneNumber = "(512)555-5555";
                 manager.PopcornPoints = 0;
+                manager.MiddleInitial = "L";
+                manager.Street = "1245 Lake Anchorage Blvd.";
+                manager.City = "Austin";
+                manager.State = StateAbbr.TX;
+                manager.ZipCode = "78705";
 
                 var result = UserManager.Create(manager, "Abc123!");
                 db.SaveChanges();

@@ -19,7 +19,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
     {
         private AppDbContext db = new AppDbContext();
 
-        // GET: AppUsers
+        // GET: AppUsers      
         public ActionResult Index()
         {
             return View(db.Users.ToList());
@@ -32,7 +32,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         // GET: AppUsers/Details/5
-        //[Authorize(Roles = "Manager, Employee, Customer")]
+        [Authorize(Roles = "Manager, Employee, Customer")]
         public ActionResult Details(string id)
         {
             if (id == null)
@@ -64,7 +64,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             "PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDataUtc,LockoutEnabled," +
             "AccessFailedCount,UserName")] AppUser appUser)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid)                                                                         
             {
                 db.Users.Add(appUser);
                 db.SaveChanges();
@@ -74,7 +74,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         // GET: AppUsers/Edit/5
-        //[Authorize(Roles = "Manager, Customer, Employee")]
+        [Authorize(Roles = "Manager, Customer, Employee")]
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -91,6 +91,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         //Employee/Manager Edit
+
         public ActionResult ManagerEdit(string id)
         {
             if(id == null)
@@ -124,7 +125,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ManagerEdit([Bind(Include = "Id,Street,ZipCode,City,State,PhoneNumber")] AppUser appUser)
+        public ActionResult ManagerEdit([Bind(Include = "Id,Street,City,State,ZipCode,PhoneNumber,Birthday")] AppUser appUser)
         {
             if(ModelState.IsValid)
             {
@@ -135,6 +136,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 memberToChange.Street = appUser.Street;
                 memberToChange.PhoneNumber = appUser.PhoneNumber;
                 memberToChange.ZipCode = appUser.ZipCode;
+                memberToChange.Birthday = appUser.Birthday;
 
                 db.Entry(memberToChange).State = EntityState.Modified;
                 db.SaveChanges();

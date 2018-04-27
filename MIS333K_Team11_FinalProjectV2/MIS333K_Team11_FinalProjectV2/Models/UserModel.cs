@@ -15,12 +15,12 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [Display(Name = "First Name")]
         public String FirstName { get; set; }
 
+        [Display(Name = "Middle Initial")]
+        public String MiddleInitial { get; set; }
+
         [Required(ErrorMessage = "Last name is required")]
         [Display(Name = "Last Name")]
         public String LastName { get; set; }
-
-        [Display(Name = "Middle Initial")]
-        public String MiddleInitial { get; set; }
 
         [Required(ErrorMessage = "Email is required.")]
         [DataType(DataType.EmailAddress, ErrorMessage = "Enter a valid email address")]
@@ -51,6 +51,14 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [Display(Name = "Zip Code")]
         [RegularExpression(@"^([0-9]{5})([\-]{1}[0-9]{4})?$", ErrorMessage = "Please enter a valid zip code.")]   //is this the best way to validate zip code?   
         public String ZipCode { get; set; }
+
+        [Required]
+        [Display(Name = "Birthday")]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
+        public DateTime Birthday { get; set; }
+
+        [Display(Name = "Popcorn Points")]
+        public Int32 PopcornPoints { get; set; }
 
         public string Role { get; set; }
 
