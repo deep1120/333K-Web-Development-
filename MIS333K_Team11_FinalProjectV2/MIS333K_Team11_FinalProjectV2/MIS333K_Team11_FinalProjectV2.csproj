@@ -136,53 +136,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201804250644489_AllOfIdentity.cs" />
-    <Compile Include="Migrations\201804250644489_AllOfIdentity.Designer.cs">
-      <DependentUpon>201804250644489_AllOfIdentity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804250718447_IdentityRound2.cs" />
-    <Compile Include="Migrations\201804250718447_IdentityRound2.Designer.cs">
-      <DependentUpon>201804250718447_IdentityRound2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804251443416_FixIdentity.cs" />
-    <Compile Include="Migrations\201804251443416_FixIdentity.Designer.cs">
-      <DependentUpon>201804251443416_FixIdentity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804252244543_ChangeTicketSeatToString.cs" />
-    <Compile Include="Migrations\201804252244543_ChangeTicketSeatToString.Designer.cs">
-      <DependentUpon>201804252244543_ChangeTicketSeatToString.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804252259100_add_datetime.cs" />
-    <Compile Include="Migrations\201804252259100_add_datetime.Designer.cs">
-      <DependentUpon>201804252259100_add_datetime.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804252310573_AddAvgUserRating.cs" />
-    <Compile Include="Migrations\201804252310573_AddAvgUserRating.Designer.cs">
-      <DependentUpon>201804252310573_AddAvgUserRating.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804252336113_giftcheckbox.cs" />
-    <Compile Include="Migrations\201804252336113_giftcheckbox.Designer.cs">
-      <DependentUpon>201804252336113_giftcheckbox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804260141590_Identity2.cs" />
-    <Compile Include="Migrations\201804260141590_Identity2.Designer.cs">
-      <DependentUpon>201804260141590_Identity2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804260148087_AddCardNumberProperty.cs" />
-    <Compile Include="Migrations\201804260148087_AddCardNumberProperty.Designer.cs">
-      <DependentUpon>201804260148087_AddCardNumberProperty.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804260306166_updateddate.cs" />
-    <Compile Include="Migrations\201804260306166_updateddate.Designer.cs">
-      <DependentUpon>201804260306166_updateddate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804270107119_NewMigration.cs" />
-    <Compile Include="Migrations\201804270107119_NewMigration.Designer.cs">
-      <DependentUpon>201804270107119_NewMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804270636129_ShowingModel.cs" />
-    <Compile Include="Migrations\201804270636129_ShowingModel.Designer.cs">
-      <DependentUpon>201804270636129_ShowingModel.cs</DependentUpon>
+    <Compile Include="Migrations\201804281611593_SharonDatabase.cs" />
+    <Compile Include="Migrations\201804281611593_SharonDatabase.Designer.cs">
+      <DependentUpon>201804281611593_SharonDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Utilities\Scheduler.cs" />
     <Compile Include="Views\Utilities\Seat.cs" />
@@ -254,46 +210,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\EmailMessaging.cs" />
-    <Compile Include="Migrations\201804232203228_REDO.cs" />
-    <Compile Include="Migrations\201804232203228_REDO.Designer.cs">
-      <DependentUpon>201804232203228_REDO.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804240114029_FixIdentityProperties.cs" />
-    <Compile Include="Migrations\201804240114029_FixIdentityProperties.Designer.cs">
-      <DependentUpon>201804240114029_FixIdentityProperties.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804240215320_ChangePasswordRequirement.cs" />
-    <Compile Include="Migrations\201804240215320_ChangePasswordRequirement.Designer.cs">
-      <DependentUpon>201804240215320_ChangePasswordRequirement.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804240229467_UpdatePassword.cs" />
-    <Compile Include="Migrations\201804240229467_UpdatePassword.Designer.cs">
-      <DependentUpon>201804240229467_UpdatePassword.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804240236037_AddedDateFormat.cs" />
-    <Compile Include="Migrations\201804240236037_AddedDateFormat.Designer.cs">
-      <DependentUpon>201804240236037_AddedDateFormat.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804240242379_datatype_date.cs" />
-    <Compile Include="Migrations\201804240242379_datatype_date.Designer.cs">
-      <DependentUpon>201804240242379_datatype_date.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804240258128_updatedatabase.cs" />
-    <Compile Include="Migrations\201804240258128_updatedatabase.Designer.cs">
-      <DependentUpon>201804240258128_updatedatabase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804240330408_SeedCustomer1.cs" />
-    <Compile Include="Migrations\201804240330408_SeedCustomer1.Designer.cs">
-      <DependentUpon>201804240330408_SeedCustomer1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804240600354_ChangingDateTime.cs" />
-    <Compile Include="Migrations\201804240600354_ChangingDateTime.Designer.cs">
-      <DependentUpon>201804240600354_ChangingDateTime.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804240609459_Showing2.cs" />
-    <Compile Include="Migrations\201804240609459_Showing2.Designer.cs">
-      <DependentUpon>201804240609459_Showing2.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\AddCustomer.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\GenreData.cs" />
@@ -392,78 +308,12 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201804232203228_REDO.resx">
-      <DependentUpon>201804232203228_REDO.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804240114029_FixIdentityProperties.resx">
-      <DependentUpon>201804240114029_FixIdentityProperties.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804240215320_ChangePasswordRequirement.resx">
-      <DependentUpon>201804240215320_ChangePasswordRequirement.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804240229467_UpdatePassword.resx">
-      <DependentUpon>201804240229467_UpdatePassword.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804240236037_AddedDateFormat.resx">
-      <DependentUpon>201804240236037_AddedDateFormat.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804240242379_datatype_date.resx">
-      <DependentUpon>201804240242379_datatype_date.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804240258128_updatedatabase.resx">
-      <DependentUpon>201804240258128_updatedatabase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804240330408_SeedCustomer1.resx">
-      <DependentUpon>201804240330408_SeedCustomer1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804240600354_ChangingDateTime.resx">
-      <DependentUpon>201804240600354_ChangingDateTime.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804240609459_Showing2.resx">
-      <DependentUpon>201804240609459_Showing2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804250644489_AllOfIdentity.resx">
-      <DependentUpon>201804250644489_AllOfIdentity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804250718447_IdentityRound2.resx">
-      <DependentUpon>201804250718447_IdentityRound2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804251443416_FixIdentity.resx">
-      <DependentUpon>201804251443416_FixIdentity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804252244543_ChangeTicketSeatToString.resx">
-      <DependentUpon>201804252244543_ChangeTicketSeatToString.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804252259100_add_datetime.resx">
-      <DependentUpon>201804252259100_add_datetime.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804252310573_AddAvgUserRating.resx">
-      <DependentUpon>201804252310573_AddAvgUserRating.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804252336113_giftcheckbox.resx">
-      <DependentUpon>201804252336113_giftcheckbox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804260141590_Identity2.resx">
-      <DependentUpon>201804260141590_Identity2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804260148087_AddCardNumberProperty.resx">
-      <DependentUpon>201804260148087_AddCardNumberProperty.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804260306166_updateddate.resx">
-      <DependentUpon>201804260306166_updateddate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804270107119_NewMigration.resx">
-      <DependentUpon>201804270107119_NewMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804270636129_ShowingModel.resx">
-      <DependentUpon>201804270636129_ShowingModel.cs</DependentUpon>
-    </EmbeddedResource>
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="Scripts\index.d.ts" />
+    <EmbeddedResource Include="Migrations\201804281611593_SharonDatabase.resx">
+      <DependentUpon>201804281611593_SharonDatabase.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -477,7 +327,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50313</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
