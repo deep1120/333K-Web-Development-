@@ -65,8 +65,10 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 //add in as a single value after changing the relationship in the showing.cs
                 showing.SponsoringMovie = mov;
             }
+            var nine = new DateTime(showing.ShowDate.Year, showing.ShowDate.Month, showing.ShowDate.Day, 09, 00, 00);
+            var midnight = new DateTime(showing.ShowDate.Year, showing.ShowDate.Month, showing.ShowDate.Day, 24, 00, 00);
 
-
+            //showing.ShowDate >= Convert.ToDateTime("9:00 AM") && showing.ShowDate <= Convert.ToDateTime("12:00 AM")
             if (showing.ShowDate >= Convert.ToDateTime("9:00 AM") && showing.ShowDate <= Convert.ToDateTime("12:00 AM"))
             {
                 //find the showings that are on the same day and in the same theater and then compare them with each other
@@ -77,18 +79,17 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 List<Showing> showingsDays = allShowings.Where(s => s.ShowDate == showing.ShowDate).ToList();
                 showingsDays = showingsDays.Where(s => s.Theatre == showing.Theatre).ToList();
 
+
                 DateTime showing_start = showing.ShowDate;
                 DateTime showing_end = showing.ShowDate.AddMinutes(showing.SponsoringMovie.RunningTime);
 
 
-                ////if valid, add to db
-                //if (ModelState.IsValid)
-                //{
-                //    db.Showings.Add(showing);
-                //    db.SaveChanges();
-                //    return RedirectToAction("Index");
-
-                //}
+                if(showingsDays.Count == 0)
+                {
+                    db.Showings.Add(showing);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
 
                 foreach (Showing sh in showingsDays)
                 {
