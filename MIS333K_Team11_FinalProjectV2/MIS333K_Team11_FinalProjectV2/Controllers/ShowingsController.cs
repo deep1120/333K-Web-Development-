@@ -73,16 +73,13 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 //by making sure the end time of showing to be created is less than a current showing's start time
                 //OR start time of showing to be created is going to be greater than a current showing's 
 
-                //List<Showing> allShowings = db.Showings.ToList();
-                //List<Showing> showingsDays = allShowings.Where(s => s.ShowDate == showing.ShowDate).ToList();
-                //showingsDays = showingsDays.Where(s => s.Theatre == showing.Theatre).ToList();
+                List<Showing> allShowings = db.Showings.ToList();
+                List<Showing> showingsDays = allShowings.Where(s => s.ShowDate == showing.ShowDate).ToList();
+                showingsDays = showingsDays.Where(s => s.Theatre == showing.Theatre).ToList();
 
-                //DateTime showing_start = showing.ShowDate;
-                //DateTime showing_end = showing.ShowDate.AddMinutes(showing.SponsoringMovie.RunningTime);
+                DateTime showing_start = showing.ShowDate;
+                DateTime showing_end = showing.ShowDate.AddMinutes(showing.SponsoringMovie.RunningTime);
 
-                db.Showings.Add(showing);
-                db.SaveChanges();
-                return RedirectToAction("Index");
 
                 ////if valid, add to db
                 //if (ModelState.IsValid)
@@ -93,38 +90,39 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
                 //}
 
-                //foreach (Showing sh in showingsDays)
-                //{
-                //    //DateTime showing_start = showing.ShowDate;
-                //    //DateTime showing_end = showing.EndTime.Value;
+                foreach (Showing sh in showingsDays)
+                {
+                    //DateTime showing_start = showing.ShowDate;
+                    //DateTime showing_end = showing.EndTime.Value;
 
-                //    DateTime sh_start = sh.ShowDate;
-                //    DateTime sh_end = sh.ShowDate.AddMinutes(showing.SponsoringMovie.RunningTime);
+                    DateTime sh_start = sh.ShowDate;
+                    DateTime sh_end = sh.ShowDate.AddMinutes(showing.SponsoringMovie.RunningTime);
 
-                //    //let's say these are established showtimes
-                //    //9-10
-                //    //11-12
-                //    //12-2
-                //    //create 11-12 showing to test....is created but should not be
-                //    if (showing_start > sh_end || showing_end < sh_start)
-                //    {
-                //        ////if valid, add to db
-                //        //if (ModelState.IsValid)
-                //        //{
-                //        //    db.Showings.Add(showing);
-                //        //    db.SaveChanges();
-                //        //    return RedirectToAction("Index");
-                //        //}
-                //    }
+                    //let's say these are established showtimes
+                    //9-10
+                    //11-12
+                    //12-2
+                    //create 11-12 showing to test....is created but should not be
+                    if (showing_start > sh_end || showing_end < sh_start)
+                    {
+                        //if valid, add to db
+                        if (ModelState.IsValid)
+                        {
+                            db.Showings.Add(showing);
+                            db.SaveChanges();
+                            return RedirectToAction("Index");
+                        }
+                    }
 
-                //}
+                }
 
-                //ViewBag.AllMovies = GetAllMovies(showing);
-                //return View(showing);
+                ViewBag.AllMovies = GetAllMovies(showing);
+                return View(showing);
             }
 
             else
             {
+                ViewBag.ErrorMessageTime = "Showing must be scheduled in between 9:00 AM and 12:00 AM";
                 ViewBag.AllMovies = GetAllMovies(showing);
                 return View(showing);
 
