@@ -58,7 +58,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
             //record date of order
             order.OrderDate = DateTime.Today;
-
+            
             if (ModelState.IsValid)
             {
                 db.Orders.Add(order);
@@ -116,10 +116,11 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                     db.Tickets.Add(ticket);
                     db.SaveChanges();
                     //add in the tickets details information so we can view it
-                    return RedirectToAction("Details", "Tickets", new { id = ord.OrderID });
+                    
                 }
                 //db.Tickets.Add(ticket);
                 //db.SaveChanges();
+                return RedirectToAction("Details", "Orders", new { id = ord.OrderID });
             }
 
             //Find the order associated with the order detail
@@ -237,7 +238,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             List<Showing> allShowings = db.Showings.OrderBy(s => s.ShowingName).ToList();
 
             //convert the list to a select list
-            SelectList selShowings = new SelectList(allShowings, "ShowingID", "SponsoringMovie.MovieTitle" ,"ShowDate");
+            SelectList selShowings = new SelectList(allShowings, "ShowingID", "SponsoringMovie.MovieTitle");
 
             //return the select list
             return selShowings;
