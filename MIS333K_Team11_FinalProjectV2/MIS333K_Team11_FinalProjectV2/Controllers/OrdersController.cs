@@ -97,6 +97,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
             //find the order 
             Order ord = db.Orders.Find(td.Order.OrderID);
+            ord.Orderstatus = OrderStatus.Pending;
 
             //Set the course property of the registration detail to this newly found course 
             //td.Showing = showing;
@@ -315,6 +316,14 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             //return the select list        
             return selShowings;
         }
+
+        
+
+
+
+
+
+
 
 
         protected override void Dispose(bool disposing)
