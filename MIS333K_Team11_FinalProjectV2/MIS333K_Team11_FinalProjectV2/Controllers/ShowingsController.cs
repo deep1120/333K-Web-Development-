@@ -66,89 +66,61 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 showing.SponsoringMovie = mov;
             }
 
+
             if (showing.ShowDate >= Convert.ToDateTime("9:00 AM") && showing.ShowDate <= Convert.ToDateTime("12:00 AM"))
             {
-                //find the showings that are on the same day and in the same theater and then compare then with each other
-                //by making sure the end time of one showing isn't going to conflict with another showing's start time
+                //find the showings that are on the same day and in the same theater and then compare them with each other
+                //by making sure the end time of showing to be created is less than a current showing's start time
+                //OR start time of showing to be created is going to be greater than a current showing's 
 
-                List<Showing> allShowings = db.Showings.ToList();
-                List<Showing> showingsDays = allShowings.Where(s => s.ShowDate == showing.ShowDate).ToList();
-                showingsDays = showingsDays.Where(s => s.Theatre == showing.Theatre).ToList();
+                //List<Showing> allShowings = db.Showings.ToList();
+                //List<Showing> showingsDays = allShowings.Where(s => s.ShowDate == showing.ShowDate).ToList();
+                //showingsDays = showingsDays.Where(s => s.Theatre == showing.Theatre).ToList();
 
-                DateTime showing_start = showing.ShowDate;
-                DateTime showing_end = showing.ShowDate.AddMinutes(showing.SponsoringMovie.RunningTime);
+                //DateTime showing_start = showing.ShowDate;
+                //DateTime showing_end = showing.ShowDate.AddMinutes(showing.SponsoringMovie.RunningTime);
 
-                foreach (Showing sh in showingsDays)
-                {
-                    //DateTime showing_start = showing.ShowDate;
-                    //DateTime showing_end = showing.EndTime.Value;
+                db.Showings.Add(showing);
+                db.SaveChanges();
+                return RedirectToAction("Index");
 
-                    DateTime sh_start = sh.ShowDate;
-                    DateTime sh_end = sh.ShowDate.AddMinutes(showing.SponsoringMovie.RunningTime);
-
-                    if (showing_start > sh_end || showing_end < sh_start)
-                    {
-                        if (ModelState.IsValid)
-                        {
-                            db.Showings.Add(showing);
-                            db.SaveChanges();
-                            return RedirectToAction("Index");
-                        }
-                    }
-                }
-                //List<Showing> showingDays = db.Showings.Where Showing.ShowDate.Day == i.ShowDate.Day &&  showing.Theatre == i.Theatre ).tolist()
-                //foreach (Showing sh in ShowingDays
-                //{
-                //    
-                //        //if statement comparing the showing time you're trying to create with 
-                //        //if time doesn't overlap, add the showing with modelstate.isvalid and redirect
-
-                //        //else 
-                //        //viewbag and return view(showing)
-                //        //doesn't the return stop the whole loop though? or does it allow loop to iterate?
-                //        //or do we iterate here
-                //    }
-                //    //or do we iterate here?
-                //    else
-                //    {
-                //        //do we allow them to add in showing
-                //        //do we not need it? cuz there is an else in previous if loop
-                //    }
-                //}
-
-                //foreach (show in showingDays)
-                //{
-                //    if (/*compare one show to the rest* AND theaters are not the same*/)
-                //    {
-                //        if (ModelState.IsValid)
-                //        {
-                //            db.Showings.Add(showing);
-                //            db.SaveChanges();
-                //            return RedirectToAction("Index");
-                //        }
-                //        else
-                //        {
-                //            ViewBag.AllMovies = GetAllMovies(showing);
-                //            return View(showing);
-                //        }
-                //    }
-                //    else
-                //    {
-                //        ViewBag.AllMovies = GetAllMovies(showing);
-                //        return View(showing);
-                //    }
-                //}
-
-                ViewBag.AllMovies = GetAllMovies(showing);
-                return View(showing);
-
+                ////if valid, add to db
                 //if (ModelState.IsValid)
                 //{
                 //    db.Showings.Add(showing);
                 //    db.SaveChanges();
                 //    return RedirectToAction("Index");
+
                 //}
 
+                //foreach (Showing sh in showingsDays)
+                //{
+                //    //DateTime showing_start = showing.ShowDate;
+                //    //DateTime showing_end = showing.EndTime.Value;
+
+                //    DateTime sh_start = sh.ShowDate;
+                //    DateTime sh_end = sh.ShowDate.AddMinutes(showing.SponsoringMovie.RunningTime);
+
+                //    //let's say these are established showtimes
+                //    //9-10
+                //    //11-12
+                //    //12-2
+                //    //create 11-12 showing to test....is created but should not be
+                //    if (showing_start > sh_end || showing_end < sh_start)
+                //    {
+                //        ////if valid, add to db
+                //        //if (ModelState.IsValid)
+                //        //{
+                //        //    db.Showings.Add(showing);
+                //        //    db.SaveChanges();
+                //        //    return RedirectToAction("Index");
+                //        //}
+                //    }
+
+                //}
+
+                //ViewBag.AllMovies = GetAllMovies(showing);
+                //return View(showing);
             }
 
             else
@@ -157,11 +129,30 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 return View(showing);
 
             }
-
-            ////populate the viewbag with the movie list
-            //ViewBag.AllMovies = GetAllMovies(showing);
-            //return View(showing);
         }
+
+        public ActionResult Publish()
+        {
+            return View();
+        }
+
+        //[HttpPost]
+        //public ActionResult Publish(List<Showing> showings)
+        //{
+        //    //somehow groupby day and then theater
+        //    //then loop through the amount of items in each respective list
+        //    //make sure that there is no big or small gap
+        //    //and then make sure last showing doesn't before 9:30 PM
+        //    List<Showing> CheckShowings = db.Showings.ToList().GroupBy(); //group by day
+        //    var gap = showing.ShowDate.Value.Subtract(lastShowing.ShowDate.AddMinutes(Showing.SponsoringMovie.RunningTime).Value).TotalMinutes;
+        //    //                if (gap < 25 || gap > 45)
+        //    //                {
+        //    //                    error = "Gap shorter than 25 min or longer than 45 min";
+        //    //                    return false; // gap shorter than 25 min or longer than 45 min
+        //    //                
+
+        //}
+
 
         //GET
         public ActionResult DateSearch()
@@ -232,7 +223,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 //change scalar properties
                 showingToChange.Theatre = showing.Theatre;
                 showingToChange.ShowDate = showing.ShowDate;
-                showingToChange.ShowingName = showing.SponsoringMovie.MovieTitle;
+                //showingToChange.ShowingName = showing.SponsoringMovie.MovieTitle;
                 //showingToChange.RunTime = showing.RunTime;
 
                 db.Entry(showing).State = EntityState.Modified;
@@ -284,7 +275,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             //convert list of selected movies to ints
             List<Int32> SelectedMovies = new List<Int32>();
 
-            Movie mov = db.Movies.Find(showing.SponsoringMovie);
+            Movie mov = db.Movies.Find(showing.SponsoringMovie.MovieID);
 
             SelectedMovies.Add(mov.MovieID);
             //loop through the showing's movie and add the movie id
@@ -310,3 +301,102 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
     }
 }
+
+//This is the logic code that I have created within our ShowingsController.cs
+//I validate the datetime week frame in Showing.cs so that is not a concern here
+//This whole logic piece in Create ActionResult simply makes sure that there are no overlaps in showing creations
+//I will have to write a separate Publish ActionResult to then check all of the showings successfully created 
+//and make sure that there is no gap of 25-45 min and that it does not end before 9:30 PM	
+
+//[HttpPost]
+//[ValidateAntiForgeryToken]
+//public ActionResult Create([Bind(Include = "ShowingID, Theatre, ShowDate")] Showing showing, int? SelectedMovies)
+//{
+//    //ask for the next showing number
+//    //showing.ShowingNumber = Utilities.GenerateShowingNumber.GetNextShowingNumber();
+
+
+//    //add movie
+//    if (SelectedMovies != 0)
+//    {
+//        //find the movie
+//        Movie mov = db.Movies.Find(SelectedMovies);
+//        //showing.SponsoringMovies.Add(mov);
+
+//        //add in as a single value after changing the relationship in the showing.cs
+//        showing.SponsoringMovie = mov;
+//    }
+
+
+//    if (showing.ShowDate >= Convert.ToDateTime("9:00 AM") && showing.ShowDate <= Convert.ToDateTime("12:00 AM"))
+//    {
+//        //boolean checkers
+//        bool checker = true;
+//        bool boolean = true;
+
+//        //find the showings that are on the same day and in the same theater and then compare them with each other
+//        //by making sure the end time of showing to be created is less than a current showing's start time
+//        //OR start time of showing to be created is going to be greater than a current showing's 
+
+//        List<Showing> allShowings = db.Showings.ToList();
+//        List<Showing> showingsDays = allShowings.Where(s => s.ShowDate.Day == showing.ShowDate.Day).ToList();
+//        showingsDays = showingsDays.Where(s => s.Theatre == showing.Theatre).ToList();
+
+//        DateTime showing_start = showing.ShowDate;
+//        DateTime showing_end = showing.ShowDate.AddMinutes(showing.SponsoringMovie.RunningTime);
+
+//        while (checker == true)
+//        {
+//            foreach (Showing sh in showingsDays)
+//            {
+//                //DateTime showing_start = showing.ShowDate;
+//                //DateTime showing_end = showing.EndTime.Value;
+
+//                DateTime sh_start = sh.ShowDate;
+//                DateTime sh_end = sh.ShowDate.AddMinutes(showing.SponsoringMovie.RunningTime);
+
+//                //let's say these are established showtimes
+//                //9-10
+//                //11-12
+//                //12-2
+//                //create 11-12 showing to test logic....
+//                if (showing_start > sh_end || showing_end < sh_start)
+//                {
+//                    boolean = true;
+//                    checker = true;
+//                }
+
+//                else
+//                {
+//                    //leaves loop? does that work? and then will populate viewbag and not go through with creation
+//                    boolean = false;
+//                    checker = false;
+//                    ViewBag.AllMovies = GetAllMovies(showing);
+//                    return View(showing); //I think that return automatically breaks out for you?
+//                    break;
+//                }
+
+//            }
+//            break;
+//        }
+//        //if boolean = true: add showing to db
+//        //will have gone through entire while loop with success and will then be added to showing database!
+//        if(boolean == true)
+//        {
+//            if (ModelState.IsValid)
+//            {
+//                db.Showings.Add(showing);
+//                db.SaveChanges();
+//                return RedirectToAction("Index");
+//            }
+//        }
+//    }
+
+//    //will populate viewbag and not go through with order bc not between 9am-12am
+//    else
+//    {
+//        ViewBag.AllMovies = GetAllMovies(showing);
+//        return View(showing);
+
+//    }
+//}
