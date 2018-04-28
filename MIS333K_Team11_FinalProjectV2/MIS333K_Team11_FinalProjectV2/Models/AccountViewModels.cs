@@ -3,7 +3,6 @@ using System.ComponentModel.DataAnnotations;
 using System;
 using Microsoft.AspNet.Identity;
 
-// Change this namespace to match your project
 namespace MIS333K_Team11_FinalProjectV2.Models
 {
     public enum StateAbbr { AK, AL, AR, AZ, CA, CO, CT, DC, DE, FL, GA, HI, IA, ID, IL, IN, KS, KY, LA, MA, MD, ME, MI, MN, MO, MS, MT, NC, ND, NE, NH, NJ, NM, NV, NY, OH, OK, OR, PA, RI, SC, SD, TN, TX, UT, VA, VT, WA, WI, WV, WY }
@@ -26,15 +25,15 @@ namespace MIS333K_Team11_FinalProjectV2.Models
 
     public class RegisterViewModel
     {
-        //NOTE: Here is the property for email
+        public string UserID { get; set; }
+        public string UserName { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        //NOTE: Here is the logic for putting in a password
         [Required]
-        //[StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
@@ -44,9 +43,6 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        //Add any fields that you need for creating a new user
-        //Additional fields go here (First name is an example)
-        //Remember, there is already a field for email, phone number, and password
         [Required(ErrorMessage = "First name is required.")]
         [Display(Name = "First Name")]
         public String FirstName { get; set; }
@@ -59,7 +55,6 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [Display(Name = "Last Name")]
         public String LastName { get; set; }
 
-        //NOTE: Here is the property for phone number
         [Required(ErrorMessage = "Phone number is required")]
         [Phone]
         [Display(Name = "Phone Number")]
@@ -86,9 +81,6 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [Display(Name = "Birthday")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime Birthday { get; set; }
-
-        [Display(Name = "Popcorn Points")]
-        public Int32 PopcornPoints { get; set; }
     }
 
     public class ChangePasswordViewModel
@@ -99,7 +91,6 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         public string OldPassword { get; set; }
 
         [Required]
-        //[StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "New password")]
         public string NewPassword { get; set; }
@@ -229,10 +220,6 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime Birthday { get; set; }
 
-        [Display(Name = "Popcorn Points")]
-        public Int32 PopcornPoints { get; set; }
-
-        //NOTE: Here is the logic for putting in a password
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]

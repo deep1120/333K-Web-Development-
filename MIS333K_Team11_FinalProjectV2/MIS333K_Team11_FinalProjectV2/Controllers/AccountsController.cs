@@ -143,12 +143,20 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+            //You must be 13 to add an account
+            if (model.Birthday.AddYears(13) > DateTime.Today) //they aren't 13 
+            {
+                ViewBag.BirthdayError = "You must be 13 years old to create an account";
+                return View(model);
+            }
+
             if (ModelState.IsValid)
             {
                 //TODO: Add fields to user here so they will be saved to do the database
                 var user = new AppUser
                 {
                     UserName = model.Email,
+                    Id = model.UserID,
                     Email = model.Email,
                     FirstName = model.FirstName,
                     MiddleInitial = model.MiddleInitial,
@@ -159,13 +167,13 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                     State = model.State,
                     ZipCode = model.ZipCode,
                     Birthday = model.Birthday,
-                    PopcornPoints = model.PopcornPoints             
+                    //PopcornPoints = model.PopcornPoints             
                 };
 
                 var result = await UserManager.CreateAsync(user, model.Password);
 
                 //TODO:  Once you get roles working, you may want to add users to roles upon creation
-                //await UserManager.AddToRoleAsync(user.Id, "Customer");
+                await UserManager.AddToRoleAsync(user.Id, "Customer");
                 // --OR--
                 //await UserManager.AddToRoleAsync(user.Id, "Employee");
 
@@ -182,12 +190,12 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                         SendRegisterEmail(user);
                             await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                     }
-                    
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                    //For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+                    //Send an email with this link
+                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    var callbackUrl = Url.Action("EmailMessaging", "EmailMessaging", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
                     return RedirectToAction("Index", "Home");
                 }
@@ -551,31 +559,5 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             var body = $@"Dear {user.FirstName}, you have been registered as an employee";
             EmailMessaging.SendEmail(user.Email, "Team 11 Employee Registration Confirmation", body);
         }
-
-        ////GET: Accounts/Index
-        //public ActionResult Index()
-        //{
-        //    IndexViewModel ivm = new IndexViewModel();
-
-        //    //get user info
-        //    String id = User.Identity.GetUserId();
-        //    AppUser user = db.Users.Find(id);
-
-        //    //populate the view model
-        //    ivm.Email = user.Email;
-        //    ivm.HasPassword = true;
-        //    ivm.UserID = user.Id;
-        //    ivm.UserName = user.UserName;
-        //    ivm.Street = user.Street;
-        //    ivm.State = user.State;
-        //    ivm.City = user.City;
-        //    ivm.State = user.State;
-        //    ivm.ZipCode = user.ZipCode;
-        //    ivm.PhoneNumber = user.PhoneNumber;
-        //    ivm.Birthday = user.Birthday;
-        //    ivm.PopcornPoints = user.PopcornPoints;  
-
-        //    return View(ivm);
-        //}
     }
 }

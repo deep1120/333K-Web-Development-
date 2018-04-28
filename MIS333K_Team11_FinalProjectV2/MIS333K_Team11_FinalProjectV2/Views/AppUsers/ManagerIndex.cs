@@ -2,6 +2,7 @@
 //using System.Data.Entity.Infrastructure;
 //using System.Web.Mvc;
 
+
 //DbModel IEnumerable<MIS333K_Team11_FinalProjectV2.Models.AppUser>
 
 //@{
@@ -16,7 +17,7 @@
 //            @Html.DisplayNameFor(model => model.FirstName)
 //        </th>
 //        <th>
-//            @Html.DisplayNameFor(model => model.MiddleInitial)
+//            @Html.DisplayNameFor(Model => model.MiddleInitial)
 //        </th>
 //        <th>
 //            @Html.DisplayNameFor(model => model.LastName)

@@ -13,6 +13,8 @@ namespace MIS333K_Team11_FinalProjectV2.Models
 {
     public class AppUser : IdentityUser
     {
+        public string UserID { get; set; }
+
         [Required]
         [Display(Name = "First Name")]
         public String FirstName { get; set; }
@@ -37,7 +39,7 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         public StateAbbr State { get; set; }
 
         [Required]
-        [Display(Name = "Zip Code")] //add validation XX values
+        [Display(Name = "Zip Code")] 
         public String ZipCode { get; set; }
 
         [Required]
@@ -54,9 +56,8 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         public virtual List<Order> Orders { get; set; }
         public virtual List<Card> Cards { get; set; }
 
-        public AppUser() //Reference to HW 6
+        public AppUser() 
         {
-            //will check to see if list is blank or not
             if (Reviews == null)
             {
                 Reviews = new List<Review>();

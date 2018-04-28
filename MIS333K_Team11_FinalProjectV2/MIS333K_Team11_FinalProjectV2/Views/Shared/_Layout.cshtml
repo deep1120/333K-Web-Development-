@@ -36,10 +36,24 @@
                                 @Html.ActionLink("Movies", "Index", "Movies", null, new { @class = "nav-link" })
                             </li>
                             <li class="nav-item">
-                                @Html.ActionLink("Manage Users", "Index", "RoleAdmin", null, new { @class = "nav-link" })
+                                @Html.ActionLink("Genres", "Index", "Genres", null, new { @class = "btn btn-info" })
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Manage Customers & Employees", "Index", "RoleAdmin", null, new { @class = "nav-link" })
                             </li>
                         }
-
+                        if (User.IsInRole("Employee"))
+                        {
+                            <li class="nav-item">
+                                @Html.ActionLink("Movies", "Index", "Movies", null, new { @class = "nav-link" })
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Genres", "Index", "Genres", null, new { @class = "btn btn-info" })
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Manage Customers", "Index", "RoleAdmin", null, new { @class = "nav-link" })
+                            </li>
+                        }
                     }
                     else
                     {

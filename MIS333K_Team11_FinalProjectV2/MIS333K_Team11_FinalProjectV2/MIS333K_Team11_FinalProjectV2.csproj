@@ -148,8 +148,41 @@
     <Compile Include="Migrations\201804281746427_SeedAllEmployeeandCustomer1.Designer.cs">
       <DependentUpon>201804281746427_SeedAllEmployeeandCustomer1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804281842287_ChangingAccountViewModel.cs" />
+    <Compile Include="Migrations\201804281842287_ChangingAccountViewModel.Designer.cs">
+      <DependentUpon>201804281842287_ChangingAccountViewModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804281930550_AddPopcornPoints.cs" />
+    <Compile Include="Migrations\201804281930550_AddPopcornPoints.Designer.cs">
+      <DependentUpon>201804281930550_AddPopcornPoints.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804282010366_FixViewsOnAccounts.cs" />
+    <Compile Include="Migrations\201804282010366_FixViewsOnAccounts.Designer.cs">
+      <DependentUpon>201804282010366_FixViewsOnAccounts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804282048484_IntegrateViewsAndEmail.cs" />
+    <Compile Include="Migrations\201804282048484_IntegrateViewsAndEmail.Designer.cs">
+      <DependentUpon>201804282048484_IntegrateViewsAndEmail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804282117233_AddEmailValidation.cs" />
+    <Compile Include="Migrations\201804282117233_AddEmailValidation.Designer.cs">
+      <DependentUpon>201804282117233_AddEmailValidation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804282125148_AddUserIDinAVM.cs" />
+    <Compile Include="Migrations\201804282125148_AddUserIDinAVM.Designer.cs">
+      <DependentUpon>201804282125148_AddUserIDinAVM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804282145239_EnableEmail.cs" />
+    <Compile Include="Migrations\201804282145239_EnableEmail.Designer.cs">
+      <DependentUpon>201804282145239_EnableEmail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804282154071_UpdateID.cs" />
+    <Compile Include="Migrations\201804282154071_UpdateID.Designer.cs">
+      <DependentUpon>201804282154071_UpdateID.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\CustomerData.cs" />
     <Compile Include="Migrations\EmployeeData.cs" />
+    <Compile Include="Models\IdentityUser.cs" />
     <Compile Include="Views\Utilities\Scheduler.cs" />
     <Compile Include="Views\Utilities\Seat.cs" />
     <Compile Include="Views\Utilities\SeatHelper.cs" />
@@ -328,6 +361,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804281746427_SeedAllEmployeeandCustomer1.resx">
       <DependentUpon>201804281746427_SeedAllEmployeeandCustomer1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804281842287_ChangingAccountViewModel.resx">
+      <DependentUpon>201804281842287_ChangingAccountViewModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804281930550_AddPopcornPoints.resx">
+      <DependentUpon>201804281930550_AddPopcornPoints.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804282010366_FixViewsOnAccounts.resx">
+      <DependentUpon>201804282010366_FixViewsOnAccounts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804282048484_IntegrateViewsAndEmail.resx">
+      <DependentUpon>201804282048484_IntegrateViewsAndEmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804282117233_AddEmailValidation.resx">
+      <DependentUpon>201804282117233_AddEmailValidation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804282125148_AddUserIDinAVM.resx">
+      <DependentUpon>201804282125148_AddUserIDinAVM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804282145239_EnableEmail.resx">
+      <DependentUpon>201804282145239_EnableEmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804282154071_UpdateID.resx">
+      <DependentUpon>201804282154071_UpdateID.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -15,7 +15,7 @@ using MIS333K_Team11_FinalProjectV2.Models;
 namespace MIS333K_Team11_FinalProjectV2.Controllers
 {
     //TODO: Uncomment this line once you have roles working correctly
-    //[Authorize(Roles = "Manager")]
+    [Authorize(Roles = "Manager")]
     public class RoleAdminController : Controller
     {
         //

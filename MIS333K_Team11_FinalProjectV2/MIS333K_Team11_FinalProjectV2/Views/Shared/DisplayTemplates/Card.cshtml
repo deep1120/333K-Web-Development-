@@ -8,12 +8,6 @@
         <th>
             Card Type
         </th>
-        @*<th>
-            Expiration Date
-        </th>
-        <th>
-            CVV
-        </th>*@
         <th>
 
         </th>
@@ -27,12 +21,6 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Type)
             </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.ExpDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CVV)
-            </td>*@
             <td>
                 @Html.ActionLink("Delete", "DeleteCard", "Account", new { id = item.CardID }, null)
             </td>

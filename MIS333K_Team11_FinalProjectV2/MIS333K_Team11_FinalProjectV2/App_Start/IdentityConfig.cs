@@ -35,8 +35,7 @@ namespace MIS333K_Team11_FinalProjectV2
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<AppUser>(manager)
             {
-                //TODO: If you want to use email as the username, you need to make sure usernames can have @ 
-                //and that each person has a unique email
+
                 AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = true
             };

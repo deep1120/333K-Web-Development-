@@ -16,6 +16,10 @@
         <dd>
             @Html.DisplayFor(model => model.FirstName)
         </dd>
+        <dt>Middle Initial:</dt>
+        <dd>
+            @Html.DisplayFor(model => model.MiddleInitial)
+        </dd>
         <dt>Last Name:</dt>
         <dd>
             @Html.DisplayFor(model => model.LastName)
@@ -28,6 +32,15 @@
         <dd>
             @Html.DisplayFor(model => model.PhoneNumber, "{0:###-##-####}")
         </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Birthday)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Birthday)
+        </dd>
+
         <dt>Street:</dt>
         <dd>
             @Html.DisplayFor(model => model.Street)
@@ -57,24 +70,32 @@
             @Html.DisplayFor(model => model.ZipCode)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.PopcornPoints)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PopcornPoints)
+        </dd>
+
         <dt>Password:</dt>
         <dd>
             [
             @if (Model.HasPassword)
-            {
-                if (User.Identity.GetUserId() != Model.UserModelID && Model.Role == "Customer")
-                {
-                    @Html.ActionLink("Set Password", "SetPassword")
-                }
-                else
-                {
-                    @Html.ActionLink("Change your password", "ChangePassword")
-                }
-            }
-            else
+        {
+            if (User.Identity.GetUserId() != Model.UserModelID && Model.Role == "Customer")
             {
                 @Html.ActionLink("Set Password", "SetPassword")
-            }
+        }
+        else
+        {
+            @Html.ActionLink("Change your password", "ChangePassword")
+    }
+}
+else
+{
+    @Html.ActionLink("Set Password", "SetPassword")
+}
             ]
         </dd>
         <dt> @Html.ActionLink("Edit", "Edit", new { id = Model.UserModelID })</dt>
