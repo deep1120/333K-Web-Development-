@@ -7,13 +7,13 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class SharonDatabase : IMigrationMetadata
+    public sealed partial class updatedatabase : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(SharonDatabase));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(updatedatabase));
         
         string IMigrationMetadata.Id
         {
-            get { return "201804281611593_SharonDatabase"; }
+            get { return "201804240258128_updatedatabase"; }
         }
         
         string IMigrationMetadata.Source
