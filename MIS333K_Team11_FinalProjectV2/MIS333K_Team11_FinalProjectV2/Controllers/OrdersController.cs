@@ -50,7 +50,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OrderID,OrderNumber,OrderDate,OrderNotes,Orderstatus")] Order order)
+        public ActionResult Create([Bind(Include = "OrderID,OrderNumber,OrderDate,OrderNotes,Orderstatus")] Order order, DateTime StartTime)
         {
 
             //Find next order number
@@ -58,6 +58,9 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
             //record date of order
             order.OrderDate = DateTime.Today;
+
+            TimeSpan matinee = new TimeSpan(12, 0, 0);
+            //if (order.OrderDate.DayOfWeek == DayOfWeek.Monday && StartTime <= matinee))
 
             if (ModelState.IsValid)
             {
@@ -116,10 +119,11 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                     db.Tickets.Add(ticket);
                     db.SaveChanges();
                     //add in the tickets details information so we can view it
-                    return RedirectToAction("Details", "Tickets", new { id = ord.OrderID });
+                    
                 }
                 //db.Tickets.Add(ticket);
                 //db.SaveChanges();
+                return RedirectToAction("Details", "Orders", new { id = ord.OrderID });
             }
 
             //Find the order associated with the order detail
@@ -237,7 +241,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             List<Showing> allShowings = db.Showings.OrderBy(s => s.ShowingName).ToList();
 
             //convert the list to a select list
-            SelectList selShowings = new SelectList(allShowings, "ShowingID", "SponsoringMovie.MovieTitle" ,"ShowDate");
+            SelectList selShowings = new SelectList(allShowings, "ShowingID", "SponsoringMovie.MovieTitle");
 
             //return the select list
             return selShowings;
