@@ -28,6 +28,11 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [Display(Name = "Email Address")]
         public String Email { get; set; }
 
+        [Required]
+        [Display(Name = "Birthday")]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
+        public DateTime Birthday { get; set; }
+
         [DataType(DataType.PhoneNumber)]
         [Display(Name = "Phone Number")]
         [Required(ErrorMessage = "Phone Number Required")]

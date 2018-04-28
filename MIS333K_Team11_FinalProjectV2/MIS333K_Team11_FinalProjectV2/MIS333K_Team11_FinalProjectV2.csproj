@@ -140,6 +140,16 @@
     <Compile Include="Migrations\201804281550287_NewDatabase.Designer.cs">
       <DependentUpon>201804281550287_NewDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804281729120_SeedAllEmployeeandCustomer.cs" />
+    <Compile Include="Migrations\201804281729120_SeedAllEmployeeandCustomer.Designer.cs">
+      <DependentUpon>201804281729120_SeedAllEmployeeandCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804281746427_SeedAllEmployeeandCustomer1.cs" />
+    <Compile Include="Migrations\201804281746427_SeedAllEmployeeandCustomer1.Designer.cs">
+      <DependentUpon>201804281746427_SeedAllEmployeeandCustomer1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\CustomerData.cs" />
+    <Compile Include="Migrations\EmployeeData.cs" />
     <Compile Include="Views\Utilities\Scheduler.cs" />
     <Compile Include="Views\Utilities\Seat.cs" />
     <Compile Include="Views\Utilities\SeatHelper.cs" />
@@ -210,7 +220,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\EmailMessaging.cs" />
-    <Compile Include="Migrations\AddCustomer.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\GenreData.cs" />
     <Compile Include="Migrations\MovieData.cs" />
@@ -313,6 +322,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201804281550287_NewDatabase.resx">
       <DependentUpon>201804281550287_NewDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804281729120_SeedAllEmployeeandCustomer.resx">
+      <DependentUpon>201804281729120_SeedAllEmployeeandCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804281746427_SeedAllEmployeeandCustomer1.resx">
+      <DependentUpon>201804281746427_SeedAllEmployeeandCustomer1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
