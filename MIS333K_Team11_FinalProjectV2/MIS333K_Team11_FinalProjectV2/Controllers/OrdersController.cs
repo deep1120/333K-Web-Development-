@@ -41,6 +41,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         // GET: Orders/Create
         public ActionResult Create()
         {
+            ViewBag.AllShowings = GetAllShowings();
             return View();
         }
 
@@ -236,7 +237,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             List<Showing> allShowings = db.Showings.OrderBy(s => s.ShowingName).ToList();
 
             //convert the list to a select list
-            SelectList selShowings = new SelectList(allShowings, "ShowingID", "ShowingName", "ShowDate");
+            SelectList selShowings = new SelectList(allShowings, "ShowingID", "SponsoringMovie.MovieTitle" ,"ShowDate");
 
             //return the select list
             return selShowings;
