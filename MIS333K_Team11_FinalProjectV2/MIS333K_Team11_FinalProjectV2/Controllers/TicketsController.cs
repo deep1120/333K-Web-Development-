@@ -89,71 +89,71 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
             DateTime weekday = Convert.ToDateTime("12:00");
             DateTime tuesday = Convert.ToDateTime("5:00");
-            
 
-            if ((order.OrderDate.DayOfWeek == DayOfWeek.Monday) && (StartTime < weekday))
+
+            if ((showing.ShowDate.DayOfWeek == DayOfWeek.Monday) && (showing.ShowDate < weekday))
             {
-                TicketPrice = 5.00m;
+                ticket.TicketPrice = 5.00m;
             }
 
-            if ((order.OrderDate.DayOfWeek == DayOfWeek.Tuesday) && (StartTime < weekday))
+            if ((showing.ShowDate.DayOfWeek == DayOfWeek.Tuesday) && (showing.ShowDate < weekday))
             {
-                TicketPrice = 5.00m;
+                ticket.TicketPrice = 5.00m;
             }
 
-            if ((order.OrderDate.DayOfWeek == DayOfWeek.Wednesday) && (StartTime < weekday))
+            if ((showing.ShowDate.DayOfWeek == DayOfWeek.Wednesday) && (showing.ShowDate < weekday))
             {
-                TicketPrice = 5.00m;
+                ticket.TicketPrice = 5.00m;
             }
 
-            if ((order.OrderDate.DayOfWeek == DayOfWeek.Thursday) && (StartTime < weekday))
+            if ((showing.ShowDate.DayOfWeek == DayOfWeek.Thursday) && (showing.ShowDate < weekday))
             {
-                TicketPrice = 5.00m;
+                ticket.TicketPrice = 5.00m;
             }
 
-            if ((order.OrderDate.DayOfWeek == DayOfWeek.Friday) && (StartTime < weekday))
+            if ((showing.ShowDate.DayOfWeek == DayOfWeek.Friday) && (showing.ShowDate < weekday))
             {
-                TicketPrice = 5.00m;
+                ticket.TicketPrice = 5.00m;
             }
 
-            if ((order.OrderDate.DayOfWeek == DayOfWeek.Tuesday) && (StartTime <= tuesday))
+            if ((showing.ShowDate.DayOfWeek == DayOfWeek.Tuesday) && (showing.ShowDate <= tuesday))
             {
-                TicketPrice = 8.00m;
+                ticket.TicketPrice = 8.00m;
             }
 
-            if ((order.OrderDate.DayOfWeek == DayOfWeek.Monday) && (StartTime >= weekday))
+            if ((showing.ShowDate.DayOfWeek == DayOfWeek.Monday) && (showing.ShowDate >= weekday))
             {
-                TicketPrice = 10.00m;
+                ticket.TicketPrice = 10.00m;
             }
 
-            if ((order.OrderDate.DayOfWeek == DayOfWeek.Tuesday) && (StartTime >= weekday))
+            if ((showing.ShowDate.DayOfWeek == DayOfWeek.Tuesday) && (showing.ShowDate >= weekday))
             {
-                TicketPrice = 10.00m;
+                ticket.TicketPrice = 10.00m;
             }
 
-            if ((order.OrderDate.DayOfWeek == DayOfWeek.Wednesday) && (StartTime >= weekday))
+            if ((showing.ShowDate.DayOfWeek == DayOfWeek.Wednesday) && (showing.ShowDate >= weekday))
             {
-                TicketPrice = 10.00m;
+                ticket.TicketPrice = 10.00m;
             }
 
-            if ((order.OrderDate.DayOfWeek == DayOfWeek.Thursday) && (StartTime >= weekday))
+            if ((showing.ShowDate.DayOfWeek == DayOfWeek.Thursday) && (showing.ShowDate >= weekday))
             {
-                TicketPrice = 10.00m;
+                ticket.TicketPrice = 10.00m;
             }
 
-            if ((order.OrderDate.DayOfWeek == DayOfWeek.Friday) && (StartTime >= weekday))
+            if ((showing.ShowDate.DayOfWeek == DayOfWeek.Friday) && (showing.ShowDate >= weekday))
             {
-                TicketPrice = 12.00m;
+                ticket.TicketPrice = 12.00m;
             }
 
-            if (order.OrderDate.DayOfWeek == DayOfWeek.Saturday)
+            if (showing.ShowDate.DayOfWeek == DayOfWeek.Saturday)
             {
-                TicketPrice = 12.00m;
+                ticket.TicketPrice = 12.00m;
             }
 
-            if (order.OrderDate.DayOfWeek == DayOfWeek.Sunday)
+            if (showing.ShowDate.DayOfWeek == DayOfWeek.Sunday)
             {
-                TicketPrice = 12.00m;
+                ticket.TicketPrice = 12.00m;
             }
 
             if (ModelState.IsValid)
