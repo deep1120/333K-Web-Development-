@@ -58,7 +58,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
             //record date of order
             order.OrderDate = DateTime.Today;
-
+            
             if (ModelState.IsValid)
             {
                 db.Orders.Add(order);
@@ -109,17 +109,84 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 ticket.TicketSeat = SeatHelper.GetSeatName(i);
                 ticket.Order = ord;
                 ticket.Showing = showing;
-                //TODO: add ticket price here
-                //ticket.
+
+                DateTime weekday = Convert.ToDateTime("12:00");
+                DateTime tuesday = Convert.ToDateTime("5:00");
+
+                if ((showing.ShowDate.DayOfWeek == DayOfWeek.Monday) && (showing.ShowDate < weekday))
+                {
+                    ticket.TicketPrice = 5.00m;
+                }
+
+                if ((showing.ShowDate.DayOfWeek == DayOfWeek.Tuesday) && (showing.ShowDate < weekday))
+                {
+                    ticket.TicketPrice = 5.00m;
+                }
+
+                if ((showing.ShowDate.DayOfWeek == DayOfWeek.Wednesday) && (showing.ShowDate < weekday))
+                {
+                    ticket.TicketPrice = 5.00m;
+                }
+
+                if ((showing.ShowDate.DayOfWeek == DayOfWeek.Thursday) && (showing.ShowDate < weekday))
+                {
+                    ticket.TicketPrice = 5.00m;
+                }
+
+                if ((showing.ShowDate.DayOfWeek == DayOfWeek.Friday) && (showing.ShowDate < weekday))
+                {
+                    ticket.TicketPrice = 5.00m;
+                }
+
+                if ((showing.ShowDate.DayOfWeek == DayOfWeek.Tuesday) && (showing.ShowDate <= tuesday))
+                {
+                    ticket.TicketPrice = 8.00m;
+                }
+
+                if ((showing.ShowDate.DayOfWeek == DayOfWeek.Monday) && (showing.ShowDate >= weekday))
+                {
+                    ticket.TicketPrice = 10.00m;
+                }
+
+                if ((showing.ShowDate.DayOfWeek == DayOfWeek.Tuesday) && (showing.ShowDate >= weekday))
+                {
+                    ticket.TicketPrice = 10.00m;
+                }
+
+                if ((showing.ShowDate.DayOfWeek == DayOfWeek.Wednesday) && (showing.ShowDate >= weekday))
+                {
+                    ticket.TicketPrice = 10.00m;
+                }
+
+                if ((showing.ShowDate.DayOfWeek == DayOfWeek.Thursday) && (showing.ShowDate >= weekday))
+                {
+                    ticket.TicketPrice = 10.00m;
+                }
+
+                if ((showing.ShowDate.DayOfWeek == DayOfWeek.Friday) && (showing.ShowDate >= weekday))
+                {
+                    ticket.TicketPrice = 12.00m;
+                }
+
+                if (showing.ShowDate.DayOfWeek == DayOfWeek.Saturday)
+                {
+                    ticket.TicketPrice = 12.00m;
+                }
+
+                if (showing.ShowDate.DayOfWeek == DayOfWeek.Sunday)
+                {
+                    ticket.TicketPrice = 12.00m;
+                }
                 if (ModelState.IsValid)
                 {
                     db.Tickets.Add(ticket);
                     db.SaveChanges();
                     //add in the tickets details information so we can view it
-                    return RedirectToAction("Details", "Tickets", new { id = ord.OrderID });
+                    
                 }
                 //db.Tickets.Add(ticket);
                 //db.SaveChanges();
+                return RedirectToAction("Details", "Orders", new { id = ord.OrderID });
             }
 
             //Find the order associated with the order detail
@@ -237,7 +304,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             List<Showing> allShowings = db.Showings.OrderBy(s => s.ShowingName).ToList();
 
             //convert the list to a select list
-            SelectList selShowings = new SelectList(allShowings, "ShowingID", "SponsoringMovie.MovieTitle" ,"ShowDate");
+            SelectList selShowings = new SelectList(allShowings, "ShowingID", "SponsoringMovie.MovieTitle");
 
             //return the select list
             return selShowings;

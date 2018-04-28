@@ -80,12 +80,81 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TicketID,TicketPrice,TicketSeat,TotalFees")] Ticket ticket)
+        public ActionResult Edit([Bind(Include = "TicketID,TicketPrice,TicketSeat,TotalFees")] Ticket ticket, DateTime StartTime, Decimal TicketPrice, Order order)
         {
             //find the product associated with this order
             Ticket td = db.Tickets.Include(TD => TD.Order)
                                   .Include(TD => TD.Showing)
                                   .FirstOrDefault(x => x.TicketID == ticket.TicketID);
+
+            DateTime weekday = Convert.ToDateTime("12:00");
+            DateTime tuesday = Convert.ToDateTime("5:00");
+
+
+            if ((showing.ShowDate.DayOfWeek == DayOfWeek.Monday) && (showing.ShowDate < weekday))
+            {
+                ticket.TicketPrice = 5.00m;
+            }
+
+            if ((showing.ShowDate.DayOfWeek == DayOfWeek.Tuesday) && (showing.ShowDate < weekday))
+            {
+                ticket.TicketPrice = 5.00m;
+            }
+
+            if ((showing.ShowDate.DayOfWeek == DayOfWeek.Wednesday) && (showing.ShowDate < weekday))
+            {
+                ticket.TicketPrice = 5.00m;
+            }
+
+            if ((showing.ShowDate.DayOfWeek == DayOfWeek.Thursday) && (showing.ShowDate < weekday))
+            {
+                ticket.TicketPrice = 5.00m;
+            }
+
+            if ((showing.ShowDate.DayOfWeek == DayOfWeek.Friday) && (showing.ShowDate < weekday))
+            {
+                ticket.TicketPrice = 5.00m;
+            }
+
+            if ((showing.ShowDate.DayOfWeek == DayOfWeek.Tuesday) && (showing.ShowDate <= tuesday))
+            {
+                ticket.TicketPrice = 8.00m;
+            }
+
+            if ((showing.ShowDate.DayOfWeek == DayOfWeek.Monday) && (showing.ShowDate >= weekday))
+            {
+                ticket.TicketPrice = 10.00m;
+            }
+
+            if ((showing.ShowDate.DayOfWeek == DayOfWeek.Tuesday) && (showing.ShowDate >= weekday))
+            {
+                ticket.TicketPrice = 10.00m;
+            }
+
+            if ((showing.ShowDate.DayOfWeek == DayOfWeek.Wednesday) && (showing.ShowDate >= weekday))
+            {
+                ticket.TicketPrice = 10.00m;
+            }
+
+            if ((showing.ShowDate.DayOfWeek == DayOfWeek.Thursday) && (showing.ShowDate >= weekday))
+            {
+                ticket.TicketPrice = 10.00m;
+            }
+
+            if ((showing.ShowDate.DayOfWeek == DayOfWeek.Friday) && (showing.ShowDate >= weekday))
+            {
+                ticket.TicketPrice = 12.00m;
+            }
+
+            if (showing.ShowDate.DayOfWeek == DayOfWeek.Saturday)
+            {
+                ticket.TicketPrice = 12.00m;
+            }
+
+            if (showing.ShowDate.DayOfWeek == DayOfWeek.Sunday)
+            {
+                ticket.TicketPrice = 12.00m;
+            }
 
             if (ModelState.IsValid)
             {
