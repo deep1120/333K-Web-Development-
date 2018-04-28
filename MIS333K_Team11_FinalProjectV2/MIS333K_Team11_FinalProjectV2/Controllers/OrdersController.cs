@@ -50,7 +50,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OrderID,OrderNumber,OrderDate,OrderNotes,Orderstatus")] Order order, DateTime StartTime)
+        public ActionResult Create([Bind(Include = "OrderID,OrderNumber,OrderDate,OrderNotes,Orderstatus")] Order order)
         {
 
             //Find next order number
@@ -58,10 +58,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
             //record date of order
             order.OrderDate = DateTime.Today;
-
-            TimeSpan matinee = new TimeSpan(12, 0, 0);
-            //if (order.OrderDate.DayOfWeek == DayOfWeek.Monday && StartTime <= matinee))
-
+            
             if (ModelState.IsValid)
             {
                 db.Orders.Add(order);
