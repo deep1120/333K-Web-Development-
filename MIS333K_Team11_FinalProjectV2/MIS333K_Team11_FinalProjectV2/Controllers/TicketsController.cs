@@ -93,67 +93,67 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
             if ((order.OrderDate.DayOfWeek == DayOfWeek.Monday) && (StartTime < weekday))
             {
-                TicketPrice = 5.00m;
+                ticket.TicketPrice = 5.00m;
             }
 
             if ((order.OrderDate.DayOfWeek == DayOfWeek.Tuesday) && (StartTime < weekday))
             {
-                TicketPrice = 5.00m;
+                ticket.TicketPrice = 5.00m;
             }
 
             if ((order.OrderDate.DayOfWeek == DayOfWeek.Wednesday) && (StartTime < weekday))
             {
-                TicketPrice = 5.00m;
+                ticket.TicketPrice = 5.00m;
             }
 
             if ((order.OrderDate.DayOfWeek == DayOfWeek.Thursday) && (StartTime < weekday))
             {
-                TicketPrice = 5.00m;
+                ticket.TicketPrice = 5.00m;
             }
 
             if ((order.OrderDate.DayOfWeek == DayOfWeek.Friday) && (StartTime < weekday))
             {
-                TicketPrice = 5.00m;
+                ticket.TicketPrice = 5.00m;
             }
 
             if ((order.OrderDate.DayOfWeek == DayOfWeek.Tuesday) && (StartTime <= tuesday))
             {
-                TicketPrice = 8.00m;
+                ticket.TicketPrice = 8.00m;
             }
 
             if ((order.OrderDate.DayOfWeek == DayOfWeek.Monday) && (StartTime >= weekday))
             {
-                TicketPrice = 10.00m;
+                ticket.TicketPrice = 10.00m;
             }
 
             if ((order.OrderDate.DayOfWeek == DayOfWeek.Tuesday) && (StartTime >= weekday))
             {
-                TicketPrice = 10.00m;
+                ticket.TicketPrice = 10.00m;
             }
 
             if ((order.OrderDate.DayOfWeek == DayOfWeek.Wednesday) && (StartTime >= weekday))
             {
-                TicketPrice = 10.00m;
+                ticket.TicketPrice = 10.00m;
             }
 
             if ((order.OrderDate.DayOfWeek == DayOfWeek.Thursday) && (StartTime >= weekday))
             {
-                TicketPrice = 10.00m;
+                ticket.TicketPrice = 10.00m;
             }
 
             if ((order.OrderDate.DayOfWeek == DayOfWeek.Friday) && (StartTime >= weekday))
             {
-                TicketPrice = 12.00m;
+                ticket.TicketPrice = 12.00m;
             }
 
             if (order.OrderDate.DayOfWeek == DayOfWeek.Saturday)
             {
-                TicketPrice = 12.00m;
+                ticket.TicketPrice = 12.00m;
             }
 
             if (order.OrderDate.DayOfWeek == DayOfWeek.Sunday)
             {
-                TicketPrice = 12.00m;
+                ticket.TicketPrice = 12.00m;
             }
 
             if (ModelState.IsValid)
