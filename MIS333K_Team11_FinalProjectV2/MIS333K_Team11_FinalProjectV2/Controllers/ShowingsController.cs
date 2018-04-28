@@ -65,18 +65,25 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 //add in as a single value after changing the relationship in the showing.cs
                 showing.SponsoringMovie = mov;
             }
-            var nine = new DateTime(showing.ShowDate.Year, showing.ShowDate.Month, showing.ShowDate.Day, 09, 00, 00);
-            var midnight = new DateTime(showing.ShowDate.Year, showing.ShowDate.Month, showing.ShowDate.Day, 24, 00, 00);
+            DateTime nine = new DateTime(showing.ShowDate.Year, showing.ShowDate.Month, showing.ShowDate.Day, 9, 0, 0);
+            DateTime midnight = new DateTime(showing.ShowDate.Year, showing.ShowDate.Month, showing.ShowDate.Day, 24, 0, 0);
+
+            //TimeSpan start = new TimeSpan(9, 0,0); //10 o'clock
+            //TimeSpan end = new TimeSpan(0, 0,0); //12 o'clock--midnight 
+            //TimeSpan start = TimeSpan.Parse("09:00"); // 10 PM
+            //TimeSpan end = TimeSpan.Parse("00:00"); //midnight
+            //TimeSpan now = showing.ShowDate.TimeOfDay;
 
             //showing.ShowDate >= Convert.ToDateTime("9:00 AM") && showing.ShowDate <= Convert.ToDateTime("12:00 AM")
-            if (showing.ShowDate >= Convert.ToDateTime("9:00 AM") && showing.ShowDate <= Convert.ToDateTime("12:00 AM"))
+            //showing.ShowDate >= nine && showing.ShowDate <= midnight
+            if (showing.ShowDate.Hour >= nine.Hour && showing.ShowDate.Hour <= midnight.Hour)
             {
                 //find the showings that are on the same day and in the same theater and then compare them with each other
                 //by making sure the end time of showing to be created is less than a current showing's start time
                 //OR start time of showing to be created is going to be greater than a current showing's 
 
                 List<Showing> allShowings = db.Showings.ToList();
-                List<Showing> showingsDays = allShowings.Where(s => s.ShowDate == showing.ShowDate).ToList();
+                List<Showing> showingsDays = allShowings.Where(s => s.ShowDate.Day == showing.ShowDate.Day).ToList();
                 showingsDays = showingsDays.Where(s => s.Theatre == showing.Theatre).ToList();
 
 
