@@ -177,16 +177,22 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 {
                     ticket.TicketPrice = 12.00m;
                 }
-                if (ModelState.IsValid)
-                {
+                //if (ModelState.IsValid)
+                //{
                     db.Tickets.Add(ticket);
                     db.SaveChanges();
                     //add in the tickets details information so we can view it
                     
-                }
+                //}
                 //db.Tickets.Add(ticket);
                 //db.SaveChanges();
+                //return RedirectToAction("Details", "Orders", new { id = ord.OrderID });
+            }
+
+            if (ModelState.IsValid)
+            {
                 return RedirectToAction("Details", "Orders", new { id = ord.OrderID });
+
             }
 
             //Find the order associated with the order detail
@@ -306,7 +312,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             //convert the list to a select list
             SelectList selShowings = new SelectList(allShowings, "ShowingID", "SponsoringMovie.MovieTitle");
 
-            //return the select list
+            //return the select list        
             return selShowings;
         }
 
