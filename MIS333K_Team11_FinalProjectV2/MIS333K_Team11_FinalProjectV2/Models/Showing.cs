@@ -29,6 +29,12 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [DataType(DataType.DateTime)]
         public DateTime ShowDate { get; set; }
 
+        [Display(Name = "Showing and Time")]
+        public String ShowingNameAndDate
+        {
+            get { return (SponsoringMovie.MovieTitle + " " + ShowDate); }
+        }
+
         //[Display(Name = "Showing Time")] //Use one of these
         //[Display(Name = "Start Time")]
         //[DataType(DataType.Time)]

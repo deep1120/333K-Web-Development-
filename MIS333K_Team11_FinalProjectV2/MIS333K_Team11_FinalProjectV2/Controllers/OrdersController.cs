@@ -97,19 +97,15 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
             //find the order 
             Order ord = db.Orders.Find(td.Order.OrderID);
-            ord.Orderstatus = OrderStatus.Pending;
+            //ord.Orderstatus = OrderStatus.Pending;
 
-            //Set the course property of the registration detail to this newly found course 
-            //td.Showing = showing;
-
-            //Seat seat = new Seat();
-            //td.TicketSeat = seat.SeatName;
             for (int i = 0; i < SelectedTickets.Length; i++)
             {
                 Ticket ticket = new Ticket();
                 ticket.TicketSeat = SeatHelper.GetSeatName(i);
                 ticket.Order = ord;
                 ticket.Showing = showing;
+                ticket.Order.Orderstatus = OrderStatus.Pending;
 
                 DateTime weekday = Convert.ToDateTime("12:00");
                 DateTime tuesday = Convert.ToDateTime("5:00");
@@ -178,17 +174,20 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 {
                     ticket.TicketPrice = 12.00m;
                 }
+
+                //this is essentially the same as the ticket price 
+
                 //if (ModelState.IsValid)
                 //{
-                    db.Tickets.Add(ticket);
-                    db.SaveChanges();
-                    //add in the tickets details information so we can view it
-                    
+                db.Tickets.Add(ticket);
+                db.SaveChanges();
+                    //add in the tickets details information so we can view it                  
                 //}
-                //db.Tickets.Add(ticket);
-                //db.SaveChanges();
-                //return RedirectToAction("Details", "Orders", new { id = ord.OrderID });
+
             }
+
+            
+            
 
             if (ModelState.IsValid)
             {
@@ -196,26 +195,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
             }
 
-            //Find the order associated with the order detail
-            //Order ord = db.Orders.Find(td.Order.OrderID);
-
-
-            //LOGIC GOES HERE
-            //Set the value of the course fee
-            //td.TicketPrice = showing.TicketPrice;
-
-            //Set the value of the total fees
-            //td.TotalFees = td.TicketPrice /** td.TicketSeat*/; 
-
-            //if (ModelState.IsValid) //model meets all requirements
-            //{
-            //    //add the registration detail to the database
-            //    db.Tickets.Add(td);
-            //    db.SaveChanges();
-            //    return RedirectToAction("Details", "Registrations", new { id = ord.OrderID });
-            //}
-
-            //model state is not valide
+            //model state is not valid; repopulate viewbags and return
             ViewBag.AllSeats = GetAllTicketSeats();
             ViewBag.AllShowings = GetAllShowings();
             return View(td);
@@ -308,22 +288,14 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         public SelectList GetAllShowings()
         {
             //Get the list of showings in order by showing name 
-            List<Showing> allShowings = db.Showings.OrderBy(s => s.ShowingName).ToList();
+            List<Showing> allShowings = db.Showings.OrderBy(s => s.SponsoringMovie.MovieTitle).ToList();
 
             //convert the list to a select list
-            SelectList selShowings = new SelectList(allShowings, "ShowingID", "SponsoringMovie.MovieTitle");
+            SelectList selShowings = new SelectList(allShowings, "ShowingID", "ShowingNameAndDate");
 
             //return the select list        
             return selShowings;
         }
-
-        
-
-
-
-
-
-
 
 
         protected override void Dispose(bool disposing)

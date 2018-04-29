@@ -13,7 +13,7 @@
     <h4>Course</h4>
     <hr />
     <dl class="dl-horizontal">
-        <div>
+        @*<div>
             <table class="table table-sm table-striped">
                 <tr>
                     <th>Movie</th>
@@ -26,7 +26,15 @@
                      }
             </table>
 
-        </div>
+        </div>*@
+        <dt>
+            Movie
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SponsoringMovie.MovieTitle)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.ShowDate)
         </dt>
@@ -49,10 +57,11 @@
             Running Time
         </dt>
         <dd>
-            @foreach (Movie mov in Model.SponsoringMovies)
+            @*@foreach (Movie mov in Model.SponsoringMovies)
             {
                 @Html.DisplayFor(modelItem => mov.RunningTime)
-            }
+            }*@
+            @Html.DisplayFor(model => model.SponsoringMovie.RunningTime)
         </dd>
 
 

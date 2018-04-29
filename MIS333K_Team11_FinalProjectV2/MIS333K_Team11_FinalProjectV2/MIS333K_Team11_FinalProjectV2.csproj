@@ -192,6 +192,10 @@
     <Compile Include="Migrations\201804282320117_FixAllUserID.Designer.cs">
       <DependentUpon>201804282320117_FixAllUserID.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804290438472_ShowingNameAndDateAdded.cs" />
+    <Compile Include="Migrations\201804290438472_ShowingNameAndDateAdded.Designer.cs">
+      <DependentUpon>201804290438472_ShowingNameAndDateAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\CustomerData.cs" />
     <Compile Include="Migrations\EmployeeData.cs" />
     <Compile Include="Models\IdentityUser.cs" />
@@ -406,6 +410,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804282320117_FixAllUserID.resx">
       <DependentUpon>201804282320117_FixAllUserID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804290438472_ShowingNameAndDateAdded.resx">
+      <DependentUpon>201804290438472_ShowingNameAndDateAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

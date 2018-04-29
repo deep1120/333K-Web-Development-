@@ -40,7 +40,7 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [DisplayFormat(DataFormatString = "{0:C}")]
         public Decimal OrderSubtotal
         {
-            get { return Tickets.Sum(od => od.TotalFees); }
+            get { return Tickets.Sum(od => od.TicketPrice); }
         }
 
         [Display(Name = "Sales Tax (%)")]

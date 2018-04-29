@@ -11,36 +11,29 @@
     <h4>Course</h4>
     <hr />
     <dl class="dl-horizontal">
+
         <dt>
-            @Html.DisplayNameFor(model => model.ShowingNumber)
+            Showing Name
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ShowingNumber)
+            @Html.DisplayFor(model => model.SponsoringMovie.MovieTitle)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ShowingName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ShowingName)
-        </dd>
-
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.TicketPrice)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.TicketPrice)
-        </dd>
+        </dd>*@
 
         <dt>
-            @Html.DisplayNameFor(model => model.RunTime)
+            Running Time
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.RunTime)
+            @Html.DisplayFor(model => model.SponsoringMovie.RunningTime)
         </dd>
 
     </dl>

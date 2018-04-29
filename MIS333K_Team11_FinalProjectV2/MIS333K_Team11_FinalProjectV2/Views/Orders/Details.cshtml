@@ -29,14 +29,6 @@
             @Html.DisplayFor(model => model.OrderDate)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.OrderNotes)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.OrderNotes)
-        </dd>
-
     </dl>
 </div>
 
@@ -44,18 +36,16 @@
 <table class="table table-sm table-striped table-hover">
     <tr>
         <th>Showing Name</th>
-        <th>Ticket Price</th>
         <th>Ticket Seat</th>
-        <th>Total Fees</th>
+        <th>Total Price</th>
     </tr>
     @foreach (Ticket td in Model.Tickets)
     {
-        <tr>
-            <td>@Html.DisplayFor(modelItem => td.Showing.ShowingName)</td>
-            <td>@Html.DisplayFor(modelItem => td.TicketPrice)</td>
-            <td>@Html.DisplayFor(modelItem => td.TicketSeat)</td>
-            <td>@Html.DisplayFor(modelItem => td.TotalFees)</td>
-        </tr>
+    <tr>
+        <td>@Html.DisplayFor(modelItem => td.Showing.SponsoringMovie.MovieTitle)</td>
+        <td>@Html.DisplayFor(modelItem => td.TicketSeat)</td>
+        <td>@Html.DisplayFor(modelItem => td.TicketPrice)</td>
+    </tr>
     }
 </table>
 

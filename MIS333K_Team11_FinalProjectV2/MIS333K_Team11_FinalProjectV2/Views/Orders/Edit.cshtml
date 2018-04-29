@@ -7,7 +7,7 @@
 
 <h2>Edit</h2>
 
-@using (Html.BeginForm())
+@*@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
@@ -32,23 +32,21 @@
             </div>
         </div>
     </div>
-}
+}*@
 
 <h4>Showings</h4>
 <table class="table table-sm table-striped table-hover">
     <tr>
         <th>Showing Name</th>
-        <th>Ticket Price</th>
         <th>Ticket Seat</th>
-        <th>Total Fees</th>
+        <th>Total Price</th>
     </tr>
     @foreach (Ticket td in Model.Tickets)
     {
         <tr>
-            <td>@Html.DisplayFor(modelItem => td.Showing.ShowingName)</td>
-            <td>@Html.DisplayFor(modelItem => td.TicketPrice)</td>
+            <td>@Html.DisplayFor(modelItem => td.Showing.SponsoringMovie.MovieTitle)</td>
             <td>@Html.DisplayFor(modelItem => td.TicketSeat)</td>
-            <td>@Html.DisplayFor(modelItem => td.TotalFees)</td>
+            <td>@Html.DisplayFor(modelItem => td.TicketPrice)</td>
         </tr>
     }
 </table>

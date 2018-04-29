@@ -17,7 +17,7 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [Display(Name = "Ticket Seat")] //Do we need to code for special seating?
         public String TicketSeat { get; set; }
 
-        [Display(Name = "Total Fees")]
+        [Display(Name = "Total Fees")]                     //don't think that we will need this
         [DisplayFormat(DataFormatString = "{0:C}")]
         public Decimal TotalFees { get; set; }
 
