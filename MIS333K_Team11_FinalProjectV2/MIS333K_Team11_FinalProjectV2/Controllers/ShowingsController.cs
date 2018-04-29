@@ -65,8 +65,8 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 //add in as a single value after changing the relationship in the showing.cs
                 showing.SponsoringMovie = mov;
             }
-            DateTime nine = new DateTime(showing.ShowDate.Year, showing.ShowDate.Month, showing.ShowDate.Day, 9, 0, 0);
-            DateTime midnight = new DateTime(showing.ShowDate.Year, showing.ShowDate.Month, showing.ShowDate.Day, 24, 0, 0);
+            //DateTime nine = new DateTime(showing.ShowDate.Year, showing.ShowDate.Month, showing.ShowDate.Day, 9, 0, 0);
+            //DateTime midnight = new DateTime(showing.ShowDate.Year, showing.ShowDate.Month, showing.ShowDate.Day, 24, 0, 0);
 
             //TimeSpan start = new TimeSpan(9, 0,0); //10 o'clock
             //TimeSpan end = new TimeSpan(0, 0,0); //12 o'clock--midnight 
@@ -76,7 +76,10 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
             //showing.ShowDate >= Convert.ToDateTime("9:00 AM") && showing.ShowDate <= Convert.ToDateTime("12:00 AM")
             //showing.ShowDate >= nine && showing.ShowDate <= midnight
-            if (showing.ShowDate.Hour >= nine.Hour && showing.ShowDate.Hour <= midnight.Hour)
+            DateTime morning = new DateTime(showing.ShowDate.Year, showing.ShowDate.Month, showing.ShowDate.Day, 9, 0, 0);
+            int result = DateTime.Compare(showing.ShowDate, morning);
+
+            if (result >= 0)
             {
                 //find the showings that are on the same day and in the same theater and then compare them with each other
                 //by making sure the end time of showing to be created is less than a current showing's start time
