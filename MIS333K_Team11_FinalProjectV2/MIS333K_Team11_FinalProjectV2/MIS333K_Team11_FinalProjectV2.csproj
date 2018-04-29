@@ -184,6 +184,14 @@
     <Compile Include="Migrations\201804282229394_DeletedEmailSend.Designer.cs">
       <DependentUpon>201804282229394_DeletedEmailSend.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804282252557_FixingUser.cs" />
+    <Compile Include="Migrations\201804282252557_FixingUser.Designer.cs">
+      <DependentUpon>201804282252557_FixingUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804282320117_FixAllUserID.cs" />
+    <Compile Include="Migrations\201804282320117_FixAllUserID.Designer.cs">
+      <DependentUpon>201804282320117_FixAllUserID.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\CustomerData.cs" />
     <Compile Include="Migrations\EmployeeData.cs" />
     <Compile Include="Models\IdentityUser.cs" />
@@ -392,6 +400,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804282229394_DeletedEmailSend.resx">
       <DependentUpon>201804282229394_DeletedEmailSend.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804282252557_FixingUser.resx">
+      <DependentUpon>201804282252557_FixingUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804282320117_FixAllUserID.resx">
+      <DependentUpon>201804282320117_FixAllUserID.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

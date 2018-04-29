@@ -43,7 +43,7 @@ namespace MIS333K_Team11_FinalProjectV2
                         validateInterval: TimeSpan.FromMinutes(30),
                         regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
                 }
-            });                  
+            });                 
         }
     }
 }

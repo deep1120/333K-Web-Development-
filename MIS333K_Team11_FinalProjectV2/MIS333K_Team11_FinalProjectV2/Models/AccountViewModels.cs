@@ -25,8 +25,8 @@ namespace MIS333K_Team11_FinalProjectV2.Models
 
     public class RegisterViewModel
     {
-        public string UserID { get; set; }
-        public string UserName { get; set; }
+        //public string UserID { get; set; }
+        ////public string UserName { get; set; }
 
         [Required]
         [EmailAddress]

@@ -13,7 +13,7 @@ namespace MIS333K_Team11_FinalProjectV2.Models
 {
     public class AppUser : IdentityUser
     {
-        public string UserID { get; set; }
+        //public String UserID { get; set; }
 
         [Required]
         [Display(Name = "First Name")]

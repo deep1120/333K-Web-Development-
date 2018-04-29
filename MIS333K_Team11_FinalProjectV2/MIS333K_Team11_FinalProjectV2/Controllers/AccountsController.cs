@@ -156,7 +156,6 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 var user = new AppUser
                 {
                     UserName = model.Email,
-                    Id = model.UserID,
                     Email = model.Email,
                     FirstName = model.FirstName,
                     MiddleInitial = model.MiddleInitial,
@@ -166,8 +165,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                     City = model.City,
                     State = model.State,
                     ZipCode = model.ZipCode,
-                    Birthday = model.Birthday,
-                    //PopcornPoints = model.PopcornPoints             
+                    Birthday = model.Birthday             
                 };
 
                 var result = await UserManager.CreateAsync(user, model.Password);
@@ -193,9 +191,9 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
                     //For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     //Send an email with this link
-                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    var callbackUrl = Url.Action("EmailMessaging", "EmailMessaging", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    //string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    //var callbackUrl = Url.Action("EmailMessaging", "EmailMessaging", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    //await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
                     return RedirectToAction("Index", "Home");
                 }

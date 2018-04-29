@@ -3,7 +3,12 @@ using System.ComponentModel.DataAnnotations;
 using System;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Threading.Tasks;
+using System.Security.Claims;
+using System.Net;
+using Microsoft.Owin.Security;
 
+//CODE FOR EMAIL******************
 namespace MIS333K_Team11_FinalProjectV2.Models
 {
     //     Default EntityFramework IUser implementation
@@ -54,7 +59,31 @@ namespace MIS333K_Team11_FinalProjectV2.Models
 
         public virtual string UserName { get; set; }
     }
+
+    public class ApplicationUser : IdentityUser
+    {
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(
+            UserManager<ApplicationUser> manager)
+        {
+            // Note the authenticationType must match the one defined in 
+            //   CookieAuthenticationOptions.AuthenticationType
+            var userIdentity = await manager.CreateIdentityAsync(this,
+        DefaultAuthenticationTypes.ApplicationCookie);
+            // Add custom user claims here
+            return userIdentity;
+        }
+    }
 }
+
+//private async Task SignInAsync(ApplicationUser user, bool isPersistent)
+//{
+//    AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+//    AuthenticationManager.SignIn(new AuthenticationProperties()
+//    {
+//        IsPersistent = isPersistent
+//    },
+//       await user.GenerateUserIdentityAsync(UserManager));
+//}
 
 
 
