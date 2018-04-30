@@ -21,7 +21,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         public ActionResult Index()
         {
             //Maybe make this the order history page???
-            return View(db.Orders.ToList()); 
+            return View(db.Orders.ToList());  
         }
 
         // GET: Orders/Details/5
@@ -112,6 +112,10 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 ticket.Showing = showing;
                 ticket.Order.Orderstatus = OrderStatus.Pending;
 
+                //PUT THIS TICKETPRICE IN SHOWINGS CONTROLLER WHEN CREATING A SHOWING
+                //PUT validation in here for 48 hour discount
+                //other discounts with age, etc.
+
                 DateTime weekday = Convert.ToDateTime("12:00");
                 DateTime tuesday = Convert.ToDateTime("5:00");
 
@@ -184,15 +188,42 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             return View(td);
         }
 
-        public ActionResult Checkout()
+        public ActionResult Checkout(int OrderID)
         {
-            return View();
+            //when in edit view page, user clicks checkout and then and will pass the whole order object over to Checkout method
+            Order ord = db.Orders.Find(OrderID);
+            return View(ord);
         }
 
         [HttpPost]
-        public ActionResult Checkout(int OrderID/*, string CardOption*/)
+        public ActionResult Checkout(Order ord/*, string CardOption*/)
         {
-            Order ord = db.Orders.Find(OrderID);
+            //have to add modify and and do entity stuff
+            //fuzzy object like past codes in edit
+            //this is because it is going through httppost
+            //find the product associated with this order
+            Order od = db.Orders.Include(OD => OD.Tickets)
+                                  //.Include(OD => OD.Showings?)
+                                  .FirstOrDefault(x => x.OrderID == ord.OrderID);
+            //Order ord = db.Orders.Find(OrderID);
+
+            if (ModelState.IsValid)
+            {
+                //update the number of students
+                od.TicketSeat = ticket.TicketSeat;
+
+                //update the course fee from the related course
+                od.TicketPrice = td.Showing.TicketPrice;
+
+                //update the total fees
+                od.TotalFees = od.TicketPrice /** td.TicketSeat*/;
+
+                db.Entry(ord).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Details", "Orders", new { id = od.Order.OrderID });
+            }
+            ticket.Order = td.Order;
+            return View(ticket);
 
             ord.Orderstatus = OrderStatus.Completed;
 

@@ -64,7 +64,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             }
 
             DateTime morning = new DateTime(showing.ShowDate.Year, showing.ShowDate.Month, showing.ShowDate.Day, 9, 0, 0);
-            DateTime night = new DateTime(showing.ShowDate.Year, showing.ShowDate.Month, showing.ShowDate./*AddDays(1).*/Day, 0, 0, 0); //not sure if i need to add a day???
+            DateTime night = new DateTime(showing.ShowDate.Year, showing.ShowDate.Month, showing.ShowDate.Day, 23, 59, 0); //not sure if i need to add a day???
             int morning_result = DateTime.Compare(showing.ShowDate, morning);
             int night_result = DateTime.Compare(showing.ShowDate, night);
 
@@ -72,7 +72,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             bool checker = true;
             bool boolean = true;
 
-            if ((morning_result >= 0) && (night_result <= 0))
+            if ((showing.ShowDate >= morning) && (night_result <= 0))
             {
 
                 //find the showings that are on the same day and in the same theater and then compare them with each other
@@ -82,8 +82,12 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 List<Showing> allShowings = db.Showings.ToList();
                 List<Showing> showingsDays = allShowings.Where(s => s.ShowDate.Day == showing.ShowDate.Day && s.Theatre == showing.Theatre).ToList();
 
+                DateTime weekday = Convert.ToDateTime("12:00");
+                DateTime tuesday = Convert.ToDateTime("5:00");
+
                 if (showingsDays.Count() == 0)
                 {
+                    //need to put logic in here to set showing price
                     db.Showings.Add(showing);
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -96,7 +100,6 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 {
                     foreach (Showing sh in showingsDays)
                     {
-
                         DateTime sh_start = sh.ShowDate;
                         DateTime sh_end = sh.ShowDate.AddMinutes(showing.SponsoringMovie.RunningTime);
 
@@ -105,7 +108,6 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                             boolean = true;
                             checker = true;
                         }
-
                         else
                         {
                             //leaves loop? does that work? and then will populate viewbag and not go through with creation
@@ -116,23 +118,20 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                             return View(showing); //I think that return automatically breaks out for you?
                             //break;
                         }
-
                     }
-
                     break;
                 }
                 //if boolean = true: add showing to db
                 //will have gone through entire while loop with success and will then be added to showing database!
                 if (boolean == true)
                 {
-
                     db.Showings.Add(showing);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
             }
             //will populate viewbag and not go through with order bc not between 9am-12am
-            ViewBag.ErrorMessageTime = "Showing must be scheduled in between 9:00 AM and 12:00 AM";
+            ViewBag.ErrorMessageTime = "Showing must be scheduled in between 9:00 AM and 11:59 PM";
             ViewBag.AllMovies = GetAllMovies(showing);
             return View(showing);
         }
@@ -160,6 +159,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             //                {
             //                    error = "Gap shorter than 25 min or longer than 45 min";
             //                    return false; // gap shorter than 25 min or longer than 45 min
+            //                }
             //                
 
         }
