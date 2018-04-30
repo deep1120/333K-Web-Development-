@@ -214,13 +214,13 @@
     <Compile Include="Migrations\EmployeeData.cs" />
     <Compile Include="Models\IdentityUser.cs" />
     <Compile Include="Models\Rating.cs" />
+    <Compile Include="ViewModel\CustomerVM.cs" />
     <Compile Include="ViewModel\CustomerWelcomeVM.cs" />
     <Compile Include="ViewModel\ItemRatingVM.cs" />
     <Compile Include="ViewModel\MovieReportVM.cs" />
     <Compile Include="Views\Utilities\Scheduler.cs" />
     <Compile Include="Views\Utilities\Seat.cs" />
     <Compile Include="Views\Utilities\SeatHelper.cs" />
-    <Compile Include="Views\AppUsers\ManagerIndex.cs" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -380,6 +380,10 @@
     <Content Include="Views\Review\Index.cshtml" />
     <Content Include="Views\Report\Index.cshtml" />
     <Content Include="Views\Report\MovieReport.cshtml" />
+    <Content Include="Views\Customer\AddCard.cshtml" />
+    <Content Include="Views\Customer\Details.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\AppUsers\ManagerIndex.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -390,7 +394,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Checkout\" />
-    <Folder Include="Views\Customer\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

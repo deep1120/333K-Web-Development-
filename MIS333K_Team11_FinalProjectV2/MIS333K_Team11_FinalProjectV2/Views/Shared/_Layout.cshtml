@@ -23,9 +23,11 @@
                     <li class="nav-item">
                         @Html.ActionLink("Showings", "Index", "Showings", null, new { @class = "nav-link" })
                     </li>
-                        @if (User.IsInRole("Manager"))
+                    @if (Request.IsAuthenticated)
+                    {
+                        if (User.IsInRole("Manager"))
 
-                        { 
+                        {
                                 <li class="nav-item">
                                 @Html.ActionLink("Movies", "Index", "Movies", null, new { @class = "nav-link" })
                                  </li>
@@ -37,7 +39,7 @@
                                 </li>
                         }
 
-                        @*@if (User.IsInRole("Customer") || User.IsInRole("DisabledCustomer"))*@
+                        @*if (User.IsInRole("Customer") || User.IsInRole("DisabledCustomer"))*@
 
                         @*{
 
@@ -46,13 +48,13 @@
 
                         }*@
 
-                        @if (User.IsInRole("Manager"))
+                        if (User.IsInRole("Manager"))
                         {
                             <li class="nav-item">@Html.ActionLink("Employees", "Employees", "Account", null, new { @class = "nav-link" })</li>
 
                         }
 
-                        @if (User.IsInRole("Manager") || User.IsInRole("Employee"))
+                        if (User.IsInRole("Manager") || User.IsInRole("Employee"))
 
                         {
 
@@ -60,8 +62,14 @@
                             <li class="nav-item">@Html.ActionLink("Reports", "Index", "Report", null, new { @class = "nav-link" })</li>
 
                         }
-
-                    @*@if (Request.IsAuthenticated)
+                    }
+                    else 
+                    {
+                        <li class="nav-item">
+                            @Html.ActionLink("Log In", "Index", "Accounts", null, new { @class = "nav-link" })
+                        </li>
+                    }
+                    @*if (Request.IsAuthenticated)
                     {
                         <li class="nav-item">
                             @Html.ActionLink("Orders", "Index", "Orders", null, new { @class = "nav-link" })

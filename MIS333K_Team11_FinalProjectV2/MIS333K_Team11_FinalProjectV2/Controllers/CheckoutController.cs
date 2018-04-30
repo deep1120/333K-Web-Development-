@@ -74,7 +74,7 @@
 
 //        private void PopulateViewModel(CheckoutViewModel model)
 //        {
-//            var cart = ShoppingCart.GetCart(this.HttpContext);
+//            var cart = Orders.GetCart(this.HttpContext);
 
 //            // Set up our ViewModel
 
@@ -177,7 +177,7 @@
 //        public ActionResult Review()
 //        {
 //            var model = TempData["checkout"] as CheckoutViewModel;
-//            var cart = ShoppingCart.GetCart(this.HttpContext);
+//            var cart = Orders.GetCart(this.HttpContext);
 
 //            // Set up our ViewModel
 
@@ -226,7 +226,7 @@
 //            db.SaveChanges();
 
 //            //Process the order
-//            var cart = ShoppingCart.GetCart(this.HttpContext);
+//            var cart = Orders.GetCart(this.HttpContext);
 //            var listOfItems = GetListOfPurchasedItem(cart.GetCartItems());
 
 //            order = cart.CreateOrder(order);
