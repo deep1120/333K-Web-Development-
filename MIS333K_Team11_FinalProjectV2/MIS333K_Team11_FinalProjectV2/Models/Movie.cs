@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MIS333K_Team11_FinalProjectV2.Models
 {
@@ -63,9 +64,23 @@ namespace MIS333K_Team11_FinalProjectV2.Models
             get { return Convert.ToDecimal(Reviews.Average(r => r.StarRating)); }
         }
 
+        //[Display(Name = "Discount Amount")]
+        //// [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
+        //public Decimal DiscountAmount { get; set; }
+
+        //[Display(Name = "Discounted Price")]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        //[DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
+        //public Decimal DiscountedPrice { get { return MoviePrice - DiscountAmount; } private set { } }
+
+        [Display(Name = "Featured Song")]
+        public bool FeaturedSong { get; set; }
+
         public virtual List<Review> Reviews { get; set; }
         public virtual List<Showing> Showings { get; set; }
         public virtual List<Genre> Genres { get; set; }
+        [Display(Name = "Rating")]
+        public virtual List<Rating> Ratings { get; set; }
 
         public Movie()
         {
@@ -80,6 +95,10 @@ namespace MIS333K_Team11_FinalProjectV2.Models
             if (Genres == null)
             {
                 Genres = new List<Genre>();
+            }
+            if (Ratings == null)
+            {
+                Ratings = new List<Rating>();
             }
         }
     }

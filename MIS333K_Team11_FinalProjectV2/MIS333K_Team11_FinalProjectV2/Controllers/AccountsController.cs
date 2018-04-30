@@ -165,19 +165,19 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                     City = model.City,
                     State = model.State,
                     ZipCode = model.ZipCode,
-                    Birthday = model.Birthday             
+                    Birthday = model.Birthday
                 };
 
                 var result = await UserManager.CreateAsync(user, model.Password);
 
                 //TODO:  Once you get roles working, you may want to add users to roles upon creation
-                await UserManager.AddToRoleAsync(user.Id, "Customer");
+                //await UserManager.AddToRoleAsync(user.Id, "Customer");
                 // --OR--
                 //await UserManager.AddToRoleAsync(user.Id, "Employee");
 
                 if (result.Succeeded)
                 {
-                    if(User.IsInRole("Manager"))
+                    if (User.IsInRole("Manager"))
                     {
                         await UserManager.AddToRoleAsync(user.Id, "Employee");
                         SendEmployeeEmail(user);
@@ -186,7 +186,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                     {
                         await UserManager.AddToRoleAsync(user.Id, "Customer");
                         SendRegisterEmail(user);
-                            await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                     }
 
                     //For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
@@ -199,7 +199,6 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 }
                 AddErrors(result);
             }
-
             // If we got this far, something failed, redisplay form
             return View(model);
         }
@@ -441,7 +440,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddCard([Bind(Include = "CardID,AppUserId,CardNumber,Type,ExpDate,CVV")] Card card)
+        public ActionResult AddCard([Bind(Include = "CardID,AppUserId,CardNumber,Type")] Card card)
         {
             if (ModelState.IsValid)
             {

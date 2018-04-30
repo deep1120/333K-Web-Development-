@@ -1,8 +1,57 @@
-﻿@{
+﻿@model MIS333K_Team11_FinalProjectV2.ViewModels.CustomerWelcomeVM
+
+@{
+                /**/
+
+                ViewBag.Title = "Index";
+}
+
+@if (User.IsInRole("Customer"))
+{
+    <div class="jumbotron">
+        <h2>Welcome @Model.CustomerName! </h2>
+        <p>Featured Today:</p>
+        <br />
+        @if (Model.FeaturedMovie.MovieID != 0)
+        {
+            <a href="@Url.Action("Details", "Movies", new { id = Model.FeaturedMovie.MovieID })" class="well well-lg">@Model.FeaturedMovie.MovieTitle</a>
+        }
+        @*@if (Model.FeaturedAlbum.AlbumID != 0)
+        {
+            <a href="@Url.Action("Details", "Albums", new { id = Model.FeaturedAlbum.AlbumID })" class="well well-lg">@Model.FeaturedAlbum.AlbumTitle</a>
+        }
+        @if (Model.FeaturedArtist.ArtistID != 0)
+        {
+            <a href="@Url.Action("Details", "Artists", new { id = Model.FeaturedArtist.ArtistID })" class="well well-lg">@Model.FeaturedArtist.ArtistName</a>
+        }*@
+    </div>
+}
+
+else
+
+{
+    <h1>Welcome to Team 11's Movie Theater</h1>
+}
+
+
+@using (Html.BeginForm("Search", "Search"))
+{
+    <p class="form-group">
+        @Html.TextBox("SearchString", null, new { @class = "form-control", Placeholder = "Search" }) <br />
+        <ng-form class="form-inline">
+            <input type="submit" name="btn1" value="Movies" class="btn btn-default" />
+            @*<input type="submit" name="btn1" value="Artists" class="btn btn-default" />
+            <input type="submit" name="btn1" value="Albums" class="btn btn-default" />*@
+        </ng-form><br /><br />
+    </p> <!––submit buttons for different search types-->
+}
+
+
+@*@{
     ViewBag.Title = "Index";
 }
 
-<h2>Team 11's Movie Theater</h2>
+<h2>Team 11's Movie Theater</h2>*@
 
 @Html.ActionLink("Showings", "Index", "Showings", null, new { @class = "btn btn-primary" })
 @Html.ActionLink("Movies", "Index", "Movies", null, new { @class = "btn btn-success" })

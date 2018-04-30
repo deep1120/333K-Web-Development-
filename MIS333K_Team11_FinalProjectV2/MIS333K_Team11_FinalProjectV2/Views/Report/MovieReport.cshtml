@@ -1,0 +1,39 @@
+﻿@model IEnumerable<MIS333K_Team11_FinalProjectV2.ViewModel.MovieReportVM>
+
+@{
+    ViewBag.Title = "MovieReport";
+}
+
+<h2>Movies Report</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Movie Title
+        </th>
+        <th>
+            Number of Purchase
+        </th>
+        <th>
+            Revenue
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MovieTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfPurchase)
+            </td>
+            <td>
+                $@Html.DisplayFor(modelItem => item.Revenue)
+            </td>
+
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>List of Reports</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Report Title
+        </th>
+
+        <th>
+           Description
+        </th>
+        
+    </tr>
+ 
+ 
+    <tr>
+        @*<td>
+            <a href="@Url.Action("SongReport", "Report")">Song Report</a>
+        </td>
+        <td>
+            List of Songs, Number of Purchase, and Revenue
+        </td>*@
+        <td>
+            <a href="@Url.Action("MovieReport", "Report")">Movie Report</a>
+        </td>
+        <td>
+            List of Movies, Number of Purchase, and Revenue
+        </td>
+
+
+    </tr>
+    <tr>
+        @*<td>
+            <a href="@Url.Action("AlbumReport", "Report")">Album Report</a>
+        </td>
+        <td>
+            List of Albums, Number of Purchase, and Revenue
+        </td>*@
+
+    </tr>
+  
+</table>

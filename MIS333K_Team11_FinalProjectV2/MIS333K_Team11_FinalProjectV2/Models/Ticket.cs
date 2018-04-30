@@ -7,6 +7,8 @@ namespace MIS333K_Team11_FinalProjectV2.Models
     public class Ticket
     {
         public Int32 TicketID { get; set; }
+        public int OrderID { get; set; }
+        public int? MovieID { get; set; }
 
         [Display(Name = "Ticket Price")]
         [DisplayFormat(DataFormatString = "{0:C}")]

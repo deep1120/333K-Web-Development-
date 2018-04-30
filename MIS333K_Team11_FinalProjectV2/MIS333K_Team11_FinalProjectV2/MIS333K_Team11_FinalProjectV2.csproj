@@ -137,6 +137,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\CheckoutController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Migrations\201804281550287_NewDatabase.cs" />
     <Compile Include="Migrations\201804281550287_NewDatabase.Designer.cs">
       <DependentUpon>201804281550287_NewDatabase.cs</DependentUpon>
@@ -204,6 +205,10 @@
     <Compile Include="Migrations\CustomerData.cs" />
     <Compile Include="Migrations\EmployeeData.cs" />
     <Compile Include="Models\IdentityUser.cs" />
+    <Compile Include="Models\Rating.cs" />
+    <Compile Include="ViewModel\CustomerWelcomeVM.cs" />
+    <Compile Include="ViewModel\ItemRatingVM.cs" />
+    <Compile Include="ViewModel\MovieReportVM.cs" />
     <Compile Include="Views\Utilities\Scheduler.cs" />
     <Compile Include="Views\Utilities\Seat.cs" />
     <Compile Include="Views\Utilities\SeatHelper.cs" />
@@ -360,6 +365,13 @@
     <Content Include="Views\Showings\DetailedSearch.cshtml" />
     <Content Include="Views\Orders\Delete.cshtml" />
     <Content Include="Views\Orders\Checkout.cshtml" />
+    <Content Include="Views\Review\Create.cshtml" />
+    <Content Include="Views\Review\Delete.cshtml" />
+    <Content Include="Views\Review\Details.cshtml" />
+    <Content Include="Views\Review\Edit.cshtml" />
+    <Content Include="Views\Review\Index.cshtml" />
+    <Content Include="Views\Report\Index.cshtml" />
+    <Content Include="Views\Report\MovieReport.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
