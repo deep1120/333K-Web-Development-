@@ -147,13 +147,12 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         [HttpPost]
         public ActionResult Publish()
         {
-            //somehow groupby day and then theater
+            //somehow groupby day and then theater?? or do we need to loop through all of it??
             //then loop through the amount of items in each respective list
             //make sure that there is no big or small gap
             //and then make sure last showing doesn't before 9:30 PM
 
             List<Showing> CheckShowings = db.Showings.ToList(); //group by day??
-
 
             return View();
             //var gap = showing.ShowDate.Value.Subtract(lastShowing.ShowDate.AddMinutes(Showing.SponsoringMovie.RunningTime).Value).TotalMinutes;
