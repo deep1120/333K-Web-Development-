@@ -9,7 +9,7 @@
             @if (!User.IsInRole("Manager") && !User.IsInRole("Employee"))
             {
                 <li>
-                    <a href="@Url.Action("Index", "Orders")"> @*may not be the right variable*@
+                    <a href="@Url.Action("Index", "Orders")"> 
                         <span class="fa fa-shopping-cart"></span>
                     </a>
                 </li>

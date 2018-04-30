@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNet.Identity
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -23,9 +25,7 @@
                     <li class="nav-item">
                         @Html.ActionLink("Showings", "Index", "Showings", null, new { @class = "nav-link" })
                     </li>
-                    @if (Request.IsAuthenticated)
-                    {
-                        if (User.IsInRole("Manager"))
+                        @if (User.IsInRole("Manager"))
 
                         {
                                 <li class="nav-item">
@@ -35,77 +35,29 @@
                                 @Html.ActionLink("Genres", "Index", "Genres", null, new { @class = "nav-link" })
                                 </li>
                                 <li class="nav-item">
-                                @Html.ActionLink("Manage Customers & Employees", "Index", "RoleAdmin", null, new { @class = "nav-link" })
+                                @Html.ActionLink("Manage Roles", "Index", "RoleAdmin", null, new { @class = "nav-link" })
                                 </li>
                         }
 
-                        @*if (User.IsInRole("Customer") || User.IsInRole("DisabledCustomer"))*@
-
-                        @*{
-
-
-                            <li> @Html.ActionLink("My Movies", "Index", "Library", new { area = "", ID = User.Identity.GetUserId() }, new {})</li>
-
-                        }*@
-
-                        if (User.IsInRole("Manager"))
+                        @if (User.IsInRole("Customer") || User.IsInRole("DisabledCustomer"))
                         {
-                            <li class="nav-item">@Html.ActionLink("Employees", "Employees", "Account", null, new { @class = "nav-link" })</li>
-
+                            <li class="nav-item">
+                            @Html.ActionLink("My Orders", "Index", "Orders", new { area = "", ID = User.Identity.GetUserId() }, new {})
+                            </li>
                         }
 
-                        if (User.IsInRole("Manager") || User.IsInRole("Employee"))
-
+                        @if (User.IsInRole("Manager"))
                         {
+                            <li class="nav-item">
+                            @Html.ActionLink("Employee List", "Employees", "Accounts", null, new { @class = "nav-link" })
+                            </li>
+                        }
 
-                            <li class="nav-item">@Html.ActionLink("Customers", "Customers", "Account", null, new { @class = "nav-link" })</li>
+                        @if (User.IsInRole("Manager") || User.IsInRole("Employee"))
+                        {
+                            <li class="nav-item">@Html.ActionLink("Customer List", "Customers", "Accounts", null, new { @class = "nav-link" })</li>
                             <li class="nav-item">@Html.ActionLink("Reports", "Index", "Report", null, new { @class = "nav-link" })</li>
-
                         }
-                    }
-                    else 
-                    {
-                        <li class="nav-item">
-                            @Html.ActionLink("Log In", "Index", "Accounts", null, new { @class = "nav-link" })
-                        </li>
-                    }
-                    @*if (Request.IsAuthenticated)
-                    {
-                        <li class="nav-item">
-                            @Html.ActionLink("Orders", "Index", "Orders", null, new { @class = "nav-link" })
-                        </li>
-
-                        if (User.IsInRole("Manager"))
-                        {
-                            <li class="nav-item">
-                                @Html.ActionLink("Movies", "Index", "Movies", null, new { @class = "nav-link" })
-                            </li>
-                            <li class="nav-item">
-                                @Html.ActionLink("Genres", "Index", "Genres", null, new { @class = "btn btn-info" })
-                            </li>
-                            <li class="nav-item">
-                                @Html.ActionLink("Manage Customers & Employees", "Index", "RoleAdmin", null, new { @class = "nav-link" })
-                            </li>
-                        }
-                        if (User.IsInRole("Employee"))
-                        {
-                            <li class="nav-item">
-                                @Html.ActionLink("Movies", "Index", "Movies", null, new { @class = "nav-link" })
-                            </li>
-                            <li class="nav-item">
-                                @Html.ActionLink("Genres", "Index", "Genres", null, new { @class = "btn btn-info" })
-                            </li>
-                            <li class="nav-item">
-                                @Html.ActionLink("Manage Customers", "Index", "RoleAdmin", null, new { @class = "nav-link" })
-                            </li>
-                        }
-                    }
-                    else
-                    {
-                        <li class="nav-item">
-                            @Html.ActionLink("Log In", "Index", "Accounts", null, new { @class = "nav-link" })
-                        </li>
-                    }*@
                 </ul>
             </div>
             @Html.Partial("_LoginPartial")
