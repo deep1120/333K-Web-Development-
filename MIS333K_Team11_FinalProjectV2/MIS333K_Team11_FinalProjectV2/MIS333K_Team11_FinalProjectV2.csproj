@@ -206,6 +206,10 @@
     <Compile Include="Migrations\201804301547386_ChangeFromSharon.Designer.cs">
       <DependentUpon>201804301547386_ChangeFromSharon.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804301633064_AddReviewAndRating.cs" />
+    <Compile Include="Migrations\201804301633064_AddReviewAndRating.Designer.cs">
+      <DependentUpon>201804301633064_AddReviewAndRating.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\CustomerData.cs" />
     <Compile Include="Migrations\EmployeeData.cs" />
     <Compile Include="Models\IdentityUser.cs" />
@@ -386,6 +390,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Checkout\" />
+    <Folder Include="Views\Customer\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
@@ -444,6 +449,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804301547386_ChangeFromSharon.resx">
       <DependentUpon>201804301547386_ChangeFromSharon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804301633064_AddReviewAndRating.resx">
+      <DependentUpon>201804301633064_AddReviewAndRating.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

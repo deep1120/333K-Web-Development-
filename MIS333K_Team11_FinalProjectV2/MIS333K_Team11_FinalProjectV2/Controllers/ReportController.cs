@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-﻿using MIS333K_Team11_FinalProjectV2.Models;
+using MIS333K_Team11_FinalProjectV2.Models;
 using MIS333K_Team11_FinalProjectV2.ViewModel;
 using MIS333K_Team11_FinalProjectV2.ViewModels;
 using System;
@@ -38,11 +37,8 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
         //    return View();
         //}
-
     }
-
 }
-=======
 ﻿//using MIS333K_Team11_FinalProjectV2.Models;
 //using MIS333K_Team11_FinalProjectV2.ViewModel;
 //using MIS333K_Team11_FinalProjectV2.ViewModels;
@@ -86,4 +82,4 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 //    }
 
 //}
->>>>>>> 4363380832063b7c583d49c4e62967ebeeea8c42
+
