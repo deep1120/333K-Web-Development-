@@ -22,7 +22,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
         public ActionResult MovieReport()
         {
-            var model = db.Tickets.Where(y => y.MovieID != null && y.MovieID != 0).GroupBy(o => new { MovieID = o.MovieID.MovieID, MovieTitle = o.Movie.MovieTitle }).Select(g => new MovieReportVM { MovieID = g.Key.MovieID, MovieTitle = g.Key.MovieTitle, Revenue = g.Sum(x => x.Subtotal), NumberOfPurchase = g.Sum(x => x.Quantity) });
+            var model = db.Tickets.Where(y => y.MovieID != null && y.MovieID != 0).GroupBy(o => new { MovieID = o.Movie.MovieID, MovieTitle = o.Movie.MovieTitle }).Select(g => new MovieReportVM { MovieID = g.Key.MovieID, MovieTitle = g.Key.MovieTitle, Revenue = g.Sum(x => x.Subtotal), NumberOfPurchase = g.Sum(x => x.Quantity) });
             return View(model);
         }
 

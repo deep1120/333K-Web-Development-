@@ -230,15 +230,15 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                                  from ord in db.Tickets
                                  where ord.OrderID == o.OrderID
                                  select ord;
-                    var help = from al in MovieToRate.Genre
-                               select al;
-                    var query4 = from od in query3
-                                 from al in help
-                                 where al.GenreID == od.GenreID
-                                 select od.Genre;
-                    var result2 = query4.ToList();
+                    //var help = from al in MovieToRate.Genre
+                    //           select al;
+                    //var query4 = from od in query3
+                    //             from al in help
+                    //             where al.GenreID == od.GenreID
+                    //             select od.Genre;
+                    //var result2 = query4.ToList();
 
-                    if (result1.Count == 0 && result2.Count == 0)
+                    if (result1.Count == 0 /*&& result2.Count == 0*/)
                     {
                         TempData["ReviewError"] = "You must purchase before reviewing.";
 
@@ -267,7 +267,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             //set 'no choice' to null
             if (review.StarRating == 0)
             {
-                review.StarRating = null;
+                review.StarRating = 0;
             }
             //if (name == "artistReview")
             //{

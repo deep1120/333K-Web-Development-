@@ -28,12 +28,12 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 //model.FeaturedAlbum = new Album();
                 //model.FeaturedArtist = new Artist();
 
-                var featuredSong = db.Movies.FirstOrDefault(x => x.FeaturedMovie);
+                var featuredMovie = db.Movies.FirstOrDefault(x => x.FeaturedMovie);
                 //var featuredAlbum = db.Albums.FirstOrDefault(x => x.FeaturedAlbum);
                 //var featuredArtist = db.Artists.FirstOrDefault(x => x.FeaturedArtist);
                 if (featuredMovie != null)
                 {
-                    model.FeaturedMoive = featuredMovie;
+                    model.FeaturedMovie = featuredMovie;
                 }
                 //    if (featuredAlbum != null)
                 //    {
@@ -45,8 +45,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 //    }
                 //
             }
-                return View(model);
-            }
+            return View(model);
         }
     }
 }
