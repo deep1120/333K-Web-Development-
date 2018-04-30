@@ -9,6 +9,8 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         public Int32 TicketID { get; set; }
         public int OrderID { get; set; }
         public int? MovieID { get; set; }
+        public int Quantity { get; set; }
+        public decimal Subtotal { get; set; }
 
         [Display(Name = "Ticket Price")]
         [DisplayFormat(DataFormatString = "{0:C}")]
@@ -25,5 +27,6 @@ namespace MIS333K_Team11_FinalProjectV2.Models
 
         public virtual Showing Showing { get; set; }
         public virtual Order Order { get; set; }
+        public virtual Movie Movie { get; set; }
     }
 }

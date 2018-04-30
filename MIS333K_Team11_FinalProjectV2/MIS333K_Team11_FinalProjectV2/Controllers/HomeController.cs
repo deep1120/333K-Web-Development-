@@ -18,36 +18,34 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return View();
-            //var model = new CustomerWelcomeVM();
-            //if (User.IsInRole("Customer"))
-            //{
-            //    var userId = User.Identity.GetUserId();
-            //    var user = db.Users.SingleOrDefault(x => x.Id == userId);
-            //    model.CustomerName = user.FirstName;
-            //    model.FeaturedMovie = new Movie();
-            //    //model.FeaturedAlbum = new Album();
-            //    //model.FeaturedArtist = new Artist();
+            var model = new CustomerWelcomeVM();
+            if (User.IsInRole("Customer"))
+            {
+                var userId = User.Identity.GetUserId();
+                var user = db.Users.SingleOrDefault(x => x.Id == userId);
+                model.CustomerName = user.FirstName;
+                model.FeaturedMovie = new Movie();
+                //model.FeaturedAlbum = new Album();
+                //model.FeaturedArtist = new Artist();
 
-            //    var featuredSong = db.Movies.FirstOrDefault(x => x.FeaturedMovie);
-            //    //var featuredAlbum = db.Albums.FirstOrDefault(x => x.FeaturedAlbum);
-            //    //var featuredArtist = db.Artists.FirstOrDefault(x => x.FeaturedArtist);
-            //    if (featuredMovie != null)
-            //    {
-            //        model.FeaturedMoive = featuredMovie;
-            //    }
-            //    //    if (featuredAlbum != null)
-            //    //    {
-            //    //        model.FeaturedAlbum = featuredAlbum;
-            //    //    }
-            //    //    if (featuredArtist != null)
-            //    //    {
-            //    //        model.FeaturedArtist = featuredArtist;
-            //    //    }
-            //    //
-            //}
-                //return View(model);
-            //}
+                var featuredMovie = db.Movies.FirstOrDefault(x => x.FeaturedMovie);
+                //var featuredAlbum = db.Albums.FirstOrDefault(x => x.FeaturedAlbum);
+                //var featuredArtist = db.Artists.FirstOrDefault(x => x.FeaturedArtist);
+                if (featuredMovie != null)
+                {
+                    model.FeaturedMovie = featuredMovie;
+                }
+                //if (featuredAlbum != null)
+                //{
+                //    model.FeaturedAlbum = featuredAlbum;
+                //}
+                //if (featuredArtist != null)
+                //{
+                //    model.FeaturedArtist = featuredArtist;
+                //}
+
+            }
+            return View(model);
         }
     }
 }

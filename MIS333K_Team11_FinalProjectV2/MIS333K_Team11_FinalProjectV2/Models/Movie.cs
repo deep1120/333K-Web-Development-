@@ -73,8 +73,8 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         //[DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
         //public Decimal DiscountedPrice { get { return MoviePrice - DiscountAmount; } private set { } }
 
-        [Display(Name = "Featured Song")]
-        public bool FeaturedSong { get; set; }
+        [Display(Name = "Featured Movie")]
+        public bool FeaturedMovie { get; set; }
 
         public virtual List<Review> Reviews { get; set; }
         public virtual List<Showing> Showings { get; set; }
