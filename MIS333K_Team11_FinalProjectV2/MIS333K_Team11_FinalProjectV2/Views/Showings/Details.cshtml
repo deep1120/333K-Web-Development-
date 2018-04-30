@@ -2,33 +2,26 @@
 @using MIS333K_Team11_FinalProjectV2.Models
 
 @{
-                
 
-                ViewBag.Title = "Details";
+
+    ViewBag.Title = "Showing Details";
 }
 
 <h2>Details</h2>
 
 <div>
-    <h4>Course</h4>
+    <h4>Showing</h4>
     <hr />
     <dl class="dl-horizontal">
-        @*<div>
-            <table class="table table-sm table-striped">
-                <tr>
-                    <th>Movie</th>
-                </tr>
-                @foreach (Movie mov in Model.SponsoringMovies)
-                     {
-                            <tr>
-                            <td>@Html.DisplayFor(modelItem => mov.MovieTitle)</td>
-                            </tr>
-                     }
-            </table>
-
-        </div>*@
         <dt>
-            Movie
+            @Html.DisplayNameFor(model => model.SponsoringMovie.MovieNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SponsoringMovie.MovieNumber)
+        </dd>
+        <dt>
+            Showing Movie
         </dt>
 
         <dd>
@@ -50,17 +43,59 @@
         <dd>
             @Html.DisplayFor(model => model.Theatre)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SponsoringMovie.MovieOverview)
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.SponsoringMovie.MovieOverview)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SponsoringMovie.Tagline)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SponsoringMovie.Tagline)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SponsoringMovie.MPAAratings)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SponsoringMovie.MPAAratings)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SponsoringMovie.Actor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SponsoringMovie.Actor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SponsoringMovie.MovieRevenue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SponsoringMovie.MovieRevenue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SponsoringMovie.ReleaseDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SponsoringMovie.ReleaseDate)
+        </dd>
 
 
         <dt>
             Running Time
         </dt>
         <dd>
-            @*@foreach (Movie mov in Model.SponsoringMovies)
-            {
-                @Html.DisplayFor(modelItem => mov.RunningTime)
-            }*@
             @Html.DisplayFor(model => model.SponsoringMovie.RunningTime)
         </dd>
 
@@ -68,6 +103,19 @@
     </dl>
 </div>
 
+<div>
+    <table class="table table-sm table-striped">
+        <tr>
+            <th>Genre(s)</th>
+        </tr>
+        @foreach (Genre gen in Model.SponsoringMovie.Genres)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => gen.GenreName)</td>
+            </tr>
+        }
+    </table>
+</div>
 
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ShowingID }) |

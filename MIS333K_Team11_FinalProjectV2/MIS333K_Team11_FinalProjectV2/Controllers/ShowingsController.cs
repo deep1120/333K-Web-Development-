@@ -20,6 +20,8 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         // GET: Showings
         public ActionResult Index()
         {
+            ViewBag.SelectedShowings = db.Showings.Count();
+            ViewBag.AllShowings = db.Showings.Count();
             return View(db.Showings.ToList());
         }
 
@@ -38,6 +40,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             return View(showing);
         }
 
+        //[Authorize(Roles = "Manager")]
         // GET: Showings/Create
         public ActionResult Create()
         {
@@ -45,6 +48,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             return View();
         }
 
+        //[Authorize(Roles = "Manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ShowingID, Theatre, ShowDate")] Showing showing, int? SelectedMovies)
@@ -77,7 +81,6 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
                 List<Showing> allShowings = db.Showings.ToList();
                 List<Showing> showingsDays = allShowings.Where(s => s.ShowDate.Day == showing.ShowDate.Day && s.Theatre == showing.Theatre).ToList();
-                //showingsDays = showingsDays.Where(s => s.Theatre == showing.Theatre).ToList();
 
                 if (showingsDays.Count() == 0)
                 {
@@ -128,112 +131,39 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                     return RedirectToAction("Index");
                 }
             }
-
             //will populate viewbag and not go through with order bc not between 9am-12am
-            //else
-            //{
             ViewBag.ErrorMessageTime = "Showing must be scheduled in between 9:00 AM and 12:00 AM";
             ViewBag.AllMovies = GetAllMovies(showing);
             return View(showing);
-            //}
         }
 
-        //// POST: Showings/Create
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "ShowingID, Theatre, ShowDate")] Showing showing, int? SelectedMovies)
+        //[Authorize(Roles = "Manager")]
+        //public ActionResult Publish()
         //{
-
-        //    //add movie
-        //    if (SelectedMovies != 0)
-        //    {
-        //        //find the movie
-        //        Movie mov = db.Movies.Find(SelectedMovies);
-        //        //showing.SponsoringMovies.Add(mov);
-
-        //        //add in as a single value after changing the relationship in the showing.cs
-        //        showing.SponsoringMovie = mov;
-        //    }
-
-        //    DateTime morning = new DateTime(showing.ShowDate.Year, showing.ShowDate.Month, showing.ShowDate.Day, 9, 0, 0);
-        //    DateTime night = new DateTime(showing.ShowDate.Year, showing.ShowDate.Month, showing.ShowDate.AddDays(1).Day, 0, 0, 0);
-        //    int morning_result = DateTime.Compare(showing.ShowDate, morning);
-        //    int night_result = DateTime.Compare(showing.ShowDate, night);
-
-        //    if ((morning_result >= 0) && (night_result <=0))
-        //    {
-        //        //find the showings that are on the same day and in the same theater and then compare them with each other
-        //        //by making sure the end time of showing to be created is less than a current showing's start time
-        //        //OR start time of showing to be created is going to be greater than a current showing's 
-
-        //        List<Showing> allShowings = db.Showings.ToList();
-        //        List<Showing> showingsDays = allShowings.Where(s => s.ShowDate.Day == showing.ShowDate.Day && s.Theatre == showing.Theatre).ToList();
-
-        //        DateTime showing_start = showing.ShowDate;
-        //        DateTime showing_end = showing.ShowDate.AddMinutes(showing.SponsoringMovie.RunningTime);
-
-        //        if(showingsDays.Count() == 0)
-        //        {
-        //            db.Showings.Add(showing);
-        //            db.SaveChanges();
-        //            return RedirectToAction("Index");
-        //        }
-
-        //        foreach (Showing sh in showingsDays)
-        //        {
-        //            DateTime sh_start = sh.ShowDate;
-        //            DateTime sh_end = sh.ShowDate.AddMinutes(showing.SponsoringMovie.RunningTime);
-
-        //            if (showing_start > sh_end || showing_end < sh_start)
-        //            {
-        //                //if valid, add to db
-        //                if (ModelState.IsValid)
-        //                {
-        //                    db.Showings.Add(showing);
-        //                    db.SaveChanges();
-        //                    return RedirectToAction("Index");
-        //                }
-        //            }
-
-        //        }
-
-        //        ViewBag.ErrorMessageOverlap = "Showing you are trying to schedule overlaps with another showing's time";
-        //        ViewBag.AllMovies = GetAllMovies(showing);
-        //        return View(showing);
-        //    }
-
-        //    else
-        //    {
-        //        ViewBag.ErrorMessageTime = "Showing must be scheduled in between 9:00 AM and 12:00 AM";
-        //        ViewBag.AllMovies = GetAllMovies(showing);
-        //        return View(showing);
-
-        //    }
+        //    return View();
         //}
 
+        //[Authorize(Roles = "Manager")]
+        [HttpPost]
         public ActionResult Publish()
         {
+            //somehow groupby day and then theater
+            //then loop through the amount of items in each respective list
+            //make sure that there is no big or small gap
+            //and then make sure last showing doesn't before 9:30 PM
+
+            List<Showing> CheckShowings = db.Showings.ToList(); //group by day??
+
+
             return View();
+            //var gap = showing.ShowDate.Value.Subtract(lastShowing.ShowDate.AddMinutes(Showing.SponsoringMovie.RunningTime).Value).TotalMinutes;
+            //                if (gap < 25 || gap > 45)
+            //                {
+            //                    error = "Gap shorter than 25 min or longer than 45 min";
+            //                    return false; // gap shorter than 25 min or longer than 45 min
+            //                
+
         }
-
-        //[HttpPost]
-        //public ActionResult Publish(List<Showing> showings)
-        //{
-        //    //somehow groupby day and then theater
-        //    //then loop through the amount of items in each respective list
-        //    //make sure that there is no big or small gap
-        //    //and then make sure last showing doesn't before 9:30 PM
-        //    List<Showing> CheckShowings = db.Showings.ToList().GroupBy(); //group by day
-        //    var gap = showing.ShowDate.Value.Subtract(lastShowing.ShowDate.AddMinutes(Showing.SponsoringMovie.RunningTime).Value).TotalMinutes;
-        //    //                if (gap < 25 || gap > 45)
-        //    //                {
-        //    //                    error = "Gap shorter than 25 min or longer than 45 min";
-        //    //                    return false; // gap shorter than 25 min or longer than 45 min
-        //    //                
-
-        //}
 
 
         //GET
@@ -257,10 +187,112 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
             List<Showing> SelectedShowings = query.ToList();
             //order list
-            SelectedShowings.OrderByDescending(m => m.TicketPrice);
+            SelectedShowings.OrderByDescending(m => m.SponsoringMovie.MovieTitle);
 
-            //ViewBag.AllShowings = db.Showings.Count();
-            //ViewBag.SelectedMovies = SelectedShowings.Count();
+            ViewBag.AllShowings = db.Showings.Count();
+            ViewBag.SelectedShowings = SelectedShowings.Count();
+            //send list to view
+            return View("Index", SelectedShowings);
+        }
+
+        public ActionResult DetailedSearch()
+        {
+            ViewBag.AllGenres = GetAllGenres();
+            return View();
+        }
+
+        public ActionResult DisplaySearchResults(String SearchMovieTitle, String SearchTagline, int[] SearchGenre, String SelectedYear, MPAArating SelectedMPAARating, String SearchActor, YearRank SelectedSortOrder)
+        {
+
+            //if they selected a search string, limit results to only repos that meet the criteria
+            //create query
+            var query = from m in db.Showings
+                        select m;
+
+            //check to see if they selected something
+            if (SearchMovieTitle != null)
+            {
+                query = query.Where(m => m.SponsoringMovie.MovieTitle.Contains(SearchMovieTitle));
+            }
+
+            if (SearchTagline != null)
+            {
+                query = query.Where(m => m.SponsoringMovie.Tagline.Contains(SearchTagline));
+            }
+
+            if (SearchActor != null)
+            {
+                query = query.Where(m => m.SponsoringMovie.Actor.Contains(SearchActor));
+            }
+
+            if (SearchGenre != null)
+            {
+                foreach (int GenreID in SearchGenre)
+                {
+                    //Genre GenreToFind = db.Genres.Find(GenreID);
+                    query = query.Where(m => m.SponsoringMovie.Genres.Select(g => g.GenreID).Contains(GenreID));
+                }
+            }
+
+            switch (SelectedMPAARating)
+            {
+                case MPAArating.G:
+                    query = query.Where(m => m.SponsoringMovie.MPAAratings == MPAArating.G);
+                    break;
+
+                case MPAArating.PG:
+                    query = query.Where(m => m.SponsoringMovie.MPAAratings == MPAArating.PG);
+                    break;
+
+                case MPAArating.PG13:
+                    query = query.Where(m => m.SponsoringMovie.MPAAratings == MPAArating.PG13);
+                    break;
+
+                case MPAArating.R:
+                    query = query.Where(m => m.SponsoringMovie.MPAAratings == MPAArating.R);
+                    break;
+
+                case MPAArating.Unrated:
+                    query = query.Where(m => m.SponsoringMovie.MPAAratings == MPAArating.Unrated);
+                    break;
+
+                case MPAArating.All:
+
+                    break;
+            }
+
+            if (SelectedYear != null && SelectedYear != "")
+            {
+                Int32 intYear;
+                try
+                {
+                    intYear = Convert.ToInt32(SelectedYear);
+                }
+                catch
+                {
+                    ViewBag.Message = SelectedYear + "is not a valid year, please try again!";
+                    ViewBag.AllGenres = GetAllGenres();
+                    return View("DetailedSearch");
+                }
+                switch (SelectedSortOrder)
+                {
+                    case YearRank.GreaterThan:
+                        query = query.Where(r => r.SponsoringMovie.ReleaseDate.Year >= intYear);
+                        break;
+                    case YearRank.LesserThan:
+                        query = query.Where(r => r.SponsoringMovie.ReleaseDate.Year <= intYear);
+                        break;
+                }
+
+                //query = query.Where(m => m.ReleaseDate.Year == intYear);
+            }
+
+            List<Showing> SelectedShowings = query.ToList();
+            //order list
+            SelectedShowings.OrderByDescending(m => m.SponsoringMovie.MovieTitle);
+
+            ViewBag.AllShowings = db.Showings.Count();
+            ViewBag.SelectedShowings = SelectedShowings.Count();
             //send list to view
             return View("Index", SelectedShowings);
         }
@@ -344,6 +376,13 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             return RedirectToAction("Index");
         }
 
+        public MultiSelectList GetAllGenres()
+        {
+            List<Genre> AllGenres = db.Genres.OrderBy(m => m.GenreName).ToList();
+            MultiSelectList selGenres = new MultiSelectList(AllGenres, "GenreID", "GenreName");
+            return selGenres;
+        }
+
         public SelectList GetAllMovies()
         {
             List<Movie> allMovs = db.Movies.OrderBy(m => m.MovieTitle).ToList();
@@ -361,11 +400,6 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             Movie mov = db.Movies.Find(showing.SponsoringMovie.MovieID);
 
             SelectedMovies.Add(mov.MovieID);
-            //loop through the showing's movie and add the movie id
-            //foreach (Movie mov in showing.SponsoringMovie)
-            //{
-            //    SelectedMovies.Add(mov.MovieID);
-            //}
 
             //create the multiselect list 
             SelectList selMovs = new SelectList(allMovs, "MovieID", "MovieTitle", SelectedMovies);

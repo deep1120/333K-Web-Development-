@@ -20,12 +20,14 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [Display(Name = "Order Number")] //Transaction number? do we need this?
         public Int32 OrderNumber { get; set; }
 
+        //public Int32 ConfirmationNumber { get; set; }
+
         [Display(Name = "Order Date")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime OrderDate { get; set; }
 
-        [Display(Name = "Order Notes")] //this may not be needed
-        public String OrderNotes { get; set; }
+        //[Display(Name = "Order Notes")] //this may not be needed
+        //public String OrderNotes { get; set; }
 
         [Display(Name = "Card Number")]
         public String CardNumber { get; set; }

@@ -1,0 +1,77 @@
+﻿@model MIS333K_Team11_FinalProjectV2.Models.Order
+@using MIS333K_Team11_FinalProjectV2.Models
+
+@{
+    ViewBag.Title = "Check Out";
+}
+
+<h2>Check Out Details</h2>
+
+@*@Html.HiddenFor(model => model.OrderNumber)*@   @*What are these hidden fors meant for???
+    essentially, when you go through post, you will need to eventually get again
+     so you need to pass the orderid and ordernumber back through view and controller
+     so that after post, it knows which order id/number to reference to aftert http request*@
+@Html.HiddenFor(model => model.OrderID)
+@*@Html.HiddenFor(model => model.OrderDate)
+@Html.HiddenFor(model => model.OrderSubtotal)
+@Html.HiddenFor(model => model.SalesTax)
+@Html.HiddenFor(model => model.OrderTotal)*@
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderDate)
+        </dd>
+
+    </dl>
+</div>
+
+@*<h4>Showings</h4>
+    <table class="table table-sm table-striped table-hover">
+        <tr>
+            <th>Showing Name</th>
+            <th>Ticket Seat</th>
+            <th>Total Price</th>
+        </tr>
+        @foreach (Ticket td in Model.Tickets)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => td.Showing.SponsoringMovie.MovieTitle)</td>
+                <td>@Html.DisplayFor(modelItem => td.TicketSeat)</td>
+                <td>@Html.DisplayFor(modelItem => td.TicketPrice)</td>
+            </tr>
+        }
+    </table>*@
+
+<table class="table table-sm table-bordered" style="width:30%">
+    <tr>
+        <th colspan="2" style="text-align:center">Order Summary</th>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.OrderSubtotal)</td>
+        <td>@Html.DisplayFor(model => model.OrderSubtotal)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.SalesTax)</td>
+        <td>@Html.DisplayFor(model => model.SalesTax)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.OrderTotal)</td>
+        <td>@Html.DisplayFor(model => model.OrderTotal)</td>
+    </tr>
+
+</table>
+

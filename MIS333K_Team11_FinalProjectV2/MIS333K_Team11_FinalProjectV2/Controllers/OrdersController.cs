@@ -20,7 +20,8 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         // GET: Orders
         public ActionResult Index()
         {
-            return View(db.Orders.ToList());
+            //Maybe make this the order history page???
+            return View(db.Orders.ToList()); 
         }
 
         // GET: Orders/Details/5
@@ -41,7 +42,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         // GET: Orders/Create
         public ActionResult Create()
         {
-            ViewBag.AllShowings = GetAllShowings();
+            //ViewBag.AllShowings = GetAllShowings();
             return View();
         }
 
@@ -87,6 +88,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
             //Give the view the registration detail object we just created
             return View(td);
+            //return RedirectToAction("Checkout", new { OrderID = td.Order.OrderID });
         }
 
         [HttpPost]
@@ -97,7 +99,10 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
             //find the order 
             Order ord = db.Orders.Find(td.Order.OrderID);
-            //ord.Orderstatus = OrderStatus.Pending;
+            ord.Orderstatus = OrderStatus.Pending;
+
+            //LOGIC HERE TO STOP USER FROM ADDING A SHOWING THAT OVERLAPS WITH A ANOTHER SHOWING IN CART
+            //List<Showing> CurrentShowingsInCart = db.Showings.Where(o=>o.Tickets.....
 
             for (int i = 0; i < SelectedTickets.Length; i++)
             {
@@ -114,91 +119,97 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 {
                     ticket.TicketPrice = 5.00m;
                 }
-
                 if ((showing.ShowDate.DayOfWeek == DayOfWeek.Tuesday) && (showing.ShowDate < weekday))
                 {
                     ticket.TicketPrice = 5.00m;
                 }
-
                 if ((showing.ShowDate.DayOfWeek == DayOfWeek.Wednesday) && (showing.ShowDate < weekday))
                 {
                     ticket.TicketPrice = 5.00m;
                 }
-
                 if ((showing.ShowDate.DayOfWeek == DayOfWeek.Thursday) && (showing.ShowDate < weekday))
                 {
                     ticket.TicketPrice = 5.00m;
                 }
-
                 if ((showing.ShowDate.DayOfWeek == DayOfWeek.Friday) && (showing.ShowDate < weekday))
                 {
                     ticket.TicketPrice = 5.00m;
                 }
-
                 if ((showing.ShowDate.DayOfWeek == DayOfWeek.Tuesday) && (showing.ShowDate <= tuesday))
                 {
                     ticket.TicketPrice = 8.00m;
                 }
-
                 if ((showing.ShowDate.DayOfWeek == DayOfWeek.Monday) && (showing.ShowDate >= weekday))
                 {
                     ticket.TicketPrice = 10.00m;
                 }
-
                 if ((showing.ShowDate.DayOfWeek == DayOfWeek.Tuesday) && (showing.ShowDate >= weekday))
                 {
                     ticket.TicketPrice = 10.00m;
                 }
-
                 if ((showing.ShowDate.DayOfWeek == DayOfWeek.Wednesday) && (showing.ShowDate >= weekday))
                 {
                     ticket.TicketPrice = 10.00m;
                 }
-
                 if ((showing.ShowDate.DayOfWeek == DayOfWeek.Thursday) && (showing.ShowDate >= weekday))
                 {
                     ticket.TicketPrice = 10.00m;
                 }
-
                 if ((showing.ShowDate.DayOfWeek == DayOfWeek.Friday) && (showing.ShowDate >= weekday))
                 {
                     ticket.TicketPrice = 12.00m;
                 }
-
                 if (showing.ShowDate.DayOfWeek == DayOfWeek.Saturday)
                 {
                     ticket.TicketPrice = 12.00m;
                 }
-
                 if (showing.ShowDate.DayOfWeek == DayOfWeek.Sunday)
                 {
                     ticket.TicketPrice = 12.00m;
                 }
 
-                //this is essentially the same as the ticket price 
-
-                //if (ModelState.IsValid)
-                //{
                 db.Tickets.Add(ticket);
                 db.SaveChanges();
-                    //add in the tickets details information so we can view it                  
-                //}
-
-            }
-
+            }            
             
-            
-
             if (ModelState.IsValid)
             {
-                return RedirectToAction("Details", "Orders", new { id = ord.OrderID });
-
+                //redirect to edit so that they can continue adding to cart if they want to 
+                return RedirectToAction("Edit", "Orders", new { id = ord.OrderID });
             }
 
             //model state is not valid; repopulate viewbags and return
             ViewBag.AllSeats = GetAllTicketSeats();
             ViewBag.AllShowings = GetAllShowings();
             return View(td);
+        }
+
+        public ActionResult Checkout()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Checkout(int OrderID/*, string CardOption*/)
+        {
+            Order ord = db.Orders.Find(OrderID);
+
+            ord.Orderstatus = OrderStatus.Completed;
+
+            //ord.ListOfCards = new List<SelectListItem>();
+            //var userID = User.Identity.GetUserID();
+            //var user = db.Users.Include(x => x.Cards).Single(x => x.Id == userId);
+
+            //if(user != null)
+            //{
+            //    foreach(var card in user.Cards)
+            //    {
+            //        ord.ListOfCards.Add(new SelectListItem { Text = $"{card.CardNumber} {card.Type.ToString()}", Value = $"{card.CardNumber} {card.Type.ToString()}" });
+            //    }
+            //}
+
+            return View(ord);
+
         }
 
         // GET: Orders/Edit/5
@@ -277,7 +288,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
         public MultiSelectList GetAllTicketSeats()
         {
-            List<Ticket> tickets = db.Tickets.ToList();
+            List<Ticket> tickets = db.Tickets.Where(t=>t.Order.Orderstatus == OrderStatus.Completed).ToList();
 
             MultiSelectList selSeats = SeatHelper.FindAvailableSeats(tickets);
 

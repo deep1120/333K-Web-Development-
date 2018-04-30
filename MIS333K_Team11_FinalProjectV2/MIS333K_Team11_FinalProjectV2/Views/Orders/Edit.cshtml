@@ -2,37 +2,33 @@
 @using MIS333K_Team11_FinalProjectV2.Models
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Shopping Cart";
 }
 
-<h2>Edit</h2>
+<h2>Continue Adding to Shopping Cart</h2>
 
-@*@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderNumber)
+        </dt>
 
-    <div class="form-horizontal">
-        <h4>Order</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.OrderID)
+        <dd>
+            @Html.DisplayFor(model => model.OrderNumber)
+        </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </dt>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.OrderNotes, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.OrderNotes, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.OrderNotes, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        <dd>
+            @Html.DisplayFor(model => model.OrderDate)
+        </dd>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save Notes" class="btn btn-primary" />
-            </div>
-        </div>
-    </div>
-}*@
+    </dl>
+</div>
 
 <h4>Showings</h4>
 <table class="table table-sm table-striped table-hover">
@@ -51,10 +47,28 @@
     }
 </table>
 
+<table class="table table-sm table-bordered" style="width:30%">
+    <tr>
+        <th colspan="2" style="text-align:center">Order Summary</th>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.OrderSubtotal)</td>
+        <td>@Html.DisplayFor(model => model.OrderSubtotal)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.SalesTax)</td>
+        <td>@Html.DisplayFor(model => model.SalesTax)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.OrderTotal)</td>
+        <td>@Html.DisplayFor(model => model.OrderTotal)</td>
+    </tr>
 
+</table>
 
 <div>
     @Html.ActionLink("Add Another Showing", "AddToOrder", new { OrderID = Model.OrderID }, new { @class = "btn btn-primary" })
     @Html.ActionLink("Edit Existing Order", "RemoveFromOrder", new { OrderID = Model.OrderID }, new { @class = "btn btn-primary" })
     @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Check Out", "Checkout", new { OrderID = Model.OrderID }, new { @class = "btn btn-primary" })
 </div>

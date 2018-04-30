@@ -136,6 +136,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Migrations\201804281550287_NewDatabase.cs" />
     <Compile Include="Migrations\201804281550287_NewDatabase.Designer.cs">
       <DependentUpon>201804281550287_NewDatabase.cs</DependentUpon>
@@ -195,6 +196,10 @@
     <Compile Include="Migrations\201804290438472_ShowingNameAndDateAdded.cs" />
     <Compile Include="Migrations\201804290438472_ShowingNameAndDateAdded.Designer.cs">
       <DependentUpon>201804290438472_ShowingNameAndDateAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804300127522_RidOfOrderNotes.cs" />
+    <Compile Include="Migrations\201804300127522_RidOfOrderNotes.Designer.cs">
+      <DependentUpon>201804300127522_RidOfOrderNotes.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\CustomerData.cs" />
     <Compile Include="Migrations\EmployeeData.cs" />
@@ -352,6 +357,9 @@
     <Content Include="Views\Genres\Delete.cshtml" />
     <Content Include="Views\Genres\Details.cshtml" />
     <Content Include="Views\Genres\Index.cshtml" />
+    <Content Include="Views\Showings\DetailedSearch.cshtml" />
+    <Content Include="Views\Orders\Delete.cshtml" />
+    <Content Include="Views\Orders\Checkout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -361,6 +369,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Checkout\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
@@ -413,6 +422,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804290438472_ShowingNameAndDateAdded.resx">
       <DependentUpon>201804290438472_ShowingNameAndDateAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804300127522_RidOfOrderNotes.resx">
+      <DependentUpon>201804300127522_RidOfOrderNotes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
