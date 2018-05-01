@@ -133,9 +133,11 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
                 //update the rest of the scalar fields
                 memberToChange.Street = appUser.Street;
-                memberToChange.PhoneNumber = appUser.PhoneNumber;
+                memberToChange.City = appUser.City;
+                memberToChange.State = appUser.State;
                 memberToChange.ZipCode = appUser.ZipCode;
-
+                memberToChange.PhoneNumber = appUser.PhoneNumber;
+                
                 db.Entry(memberToChange).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

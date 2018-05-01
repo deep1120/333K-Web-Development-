@@ -11,9 +11,5 @@ namespace MIS333K_Team11_FinalProjectV2.ViewModels
         public string CustomerName { get; set; }
 
         public Movie FeaturedMovie { get; set; }
-
-        //public Artist FeaturedArtist { get; set; }
-
-        //public Album FeaturedAlbum { get; set; }
     }
 }

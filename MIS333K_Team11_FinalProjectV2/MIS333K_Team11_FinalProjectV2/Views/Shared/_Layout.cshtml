@@ -42,7 +42,7 @@
                         @if (User.IsInRole("Customer") || User.IsInRole("DisabledCustomer"))
                         {
                             <li class="nav-item">
-                            @Html.ActionLink("My Orders", "Index", "Orders", new { area = "", ID = User.Identity.GetUserId() }, new {})
+                            @Html.ActionLink("My Orders", "Index", "Orders", null, new {@class = "nav-link"})
                             </li>
                         }
 

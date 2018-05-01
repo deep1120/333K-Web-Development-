@@ -11,13 +11,5 @@ namespace MIS333K_Team11_FinalProjectV2.ViewModel
         public int MovieID { get; set; }
         public int NumberOfPurchase { get; set; }
         public decimal Revenue { get; set; }
-
-        //total seats sold
-        //total revenue
-        //needs to choose to see above or both
-        //By Customer
-        //Seats sold 
-        //Revenue
-        //Display all transactions 
     }
 }

@@ -64,15 +64,6 @@ namespace MIS333K_Team11_FinalProjectV2.Models
             get { return Convert.ToDecimal(Reviews.Average(r => r.StarRating)); }
         }
 
-        //[Display(Name = "Discount Amount")]
-        //// [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
-        //public Decimal DiscountAmount { get; set; }
-
-        //[Display(Name = "Discounted Price")]
-        //[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        //[DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
-        //public Decimal DiscountedPrice { get { return MoviePrice - DiscountAmount; } private set { } }
-
         [Display(Name = "Featured Movie")]
         public bool FeaturedMovie { get; set; }
 
