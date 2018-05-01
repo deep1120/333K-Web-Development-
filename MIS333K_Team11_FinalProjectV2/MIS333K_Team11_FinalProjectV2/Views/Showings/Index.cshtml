@@ -13,6 +13,7 @@
     @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-info" })
     @Html.ActionLink("Search By Date", "DateSearch", null, new { @class = "btn btn-info" })
     @Html.ActionLink("Detailed Showings Search", "DetailedSearch", null, new { @class = "btn btn-info" })
+    @Html.ActionLink("Publish", "Publish", null, new { @class = "btn btn-info" })
 </p>
 
 <table class="table">
@@ -47,6 +48,7 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.SponsoringMovie.MovieTitle)
+
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ShowDate)

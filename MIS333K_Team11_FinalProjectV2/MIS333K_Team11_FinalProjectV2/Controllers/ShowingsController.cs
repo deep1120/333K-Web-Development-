@@ -143,16 +143,41 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         //}
 
         //[Authorize(Roles = "Manager")]
-        [HttpPost]
+        [HttpGet]
         public ActionResult Publish()
         {
             //somehow groupby day and then theater?? or do we need to loop through all of it??
             //then loop through the amount of items in each respective list
             //make sure that there is no big or small gap
-            //and then make sure last showing doesn't before 9:30 PM
+            //and then make sure last showing doesn't before 9:30 PM       
 
-            List<Showing> CheckShowings = db.Showings.ToList(); //group by day??
+            List<Showing> CheckShowings = db.Showings.OrderBy(m => m.ShowDate).ToList();
+            List<Showing> Monday1 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Monday && s.Theatre == Theatre.Theatre1).OrderBy(m=>m.ShowDate).ToList();
+            List<Showing> Monday2 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Monday && s.Theatre == Theatre.Theatre2).OrderBy(m => m.ShowDate).ToList();
+            List<Showing> Tuesday1 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Tuesday && s.Theatre == Theatre.Theatre1).OrderBy(m => m.ShowDate).ToList();
+            List<Showing> Tuesday2 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Tuesday && s.Theatre == Theatre.Theatre2).OrderBy(m => m.ShowDate).ToList();
+            List<Showing> Wednesday1 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Wednesday && s.Theatre == Theatre.Theatre1).OrderBy(m => m.ShowDate).ToList();
+            List<Showing> Wednesday2 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Wednesday && s.Theatre == Theatre.Theatre2).OrderBy(m => m.ShowDate).ToList();
+            List<Showing> Thursday1 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Thursday && s.Theatre == Theatre.Theatre1).OrderBy(m => m.ShowDate).ToList();
+            List<Showing> Thursday2 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Thursday && s.Theatre == Theatre.Theatre2).OrderBy(m => m.ShowDate).ToList();
+            List<Showing> Friday1 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Friday && s.Theatre == Theatre.Theatre1).OrderBy(m => m.ShowDate).ToList();
+            List<Showing> Friday2 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Friday && s.Theatre == Theatre.Theatre2).OrderBy(m => m.ShowDate).ToList();
+            List<Showing> Saturday1 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Saturday && s.Theatre == Theatre.Theatre1).OrderBy(m => m.ShowDate).ToList();
+            List<Showing> Saturday2 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Saturday && s.Theatre == Theatre.Theatre2).OrderBy(m => m.ShowDate).ToList();
+            List<Showing> Sunday1 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Sunday && s.Theatre == Theatre.Theatre1).OrderBy(m => m.ShowDate).ToList();
+            List<Showing> Sunday2 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Sunday && s.Theatre == Theatre.Theatre2).OrderBy(m => m.ShowDate).ToList();
 
+            bool checker = true;
+            while(checker == true)
+            {
+                foreach(Showing sh in Monday1)
+                {
+                    DateTime start = sh.ShowDate;
+                    DateTime end = sh.ShowDate.AddMinutes(sh.SponsoringMovie.RunningTime);
+
+                    
+                }
+            }
             return View();
             //var gap = showing.ShowDate.Value.Subtract(lastShowing.ShowDate.AddMinutes(Showing.SponsoringMovie.RunningTime).Value).TotalMinutes;
             //                if (gap < 25 || gap > 45)

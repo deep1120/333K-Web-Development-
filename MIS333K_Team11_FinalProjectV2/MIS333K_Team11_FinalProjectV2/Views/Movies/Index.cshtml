@@ -48,7 +48,7 @@
     {
         <tr>
             <td>
-                @Html.ActionLink(item.MovieTitle, "Details", "Movie", new { id = item.MovieID }, null)
+                @Html.DisplayFor(modelItem => item.MovieTitle)
             </td>
             <td>
                 @foreach (Genre gen in item.Genres)

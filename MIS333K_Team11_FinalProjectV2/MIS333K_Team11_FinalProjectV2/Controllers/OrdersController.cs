@@ -202,28 +202,28 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             //fuzzy object like past codes in edit
             //this is because it is going through httppost
             //find the product associated with this order
-            Order od = db.Orders.Include(OD => OD.Tickets)
+            Order od = db.Orders.Include(OD => OD.Tickets) 
                                   //.Include(OD => OD.Showings?)
                                   .FirstOrDefault(x => x.OrderID == ord.OrderID);
             //Order ord = db.Orders.Find(OrderID);
 
-            if (ModelState.IsValid)
-            {
-                //update the number of students
-                od.TicketSeat = ticket.TicketSeat;
+            //if (ModelState.IsValid)
+            //{
+            //    //update the number of students
+            //    od.TicketSeat = ticket.TicketSeat;
 
-                //update the course fee from the related course
-                od.TicketPrice = td.Showing.TicketPrice;
+            //    //update the course fee from the related course
+            //    od.TicketPrice = td.Showing.TicketPrice;
 
-                //update the total fees
-                od.TotalFees = od.TicketPrice /** td.TicketSeat*/;
+            //    //update the total fees
+            //    od.TotalFees = od.TicketPrice /** td.TicketSeat*/;
 
-                db.Entry(ord).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Details", "Orders", new { id = od.Order.OrderID });
-            }
-            ticket.Order = td.Order;
-            return View(ticket);
+            //    db.Entry(ord).State = EntityState.Modified;
+            //    db.SaveChanges();
+            //    return RedirectToAction("Details", "Orders", new { id = od.Order.OrderID });
+            //}
+            //ticket.Order = td.Order;
+            //return View(ticket);
 
             ord.Orderstatus = OrderStatus.Completed;
 

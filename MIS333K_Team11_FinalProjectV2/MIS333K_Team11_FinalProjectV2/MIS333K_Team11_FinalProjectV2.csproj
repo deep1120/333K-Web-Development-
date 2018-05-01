@@ -384,6 +384,7 @@
     <Content Include="Views\Customer\Details.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\AppUsers\ManagerIndex.cshtml" />
+    <Content Include="Views\Showings\Publish.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

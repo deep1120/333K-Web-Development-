@@ -55,7 +55,7 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [DisplayFormat(DataFormatString = "{0:C}")]
         public Decimal OrderTotal
         {
-            get { return OrderSubtotal + SalesTax; }
+            get { return OrderSubtotal + SalesTax; } //Discount Property needs to be created... set them to 0 if they don't apply to specific order
         }
 
         [Required(ErrorMessage = "Gift is required.")]
