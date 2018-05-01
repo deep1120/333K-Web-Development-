@@ -21,8 +21,8 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
             MovieData AddMovies = new MovieData();
             AddMovies.SeedMovies(context);
 
-            //SeedIdentity si = new SeedIdentity();
-            //si.AddAdmin(context);
+            ManagerData md = new ManagerData();
+            md.AddManager(context);
 
             CustomerData cd = new CustomerData();
             cd.AddCustomer(context);

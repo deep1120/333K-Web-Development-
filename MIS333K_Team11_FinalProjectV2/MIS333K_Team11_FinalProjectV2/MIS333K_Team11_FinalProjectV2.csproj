@@ -154,8 +154,21 @@
     <Compile Include="Migrations\201805010445294_PutRequiredBack.Designer.cs">
       <DependentUpon>201805010445294_PutRequiredBack.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805010522174_AddAdmin.cs" />
+    <Compile Include="Migrations\201805010522174_AddAdmin.Designer.cs">
+      <DependentUpon>201805010522174_AddAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805010542273_AddManagers.cs" />
+    <Compile Include="Migrations\201805010542273_AddManagers.Designer.cs">
+      <DependentUpon>201805010542273_AddManagers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805010549316_NewDatabaseWithRightRoles.cs" />
+    <Compile Include="Migrations\201805010549316_NewDatabaseWithRightRoles.Designer.cs">
+      <DependentUpon>201805010549316_NewDatabaseWithRightRoles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\CustomerData.cs" />
     <Compile Include="Migrations\EmployeeData.cs" />
+    <Compile Include="Migrations\ManagerData.cs" />
     <Compile Include="Models\IdentityUser.cs" />
     <Compile Include="Models\Rating.cs" />
     <Compile Include="ViewModel\CustomerVM.cs" />
@@ -358,6 +371,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805010445294_PutRequiredBack.resx">
       <DependentUpon>201805010445294_PutRequiredBack.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805010522174_AddAdmin.resx">
+      <DependentUpon>201805010522174_AddAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805010542273_AddManagers.resx">
+      <DependentUpon>201805010542273_AddManagers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805010549316_NewDatabaseWithRightRoles.resx">
+      <DependentUpon>201805010549316_NewDatabaseWithRightRoles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
