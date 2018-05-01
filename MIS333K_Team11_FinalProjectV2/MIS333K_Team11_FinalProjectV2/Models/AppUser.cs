@@ -45,7 +45,7 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime Birthday { get; set; }
 
-        //[Display(Name = "Popcorn Points")]
+        [Display(Name = "Popcorn Points")]
         public Int32 PopcornPoints { get; set; }
 
         public virtual List<Review> Reviews { get; set; }

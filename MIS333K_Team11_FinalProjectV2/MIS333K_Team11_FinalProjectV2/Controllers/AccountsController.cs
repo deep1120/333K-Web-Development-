@@ -136,6 +136,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             return View();
         }
 
+      
         // NOTE: Here is your logic for registering a new user
         // POST: /Accounts/Register
         [HttpPost]
@@ -143,12 +144,23 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            //You must be 13 to add an account
-            if (model.Birthday.AddYears(13) > DateTime.Today) //they aren't 13 
+            //Age Validation
+            if (User.IsInRole("Manager"))
             {
-                ViewBag.BirthdayError = "You must be 13 years old to create an account";
-                return View(model);
+                if(model.Birthday.AddYears(18) > DateTime.Today)
+                {
+                    ViewBag.BirthdayError = "You must be 18 years old to be an employee";
+                    return View(model);
+                }
             }
+            else
+            {
+                if (model.Birthday.AddYears(13) > DateTime.Today) //they aren't 13 
+                {
+                    ViewBag.BirthdayError = "You must be 13 years old to create an account";
+                    return View(model);
+                }
+            } 
 
             if (ModelState.IsValid)
             {
@@ -555,6 +567,11 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         {
             var body = $@"Dear {user.FirstName}, you have been registered as an employee";
             EmailMessaging.SendEmail(user.Email, "Team 11 Employee Registration Confirmation", body);
+        }
+
+        public ActionResult SendEmail()
+        {
+            return View();
         }
     }
 }

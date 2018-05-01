@@ -176,6 +176,7 @@
     <Compile Include="ViewModel\CustomerWelcomeVM.cs" />
     <Compile Include="ViewModel\ItemRatingVM.cs" />
     <Compile Include="ViewModel\MovieReportVM.cs" />
+    <Compile Include="ViewModel\EmailFormModel.cs" />
     <Compile Include="Views\Utilities\GenerateNextConfirmationNumber.cs" />
     <Compile Include="Views\Utilities\Scheduler.cs" />
     <Compile Include="Views\Utilities\Seat.cs" />
@@ -345,6 +346,7 @@
     <Content Include="Views\AppUsers\ManagerIndex.cshtml" />
     <Content Include="Views\Showings\Publish.cshtml" />
     <Content Include="Views\Orders\Gift.cshtml" />
+    <Content Include="Views\Accounts\SendEmail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
