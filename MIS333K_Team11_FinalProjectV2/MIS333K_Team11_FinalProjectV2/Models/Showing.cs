@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MIS333K_Team11_FinalProjectV2.Models
 {
+    //think about adding an enum for the ShowingStatus { Pending, Published}
     public enum Theatre { Theatre1, Theatre2 }
     public class Showing
     {

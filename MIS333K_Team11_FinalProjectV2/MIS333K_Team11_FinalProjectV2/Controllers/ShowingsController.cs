@@ -151,7 +151,8 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             //make sure that there is no big or small gap
             //and then make sure last showing doesn't before 9:30 PM       
 
-            List<Showing> CheckShowings = db.Showings.OrderBy(m => m.ShowDate).ToList();
+            List<Showing> CheckShowings = db.Showings.ToList();
+
             List<Showing> Monday1 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Monday && s.Theatre == Theatre.Theatre1).OrderBy(m=>m.ShowDate).ToList();
             List<Showing> Monday2 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Monday && s.Theatre == Theatre.Theatre2).OrderBy(m => m.ShowDate).ToList();
             List<Showing> Tuesday1 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Tuesday && s.Theatre == Theatre.Theatre1).OrderBy(m => m.ShowDate).ToList();
@@ -167,15 +168,89 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             List<Showing> Sunday1 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Sunday && s.Theatre == Theatre.Theatre1).OrderBy(m => m.ShowDate).ToList();
             List<Showing> Sunday2 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Sunday && s.Theatre == Theatre.Theatre2).OrderBy(m => m.ShowDate).ToList();
 
+
+            var Monday_1 = Monday1.ToArray();
+            var Monday_2 = Monday2.ToArray();
+            var Tuesday_1 = Tuesday1.ToArray();
+            var Tuesday_2 = Tuesday2.ToArray();
+            var Wednesday_1 = Wednesday1.ToArray();
+            var Wednesday_2 = Wednesday2.ToArray();
+            var Thursday_1 = Thursday1.ToArray();
+            var Thursday_2 = Thursday2.ToArray();
+            var Friday_1 = Friday1.ToArray();
+            var Friday_2 = Friday2.ToArray();
+            var Saturday_1 = Saturday1.ToArray();
+            var Saturday_2 = Saturday2.ToArray();
+            var Sunday_1 = Sunday1.ToArray();
+            var Sunday_2 = Sunday2.ToArray();
+
             bool checker = true;
             while(checker == true)
             {
-                foreach(Showing sh in Monday1)
+                for(int i=0; i<Monday_1.Length - 1; i++)
                 {
-                    DateTime start = sh.ShowDate;
-                    DateTime end = sh.ShowDate.AddMinutes(sh.SponsoringMovie.RunningTime);
+                    DateTime firstend = Monday_1[i].ShowDate.AddMinutes(Monday_1[i+1].SponsoringMovie.RunningTime);
+                    DateTime nextstart = Monday_1[i+1].ShowDate;
 
-                    
+                    var gap = firstend.Subtract(nextstart).TotalMinutes;
+                    if (gap < 25 || gap > 45)
+                    {
+                        checker = true;
+                    }
+                    else
+                    {
+                        ViewBag.ErrorMessage = "Movie scheduled gap must be between 25-45 minutes; the gap between should not be smaller or longer than that amount";
+                        //return()   ?????
+                        break;
+                    }
+                }
+                for (int i = 0; i < Monday_1.Length - 1; i++)
+                {
+                    DateTime firstend = Monday_1[i].ShowDate.AddMinutes(Monday_1[i + 1].SponsoringMovie.RunningTime);
+                    DateTime nextstart = Monday_1[i + 1].ShowDate;
+
+                    var gap = firstend.Subtract(nextstart).TotalMinutes;
+                    if (gap < 25 || gap > 45)
+                    {
+                        checker = true;
+                    }
+                    else
+                    {
+                        ViewBag.ErrorMessage = "Movie scheduled gap must be between 25-45 minutes; the gap between should not be smaller or longer than that amount";
+                        break;
+                    }
+                }
+                for (int i = 0; i < Monday_1.Length - 1; i++)
+                {
+                    DateTime firstend = Monday_1[i].ShowDate.AddMinutes(Monday_1[i + 1].SponsoringMovie.RunningTime);
+                    DateTime nextstart = Monday_1[i + 1].ShowDate;
+
+                    var gap = firstend.Subtract(nextstart).TotalMinutes;
+                    if (gap < 25 || gap > 45)
+                    {
+                        checker = true;
+                    }
+                    else
+                    {
+                        ViewBag.ErrorMessage = "Movie scheduled gap must be between 25-45 minutes; the gap between should not be smaller or longer than that amount";
+                        break;
+                    }
+                }
+                for (int i = 0; i < Monday_1.Length - 1; i++)
+                {
+                    DateTime firstend = Monday_1[i].ShowDate.AddMinutes(Monday_1[i + 1].SponsoringMovie.RunningTime);
+                    DateTime nextstart = Monday_1[i + 1].ShowDate;
+
+                    var gap = firstend.Subtract(nextstart).TotalMinutes;
+                    if (gap < 25 || gap > 45)
+                    {
+                        checker = true;
+                    }
+                    else
+                    {
+                        ViewBag.ErrorMessage = "Movie scheduled gap must be between 25-45 minutes; the gap between should not be smaller or longer than that amount";
+                        break;
+                    }
                 }
             }
             return View();
