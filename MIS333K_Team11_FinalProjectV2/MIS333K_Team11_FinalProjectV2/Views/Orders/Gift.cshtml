@@ -1,0 +1,50 @@
+﻿@model MIS333K_Team11_FinalProjectV2.Models.Order
+
+@{
+    ViewBag.Title = "Gift";
+}
+
+<h2>Gift</h2>
+<b1>Please check the box and insert an email to make this a Gift. If not, just press the "Review Order" button. </b1>
+
+
+<style type="text/css">
+
+    .none {
+        display: none;
+    }
+</style>
+<h2>New Order</h2>
+<br />
+<p class="text-danger">@ViewBag.ErrorMessage</p>
+<br />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(order => order.Gift, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(order => order.Gift)
+                @Html.ValidationMessageFor(order => order.Gift, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(order => order.GiftEmail, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(order => order.GiftEmail, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(order => order.GiftEmail, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Review Order" class="btn btn-default" />
+        </div>
+    </div>
+
+}

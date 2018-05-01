@@ -214,10 +214,12 @@
     <Compile Include="Migrations\EmployeeData.cs" />
     <Compile Include="Models\IdentityUser.cs" />
     <Compile Include="Models\Rating.cs" />
+    <Compile Include="ViewModel\CheckoutViewModel.cs" />
     <Compile Include="ViewModel\CustomerVM.cs" />
     <Compile Include="ViewModel\CustomerWelcomeVM.cs" />
     <Compile Include="ViewModel\ItemRatingVM.cs" />
     <Compile Include="ViewModel\MovieReportVM.cs" />
+    <Compile Include="Views\Utilities\GenerateNextConfirmationNumber.cs" />
     <Compile Include="Views\Utilities\Scheduler.cs" />
     <Compile Include="Views\Utilities\Seat.cs" />
     <Compile Include="Views\Utilities\SeatHelper.cs" />
@@ -385,6 +387,7 @@
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\AppUsers\ManagerIndex.cshtml" />
     <Content Include="Views\Showings\Publish.cshtml" />
+    <Content Include="Views\Orders\Gift.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

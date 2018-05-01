@@ -10,12 +10,20 @@ using System.Web.Mvc;
 using MIS333K_Team11_FinalProjectV2.Models;
 using MIS333K_Team11_FinalProjectV2.Utilities;
 using static MIS333K_Team11_FinalProjectV2.Models.AppUser;
+using MIS333K_Team11_FinalProjectV2.ViewModel;
+using Microsoft.AspNet.Identity;
+using System.Text;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using Microsoft.AspNet.Identity.EntityFramework;
+
 
 namespace MIS333K_Team11_FinalProjectV2.Controllers
 {
     public class OrdersController : Controller
     {
         private AppDbContext db = new AppDbContext();
+       
 
         // GET: Orders
         public ActionResult Index()
@@ -188,6 +196,42 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             return View(td);
         }
 
+        public ActionResult Gift(Order order)
+        {
+            
+            order.Gift = false;
+            return View(order);
+
+        }
+
+        [HttpPost]
+        public ActionResult Gift(bool Gift, String GiftEmail)
+        {
+            var errorMessage = string.Empty;
+
+            if (Gift == true)
+            {
+                if(GiftEmail == null)
+                {
+                    errorMessage = $"Please enter the recipient's email";
+                    ViewBag.ErrorMessage = errorMessage;
+                }
+                else
+                {
+                    var giftEmail = GiftEmail;
+                    //var giftReceiver = UserManager.FindByEmail( giftEmail);
+                    //if (giftReceiver == null) { errorMessage = $"No user record was found with this email."; }
+                    ViewBag.ErrorMessage = errorMessage;
+                }
+            }
+            
+
+            return RedirectToAction("Checkout");
+        }
+
+
+      
+
         public ActionResult Checkout(int OrderID)
         {
             //when in edit view page, user clicks checkout and then and will pass the whole order object over to Checkout method
@@ -242,6 +286,9 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             return View(ord);
 
         }
+
+        
+        
 
         // GET: Orders/Edit/5
         public ActionResult Edit(int? id)
