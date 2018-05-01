@@ -28,7 +28,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer1.LastName = "Baker";
 				customer1.MiddleInitial = "L.";
 				customer1.PhoneNumber = "5125550180";
-				customer1.Birthday = new DateTime(11/23/1949);
+				customer1.Birthday = new DateTime(1949, 11, 23);
 				customer1.Street = "1245 Lake Anchorage Blvd.";
 				customer1.City = "Austin";
 				customer1.State = StateAbbr.TX;
@@ -64,7 +64,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer2.LastName = "Banks";
 				customer2.MiddleInitial = "";
 				customer2.PhoneNumber = "5125550183";
-				customer2.Birthday = new DateTime(11/27/1962);
+				customer2.Birthday = new DateTime(1962, 11, 27);
 				customer2.Street = "1300 Tall Pine Lane";
 				customer2.City = "Austin";
 				customer2.State = StateAbbr.TX;
@@ -100,7 +100,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer3.LastName = "Broccolo";
 				customer3.MiddleInitial = "V";
 				customer3.PhoneNumber = "5125550128";
-				customer3.Birthday = new DateTime(10/11/1992);
+				customer3.Birthday = new DateTime(1992, 10, 11);
 				customer3.Street = "62 Browning Road";
 				customer3.City = "Austin";
 				customer3.State = StateAbbr.TX;
@@ -136,7 +136,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer4.LastName = "Chang";
 				customer4.MiddleInitial = "L";
 				customer4.PhoneNumber = "5125550133";
-				customer4.Birthday = new DateTime(5/16/1997);
+				customer4.Birthday = new DateTime(1997, 5, 16);
 				customer4.Street = "202 Bellmont Hall";
 				customer4.City = "Round Rock";
 				customer4.State = StateAbbr.TX;
@@ -172,7 +172,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer5.LastName = "Chou";
 				customer5.MiddleInitial = "";
 				customer5.PhoneNumber = "5125550102";
-				customer5.Birthday = new DateTime(4/6/1970);
+				customer5.Birthday = new DateTime(1970, 4, 6);
 				customer5.Street = "1600 Teresa Lane";
 				customer5.City = "Austin";
 				customer5.State = StateAbbr.TX;
@@ -208,7 +208,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer6.LastName = "Dixon";
 				customer6.MiddleInitial = "D";
 				customer6.PhoneNumber = "5125550146";
-				customer6.Birthday = new DateTime(1/12/1984);
+				customer6.Birthday = new DateTime(1984, 1, 12);
 				customer6.Street = "234 Holston Circle";
 				customer6.City = "Austin";
 				customer6.State = StateAbbr.TX;
@@ -244,7 +244,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer7.LastName = "Evans";
 				customer7.MiddleInitial = "";
 				customer7.PhoneNumber = "5125550170";
-				customer7.Birthday = new DateTime(9/9/1959);
+				customer7.Birthday = new DateTime(1959, 9, 9);
 				customer7.Street = "506 Farrell Circle";
 				customer7.City = "Georgetown";
 				customer7.State = StateAbbr.TX;
@@ -280,7 +280,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer8.LastName = "Feeley";
 				customer8.MiddleInitial = "K";
 				customer8.PhoneNumber = "5125550105";
-				customer8.Birthday = new DateTime(1/12/2001);
+				customer8.Birthday = new DateTime(2001, 1, 12);
 				customer8.Street = "600 S 8th Street W";
 				customer8.City = "Austin";
 				customer8.State = StateAbbr.TX;
@@ -316,7 +316,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer9.LastName = "Freeley";
 				customer9.MiddleInitial = "P";
 				customer9.PhoneNumber = "5125550114";
-				customer9.Birthday = new DateTime(2/4/1991);
+				customer9.Birthday = new DateTime(1991, 2, 4);
 				customer9.Street = "4448 Fairview Ave.";
 				customer9.City = "Horseshoe Bay";
 				customer9.State = StateAbbr.TX;
@@ -352,7 +352,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer10.LastName = "Garcia";
 				customer10.MiddleInitial = "L";
 				customer10.PhoneNumber = "5125550155";
-				customer10.Birthday = new DateTime(10/2/1991);
+				customer10.Birthday = new DateTime(1991, 10, 2);
 				customer10.Street = "594 Longview";
 				customer10.City = "Austin";
 				customer10.State = StateAbbr.TX;
@@ -388,7 +388,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer11.LastName = "Haley";
 				customer11.MiddleInitial = "E";
 				customer11.PhoneNumber = "5125550116";
-				customer11.Birthday = new DateTime(7/10/1974);
+				customer11.Birthday = new DateTime(1974, 7, 10);
 				customer11.Street = "One Cowboy Pkwy";
 				customer11.City = "Austin";
 				customer11.State = StateAbbr.TX;
@@ -424,7 +424,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer12.LastName = "Hampton";
 				customer12.MiddleInitial = "T.";
 				customer12.PhoneNumber = "5125550150";
-				customer12.Birthday = new DateTime(3/10/2004);
+				customer12.Birthday = new DateTime(2004, 3, 10);
 				customer12.Street = "337 38th St.";
 				customer12.City = "San Marcos";
 				customer12.State = StateAbbr.TX;
@@ -460,7 +460,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer13.LastName = "Hearn";
 				customer13.MiddleInitial = "B";
 				customer13.PhoneNumber = "5125550196";
-				customer13.Birthday = new DateTime(8/5/1950);
+				customer13.Birthday = new DateTime(1950, 8, 5);
 				customer13.Street = "4225 North First";
 				customer13.City = "Austin";
 				customer13.State = StateAbbr.TX;
@@ -496,7 +496,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer14.LastName = "Hicks";
 				customer14.MiddleInitial = "J";
 				customer14.PhoneNumber = "5125550188";
-				customer14.Birthday = new DateTime(12/8/2004);
+				customer14.Birthday = new DateTime(2004, 12, 8);
 				customer14.Street = "32 NE Garden Ln., Ste 910";
 				customer14.City = "Austin";
 				customer14.State = StateAbbr.TX;
@@ -532,7 +532,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer15.LastName = "Ingram";
 				customer15.MiddleInitial = "S.";
 				customer15.PhoneNumber = "5125550116";
-				customer15.Birthday = new DateTime(9/5/2001);
+				customer15.Birthday = new DateTime(2001, 9, 5);
 				customer15.Street = "6548 La Posada Ct.";
 				customer15.City = "New York";
 				customer15.State = StateAbbr.NY;
@@ -568,7 +568,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer16.LastName = "Jacobs";
 				customer16.MiddleInitial = "L.";
 				customer16.PhoneNumber = "5125550166";
-				customer16.Birthday = new DateTime(1/20/1999);
+				customer16.Birthday = new DateTime(1999, 1, 20);
 				customer16.Street = "4564 Elm St.";
 				customer16.City = "Austin";
 				customer16.State = StateAbbr.TX;
@@ -604,7 +604,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer17.LastName = "Lawrence";
 				customer17.MiddleInitial = "M.";
 				customer17.PhoneNumber = "5125550173";
-				customer17.Birthday = new DateTime(4/14/2000);
+				customer17.Birthday = new DateTime(2000, 4, 14);
 				customer17.Street = "6639 Butterfly Ln.";
 				customer17.City = "Beverly Hills";
 				customer17.State = StateAbbr.CA;
@@ -640,7 +640,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer18.LastName = "Lineback";
 				customer18.MiddleInitial = "W";
 				customer18.PhoneNumber = "5125550167";
-				customer18.Birthday = new DateTime(12/2/2003);
+				customer18.Birthday = new DateTime(2003, 12, 2);
 				customer18.Street = "1300 Netherland St";
 				customer18.City = "Austin";
 				customer18.State = StateAbbr.TX;
@@ -676,7 +676,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer19.LastName = "Lowe";
 				customer19.MiddleInitial = "S";
 				customer19.PhoneNumber = "5125550187";
-				customer19.Birthday = new DateTime(12/7/1977);
+				customer19.Birthday = new DateTime(1977, 12, 7);
 				customer19.Street = "3201 Pine Drive";
 				customer19.City = "New Braunfels";
 				customer19.State = StateAbbr.TX;
@@ -712,7 +712,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer20.LastName = "Luce";
 				customer20.MiddleInitial = "B";
 				customer20.PhoneNumber = "5125550141";
-				customer20.Birthday = new DateTime(3/16/1949);
+				customer20.Birthday = new DateTime(1949, 3, 16);
 				customer20.Street = "2345 Rolling Clouds";
 				customer20.City = "Cactus";
 				customer20.State = StateAbbr.TX;
@@ -748,7 +748,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer21.LastName = "MacLeod";
 				customer21.MiddleInitial = "D.";
 				customer21.PhoneNumber = "5125550185";
-				customer21.Birthday = new DateTime(2/21/1947);
+				customer21.Birthday = new DateTime(1947, 2, 21);
 				customer21.Street = "2504 Far West Blvd.";
 				customer21.City = "Marble Falls";
 				customer21.State = StateAbbr.TX;
@@ -784,7 +784,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer22.LastName = "Markham";
 				customer22.MiddleInitial = "P.";
 				customer22.PhoneNumber = "5125550134";
-				customer22.Birthday = new DateTime(3/20/1972);
+				customer22.Birthday = new DateTime(1972, 3, 20);
 				customer22.Street = "7861 Chevy Chase";
 				customer22.City = "Kissimmee";
 				customer22.State = StateAbbr.FL;
@@ -820,7 +820,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer23.LastName = "Martin";
 				customer23.MiddleInitial = "A";
 				customer23.PhoneNumber = "5125550151";
-				customer23.Birthday = new DateTime(7/19/1992);
+				customer23.Birthday = new DateTime(1992, 7, 19);
 				customer23.Street = "87 Alcedo St.";
 				customer23.City = "Austin";
 				customer23.State = StateAbbr.TX;
@@ -856,7 +856,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer24.LastName = "Martinez";
 				customer24.MiddleInitial = "R.";
 				customer24.PhoneNumber = "5125550120";
-				customer24.Birthday = new DateTime(5/28/1947);
+				customer24.Birthday = new DateTime(1947, 5, 28);
 				customer24.Street = "8295 Sunset Blvd.";
 				customer24.City = "Red Rock";
 				customer24.State = StateAbbr.TX;
@@ -892,7 +892,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer25.LastName = "Miller";
 				customer25.MiddleInitial = "R.";
 				customer25.PhoneNumber = "5125550198";
-				customer25.Birthday = new DateTime(10/15/1990);
+				customer25.Birthday = new DateTime(1990, 10, 15);
 				customer25.Street = "8962 Main St.";
 				customer25.City = "South Padre Island";
 				customer25.State = StateAbbr.TX;
@@ -928,7 +928,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer26.LastName = "Nelson";
 				customer26.MiddleInitial = "T";
 				customer26.PhoneNumber = "5125550177";
-				customer26.Birthday = new DateTime(7/13/1971);
+				customer26.Birthday = new DateTime(1971, 7, 13);
 				customer26.Street = "2601 Red River";
 				customer26.City = "Disney";
 				customer26.State = StateAbbr.OK;
@@ -964,7 +964,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer27.LastName = "Nguyen";
 				customer27.MiddleInitial = "C";
 				customer27.PhoneNumber = "5125550174";
-				customer27.Birthday = new DateTime(3/17/1984);
+				customer27.Birthday = new DateTime(1984, 3, 17);
 				customer27.Street = "1249 4th SW St.";
 				customer27.City = "Del Rio";
 				customer27.State = StateAbbr.TX;
@@ -1000,7 +1000,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer28.LastName = "O'Reilly";
 				customer28.MiddleInitial = "T";
 				customer28.PhoneNumber = "5125550167";
-				customer28.Birthday = new DateTime(7/8/1959);
+				customer28.Birthday = new DateTime(1959, 7, 8);
 				customer28.Street = "8800 Gringo Drive";
 				customer28.City = "Austin";
 				customer28.State = StateAbbr.TX;
@@ -1036,7 +1036,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer29.LastName = "Radkovich";
 				customer29.MiddleInitial = "L";
 				customer29.PhoneNumber = "5125550151";
-				customer29.Birthday = new DateTime(5/19/1966);
+				customer29.Birthday = new DateTime(1966, 5, 19);
 				customer29.Street = "1300 Elliott Pl";
 				customer29.City = "Austin";
 				customer29.State = StateAbbr.TX;
@@ -1072,7 +1072,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer30.LastName = "Rhodes";
 				customer30.MiddleInitial = "C.";
 				customer30.PhoneNumber = "5125550133";
-				customer30.Birthday = new DateTime(3/12/1965);
+				customer30.Birthday = new DateTime(1965, 3, 12);
 				customer30.Street = "4587 Enfield Rd.";
 				customer30.City = "Austin";
 				customer30.State = StateAbbr.TX;
@@ -1108,7 +1108,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer31.LastName = "Rice";
 				customer31.MiddleInitial = "M.";
 				customer31.PhoneNumber = "5125550196";
-				customer31.Birthday = new DateTime(4/28/1975);
+				customer31.Birthday = new DateTime(1975, 4, 28);
 				customer31.Street = "3405 Rio Grande";
 				customer31.City = "Austin";
 				customer31.State = StateAbbr.TX;
@@ -1144,7 +1144,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer32.LastName = "Rodriguez";
 				customer32.MiddleInitial = "";
 				customer32.PhoneNumber = "5125550141";
-				customer32.Birthday = new DateTime(12/8/1953);
+				customer32.Birthday = new DateTime(1953, 12, 8);
 				customer32.Street = "6788 Cotter Street";
 				customer32.City = "Littlefield";
 				customer32.State = StateAbbr.TX;
@@ -1180,7 +1180,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer33.LastName = "Rogers";
 				customer33.MiddleInitial = "B.";
 				customer33.PhoneNumber = "5125550189";
-				customer33.Birthday = new DateTime(4/22/1973);
+				customer33.Birthday = new DateTime(1973, 4, 22);
 				customer33.Street = "4965 Oak Hill";
 				customer33.City = "Austin";
 				customer33.State = StateAbbr.TX;
@@ -1216,7 +1216,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer34.LastName = "Saint-Jean";
 				customer34.MiddleInitial = "M";
 				customer34.PhoneNumber = "5125550152";
-				customer34.Birthday = new DateTime(2/19/1995);
+				customer34.Birthday = new DateTime(1995, 2, 19);
 				customer34.Street = "255 Toncray Dr.";
 				customer34.City = "Austin";
 				customer34.State = StateAbbr.TX;
@@ -1252,7 +1252,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer35.LastName = "Saunders";
 				customer35.MiddleInitial = "J.";
 				customer35.PhoneNumber = "5125550146";
-				customer35.Birthday = new DateTime(2/19/1978);
+				customer35.Birthday = new DateTime(1978, 2, 19);
 				customer35.Street = "332 Avenue C";
 				customer35.City = "Austin";
 				customer35.State = StateAbbr.TX;
@@ -1288,7 +1288,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer36.LastName = "Sewell";
 				customer36.MiddleInitial = "T.";
 				customer36.PhoneNumber = "5125550192";
-				customer36.Birthday = new DateTime(12/23/2004);
+				customer36.Birthday = new DateTime(2004, 12, 23);
 				customer36.Street = "2365 51st St.";
 				customer36.City = "El Paso";
 				customer36.State = StateAbbr.TX;
@@ -1324,7 +1324,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer37.LastName = "Sheffield";
 				customer37.MiddleInitial = "J.";
 				customer37.PhoneNumber = "5125550131";
-				customer37.Birthday = new DateTime(5/8/1960);
+				customer37.Birthday = new DateTime(1960, 5, 8);
 				customer37.Street = "3886 Avenue A";
 				customer37.City = "Balmorhea";
 				customer37.State = StateAbbr.TX;
@@ -1360,7 +1360,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer38.LastName = "Smith";
 				customer38.MiddleInitial = "A";
 				customer38.PhoneNumber = "5125550190";
-				customer38.Birthday = new DateTime(6/25/1955);
+				customer38.Birthday = new DateTime(1955, 6, 25);
 				customer38.Street = "23 Hidden Forge Dr.";
 				customer38.City = "Austin";
 				customer38.State = StateAbbr.TX;
@@ -1396,7 +1396,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer39.LastName = "Stroud";
 				customer39.MiddleInitial = "P";
 				customer39.PhoneNumber = "5125550157";
-				customer39.Birthday = new DateTime(7/26/1967);
+				customer39.Birthday = new DateTime(1967, 7, 26);
 				customer39.Street = "1212 Rita Rd";
 				customer39.City = "Austin";
 				customer39.State = StateAbbr.TX;
@@ -1432,7 +1432,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer40.LastName = "Stuart";
 				customer40.MiddleInitial = "D.";
 				customer40.PhoneNumber = "5125550191";
-				customer40.Birthday = new DateTime(12/4/1947);
+				customer40.Birthday = new DateTime(1947, 12, 4);
 				customer40.Street = "5576 Toro Ring";
 				customer40.City = "Kyle";
 				customer40.State = StateAbbr.TX;
@@ -1468,7 +1468,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer41.LastName = "Stump";
 				customer41.MiddleInitial = "L";
 				customer41.PhoneNumber = "5125550136";
-				customer41.Birthday = new DateTime(7/10/1974);
+				customer41.Birthday = new DateTime(1974, 7, 10);
 				customer41.Street = "1300 Kellen Circle";
 				customer41.City = "Philadelphia";
 				customer41.State = StateAbbr.PA;
@@ -1504,7 +1504,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer42.LastName = "Tanner";
 				customer42.MiddleInitial = "S.";
 				customer42.PhoneNumber = "5125550170";
-				customer42.Birthday = new DateTime(1/11/1944);
+				customer42.Birthday = new DateTime(1944, 1, 11);
 				customer42.Street = "4347 Almstead";
 				customer42.City = "Austin";
 				customer42.State = StateAbbr.TX;
@@ -1540,7 +1540,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer43.LastName = "Taylor";
 				customer43.MiddleInitial = "R.";
 				customer43.PhoneNumber = "5125550160";
-				customer43.Birthday = new DateTime(11/14/1990);
+				customer43.Birthday = new DateTime(1990, 11, 14);
 				customer43.Street = "467 Nueces St.";
 				customer43.City = "Austin";
 				customer43.State = StateAbbr.TX;
@@ -1576,7 +1576,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer44.LastName = "Taylor";
 				customer44.MiddleInitial = "K.";
 				customer44.PhoneNumber = "5125550127";
-				customer44.Birthday = new DateTime(1/18/1976);
+				customer44.Birthday = new DateTime(1976, 1, 18);
 				customer44.Street = "345 Longview Dr.";
 				customer44.City = "Austin";
 				customer44.State = StateAbbr.TX;
@@ -1612,7 +1612,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer45.LastName = "Tee";
 				customer45.MiddleInitial = "J";
 				customer45.PhoneNumber = "5125550161";
-				customer45.Birthday = new DateTime(9/6/1998);
+				customer45.Birthday = new DateTime(1998, 9, 6);
 				customer45.Street = "5590 Lavell Dr";
 				customer45.City = "Austin";
 				customer45.State = StateAbbr.TX;
@@ -1648,7 +1648,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer46.LastName = "Tucker";
 				customer46.MiddleInitial = "J";
 				customer46.PhoneNumber = "5125550106";
-				customer46.Birthday = new DateTime(2/25/1943);
+				customer46.Birthday = new DateTime(1943, 2, 25);
 				customer46.Street = "312 Main St.";
 				customer46.City = "Round Rock";
 				customer46.State = StateAbbr.TX;
@@ -1684,7 +1684,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer47.LastName = "Velasco";
 				customer47.MiddleInitial = "G";
 				customer47.PhoneNumber = "5125550170";
-				customer47.Birthday = new DateTime(9/10/1985);
+				customer47.Birthday = new DateTime(1985, 9, 10);
 				customer47.Street = "679 W. 4th";
 				customer47.City = "Cedar Park";
 				customer47.State = StateAbbr.TX;
@@ -1720,7 +1720,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer48.LastName = "Vino";
 				customer48.MiddleInitial = "E";
 				customer48.PhoneNumber = "5125550128";
-				customer48.Birthday = new DateTime(2/7/1985);
+				customer48.Birthday = new DateTime(1985, 2, 7);
 				customer48.Street = "189 Grape Road";
 				customer48.City = "Lockhart";
 				customer48.State = StateAbbr.TX;
@@ -1756,7 +1756,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer49.LastName = "West";
 				customer49.MiddleInitial = "T";
 				customer49.PhoneNumber = "2025550170";
-				customer49.Birthday = new DateTime(1/9/1976);
+				customer49.Birthday = new DateTime(1976, 1, 9);
 				customer49.Street = "RR 3287";
 				customer49.City = "Austin";
 				customer49.State = StateAbbr.TX;
@@ -1792,7 +1792,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer50.LastName = "Winthorpe";
 				customer50.MiddleInitial = "L";
 				customer50.PhoneNumber = "2025550141";
-				customer50.Birthday = new DateTime(4/19/1953);
+				customer50.Birthday = new DateTime(1953, 4, 19);
 				customer50.Street = "2500 Padre Blvd";
 				customer50.City = "Austin";
 				customer50.State = StateAbbr.TX;
@@ -1828,7 +1828,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
 				customer51.LastName = "Wood";
 				customer51.MiddleInitial = "B.";
 				customer51.PhoneNumber = "2025550128";
-				customer51.Birthday = new DateTime(12/28/2002);
+				customer51.Birthday = new DateTime(2002, 12, 28);
 				customer51.Street = "447 Westlake Dr.";
 				customer51.City = "Austin";
 				customer51.State = StateAbbr.TX;

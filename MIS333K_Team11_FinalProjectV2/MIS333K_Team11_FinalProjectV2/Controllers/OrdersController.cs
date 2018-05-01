@@ -9,6 +9,9 @@ using System.Web.Mvc;
 //using MIS333K_Team11_FinalProjectV2.DAL;
 using MIS333K_Team11_FinalProjectV2.Models;
 using MIS333K_Team11_FinalProjectV2.Utilities;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using static MIS333K_Team11_FinalProjectV2.Models.AppUser;
 
 namespace MIS333K_Team11_FinalProjectV2.Controllers
@@ -21,7 +24,16 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         public ActionResult Index()
         {
             //Maybe make this the order history page???
-            return View(db.Orders.ToList());  
+            if(User.IsInRole("Manager"))
+            {
+                return View(db.Orders.ToList());
+            }
+            else
+            {
+                String UserID = User.Identity.GetUserId();
+                List<Order> Orders = db.Orders.Where(o => o.OrderAppUser.Id == UserID).ToList();
+                return View(Orders);
+            }            
         }
 
         // GET: Orders/Details/5
@@ -36,7 +48,14 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             {
                 return HttpNotFound();
             }
-            return View(order);
+            if(User.IsInRole("Manager") || order.OrderAppUser.Id == User.Identity.GetUserId())
+            {
+                return View(order);
+            }
+            else
+            {
+                return View("Error", new string[] { "This is not your order!"});
+            }
         }
 
         // GET: Orders/Create
@@ -59,16 +78,17 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
             //record date of order
             order.OrderDate = DateTime.Today;
-            
+
+            order.OrderAppUser = db.Users.Find(User.Identity.GetUserId());
+            db.SaveChanges();
+
             if (ModelState.IsValid)
             {
                 db.Orders.Add(order);
                 db.SaveChanges();
                 return RedirectToAction("AddToOrder", new { OrderID = order.OrderID });
             }
-
             return View(order);
-
         }
 
         public ActionResult AddToOrder(int OrderID)

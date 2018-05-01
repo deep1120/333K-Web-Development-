@@ -37,19 +37,15 @@
                                 <li class="nav-item">
                                 @Html.ActionLink("Manage Roles", "Index", "RoleAdmin", null, new { @class = "nav-link" })
                                 </li>
+                                <li class="nav-item">
+                                @Html.ActionLink("Employee List", "Employees", "Accounts", null, new { @class = "nav-link" })
+                                </li>
                         }
 
                         @if (User.IsInRole("Customer") || User.IsInRole("DisabledCustomer"))
                         {
                             <li class="nav-item">
-                            @Html.ActionLink("My Orders", "Index", "Orders", null, new {@class = "nav-link"})
-                            </li>
-                        }
-
-                        @if (User.IsInRole("Manager"))
-                        {
-                            <li class="nav-item">
-                            @Html.ActionLink("Employee List", "Employees", "Accounts", null, new { @class = "nav-link" })
+                            @Html.ActionLink("Orders", "Index", "Orders", null, new {@class = "nav-link"})
                             </li>
                         }
 
@@ -57,6 +53,9 @@
                         {
                             <li class="nav-item">@Html.ActionLink("Customer List", "Customers", "Accounts", null, new { @class = "nav-link" })</li>
                             <li class="nav-item">@Html.ActionLink("Reports", "Index", "Report", null, new { @class = "nav-link" })</li>
+                            <li class="nav-item">
+                            @Html.ActionLink("Orders", "Index", "Orders", null, new {@class = "nav-link"})
+                            </li>
                         }
                 </ul>
             </div>

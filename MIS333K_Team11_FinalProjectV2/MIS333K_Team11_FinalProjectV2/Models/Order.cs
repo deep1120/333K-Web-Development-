@@ -20,7 +20,10 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [Display(Name = "Order Number")] //Transaction number? do we need this?
         public Int32 OrderNumber { get; set; }
 
-        //public Int32 ConfirmationNumber { get; set; }
+        public Int32 ConfirmationNumber { get; set; }
+
+        public Decimal EarlyDiscount { get; set; }
+        public Decimal SeniorDiscount { get; set; }
 
         [Display(Name = "Order Date")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
@@ -69,9 +72,8 @@ namespace MIS333K_Team11_FinalProjectV2.Models
 
 
         public virtual List<Ticket> Tickets { get; set; }
-        public virtual AppUser Purchased { get; set; }
-        public virtual AppUser Gifted { get; set; }
-
+        public virtual AppUser OrderAppUser { get; set; }
+ 
         public Order()
         {
             if (Tickets == null)

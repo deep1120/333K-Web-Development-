@@ -7,13 +7,13 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class RidOfOrderNotes : IMigrationMetadata
+    public sealed partial class TookOutRequired : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(RidOfOrderNotes));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(TookOutRequired));
         
         string IMigrationMetadata.Id
         {
-            get { return "201804300127522_RidOfOrderNotes"; }
+            get { return "201805010440199_TookOutRequired"; }
         }
         
         string IMigrationMetadata.Source

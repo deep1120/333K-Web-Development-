@@ -7,13 +7,13 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class SeedAllEmployeeandCustomer : IMigrationMetadata
+    public sealed partial class FixDatabase : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(SeedAllEmployeeandCustomer));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(FixDatabase));
         
         string IMigrationMetadata.Id
         {
-            get { return "201804281729120_SeedAllEmployeeandCustomer"; }
+            get { return "201805010433127_FixDatabase"; }
         }
         
         string IMigrationMetadata.Source

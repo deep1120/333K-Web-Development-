@@ -7,13 +7,13 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class NewDatabase : IMigrationMetadata
+    public sealed partial class PutRequiredBack : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(NewDatabase));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(PutRequiredBack));
         
         string IMigrationMetadata.Id
         {
-            get { return "201804281550287_NewDatabase"; }
+            get { return "201805010445294_PutRequiredBack"; }
         }
         
         string IMigrationMetadata.Source

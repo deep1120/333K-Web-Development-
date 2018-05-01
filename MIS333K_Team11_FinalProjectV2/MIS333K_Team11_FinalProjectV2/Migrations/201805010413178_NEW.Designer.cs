@@ -7,13 +7,13 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class ChangingAccountViewModel : IMigrationMetadata
+    public sealed partial class NEW : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ChangingAccountViewModel));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(NEW));
         
         string IMigrationMetadata.Id
         {
-            get { return "201804281842287_ChangingAccountViewModel"; }
+            get { return "201805010413178_NEW"; }
         }
         
         string IMigrationMetadata.Source
