@@ -12,12 +12,12 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [Required]
         [Display(Name = "Email")]
         [EmailAddress]
-        public string Email { get; set; }
+        public String Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
-        public string Password { get; set; }
+        public String Password { get; set; }
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
@@ -31,17 +31,17 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
-        public string Email { get; set; }
+        public String Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
-        public string Password { get; set; }
+        public String Password { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-        public string ConfirmPassword { get; set; }
+        public String ConfirmPassword { get; set; }
 
         [Required(ErrorMessage = "First name is required.")]
         [Display(Name = "First Name")]
@@ -58,7 +58,7 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [Required(ErrorMessage = "Phone number is required")]
         [Phone]
         [Display(Name = "Phone Number")]
-        public string PhoneNumber { get; set; }
+        public String PhoneNumber { get; set; }
 
         [Required(ErrorMessage = "Please enter street")]
         [Display(Name = "Street")]
@@ -88,32 +88,32 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Current password")]
-        public string OldPassword { get; set; }
+        public String OldPassword { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "New password")]
-        public string NewPassword { get; set; }
+        public String NewPassword { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm new password")]
         [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
-        public string ConfirmPassword { get; set; }
+        public String ConfirmPassword { get; set; }
     }
 
     public class SetPasswordViewModel
     {
-        public string UserID { get; set; }
+        public String UserID { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "New password")]
-        public string NewPassword { get; set; }
+        public String NewPassword { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm new password")]
         [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
-        public string ConfirmPassword { get; set; }
+        public String ConfirmPassword { get; set; }
     }
 
     public class IndexViewModel
@@ -121,7 +121,7 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
-        public string Email { get; set; }
+        public String Email { get; set; }
 
         [Required(ErrorMessage = "First name is required.")]
         [Display(Name = "First Name")]
@@ -138,7 +138,7 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [Required(ErrorMessage = "Phone number is required")]
         [Phone]
         [Display(Name = "Phone Number")]
-        public string PhoneNumber { get; set; }
+        public String PhoneNumber { get; set; }
 
         [Required(ErrorMessage = "Please enter street")]
         [Display(Name = "Street")]
@@ -179,7 +179,7 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
-        public string Email { get; set; }
+        public String Email { get; set; }
 
         [Required(ErrorMessage = "First name is required.")]
         [Display(Name = "First Name")]
@@ -196,7 +196,7 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [Required(ErrorMessage = "Phone number is required")]
         [Phone]
         [Display(Name = "Phone Number")]
-        public string PhoneNumber { get; set; }
+        public String PhoneNumber { get; set; }
 
         [Required(ErrorMessage = "Please enter street")]
         [Display(Name = "Street")]
@@ -223,12 +223,12 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
-        public string Password { get; set; }
+        public String Password { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-        public string ConfirmPassword { get; set; }
+        public String ConfirmPassword { get; set; }
     }
 }
 

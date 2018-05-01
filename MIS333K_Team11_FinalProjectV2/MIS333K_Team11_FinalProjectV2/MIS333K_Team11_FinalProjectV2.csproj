@@ -138,80 +138,37 @@
   <ItemGroup>
     <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
-    <Compile Include="Migrations\201804281550287_NewDatabase.cs" />
-    <Compile Include="Migrations\201804281550287_NewDatabase.Designer.cs">
-      <DependentUpon>201804281550287_NewDatabase.cs</DependentUpon>
+    <Compile Include="Migrations\201805010413178_NEW.cs" />
+    <Compile Include="Migrations\201805010413178_NEW.Designer.cs">
+      <DependentUpon>201805010413178_NEW.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201804281729120_SeedAllEmployeeandCustomer.cs" />
-    <Compile Include="Migrations\201804281729120_SeedAllEmployeeandCustomer.Designer.cs">
-      <DependentUpon>201804281729120_SeedAllEmployeeandCustomer.cs</DependentUpon>
+    <Compile Include="Migrations\201805010433127_FixDatabase.cs" />
+    <Compile Include="Migrations\201805010433127_FixDatabase.Designer.cs">
+      <DependentUpon>201805010433127_FixDatabase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201804281746427_SeedAllEmployeeandCustomer1.cs" />
-    <Compile Include="Migrations\201804281746427_SeedAllEmployeeandCustomer1.Designer.cs">
-      <DependentUpon>201804281746427_SeedAllEmployeeandCustomer1.cs</DependentUpon>
+    <Compile Include="Migrations\201805010440199_TookOutRequired.cs" />
+    <Compile Include="Migrations\201805010440199_TookOutRequired.Designer.cs">
+      <DependentUpon>201805010440199_TookOutRequired.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201804281842287_ChangingAccountViewModel.cs" />
-    <Compile Include="Migrations\201804281842287_ChangingAccountViewModel.Designer.cs">
-      <DependentUpon>201804281842287_ChangingAccountViewModel.cs</DependentUpon>
+    <Compile Include="Migrations\201805010445294_PutRequiredBack.cs" />
+    <Compile Include="Migrations\201805010445294_PutRequiredBack.Designer.cs">
+      <DependentUpon>201805010445294_PutRequiredBack.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201804281930550_AddPopcornPoints.cs" />
-    <Compile Include="Migrations\201804281930550_AddPopcornPoints.Designer.cs">
-      <DependentUpon>201804281930550_AddPopcornPoints.cs</DependentUpon>
+    <Compile Include="Migrations\201805010522174_AddAdmin.cs" />
+    <Compile Include="Migrations\201805010522174_AddAdmin.Designer.cs">
+      <DependentUpon>201805010522174_AddAdmin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201804282010366_FixViewsOnAccounts.cs" />
-    <Compile Include="Migrations\201804282010366_FixViewsOnAccounts.Designer.cs">
-      <DependentUpon>201804282010366_FixViewsOnAccounts.cs</DependentUpon>
+    <Compile Include="Migrations\201805010542273_AddManagers.cs" />
+    <Compile Include="Migrations\201805010542273_AddManagers.Designer.cs">
+      <DependentUpon>201805010542273_AddManagers.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201804282048484_IntegrateViewsAndEmail.cs" />
-    <Compile Include="Migrations\201804282048484_IntegrateViewsAndEmail.Designer.cs">
-      <DependentUpon>201804282048484_IntegrateViewsAndEmail.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804282117233_AddEmailValidation.cs" />
-    <Compile Include="Migrations\201804282117233_AddEmailValidation.Designer.cs">
-      <DependentUpon>201804282117233_AddEmailValidation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804282125148_AddUserIDinAVM.cs" />
-    <Compile Include="Migrations\201804282125148_AddUserIDinAVM.Designer.cs">
-      <DependentUpon>201804282125148_AddUserIDinAVM.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804282145239_EnableEmail.cs" />
-    <Compile Include="Migrations\201804282145239_EnableEmail.Designer.cs">
-      <DependentUpon>201804282145239_EnableEmail.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804282154071_UpdateID.cs" />
-    <Compile Include="Migrations\201804282154071_UpdateID.Designer.cs">
-      <DependentUpon>201804282154071_UpdateID.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804282229394_DeletedEmailSend.cs" />
-    <Compile Include="Migrations\201804282229394_DeletedEmailSend.Designer.cs">
-      <DependentUpon>201804282229394_DeletedEmailSend.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804282252557_FixingUser.cs" />
-    <Compile Include="Migrations\201804282252557_FixingUser.Designer.cs">
-      <DependentUpon>201804282252557_FixingUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804282320117_FixAllUserID.cs" />
-    <Compile Include="Migrations\201804282320117_FixAllUserID.Designer.cs">
-      <DependentUpon>201804282320117_FixAllUserID.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804290438472_ShowingNameAndDateAdded.cs" />
-    <Compile Include="Migrations\201804290438472_ShowingNameAndDateAdded.Designer.cs">
-      <DependentUpon>201804290438472_ShowingNameAndDateAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804300127522_RidOfOrderNotes.cs" />
-    <Compile Include="Migrations\201804300127522_RidOfOrderNotes.Designer.cs">
-      <DependentUpon>201804300127522_RidOfOrderNotes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804301547386_ChangeFromSharon.cs" />
-    <Compile Include="Migrations\201804301547386_ChangeFromSharon.Designer.cs">
-      <DependentUpon>201804301547386_ChangeFromSharon.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804301633064_AddReviewAndRating.cs" />
-    <Compile Include="Migrations\201804301633064_AddReviewAndRating.Designer.cs">
-      <DependentUpon>201804301633064_AddReviewAndRating.cs</DependentUpon>
+    <Compile Include="Migrations\201805010549316_NewDatabaseWithRightRoles.cs" />
+    <Compile Include="Migrations\201805010549316_NewDatabaseWithRightRoles.Designer.cs">
+      <DependentUpon>201805010549316_NewDatabaseWithRightRoles.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\CustomerData.cs" />
     <Compile Include="Migrations\EmployeeData.cs" />
+    <Compile Include="Migrations\ManagerData.cs" />
     <Compile Include="Models\IdentityUser.cs" />
     <Compile Include="Models\Rating.cs" />
     <Compile Include="ViewModel\CheckoutViewModel.cs" />
@@ -406,59 +363,26 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201804281550287_NewDatabase.resx">
-      <DependentUpon>201804281550287_NewDatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805010413178_NEW.resx">
+      <DependentUpon>201805010413178_NEW.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804281729120_SeedAllEmployeeandCustomer.resx">
-      <DependentUpon>201804281729120_SeedAllEmployeeandCustomer.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805010433127_FixDatabase.resx">
+      <DependentUpon>201805010433127_FixDatabase.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804281746427_SeedAllEmployeeandCustomer1.resx">
-      <DependentUpon>201804281746427_SeedAllEmployeeandCustomer1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805010440199_TookOutRequired.resx">
+      <DependentUpon>201805010440199_TookOutRequired.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804281842287_ChangingAccountViewModel.resx">
-      <DependentUpon>201804281842287_ChangingAccountViewModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805010445294_PutRequiredBack.resx">
+      <DependentUpon>201805010445294_PutRequiredBack.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804281930550_AddPopcornPoints.resx">
-      <DependentUpon>201804281930550_AddPopcornPoints.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805010522174_AddAdmin.resx">
+      <DependentUpon>201805010522174_AddAdmin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804282010366_FixViewsOnAccounts.resx">
-      <DependentUpon>201804282010366_FixViewsOnAccounts.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805010542273_AddManagers.resx">
+      <DependentUpon>201805010542273_AddManagers.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804282048484_IntegrateViewsAndEmail.resx">
-      <DependentUpon>201804282048484_IntegrateViewsAndEmail.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804282117233_AddEmailValidation.resx">
-      <DependentUpon>201804282117233_AddEmailValidation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804282125148_AddUserIDinAVM.resx">
-      <DependentUpon>201804282125148_AddUserIDinAVM.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804282145239_EnableEmail.resx">
-      <DependentUpon>201804282145239_EnableEmail.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804282154071_UpdateID.resx">
-      <DependentUpon>201804282154071_UpdateID.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804282229394_DeletedEmailSend.resx">
-      <DependentUpon>201804282229394_DeletedEmailSend.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804282252557_FixingUser.resx">
-      <DependentUpon>201804282252557_FixingUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804282320117_FixAllUserID.resx">
-      <DependentUpon>201804282320117_FixAllUserID.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804290438472_ShowingNameAndDateAdded.resx">
-      <DependentUpon>201804290438472_ShowingNameAndDateAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804300127522_RidOfOrderNotes.resx">
-      <DependentUpon>201804300127522_RidOfOrderNotes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804301547386_ChangeFromSharon.resx">
-      <DependentUpon>201804301547386_ChangeFromSharon.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804301633064_AddReviewAndRating.resx">
-      <DependentUpon>201804301633064_AddReviewAndRating.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805010549316_NewDatabaseWithRightRoles.resx">
+      <DependentUpon>201805010549316_NewDatabaseWithRightRoles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

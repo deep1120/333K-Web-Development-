@@ -33,7 +33,7 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
                 manager.UserName = "admin@example.com";
                 manager.FirstName = "AdminFirstName";
                 manager.LastName = "AdminLastName";
-                manager.Birthday = new DateTime(1991, 1, 1);
+                manager.Birthday = new DateTime(1990,01,01);
                 manager.PhoneNumber = "(512)555-5555";
                 manager.PopcornPoints = 0;
 
@@ -63,6 +63,5 @@ namespace MIS333K_Team11_FinalProjectV2.Migrations
             //save changes
             db.SaveChanges();
         }
-
     }
 }

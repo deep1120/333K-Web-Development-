@@ -13,8 +13,6 @@ namespace MIS333K_Team11_FinalProjectV2.Models
 {
     public class AppUser : IdentityUser
     {
-        //public String UserID { get; set; }
-
         [Required]
         [Display(Name = "First Name")]
         public String FirstName { get; set; }
@@ -47,12 +45,10 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime Birthday { get; set; }
 
-        [Display(Name = "Popcorn Points")]
+        //[Display(Name = "Popcorn Points")]
         public Int32 PopcornPoints { get; set; }
 
         public virtual List<Review> Reviews { get; set; }
-        public virtual List<Order> Purchased { get; set; }
-        public virtual List<Order> Gifted { get; set; }
         public virtual List<Order> Orders { get; set; }
         public virtual List<Card> Cards { get; set; }
 
@@ -61,18 +57,10 @@ namespace MIS333K_Team11_FinalProjectV2.Models
             if (Reviews == null)
             {
                 Reviews = new List<Review>();
-            }
-            if (Purchased == null)
-            {
-                Purchased = new List<Order>();
-            }
-            if (Gifted == null)
-            {
-                Gifted = new List<Order>();
-            }
+            }      
             if (Orders == null)
             {
-                Gifted = new List<Order>();
+                Orders = new List<Order>();
             }
             if(Cards == null)
             {
@@ -120,8 +108,6 @@ namespace MIS333K_Team11_FinalProjectV2.Models
             public DbSet<Genre> Genres { get; set; }
             public DbSet<Movie> Movies { get; set; }
             public DbSet<Order> Orders { get; set; }
-            //public DbSet<Order> Purchased { get; set; }
-            //public DbSet<Order> Gifted { get; set; }
             public DbSet<Rating> Ratings { get; set; }
             public DbSet<Review> Reviews { get; set; }
             public DbSet<Showing> Showings { get; set; }

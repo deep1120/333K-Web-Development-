@@ -32,7 +32,7 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [Display(Name = "Card Number")]
         [Required(ErrorMessage = "Card Number is required")]
         [RegularExpression(@"^.{5,}$", ErrorMessage = "Invalid card number")]
-        public string CardNumber
+        public String CardNumber
         {
             get { return (string.IsNullOrEmpty(_CardNumber)) ? string.Empty : string.Concat(string.Empty.PadLeft(_CardNumber.Length - 4, '*'), _CardNumber.Substring(_CardNumber.Length - 4)); }
             set { _CardNumber = value; }
