@@ -6,6 +6,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MIS333K_Team11_FinalProjectV2.Models 
 {
+    //add public Int32 ConfirmationNumner {get;set;} back in
+    //public Decimal EarlyDiscount {get;set;}      //this logic will go in the the OrdersController/AddToOrder...
+    //public Decimal SeniorDiscount {get;set;}     //subtract from TicketPrice in that is connected to the TicketPrice in AddToOrder
+
     public enum OrderStatus
     {
         Pending, Completed, Cancelled
