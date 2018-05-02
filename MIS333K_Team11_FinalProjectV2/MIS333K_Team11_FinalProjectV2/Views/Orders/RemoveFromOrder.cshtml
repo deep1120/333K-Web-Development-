@@ -1,18 +1,23 @@
 ﻿@model IEnumerable<MIS333K_Team11_FinalProjectV2.Models.Ticket>
 
+
+
 @{
     ViewBag.Title = "RemoveFromOrder";
 }
 
 <h2>RemoveFromOrder</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
 <table class="table">
     <tr>
         <th>
-            Showing Name
+            Movie Name
+        </th>
+        <th>
+            Showing Time
         </th>
         <th>
             @Html.DisplayNameFor(model => model.TicketSeat)
@@ -30,7 +35,10 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Showing.ShowingName)
+                @Html.DisplayFor(modelItem => item.Showing.SponsoringMovie.MovieTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Showing.ShowDate)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TicketSeat)
@@ -47,5 +55,7 @@
             </td>
         </tr>
     }
+
+    @Html.ActionLink("Back to List", "Index")
 
 </table>

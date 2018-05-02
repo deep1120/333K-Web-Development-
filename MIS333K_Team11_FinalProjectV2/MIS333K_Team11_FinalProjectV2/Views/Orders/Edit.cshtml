@@ -34,6 +34,7 @@
 <table class="table table-sm table-striped table-hover">
     <tr>
         <th>Showing Name</th>
+        <th>Date and Time</th>
         <th>Ticket Seat</th>
         <th>Total Price</th>
     </tr>
@@ -41,6 +42,7 @@
     {
         <tr>
             <td>@Html.DisplayFor(modelItem => td.Showing.SponsoringMovie.MovieTitle)</td>
+            <td>@Html.DisplayFor(modelItem => td.Showing.ShowDate)</td>
             <td>@Html.DisplayFor(modelItem => td.TicketSeat)</td>
             <td>@Html.DisplayFor(modelItem => td.TicketPrice)</td>
         </tr>
@@ -67,8 +69,8 @@
 </table>
 
 <div>
-    @Html.ActionLink("Add Another Showing", "AddToOrder", new { OrderID = Model.OrderID }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Add Another Showing", "AddShowing", new { OrderID = Model.OrderID }, new { @class = "btn btn-primary" })
     @Html.ActionLink("Edit Existing Order", "RemoveFromOrder", new { OrderID = Model.OrderID }, new { @class = "btn btn-primary" })
     @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
-    @Html.ActionLink("Check Out", "Checkout", new { OrderID = Model.OrderID }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Check Out", "Gift", new { OrderID = Model.OrderID }, new { @class = "btn btn-primary" })
 </div>
