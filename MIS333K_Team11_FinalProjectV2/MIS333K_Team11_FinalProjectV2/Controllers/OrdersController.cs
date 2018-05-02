@@ -230,13 +230,14 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
         public ActionResult Checkout(int OrderID)
         {
+            ViewBag.AllCards = GetAllCards();
             //when in edit view page, user clicks checkout and then and will pass the whole order object over to Checkout method
             Order ord = db.Orders.Find(OrderID);
             return View(ord);
         }
 
         [HttpPost]
-        public ActionResult Checkout(Order ord/*, string CardOption*/) //without bind...might not include stuff
+        public ActionResult Checkout(Order ord, int SelectedCards) //without bind...might not include stuff
         {
             //have to add modify and and do entity stuff
             //fuzzy object like past codes in edit
@@ -354,7 +355,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         {
             Showing showing = db.Showings.Find(SelectedShowing);
 
-            List<Ticket> tickets = db.Tickets.Where(t => t.Order.Orderstatus == OrderStatus.Completed && t.Showing == showing).ToList();
+            List<Ticket> tickets = db.Tickets.Where(t => t.Order.Orderstatus == OrderStatus.Completed/* && t.Showing == showing*/).ToList();
 
             MultiSelectList selSeats = SeatHelper.FindAvailableSeats(tickets);
 
@@ -372,6 +373,15 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
             //return the select list        
             return selShowings;
+        }
+
+        public SelectList GetAllCards()
+        {
+            List<Card> allCards = db.Cards.ToList();  //TODO: sepecific for each user
+
+            SelectList selcards = new SelectList(allCards, "CardID", "CardNumber");
+
+            return selcards;
         }
 
         private AppUserManager UserManager

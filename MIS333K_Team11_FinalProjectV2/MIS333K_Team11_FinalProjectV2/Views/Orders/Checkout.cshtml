@@ -13,9 +13,9 @@
      so that after post, it knows which order id/number to reference to aftert http request*@
 @Html.HiddenFor(model => model.OrderID)
 @*@Html.HiddenFor(model => model.OrderDate)
-@Html.HiddenFor(model => model.OrderSubtotal)
-@Html.HiddenFor(model => model.SalesTax)
-@Html.HiddenFor(model => model.OrderTotal)*@
+    @Html.HiddenFor(model => model.OrderSubtotal)
+    @Html.HiddenFor(model => model.SalesTax)
+    @Html.HiddenFor(model => model.OrderTotal)*@
 <div>
     <h4>Order</h4>
     <hr />
@@ -40,21 +40,21 @@
 </div>
 
 <h4>Showings</h4>
-    <table class="table table-sm table-striped table-hover">
+<table class="table table-sm table-striped table-hover">
+    <tr>
+        <th>Showing Name</th>
+        <th>Ticket Seat</th>
+        <th>Total Price</th>
+    </tr>
+    @foreach (Ticket td in Model.Tickets)
+    {
         <tr>
-            <th>Showing Name</th>
-            <th>Ticket Seat</th>
-            <th>Total Price</th>
+            <td>@Html.DisplayFor(modelItem => td.Showing.SponsoringMovie.MovieTitle)</td>
+            <td>@Html.DisplayFor(modelItem => td.TicketSeat)</td>
+            <td>@Html.DisplayFor(modelItem => td.TicketPrice)</td>
         </tr>
-        @foreach (Ticket td in Model.Tickets)
-        {
-            <tr>
-                <td>@Html.DisplayFor(modelItem => td.Showing.SponsoringMovie.MovieTitle)</td>
-                <td>@Html.DisplayFor(modelItem => td.TicketSeat)</td>
-                <td>@Html.DisplayFor(modelItem => td.TicketPrice)</td>
-            </tr>
-        }
-    </table>
+    }
+</table>
 
 <table class="table table-sm table-bordered" style="width:30%">
     <tr>
@@ -74,6 +74,24 @@
     </tr>
 
 </table>
+
+<div class="form-group">
+    <label class="control-label col-md-2">Select a Card:</label>
+    <div class="col-md-10">
+        @Html.DropDownList("SelectedCards", (SelectList)ViewBag.AllCards, new { @class = "form-control" })
+    </div>
+</div>
+
+
+
+<div>
+    @Html.ActionLink("Add Card", "AddCard", "Accounts", @*new { id = Model.Order.OrderID },*@ new { @class = "btn btn-primary" })
+</div>
+
+
+<div>
+
+</div>
 
 <div>
     @Html.ActionLink("Confirm", "Index", new { OrderID = Model.OrderID }, new { @class = "btn btn-primary" })
