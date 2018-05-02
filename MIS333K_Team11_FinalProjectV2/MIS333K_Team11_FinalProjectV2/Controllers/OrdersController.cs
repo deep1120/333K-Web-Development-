@@ -134,7 +134,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddToOrder([Bind(Include = "TicketID,OrderID,MovieID,Quantity,Subtotal,TicketPrice,TicketSeat,TotalFees")] Ticket td, int SelectedTicket)
+        public ActionResult AddToOrder([Bind(Include = "TicketID,OrderID,MovieID,Quantity,Subtotal,TicketPrice,TicketSeat,TotalFees")] Ticket td, string SelectedTicket)
         {
             //Showing showing = db.Showings.Find(SelectedShowing);
 
@@ -145,7 +145,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             //LOGIC HERE TO STOP USER FROM ADDING A SHOWING THAT OVERLAPS WITH A ANOTHER SHOWING IN CART
             //List<Showing> CurrentShowingsInCart = db.Showings.Where(o=>o.Tickets.....
 
-            td.TicketSeat = SeatHelper.GetSeatName(SelectedTicket);
+            td.TicketSeat = SelectedTicket;
             td.Order = ord;
             td.Order.Orderstatus = OrderStatus.Pending;
             //Showing showing = db.Showings.Find(td.Showing.ShowingID);
@@ -275,6 +275,12 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
         }
 
+        public ActionResult Confirm()
+        {
+            //TODO: Add generate confirmation number
+            return View();
+        }
+
 
 
         // GET: Orders/Edit/5
@@ -351,13 +357,13 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             return RedirectToAction("Index");
         }
 
-        public MultiSelectList GetAllTicketSeats(int SelectedShowing)
+        public SelectList GetAllTicketSeats(int SelectedShowing)
         {
             Showing showing = db.Showings.Find(SelectedShowing);
 
-            List<Ticket> tickets = db.Tickets.Where(t => t.Order.Orderstatus == OrderStatus.Completed/* && t.Showing == showing*/).ToList();
+            List<Ticket> tickets = db.Tickets/*.Where(t => t.Order.Orderstatus == OrderStatus.Completed && t.Showing == showing*/.ToList();
 
-            MultiSelectList selSeats = SeatHelper.FindAvailableSeats(tickets);
+            SelectList selSeats = SeatHelper.FindAvailableSeats(tickets);
 
             return selSeats;
         }
