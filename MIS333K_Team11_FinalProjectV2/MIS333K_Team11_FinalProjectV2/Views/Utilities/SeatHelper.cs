@@ -9,24 +9,74 @@ namespace MIS333K_Team11_FinalProjectV2.Utilities
 {
     public class SeatHelper
     {
-        public static SelectList FindAvailableSeats(List<Ticket> tickets) //tickets is the list of 
+        public static SelectList FindAvailableSeats(List<Ticket> tickets)
         {
-            List<Seat> TakenSeats = new List<Seat>();
-
+            List<String> TakenSeatNames = new List<String>();
             foreach (Ticket t in tickets)
             {
-                Seat s = new Seat();
-                s.SeatName = t.TicketSeat;
-                s.SeatID = GetSeatID(s.SeatName);
-                TakenSeats.Add(s);
+                TakenSeatNames.Add(t.TicketSeat);
             }
 
-            List<Seat> AvailableSeats = GetAllSeats().Except(TakenSeats).ToList();
+            List<String> AllSeatNames = new List<String>();
+            AllSeatNames.Add("A1");
+            AllSeatNames.Add("A2");
+            AllSeatNames.Add("A3");
+            AllSeatNames.Add("A4");
+            AllSeatNames.Add("A5");
+            AllSeatNames.Add("A6");
+            AllSeatNames.Add("A7");
+            AllSeatNames.Add("A8");
+            AllSeatNames.Add("B1");
+            AllSeatNames.Add("B2");
+            AllSeatNames.Add("B3");
+            AllSeatNames.Add("B4");
+            AllSeatNames.Add("B5");
+            AllSeatNames.Add("B6");
+            AllSeatNames.Add("B7");
+            AllSeatNames.Add("B8");
+            AllSeatNames.Add("C1");
+            AllSeatNames.Add("C2");
+            AllSeatNames.Add("C3");
+            AllSeatNames.Add("C4");
+            AllSeatNames.Add("C5");
+            AllSeatNames.Add("C6");
+            AllSeatNames.Add("C7");
+            AllSeatNames.Add("C8");
+            AllSeatNames.Add("D1");
+            AllSeatNames.Add("D2");
+            AllSeatNames.Add("D3");
+            AllSeatNames.Add("D4");
+            AllSeatNames.Add("D5");
+            AllSeatNames.Add("D6");
+            AllSeatNames.Add("D7");
+            AllSeatNames.Add("D8");
 
-            SelectList slAvailableSeats = new SelectList(AvailableSeats, "SeatID", "SeatName");
+            //Add the rest of the seat names
+
+            List<String> AvailableSeats = AllSeatNames.Except(TakenSeatNames).ToList();
+
+            SelectList slAvailableSeats = new SelectList(AvailableSeats);
+
             return slAvailableSeats;
-
         }
+        //public static SelectList FindAvailableSeats(List<Ticket> tickets) //tickets is the list of 
+        //{
+        //    List<Seat> TakenSeats = new List<Seat>();
+
+        //    foreach (Ticket t in tickets)
+        //    {
+        //        Seat s = new Seat();
+        //        s.SeatName = t.TicketSeat;
+        //        s.SeatID = GetSeatID(s.SeatName);
+        //        TakenSeats.Add(s);
+        //    }
+
+        //    List<Seat> AvailableSeats = GetAllSeats().Except(TakenSeats).ToList();
+
+        //    SelectList slAvailableSeats = new SelectList(AvailableSeats, "SeatID", "SeatName");
+        //    return slAvailableSeats;
+
+        //}
 
 
         public static List<Seat> GetAllSeats()
