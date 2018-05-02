@@ -166,6 +166,14 @@
     <Compile Include="Migrations\201805010549316_NewDatabaseWithRightRoles.Designer.cs">
       <DependentUpon>201805010549316_NewDatabaseWithRightRoles.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805020144241_AllDataTime2.cs" />
+    <Compile Include="Migrations\201805020144241_AllDataTime2.Designer.cs">
+      <DependentUpon>201805020144241_AllDataTime2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805020205242_AddNewData.cs" />
+    <Compile Include="Migrations\201805020205242_AddNewData.Designer.cs">
+      <DependentUpon>201805020205242_AddNewData.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\CustomerData.cs" />
     <Compile Include="Migrations\EmployeeData.cs" />
     <Compile Include="Migrations\ManagerData.cs" />
@@ -347,6 +355,7 @@
     <Content Include="Views\Showings\Publish.cshtml" />
     <Content Include="Views\Orders\Gift.cshtml" />
     <Content Include="Views\Accounts\SendEmail.cshtml" />
+    <Content Include="Views\Orders\AddShowing.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -385,6 +394,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805010549316_NewDatabaseWithRightRoles.resx">
       <DependentUpon>201805010549316_NewDatabaseWithRightRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805020144241_AllDataTime2.resx">
+      <DependentUpon>201805020144241_AllDataTime2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805020205242_AddNewData.resx">
+      <DependentUpon>201805020205242_AddNewData.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

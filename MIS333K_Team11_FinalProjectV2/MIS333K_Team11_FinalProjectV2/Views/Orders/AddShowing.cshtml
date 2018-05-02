@@ -1,10 +1,10 @@
-﻿@model MIS333K_Team11_FinalProjectV2.Models.Ticket
+﻿@model MIS333K_Team11_FinalProjectV2.Models.Order
 
 @{
-    ViewBag.Title = "AddToOrder";
+    ViewBag.Title = "Add Showing";
 }
 
-<h2>AddToOrder</h2>
+<h2>Add Showing</h2>
 
 @using (Html.BeginForm())
 {
@@ -14,8 +14,8 @@
         <h4>Ticket</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Order.OrderID)
-        @Html.HiddenFor(model => model.Order.OrderNumber)
+        @Html.HiddenFor(model => model.OrderID)
+        @Html.HiddenFor(model => model.OrderNumber)
         @*<div class="form-group">
                 @Html.LabelFor(model => model.TicketSeat, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -24,24 +24,17 @@
                 </div>
             </div>*@
 
-        @*<div class="form-group">
+        <div class="form-group">
             <label class="control-label col-md-2">Select a movie:</label>
             <div class="col-md-10">
                 @Html.DropDownList("SelectedShowing", (SelectList)ViewBag.AllShowings, new { @class = "form-control" })
             </div>
-        </div>*@
-
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Select Seat(s):</label>
-            <div class="col-md-10">
-                @Html.DropDownList("SelectedTicket", (SelectList)ViewBag.AllSeats, new { @class = "form-control" })
-            </div>
         </div>
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Add Movie to Order" class="btn btn-default" />
+                <input type="submit" value="Add Showing" class="btn btn-default" />
             </div>
         </div>
     </div>
@@ -50,3 +43,4 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
