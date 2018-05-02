@@ -137,54 +137,29 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         public ActionResult AddToOrder([Bind(Include = "TicketID,OrderID,MovieID,Quantity,Subtotal,TicketPrice,TicketSeat,TotalFees")] Ticket td, string SelectedTicket)
         {
             //Showing showing = db.Showings.Find(SelectedShowing);
-
+            Ticket ticket = db.Tickets.Find(td.TicketID);
             //find the order 
-            Order ord = db.Orders.Find(td.OrderID);
-            //ord.Orderstatus = OrderStatus.Pending;
+            Order ord = db.Orders.Find(ticket.OrderID);
 
             //LOGIC HERE TO STOP USER FROM ADDING A SHOWING THAT OVERLAPS WITH A ANOTHER SHOWING IN CART
             //List<Showing> CurrentShowingsInCart = db.Showings.Where(o=>o.Tickets.....
 
-            td.TicketSeat = SelectedTicket;
-            td.Order = ord;
-            td.Order.Orderstatus = OrderStatus.Pending;
-            //Showing showing = db.Showings.Find(td.Showing.ShowingID);
-            //td.TicketPrice = showing.TicketPrice;
-            //td.TicketPrice = td.Showing.TicketPrice;
+            ticket.TicketSeat = SelectedTicket;
+            ticket.Order = ord;
+            ticket.Order.Orderstatus = OrderStatus.Pending;
+            ticket.TicketPrice = ticket.Showing.TicketPrice;
 
             if (ModelState.IsValid)
             {
-                db.Entry(td).State = EntityState.Modified;
+                db.Entry(ticket).State = EntityState.Modified;
                 db.SaveChanges();
                 //redirect to edit so that they can continue adding to cart if they want to 
                 return RedirectToAction("Edit", "Orders", new { id = ord.OrderID });
             }
 
             //model state is not valid; repopulate viewbags and return
-            ViewBag.AllSeats = GetAllTicketSeats(td.Showing.ShowingID);
-            return View(td);
-
-            //for (int i = 0; i < SelectedTickets.Length; i++)
-            //{               
-            //    Ticket ticket = new Ticket();
-            //    ticket.TicketSeat = SeatHelper.GetSeatName(i);
-            //    ticket.Order = ord;
-            //    ticket.Showing = td.Showing;
-            //    ticket.Order.Orderstatus = OrderStatus.Pending;
-
-            //    db.Tickets.Add(ticket);
-            //    db.SaveChanges();
-
-            //    if (ModelState.IsValid)
-            //    {
-            //        //redirect to edit so that they can continue adding to cart if they want to 
-            //        return RedirectToAction("Edit", "Orders", new { id = ord.OrderID });
-            //    }
-
-            //    //model state is not valid; repopulate viewbags and return
-            //    ViewBag.AllSeats = GetAllTicketSeats(td.Showing.ShowingID);
-            //    //ViewBag.AllShowings = GetAllShowings();
-            //    return View(td);
+            ViewBag.AllSeats = GetAllTicketSeats(ticket.Showing.ShowingID);
+            return View(ticket);
 
             //    //PUT THIS TICKETPRICE IN SHOWINGS CONTROLLER WHEN CREATING A SHOWING
             //    //PUT validation in here for 48 hour discount
@@ -197,10 +172,8 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
         public ActionResult Gift(Order order)
         {
-
             order.Gift = false;
             return View(order);
-
         }
 
         [HttpPost]
@@ -237,29 +210,26 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         [HttpPost]
-        public ActionResult Checkout(Order ord, int SelectedCards) //without bind...might not include stuff
+        public ActionResult Checkout([Bind(Include = "OrderID,OrderNumber,ConfirmationNumber,EarlyDiscount,SeniorDiscount,OrderDate,CardNumber,Orderstatus,OrderSubtotal,SalesTax,OrderTotal,Gift,GiftEmail")] Order ord/*, int SelectedCards*/) //without bind...might not include stuff
         {
-            //have to add modify and and do entity stuff
-            //fuzzy object like past codes in edit
-            //this is because it is going through httppost
-            //find the product associated with this order
-            Order od = db.Orders.Include(OD => OD.Tickets)
-                                 //.Include(OD => OD.Showings?)
-                                 .FirstOrDefault(x => x.OrderID == ord.OrderID);
-            //Order ord = db.Orders.Find(OrderID);
+
+            //Order od = db.Orders.Include(OD => OD.Tickets)
+            //                    .FirstOrDefault(x => x.OrderID == ord.OrderID);
+            Order od = db.Orders.Find(ord.OrderID);
+            //do we add confirmation number here as well??
 
             if (ModelState.IsValid)
             {
-                od.Tickets = ord.Tickets;
+                //od.Tickets = ord.Tickets;
                 od.Orderstatus = OrderStatus.Completed;
-                db.Entry(ord).State = EntityState.Modified;
+                db.Entry(od).State = EntityState.Modified;
                 db.SaveChanges();
                 //return RedirectToAction("Checkout", "Orders", new { id = od.OrderID }); //checkout gift, checkoutfinal view. 
-                return View("Index");
+                return RedirectToAction("Index");
             }
 
             //ticket.Order = td.Order;
-            return View(ord);
+            return View(od);
 
             //ord.ListOfCards = new List<SelectListItem>();
             //var userID = User.Identity.GetUserID();
@@ -272,7 +242,6 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             //        ord.ListOfCards.Add(new SelectListItem { Text = $"{card.CardNumber} {card.Type.ToString()}", Value = $"{card.CardNumber} {card.Type.ToString()}" });
             //    }
             //}
-
         }
 
         public ActionResult Confirm()
@@ -280,7 +249,6 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             //TODO: Add generate confirmation number
             return View();
         }
-
 
 
         // GET: Orders/Edit/5
@@ -361,7 +329,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         {
             Showing showing = db.Showings.Find(SelectedShowing);
 
-            List<Ticket> tickets = db.Tickets/*.Where(t => t.Order.Orderstatus == OrderStatus.Completed && t.Showing == showing*/.ToList();
+            List<Ticket> tickets = db.Tickets.Where(t => t.Order.Orderstatus == OrderStatus.Completed && t.Showing.ShowingID == showing.ShowingID).ToList();
 
             SelectList selSeats = SeatHelper.FindAvailableSeats(tickets);
 

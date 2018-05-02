@@ -352,7 +352,7 @@
     <Content Include="Views\Customer\Details.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\AppUsers\ManagerIndex.cshtml" />
-    <Content Include="Views\Showings\Publish.cshtml" />
+    <Content Include="Views\Showings\Published.cshtml" />
     <Content Include="Views\Orders\Gift.cshtml" />
     <Content Include="Views\Accounts\SendEmail.cshtml" />
     <Content Include="Views\Orders\AddShowing.cshtml" />

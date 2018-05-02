@@ -1,0 +1,81 @@
+﻿@model IEnumerable<MIS333K_Team11_FinalProjectV2.Models.Showing>
+@using MIS333K_Team11_FinalProjectV2.Models
+
+@{
+    ViewBag.Title = "Published Showings";
+}
+
+<h2>Current Showings</h2>
+
+<p> Display @ViewBag.SelectedShowings out of @ViewBag.AllShowings Movies</p>
+
+<p>
+    @Html.ActionLink("Search By Date", "DateSearch", null, new { @class = "btn btn-info" })
+    @Html.ActionLink("Detailed Showings Search", "DetailedSearch", null, new { @class = "btn btn-info" })
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            Movie Showing
+        </th>
+        <th>
+            Upcoming Show Time
+        </th>
+        <th>
+            Theatre
+        </th>
+        <th>
+            Running Time
+        </th>
+        <th>
+            MPAA Rating
+        </th>
+        <th>
+            Release Date
+        </th>
+        <th>
+            Genre(s)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SponsoringMovie.MovieTitle)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Theatre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SponsoringMovie.RunningTime)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SponsoringMovie.MPAAratings)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SponsoringMovie.ReleaseDate)
+            </td>
+            <td>
+                @foreach (Genre gen in item.SponsoringMovie.Genres)
+                {
+                    @Html.DisplayFor(modelItem => gen.GenreName)<br />
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ShowingID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ShowingID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ShowingID })
+            </td>
+        </tr>
+    }
+
+</table>
