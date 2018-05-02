@@ -210,7 +210,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         [HttpPost]
-        public ActionResult Checkout([Bind(Include = "OrderID,OrderNumber,ConfirmationNumber,EarlyDiscount,SeniorDiscount,OrderDate,CardNumber,Orderstatus,OrderSubtotal,SalesTax,OrderTotal,Gift,GiftEmail")] Order ord/*, int SelectedCards*/) //without bind...might not include stuff
+        public ActionResult Checkout([Bind(Include = "OrderID,OrderNumber,ConfirmationNumber,EarlyDiscount,SeniorDiscount,OrderDate,CardNumber,Orderstatus,OrderSubtotal,SalesTax,OrderTotal,Gift,GiftEmail")] Order ord, int? SelectedCard) //without bind...might not include stuff
         {
 
             //Order od = db.Orders.Include(OD => OD.Tickets)
@@ -220,12 +220,15 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
             if (ModelState.IsValid)
             {
+                //TODO: Add generate confirmation number
+                od.ConfirmationNumber = Utilities.GenerateNextConfirmationNumber.GetNextConfirmation();
                 //od.Tickets = ord.Tickets;
+                ViewBag.ConfirmationNumber = od.ConfirmationNumber;
                 od.Orderstatus = OrderStatus.Completed;
                 db.Entry(od).State = EntityState.Modified;
                 db.SaveChanges();
                 //return RedirectToAction("Checkout", "Orders", new { id = od.OrderID }); //checkout gift, checkoutfinal view. 
-                return RedirectToAction("Index");
+                return RedirectToAction("Confirm");
             }
 
             //ticket.Order = td.Order;
@@ -246,7 +249,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
         public ActionResult Confirm()
         {
-            //TODO: Add generate confirmation number
+            
             return View();
         }
 
