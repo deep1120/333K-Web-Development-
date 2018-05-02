@@ -39,7 +39,7 @@
     </dl>
 </div>
 
-@*<h4>Showings</h4>
+<h4>Showings</h4>
     <table class="table table-sm table-striped table-hover">
         <tr>
             <th>Showing Name</th>
@@ -54,7 +54,7 @@
                 <td>@Html.DisplayFor(modelItem => td.TicketPrice)</td>
             </tr>
         }
-    </table>*@
+    </table>
 
 <table class="table table-sm table-bordered" style="width:30%">
     <tr>
@@ -74,4 +74,8 @@
     </tr>
 
 </table>
+
+<div>
+    @Html.ActionLink("Confirm", "Index", new { OrderID = Model.OrderID }, new { @class = "btn btn-primary" })
+</div>
 

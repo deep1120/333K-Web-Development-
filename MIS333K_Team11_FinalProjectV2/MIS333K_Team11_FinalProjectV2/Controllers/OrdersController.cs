@@ -150,7 +150,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             td.Order.Orderstatus = OrderStatus.Pending;
             //Showing showing = db.Showings.Find(td.Showing.ShowingID);
             //td.TicketPrice = showing.TicketPrice;
-            td.TicketPrice = td.Showing.TicketPrice;
+            //td.TicketPrice = td.Showing.TicketPrice;
 
             if (ModelState.IsValid)
             {
@@ -253,7 +253,8 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 od.Orderstatus = OrderStatus.Completed;
                 db.Entry(ord).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Checkout", "Orders", new { id = od.OrderID }); //checkout gift, checkoutfinal view. 
+                //return RedirectToAction("Checkout", "Orders", new { id = od.OrderID }); //checkout gift, checkoutfinal view. 
+                return View("Index");
             }
 
             //ticket.Order = td.Order;
@@ -272,6 +273,8 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             //}
 
         }
+
+
 
         // GET: Orders/Edit/5
         public ActionResult Edit(int? id)
@@ -351,7 +354,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         {
             Showing showing = db.Showings.Find(SelectedShowing);
 
-            List<Ticket> tickets = db.Tickets/*.Where(t => t.Order.Orderstatus == OrderStatus.Completed && t.Showing == showing)*/.ToList();
+            List<Ticket> tickets = db.Tickets.Where(t => t.Order.Orderstatus == OrderStatus.Completed && t.Showing == showing).ToList();
 
             MultiSelectList selSeats = SeatHelper.FindAvailableSeats(tickets);
 
