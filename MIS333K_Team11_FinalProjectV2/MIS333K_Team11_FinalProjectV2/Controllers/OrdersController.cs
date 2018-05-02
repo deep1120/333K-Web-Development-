@@ -76,7 +76,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
             //record date of order
             order.OrderDate = DateTime.Today;
-
+            order.Orderstatus = OrderStatus.Pending;
             order.OrderAppUser = db.Users.Find(User.Identity.GetUserId());
 
             if (ModelState.IsValid)
@@ -140,7 +140,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
             //find the order 
             Order ord = db.Orders.Find(td.OrderID);
-            ord.Orderstatus = OrderStatus.Pending;
+            //ord.Orderstatus = OrderStatus.Pending;
 
             //LOGIC HERE TO STOP USER FROM ADDING A SHOWING THAT OVERLAPS WITH A ANOTHER SHOWING IN CART
             //List<Showing> CurrentShowingsInCart = db.Showings.Where(o=>o.Tickets.....
@@ -148,6 +148,9 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             td.TicketSeat = SeatHelper.GetSeatName(SelectedTicket);
             td.Order = ord;
             td.Order.Orderstatus = OrderStatus.Pending;
+            //Showing showing = db.Showings.Find(td.Showing.ShowingID);
+            //td.TicketPrice = showing.TicketPrice;
+            td.TicketPrice = td.Showing.TicketPrice;
 
             if (ModelState.IsValid)
             {
@@ -190,73 +193,6 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             //    DateTime weekday = Convert.ToDateTime("12:00");
             //    DateTime tuesday = Convert.ToDateTime("5:00");
 
-            //    if ((td.Showing.ShowDate.DayOfWeek == DayOfWeek.Monday) && (td.Showing.ShowDate < weekday))
-            //    {
-            //        ticket.TicketPrice = 5.00m;
-            //    }
-            //    if ((td.Showing.ShowDate.DayOfWeek == DayOfWeek.Tuesday) && (td.Showing.ShowDate < weekday))
-            //    {
-            //        ticket.TicketPrice = 5.00m;
-            //    }
-            //    if ((td.Showing.ShowDate.DayOfWeek == DayOfWeek.Wednesday) && (td.Showing.ShowDate < weekday))
-            //    {
-            //        ticket.TicketPrice = 5.00m;
-            //    }
-            //    if ((td.Showing.ShowDate.DayOfWeek == DayOfWeek.Thursday) && (td.Showing.ShowDate < weekday))
-            //    {
-            //        ticket.TicketPrice = 5.00m;
-            //    }
-            //    if ((td.Showing.ShowDate.DayOfWeek == DayOfWeek.Friday) && (td.Showing.ShowDate < weekday))
-            //    {
-            //        ticket.TicketPrice = 5.00m;
-            //    }
-            //    if ((td.Showing.ShowDate.DayOfWeek == DayOfWeek.Tuesday) && (td.Showing.ShowDate <= tuesday))
-            //    {
-            //        ticket.TicketPrice = 8.00m;
-            //    }
-            //    if ((td.Showing.ShowDate.DayOfWeek == DayOfWeek.Monday) && (td.Showing.ShowDate >= weekday))
-            //    {
-            //        ticket.TicketPrice = 10.00m;
-            //    }
-            //    if ((td.Showing.ShowDate.DayOfWeek == DayOfWeek.Tuesday) && (td.Showing.ShowDate >= weekday))
-            //    {
-            //        ticket.TicketPrice = 10.00m;
-            //    }
-            //    if ((td.Showing.ShowDate.DayOfWeek == DayOfWeek.Wednesday) && (td.Showing.ShowDate >= weekday))
-            //    {
-            //        ticket.TicketPrice = 10.00m;
-            //    }
-            //    if ((td.Showing.ShowDate.DayOfWeek == DayOfWeek.Thursday) && (td.Showing.ShowDate >= weekday))
-            //    {
-            //        ticket.TicketPrice = 10.00m;
-            //    }
-            //    if ((td.Showing.ShowDate.DayOfWeek == DayOfWeek.Friday) && (td.Showing.ShowDate >= weekday))
-            //    {
-            //        ticket.TicketPrice = 12.00m;
-            //    }
-            //    if (td.Showing.ShowDate.DayOfWeek == DayOfWeek.Saturday)
-            //    {
-            //        ticket.TicketPrice = 12.00m;
-            //    }
-            //    if (td.Showing.ShowDate.DayOfWeek == DayOfWeek.Sunday)
-            //    {
-            //        ticket.TicketPrice = 12.00m;
-            //    }
-
-            //    db.Tickets.Add(ticket);
-            //    db.SaveChanges();
-            //}            
-
-            //if (ModelState.IsValid)
-            //{
-            //    //redirect to edit so that they can continue adding to cart if they want to 
-            //    return RedirectToAction("Edit", "Orders", new { id = ord.OrderID });
-            //}
-
-            ////model state is not valid; repopulate viewbags and return
-            //ViewBag.AllSeats = GetAllTicketSeats(td.Showing.ShowingID);
-            ////ViewBag.AllShowings = GetAllShowings();
-            //return View(td);
         }
 
         public ActionResult Gift(Order order)

@@ -72,8 +72,64 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             bool checker = true;
             bool boolean = true;
 
+            //date checkers for showing ticket pricing
+            DateTime weekday = Convert.ToDateTime("12:00");
+            DateTime tuesday = Convert.ToDateTime("5:00");
+
             if ((showing.ShowDate >= morning) && (night_result <= 0))
             {
+                if ((showing.ShowDate.DayOfWeek == DayOfWeek.Monday) && (showing.ShowDate < weekday))
+                {
+                    showing.TicketPrice = 5.00m;
+                }
+                if ((showing.ShowDate.DayOfWeek == DayOfWeek.Tuesday) && (showing.ShowDate < weekday))
+                {
+                    showing.TicketPrice = 5.00m;
+                }
+                if ((showing.ShowDate.DayOfWeek == DayOfWeek.Wednesday) && (showing.ShowDate < weekday))
+                {
+                    showing.TicketPrice = 5.00m;
+                }
+                if ((showing.ShowDate.DayOfWeek == DayOfWeek.Thursday) && (showing.ShowDate < weekday))
+                {
+                    showing.TicketPrice = 5.00m;
+                }
+                if ((showing.ShowDate.DayOfWeek == DayOfWeek.Friday) && (showing.ShowDate < weekday))
+                {
+                    showing.TicketPrice = 5.00m;
+                }
+                if ((showing.ShowDate.DayOfWeek == DayOfWeek.Tuesday) && (showing.ShowDate <= tuesday))
+                {
+                    showing.TicketPrice = 8.00m;
+                }
+                if ((showing.ShowDate.DayOfWeek == DayOfWeek.Monday) && (showing.ShowDate >= weekday))
+                {
+                    showing.TicketPrice = 10.00m;
+                }
+                if ((showing.ShowDate.DayOfWeek == DayOfWeek.Tuesday) && (showing.ShowDate >= weekday))
+                {
+                    showing.TicketPrice = 10.00m;
+                }
+                if ((showing.ShowDate.DayOfWeek == DayOfWeek.Wednesday) && (showing.ShowDate >= weekday))
+                {
+                    showing.TicketPrice = 10.00m;
+                }
+                if ((showing.ShowDate.DayOfWeek == DayOfWeek.Thursday) && (showing.ShowDate >= weekday))
+                {
+                    showing.TicketPrice = 10.00m;
+                }
+                if ((showing.ShowDate.DayOfWeek == DayOfWeek.Friday) && (showing.ShowDate >= weekday))
+                {
+                    showing.TicketPrice = 12.00m;
+                }
+                if (showing.ShowDate.DayOfWeek == DayOfWeek.Saturday)
+                {
+                    showing.TicketPrice = 12.00m;
+                }
+                if (showing.ShowDate.DayOfWeek == DayOfWeek.Sunday)
+                {
+                    showing.TicketPrice = 12.00m;
+                }
 
                 //find the showings that are on the same day and in the same theater and then compare them with each other
                 //by making sure the end time of showing to be created is less than a current showing's start time
@@ -81,9 +137,6 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
                 List<Showing> allShowings = db.Showings.ToList();
                 List<Showing> showingsDays = allShowings.Where(s => s.ShowDate.Day == showing.ShowDate.Day && s.Theatre == showing.Theatre).ToList();
-
-                DateTime weekday = Convert.ToDateTime("12:00");
-                DateTime tuesday = Convert.ToDateTime("5:00");
 
                 if (showingsDays.Count() == 0)
                 {
@@ -121,6 +174,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                     }
                     break;
                 }
+
                 //if boolean = true: add showing to db
                 //will have gone through entire while loop with success and will then be added to showing database!
                 if (boolean == true)
