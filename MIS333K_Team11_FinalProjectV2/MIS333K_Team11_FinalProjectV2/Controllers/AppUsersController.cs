@@ -32,7 +32,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         // GET: AppUsers/Details/5
-        //[Authorize(Roles = "Manager, Employee, Customer")]
+        [Authorize(Roles = "Manager, Employee, Customer")]
         public ActionResult Details(string id)
         {
             if (id == null)
@@ -55,8 +55,6 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         // POST: AppUsers/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,FirstName,MiddleInitial,LastName,Street,ZipCode," +
@@ -74,7 +72,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         // GET: AppUsers/Edit/5
-        //[Authorize(Roles = "Manager, Customer, Employee")]
+        [Authorize(Roles = "Manager, Customer, Employee")]
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -106,8 +104,6 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         // POST: AppUsers/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,FirstName,MiddleInitial,LastName,Street,ZipCode," +
@@ -122,6 +118,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             return View(appUser);
         }
 
+        //Manager edit
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult ManagerEdit([Bind(Include = "Id,Street,ZipCode,City,State,PhoneNumber")] AppUser appUser)
@@ -130,17 +127,36 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             {
                 //Find Member
                 AppUser memberToChange = db.Users.Find(appUser.Id);
+                if (User.IsInRole("Manager"))
+                {
+                    memberToChange.FirstName = appUser.FirstName;
+                    memberToChange.MiddleInitial = appUser.MiddleInitial;
+                    memberToChange.LastName = appUser.MiddleInitial;
+                    memberToChange.Birthday = appUser.Birthday;
+                    memberToChange.PopcornPoints = appUser.PopcornPoints;
+                    memberToChange.Street = appUser.Street;
+                    memberToChange.City = appUser.City;
+                    memberToChange.State = appUser.State;
+                    memberToChange.ZipCode = appUser.ZipCode;
+                    memberToChange.PhoneNumber = appUser.PhoneNumber;
 
-                //update the rest of the scalar fields
-                memberToChange.Street = appUser.Street;
-                memberToChange.City = appUser.City;
-                memberToChange.State = appUser.State;
-                memberToChange.ZipCode = appUser.ZipCode;
-                memberToChange.PhoneNumber = appUser.PhoneNumber;
-                
-                db.Entry(memberToChange).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                    db.Entry(memberToChange).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    memberToChange.Street = appUser.Street;
+                    memberToChange.City = appUser.City;
+                    memberToChange.State = appUser.State;
+                    memberToChange.ZipCode = appUser.ZipCode;
+                    memberToChange.Birthday = appUser.Birthday;
+                    memberToChange.PhoneNumber = appUser.PhoneNumber;
+
+                    db.Entry(memberToChange).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }      
             }
             return View(appUser);
         }

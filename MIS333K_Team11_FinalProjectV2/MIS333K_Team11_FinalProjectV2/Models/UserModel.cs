@@ -58,7 +58,7 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         public String ZipCode { get; set; }
 
         [Display(Name = "Popcorn Points")]
-        public String PopcornPoints { get; set; }
+        public Int32 PopcornPoints { get; set; }
 
         public string Role { get; set; }
 

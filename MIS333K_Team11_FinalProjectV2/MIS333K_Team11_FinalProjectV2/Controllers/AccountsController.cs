@@ -317,6 +317,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 State = user.State,
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
+                Birthday = user.Birthday,
                 Street = user.Street,
                 UserModelID = user.Id,
                 ZipCode = user.ZipCode,
@@ -356,14 +357,17 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             var model = new UserModel()
             {
                 FirstName = user.FirstName,
+                MiddleInitial = user.MiddleInitial,
                 LastName = user.LastName,
                 City = user.City,
                 State = user.State,
                 Email = user.Email,
+                Birthday = user.Birthday,
                 PhoneNumber = user.PhoneNumber,
                 Street = user.Street,
                 UserModelID = user.Id,
                 ZipCode = user.ZipCode,
+                PopcornPoints = user.PopcornPoints,
                 HasPassword = (user.PasswordHash != null),
                 Cards = user.Cards
             };
@@ -387,19 +391,22 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         //POST: Edit Account Details
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "FirstName,LastName,Email,PhoneNumber,Street,ZipCode,City,State,UserModelID")] UserModel model)
+        public async Task<ActionResult> Edit([Bind(Include = "FirstName,MiddleInitial,LastName,Email,PhoneNumber,Birthday,Street,ZipCode,City,State,PopcornPoints,UserModelID")] UserModel model)
         {
             if (ModelState.IsValid)
             {
                 var user = UserManager.FindById(model.UserModelID);
                 user.FirstName = model.FirstName;
+                user.MiddleInitial = model.MiddleInitial;
                 user.LastName = model.LastName;
                 user.Email = model.Email;
                 user.PhoneNumber = model.PhoneNumber;
+                user.Birthday = model.Birthday;
                 user.Street = model.Street;
                 user.ZipCode = model.ZipCode;
                 user.City = model.City;
                 user.State = model.State;
+                user.PopcornPoints = model.PopcornPoints;
 
                 var result = await UserManager.UpdateAsync(user);
                 if (!result.Succeeded)
