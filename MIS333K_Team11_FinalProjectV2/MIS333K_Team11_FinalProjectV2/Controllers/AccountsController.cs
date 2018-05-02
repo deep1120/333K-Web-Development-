@@ -105,7 +105,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             try
             {
                 AppUser userLoggingIn = db.Users.FirstOrDefault(x => x.Email == model.Email);
-                if(await UserManager.IsInRoleAsync(userLoggingIn.Id, "DisabledEmployee"))
+                if(await UserManager.IsInRoleAsync(userLoggingIn.Id, "FiredEmployee"))
                 {
                     return View("Error", new string[] { "Your employee account has been disabled." });
                 }
@@ -567,6 +567,30 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         {
             var body = $@"Dear {user.FirstName}, you have been registered as an employee";
             EmailMessaging.SendEmail(user.Email, "Team 11 Employee Registration Confirmation", body);
+        }
+
+        public void SendCompleteCheckoutEmail(AppUser user)
+        {
+            var body = $@"Dear {user.FirstName}, you have placed an order and completed checkout";
+            EmailMessaging.SendEmail(user.Email, "Team 11 Order Completed Confirmation", body);
+        }
+
+        public void SendOrderCancelEmail(AppUser user)
+        {
+            var body = $@"Dear {user.FirstName}, you have cancelled your order";
+            EmailMessaging.SendEmail(user.Email, "Team 11 Order Cancelled Confirmation", body);
+        }
+
+        public void SendMovieCancelEmail(AppUser user)
+        {
+            var body = $@"Dear {user.FirstName}, you have cancelled a movie";
+            EmailMessaging.SendEmail(user.Email, "Team 11 Movie Cancelled Confirmation", body);
+        }
+
+        public void SendMovieRescheduleEmail(AppUser user)
+        {
+            var body = $@"Dear {user.FirstName},  you have rescheduled a movie";
+            EmailMessaging.SendEmail(user.Email, "Team 11 Movie Reschedule Confirmation", body);
         }
 
         public ActionResult SendEmail()
