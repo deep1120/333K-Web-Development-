@@ -200,18 +200,10 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                         SendRegisterEmail(user);
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                     }
-
-                    //For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    //Send an email with this link
-                    //string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    //var callbackUrl = Url.Action("EmailMessaging", "EmailMessaging", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    //await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
             }
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
 
@@ -224,7 +216,6 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        //Logic for change password
         // GET: /Accounts/ChangePassword
         public ActionResult ChangePassword()
         {
@@ -338,7 +329,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             {
                 model.Role = "Manager";
             }
-            else if
+            else if 
             (UserManager.IsInRole(user.Id, "Employee"))
             {
                 model.Role = "Employee";
@@ -477,7 +468,6 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             return RedirectToAction("Index", new { id = User.Identity.GetUserId() });
         }
 
-        //Method to edit card information
         public ActionResult CardEdit()
         {
             var user = UserManager.FindById(User.Identity.GetUserId());
