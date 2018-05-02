@@ -1,4 +1,5 @@
 ﻿@model MIS333K_Team11_FinalProjectV2.ViewModel.CustomerVM
+@using MIS333K_Team11_FinalProjectV2.Models;
 
 @{
     ViewBag.Title = "Details";
@@ -7,22 +8,23 @@
 
 <h2>Customer</h2>
 
-<div>
+@*<div>
     <h4>Details</h4>
     <hr />
     <dl class="dl-horizontal">
-        @Html.DisplayFor(model => model.CustomerDetails)
+        @Html.DisplayFor(model => model.CustomerDetail)
     </dl>
     <br />
     <h4>Credit Cards</h4>
     <hr />
+
     @Html.DisplayFor(model => model.Cards, "Card")
     @if (Model.Cards.Count() < 2)
     {
-        @Html.ActionLink("Add Credit Card", "AddCard", new { id = Model.CustomerDetails.UserModelID })
+        @Html.ActionLink("Add Credit Card", "AddCard", new { id = Model.CustomerDetail})
     }
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     @Html.ActionLink("Back to List", "Index")
-</p>
+</p>*@

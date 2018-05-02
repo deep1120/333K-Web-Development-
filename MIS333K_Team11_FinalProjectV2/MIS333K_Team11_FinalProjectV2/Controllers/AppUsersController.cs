@@ -88,7 +88,8 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             return View(appUser);
         }
 
-        //Employee/Manager Edit
+        //GET: Employee/Manager Edit
+        [Authorize(Roles = "Manager")]
         public ActionResult ManagerEdit(string id)
         {
             if(id == null)
@@ -107,7 +108,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,FirstName,MiddleInitial,LastName,Street,ZipCode," +
-            "City,State,Email,PhoneNumber")] AppUser appUser)
+            "City,State,Email,PhoneNumber,Birthday")] AppUser appUser)
         {
             if (ModelState.IsValid)
             {
@@ -118,14 +119,15 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             return View(appUser);
         }
 
-        //Manager edit
+        //POST: Manager edit
+        [Authorize(Roles = "Manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ManagerEdit([Bind(Include = "Id,Street,ZipCode,City,State,PhoneNumber")] AppUser appUser)
+        public ActionResult ManagerEdit([Bind(Include = "Id,FirstName,MiddleInitial,LastName,Street,ZipCode," +
+            "City,State,Email,PhoneNumber,Birthday")] AppUser appUser)
         {
             if(ModelState.IsValid)
             {
-                //Find Member
                 AppUser memberToChange = db.Users.Find(appUser.Id);
                 if (User.IsInRole("Manager"))
                 {

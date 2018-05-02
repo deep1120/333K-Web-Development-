@@ -182,11 +182,6 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
                 var result = await UserManager.CreateAsync(user, model.Password);
 
-                //TODO:  Once you get roles working, you may want to add users to roles upon creation
-                //await UserManager.AddToRoleAsync(user.Id, "Customer");
-                // --OR--
-                //await UserManager.AddToRoleAsync(user.Id, "Employee");
-
                 if (result.Succeeded)
                 {
                     if (User.IsInRole("Manager"))
@@ -342,7 +337,138 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             return View(model);          
         }
 
+        ////GET: Edit Account Details
+        //[Authorize(Roles = "Manager,Customer,Employee")]
+        //public ActionResult Edit()
+        //{
+        //    string id = User.Identity.GetUserId();
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+
+        //    AppUser appUser = db.Users.Find(id);
+        //    if (appUser == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(appUser);
+        //}
+
+        ////POST: Users/Edit/5
+        //[Authorize(Roles = "Manager, Customer, Employee")]
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Edit([Bind(Include = "FirstName,MiddleInitial,LastName,Email,PhoneNumber,Birthday,Street,ZipCode,City,State,PopcornPoints,UserModelID")] AppUser appUser)
+        //{
+        //    string id = User.Identity.GetUserId();
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        if(User.IsInRole("Manager"))
+        //        {
+        //            AppUser UserTobeChanged = db.Users.Find(appUser.Id);
+        //            UserTobeChanged.FirstName = appUser.FirstName;
+        //            UserTobeChanged.MiddleInitial = appUser.MiddleInitial;
+        //            UserTobeChanged.LastName = appUser.LastName;
+        //            UserTobeChanged.Street = appUser.Street;
+        //            UserTobeChanged.City = appUser.City;
+        //            UserTobeChanged.State = appUser.State;
+        //            UserTobeChanged.ZipCode = appUser.ZipCode;
+        //            UserTobeChanged.PhoneNumber = appUser.PhoneNumber;
+        //            UserTobeChanged.Birthday = appUser.Birthday;
+
+        //            db.Entry(UserTobeChanged).State = EntityState.Modified;
+        //            db.SaveChanges();
+        //            return RedirectToAction("Details");
+        //        }
+
+        //        if (User.IsInRole("Customer,Employee"))
+        //        {
+        //            AppUser UserTobeChanged = db.Users.Find(appUser.Id);
+        //            UserTobeChanged.Street = appUser.Street;
+        //            UserTobeChanged.City = appUser.City;
+        //            UserTobeChanged.State = appUser.State;
+        //            UserTobeChanged.ZipCode = appUser.ZipCode;
+        //            UserTobeChanged.PhoneNumber = appUser.PhoneNumber;
+        //            UserTobeChanged.Birthday = appUser.Birthday;
+
+        //            db.Entry(UserTobeChanged).State = EntityState.Modified;
+        //            db.SaveChanges();
+        //            return RedirectToAction("Details");
+        //        }
+        //    }
+        //    return View(appUser);
+        //}
+
+        ////GET: Users/ManageEdit/5
+        //[Authorize(Roles = "Manager,Employee")]
+        //public ActionResult ManageEdit(string id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+
+        //    AppUser appUser = db.Users.Find(id);
+        //    if (appUser == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(appUser);
+        //}
+
+        ////POST: Users/ManageEdit/5
+        //[HttpPost]
+        //[Authorize(Roles = "Manager, Employee")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult ManageEdit([Bind(Include = "FirstName,MiddleInitial,LastName,Email,PhoneNumber,Birthday,Street,ZipCode,City,State,PopcornPoints,UserModelID")] AppUser appUser)
+        //{
+        //    string tempid = User.Identity.GetUserId();
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        if (User.IsInRole("Manager"))
+        //        {
+        //            AppUser UserTobeChanged = db.Users.Find(appUser.Id);
+        //            UserTobeChanged.FirstName = appUser.FirstName;
+        //            UserTobeChanged.MiddleInitial = appUser.MiddleInitial;
+        //            UserTobeChanged.LastName = appUser.LastName;
+        //            UserTobeChanged.Street = appUser.Street;
+        //            UserTobeChanged.City = appUser.City;
+        //            UserTobeChanged.State = appUser.State;
+        //            UserTobeChanged.ZipCode = appUser.ZipCode;
+        //            UserTobeChanged.PhoneNumber = appUser.PhoneNumber;
+        //            UserTobeChanged.Birthday = appUser.Birthday;
+
+        //            db.Entry(UserTobeChanged).State = EntityState.Modified;
+        //            db.SaveChanges();
+        //            return RedirectToAction("Index");
+        //        }
+
+        //        if (User.IsInRole("Employee") && appUser.Id != tempid)
+        //        {
+        //            AppUser UserTobeChanged = db.Users.Find(appUser.Id);
+        //            //UserTobeChanged.FirstName = appUser.FirstName;
+        //            //UserTobeChanged.MiddleInitial = appUser.MiddleInitial;
+        //            //UserTobeChanged.LastName = appUser.LastName;
+        //            UserTobeChanged.Street = appUser.Street;
+        //            UserTobeChanged.City = appUser.City;
+        //            UserTobeChanged.State = appUser.State;
+        //            UserTobeChanged.ZipCode = appUser.ZipCode;
+        //            UserTobeChanged.PhoneNumber = appUser.PhoneNumber;
+        //            UserTobeChanged.Birthday = appUser.Birthday;
+
+        //            db.Entry(UserTobeChanged).State = EntityState.Modified;
+        //            db.SaveChanges();
+        //            return RedirectToAction("Index");
+        //        }
+        //    }
+        //    return View(appUser);
+        //}
+
         //GET: Edit Account Details
+        [Authorize(Roles = "Manager,Customer,Employee")]
         public ActionResult Edit(string id)
         {
             var userId = id;
@@ -372,11 +498,11 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 Cards = user.Cards
             };
 
-            if(UserManager.IsInRole(user.Id, "Manager"))
+            if (UserManager.IsInRole(user.Id, "Manager"))
             {
                 model.Role = "Manager";
             }
-            else if 
+            else if
             (UserManager.IsInRole(user.Id, "Employee"))
             {
                 model.Role = "Employee";
@@ -389,6 +515,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         //POST: Edit Account Details
+        [Authorize(Roles = "Manager,Customer,Employee")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "FirstName,MiddleInitial,LastName,Email,PhoneNumber,Birthday,Street,ZipCode,City,State,PopcornPoints,UserModelID")] UserModel model)

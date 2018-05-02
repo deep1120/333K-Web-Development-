@@ -75,6 +75,23 @@
             @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
             }
+            else
+            {
+                if (Model.UserModelID == "Manager" && Model.Role == "Customer,Employee")
+                {
+                    @Html.DisplayNameFor(model => model.FirstName)
+                    @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+
+                    @Html.DisplayNameFor(model => model.MiddleInitial)
+                    @Html.TextBoxFor(model => model.MiddleInitial, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.MiddleInitial, "", new { @class = "text-danger" })
+
+                    @Html.DisplayNameFor(model => model.LastName)
+                    @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                }
+            }
 
             <dt>Phone:</dt>
             <dd>
