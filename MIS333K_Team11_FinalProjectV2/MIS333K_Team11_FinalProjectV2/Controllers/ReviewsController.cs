@@ -50,8 +50,8 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         // GET: Reviews
         public ActionResult Index()
         {
-            var reviews = db.Reviews.Include(r => r.StarRating);
-            return View(reviews.ToList());
+            List<Review> Reviews = db.Reviews.ToList();
+            return View(Reviews);
         }
 
         // GET: Reviews/Details/5

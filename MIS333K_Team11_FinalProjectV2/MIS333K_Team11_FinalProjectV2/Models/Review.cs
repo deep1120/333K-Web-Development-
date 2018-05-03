@@ -15,9 +15,9 @@ namespace MIS333K_Team11_FinalProjectV2.Models
 
         [Required(ErrorMessage = "Please rate before reviewing")]
         [Display(Name = "Star Rating")]
+        [Range(1,5,ErrorMessage ="Rate from 1-5")]
         public Int32 StarRating { get; set; }
 
-        public virtual Rating rating { get; set; } 
         public virtual Movie MovieReview { get; set; } //each review is for one movie 
         public virtual AppUser AppUser { get; set; }
     }
