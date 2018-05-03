@@ -1,0 +1,28 @@
+﻿@using MIS333K_Team11_FinalProjectV2.Controllers
+@using MIS333K_Team11_FinalProjectV2.Models
+
+@{
+    /**/
+
+    ViewBag.Title = "StatusSearch";
+}
+
+<h2>StatusSearch</h2>
+
+@using (Html.BeginForm("StatusSearch", "Orders", FormMethod.Post))
+{
+<p class="form-group">
+    <div class="form-group">
+        Order Status:
+        <label class="radio">@Html.RadioButton("SelectOrderStatus", OrderStatus.Pending) Pending</label>
+        <label class="radio">@Html.RadioButton("SelectOrderStatus", OrderStatus.Completed) Completed</label>
+        <label class="radio">@Html.RadioButton("SelectOrderStatus", OrderStatus.Cancelled) Cancelled</label>
+    </div>
+
+    <div>
+        <input type="submit" value="Search" class="btn btn-default" />
+    </div>
+</p>
+    
+}
+

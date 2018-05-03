@@ -8,6 +8,8 @@
 
 <p>
     @Html.ActionLink("Start New Order", "Create", null, new { @class = "btn btn-info" })
+    @Html.ActionLink("Search By Order Status", "StatusSearch", null, new { @class = "btn btn-info" })
+
 </p>
 
 <p>Pending Orders</p>
@@ -24,6 +26,9 @@
         </th>*@
         <th>
             @Html.DisplayNameFor(model => model.OrderTotal) 
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Orderstatus)
         </th>
         <th></th>
     </tr>
@@ -44,15 +49,18 @@
                 @Html.DisplayFor(modelItem => item.OrderTotal)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Orderstatus)
+            </td>
+
+            <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.OrderID })
                 @Html.ActionLink("Details", "Details", new { id = item.OrderID })
                 @Html.ActionLink("Delete", "Delete", new { id = item.OrderID })
             </td>
+
         </tr>
     }
 
+
 </table>
 
-<p>Completed Orders</p>
-
-<p>Cancelled Orders</p>

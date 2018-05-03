@@ -360,6 +360,7 @@
     <Content Include="Views\Accounts\SendEmail.cshtml" />
     <Content Include="Views\Orders\AddShowing.cshtml" />
     <Content Include="Views\Orders\Confirm.cshtml" />
+    <Content Include="Views\Orders\StatusSearch.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

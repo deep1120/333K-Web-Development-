@@ -38,6 +38,12 @@ namespace MIS333K_Team11_FinalProjectV2.Models
             set { _CardNumber = value; }
         }
 
+        //[Display(Name = "Card Number and Type")]
+        //public String CardNumberAndType
+        //{
+        //    get { return (CardNumber + "" + CardType); }
+        //}
+
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if (!Regex.IsMatch(_CardNumber, @"^[0-9]{15,16}$"))
