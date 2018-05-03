@@ -36,6 +36,37 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             }
         }
 
+        public ActionResult StatusSearch()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult StatusSearch([Bind(Include = "OrderStatus,OrderID,OrderNumber,ConfirmationNumber,EarlyDiscount,SeniorDiscount,OrderDate,CardNumber,Total,Orderstatus,OrderSubtotal,SalesTax,OrderTotal,Gift,GiftEmail")] OrderStatus SelectOrderStatus)
+        {
+            var query = from o in db.Orders
+                        select o;
+
+            switch (SelectOrderStatus)
+            {
+                case OrderStatus.Pending:
+                    query = query.Where(o => o.Orderstatus == OrderStatus.Pending);
+                    break;
+                case OrderStatus.Completed:
+                    query = query.Where(o => o.Orderstatus == OrderStatus.Completed);
+                    break;
+                case OrderStatus.Cancelled:
+                    query = query.Where(o => o.Orderstatus == OrderStatus.Cancelled);
+                    break;
+            }
+
+            List<Order> SelectedOrders = query.ToList();
+
+            return View("Index", SelectedOrders);
+
+        }
+
+
         // GET: Orders/Details/5
         public ActionResult Details(int? id)
         {
@@ -162,20 +193,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
 
             //senior discount
-            TimeSpan diff2 = DateTime.Today - ord.OrderAppUser.Birthday;
-            if (((diff2.Days)/365) >= 60)
-            {
-                ord.SeniorDiscount = 2.00m;
-                ticket.TicketPrice = ticket.Showing.TicketPrice - ord.SeniorDiscount;
-            }
-            
-            //both senior discount and early discount
-            if(diff.Days >= 2 && ((diff2.Days) / 365) >= 60)
-            {
-                ord.EarlyDiscount = 1.00m;
-                ord.SeniorDiscount = 2.00m;
-                ticket.TicketPrice = ticket.Showing.TicketPrice - ord.SeniorDiscount - ord.EarlyDiscount;
-            }
+            var UserId = User.Identity.GetUserId();
 
             if (ModelState.IsValid)
             {
@@ -190,7 +208,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             ViewBag.AllSeats = GetAllTicketSeats(ticket.Showing.ShowingID);
             return View(ticket);
 
-            
+
 
 
             //    DateTime weekday = Convert.ToDateTime("12:00");
@@ -277,7 +295,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
         public ActionResult Confirm()
         {
-            
+
             return View();
         }
 
@@ -351,7 +369,8 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Order order = db.Orders.Find(id);
-            db.Orders.Remove(order);
+            //db.Orders.Remove(order);
+            order.Orderstatus = OrderStatus.Cancelled;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
