@@ -20,10 +20,11 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
     {
         private AppDbContext db = new AppDbContext();
 
+
         // GET: Orders
         public ActionResult Index()
         {
-            //Maybe make this the order history page???
+            //Maybe make this the order history page?
             if (User.IsInRole("Manager"))
             {
                 return View(db.Orders.ToList());
@@ -221,6 +222,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             if (ModelState.IsValid)
             {
                 //TODO: Add generate confirmation number
+             
                 od.ConfirmationNumber = Utilities.GenerateNextConfirmationNumber.GetNextConfirmation();
                 //od.Tickets = ord.Tickets;
                 ViewBag.ConfirmationNumber = od.ConfirmationNumber;

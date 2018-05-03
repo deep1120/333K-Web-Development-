@@ -121,12 +121,11 @@
             </tr>
             @foreach (var item in Model.Orders)
             {
-                <tr>
-                    <td>@item.OrderID</td>
-                    <td>@item.OrderDate.ToString("MMM dd, yyyy")</td>
-                    <td>@item.CardNumber</td>
-                    <td>$@item.Total</td>
-                </tr>
+            <tr>
+                <td>@item.OrderNumber</td>
+                <td>@item.OrderDate.ToString("MMM dd, yyyy")</td>
+                <td>@item.OrderTotal</td>
+            </tr>
             }
         </table>
 

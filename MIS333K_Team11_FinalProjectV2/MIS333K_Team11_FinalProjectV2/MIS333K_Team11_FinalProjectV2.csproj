@@ -178,7 +178,6 @@
     <Compile Include="Migrations\EmployeeData.cs" />
     <Compile Include="Migrations\ManagerData.cs" />
     <Compile Include="Models\IdentityUser.cs" />
-    <Compile Include="Models\Rating.cs" />
     <Compile Include="ViewModel\CheckoutViewModel.cs" />
     <Compile Include="ViewModel\CustomerVM.cs" />
     <Compile Include="ViewModel\CustomerWelcomeVM.cs" />
@@ -341,11 +340,11 @@
     <Content Include="Views\Showings\DetailedSearch.cshtml" />
     <Content Include="Views\Orders\Delete.cshtml" />
     <Content Include="Views\Orders\Checkout.cshtml" />
-    <Content Include="Views\Review\Create.cshtml" />
-    <Content Include="Views\Review\Delete.cshtml" />
-    <Content Include="Views\Review\Details.cshtml" />
-    <Content Include="Views\Review\Edit.cshtml" />
-    <Content Include="Views\Review\Index.cshtml" />
+    <Content Include="Views\Reviews\Create.cshtml" />
+    <Content Include="Views\Reviews\Delete.cshtml" />
+    <Content Include="Views\Reviews\Details.cshtml" />
+    <Content Include="Views\Reviews\Edit.cshtml" />
+    <Content Include="Views\Reviews\Index.cshtml" />
     <Content Include="Views\Report\Index.cshtml" />
     <Content Include="Views\Report\MovieReport.cshtml" />
     <Content Include="Views\Customer\AddCard.cshtml" />

@@ -133,20 +133,20 @@
             <dd>
                 [
                 @if (Model.HasPassword)
-        {
-            if (User.Identity.GetUserId() != Model.UserModelID && Model.Role == "Customer")
-            {
-                @Html.ActionLink("Set Password", "SetPassword")
-    }
-    else
-    {
-        @Html.ActionLink("Change your password", "ChangePassword")
-}
-}
-else
-{
-        @Html.ActionLink("Set Password", "SetPassword")
-}
+                {          
+                    if (User.Identity.GetUserId() != Model.UserModelID && Model.Role == "Customer")
+                    {
+                        @Html.ActionLink("Set Password", "SetPassword")
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Change your password", "ChangePassword")
+                    }
+                }
+                else
+                {
+                        @Html.ActionLink("Set Password", "SetPassword")
+                }
                 ]
             </dd>
         </dl>
