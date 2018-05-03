@@ -20,11 +20,10 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
     {
         private AppDbContext db = new AppDbContext();
 
-
         // GET: Orders
         public ActionResult Index()
         {
-            //Maybe make this the order history page?
+            //Maybe make this the order history page???
             if (User.IsInRole("Manager"))
             {
                 return View(db.Orders.ToList());
@@ -150,9 +149,25 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             ticket.Order.Orderstatus = OrderStatus.Pending;
             ticket.TicketPrice = ticket.Showing.TicketPrice;
 
+            //PUT THIS TICKETPRICE IN SHOWINGS CONTROLLER WHEN CREATING A SHOWING
+            //PUT validation in here for 48 hour discount
+            //other discounts with age, etc.
+            TimeSpan diff = ticket.Showing.ShowDate - ord.OrderDate;
+            if (diff.Days >= 2)
+            {
+                ord.EarlyDiscount = 1.00m;
+                ticket.TicketPrice = ticket.Showing.TicketPrice - ord.EarlyDiscount;
+            }
+            else ord.EarlyDiscount = 0;
+
+
+            //senior discount
+            var UserId = User.Identity.GetUserId();
+
             if (ModelState.IsValid)
             {
                 db.Entry(ticket).State = EntityState.Modified;
+                //db.Entry(ord).State = EntityState.Modified;
                 db.SaveChanges();
                 //redirect to edit so that they can continue adding to cart if they want to 
                 return RedirectToAction("Edit", "Orders", new { id = ord.OrderID });
@@ -162,9 +177,8 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             ViewBag.AllSeats = GetAllTicketSeats(ticket.Showing.ShowingID);
             return View(ticket);
 
-            //    //PUT THIS TICKETPRICE IN SHOWINGS CONTROLLER WHEN CREATING A SHOWING
-            //    //PUT validation in here for 48 hour discount
-            //    //other discounts with age, etc.
+            
+
 
             //    DateTime weekday = Convert.ToDateTime("12:00");
             //    DateTime tuesday = Convert.ToDateTime("5:00");
@@ -222,7 +236,6 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             if (ModelState.IsValid)
             {
                 //TODO: Add generate confirmation number
-             
                 od.ConfirmationNumber = Utilities.GenerateNextConfirmationNumber.GetNextConfirmation();
                 //od.Tickets = ord.Tickets;
                 ViewBag.ConfirmationNumber = od.ConfirmationNumber;
