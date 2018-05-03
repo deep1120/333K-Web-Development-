@@ -1,0 +1,24 @@
+﻿@model MIS333K_Team11_FinalProjectV2.Models.Order
+@using MIS333K_Team11_FinalProjectV2.Models
+@using MIS333K_Team11_FinalProjectV2.Controllers
+
+
+
+@{
+    ViewBag.Title = "Confirm";
+}
+
+<h2>Confirm</h2>
+@Html.HiddenFor(model => model.OrderID)
+<h3>Thank you for purchasing a Ticket</h3>
+
+<h3>Your confirmation number is: 25632641   </h3>
+
+@Html.ActionLink("Back to Home", "Index", "Home")
+
+@*<div>
+        <dt>@Html.DisplayNameFor(model => model.ConfirmationNumber)</dt>
+        <dd>@Html.DisplayFor(model => model.ConfirmationNumber)</dd>
+    </div>*@
+
+
