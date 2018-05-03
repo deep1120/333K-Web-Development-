@@ -1,9 +1,9 @@
 ﻿@model MIS333K_Team11_FinalProjectV2.Models.Review
 
 @{
-                /**/
+    /**/
 
-                ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit";
 }
 
 <h2>Edit</h2>
@@ -17,14 +17,21 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.ReviewID)
-        <div class="form-group">
-            @Html.LabelFor(model => model.StarRating, "Rating", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.StarRating, "Select a Rating", htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.StarRating, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
+        @*<div class="form-group">
+            <label class="control-label col-md-2">Select a movie:</label>
+            <div class="col-md-10">
+                @Html.DropDownList("SelectedMovie", (SelectList)ViewBag.MoviesToReview, new { @class = "form-control" })
+            </div>
+        </div>*@
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.StarRating, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.StarRating, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.StarRating, "", new { @class = "text-danger" })
+        </div>
         <div class="form-group">
             @Html.LabelFor(model => model.Comment, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
