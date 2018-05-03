@@ -70,8 +70,6 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         public virtual List<Review> Reviews { get; set; }
         public virtual List<Showing> Showings { get; set; }
         public virtual List<Genre> Genres { get; set; }
-        [Display(Name = "Rating")]
-        public virtual List<Rating> Ratings { get; set; }
 
         public Movie()
         {
@@ -86,10 +84,6 @@ namespace MIS333K_Team11_FinalProjectV2.Models
             if (Genres == null)
             {
                 Genres = new List<Genre>();
-            }
-            if (Ratings == null)
-            {
-                Ratings = new List<Rating>();
             }
         }
     }

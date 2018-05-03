@@ -108,7 +108,6 @@ namespace MIS333K_Team11_FinalProjectV2.Models
             public DbSet<Genre> Genres { get; set; }
             public DbSet<Movie> Movies { get; set; }
             public DbSet<Order> Orders { get; set; }
-            public DbSet<Rating> Ratings { get; set; }
             public DbSet<Review> Reviews { get; set; }
             public DbSet<Showing> Showings { get; set; }
             public DbSet<Ticket> Tickets { get; set; }
