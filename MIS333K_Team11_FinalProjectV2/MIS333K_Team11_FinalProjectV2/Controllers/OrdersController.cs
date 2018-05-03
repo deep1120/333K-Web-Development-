@@ -162,7 +162,20 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
 
             //senior discount
-            var UserId = User.Identity.GetUserId();
+            TimeSpan diff2 = DateTime.Today - ord.OrderAppUser.Birthday;
+            if (((diff2.Days)/365) >= 60)
+            {
+                ord.SeniorDiscount = 2.00m;
+                ticket.TicketPrice = ticket.Showing.TicketPrice - ord.SeniorDiscount;
+            }
+            
+            //both senior discount and early discount
+            if(diff.Days >= 2 && ((diff2.Days) / 365) >= 60)
+            {
+                ord.EarlyDiscount = 1.00m;
+                ord.SeniorDiscount = 2.00m;
+                ticket.TicketPrice = ticket.Showing.TicketPrice - ord.SeniorDiscount - ord.EarlyDiscount;
+            }
 
             if (ModelState.IsValid)
             {
