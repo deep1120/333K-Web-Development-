@@ -49,16 +49,16 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         // GET: Ratings
-        //[Authorize(Roles = "Manager, Admin, Employee")]
+        [Authorize]
         public ActionResult Index()
-        {
-            //return View(db.Reviews.ToList());
+        {   
             string UserID = User.Identity.GetUserId();
             List<Review> Reviews = db.Reviews.Where(r => r.AppUser.Id == UserID).ToList();
             return View(Reviews);
         }
 
         // GET: Ratings/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -74,13 +74,12 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         // GET: Ratings/Create
-        //[Authorize(Roles = "Customer")]
+        [Authorize(Roles = "Customer")]
         public ActionResult Create()
         {
             ViewBag.MoviesToReview = GetAllMoviesToReview();
             return View();
-        }
-        
+        } 
 
         // POST: Ratings/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -88,7 +87,8 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         //[Authorize(Roles = "Customer")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ReviewID,Comment,StarRating")] Review review)
+        //[Authorize(Roles = "Customer")]
+        public ActionResult Create([Bind(Include = "ReviewID,StarRating,Comment")] Review review)
         {
             review.AppUser = db.Users.Find(User.Identity.GetUserId());
             db.SaveChanges();
@@ -104,7 +104,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         // GET: Ratings/Edit/5
-        //[Authorize(Roles = "Manager, Admin, Employee")]
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -125,6 +125,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         //[Authorize(Roles = "Manager, Admin, Employee")]
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "ReviewID,Comment,StarRating")] Review review)
         {
             if (ModelState.IsValid)
@@ -136,55 +137,14 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             return View(review);
         }
 
-        // GET: Ratings/Delete/5
-        //[Authorize(Roles = "Manager, Admin")]
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Review review = db.Reviews.Find(id);
-            if (review == null)
-            {
-                return HttpNotFound();
-            }
-            return View(review);
-        }
-
-        // POST: Ratings/Delete/5
-        //[Authorize(Roles = "Manager, Admin")]
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Review review = db.Reviews.Find(id);
-            db.Reviews.Remove(review);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        //public SelectList GetAllShowings()
-        //{
-        //    //Get the list of showings in order by showing name 
-        //    List<Showing> allShowings = db.Showings.OrderBy(s => s.SponsoringMovie.MovieTitle).ToList();
-
-        //    //convert the list to a select list
-        //    SelectList selShowings = new SelectList(allShowings, "ShowingID", "ShowingNameAndDate");
-
-        //    //return the select list        
-        //    return selShowings;
-        //}
-
         public SelectList GetAllMoviesToReview()
         {
             List<Movie> Movies = new List<Movie>();
 
             string currentUserId = User.Identity.GetUserId();
-            List<Order> Orders = db.Orders.Where(o => o.OrderAppUser.Id == currentUserId && o.Orderstatus == OrderStatus.Completed).ToList();
-      
-            //ApplicationUser currentUser = db.Users.FirstOrDefault(x => x.Id == currentUserId);
-            List<Ticket> ReviewTickets = db.Tickets.Where(t => t.TicketID == t.OrderID).ToList();
+            List<Ticket> ReviewTickets = db.Tickets.Where(t => t.Order.Orderstatus == OrderStatus.Completed).ToList();
+            List<Order> Orders = db.Orders.Where(o => o.OrderAppUser.Id == currentUserId).ToList();
+            
 
             foreach (Ticket rt in ReviewTickets)
             {
@@ -204,13 +164,6 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             return MoviesToReview;
         }
 
-        //private AppUserManager UserManager
-        //{
-        //    get
-        //    {
-        //        return HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
-        //    }
-        //}
 
         protected override void Dispose(bool disposing)
         {

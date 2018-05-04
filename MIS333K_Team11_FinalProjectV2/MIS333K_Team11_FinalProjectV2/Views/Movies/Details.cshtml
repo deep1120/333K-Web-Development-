@@ -25,13 +25,13 @@
             @Html.DisplayNameFor(model => model.MovieTitle)
         </dt>
 
-        <dd>
+        @*<dd>
             @Html.DisplayFor(model => model.MovieTitle)
             @if (!User.IsInRole("Manager") && !User.IsInRole("Employee"))
             {
                 <span>(@Html.ActionLink("Create an Order", "Create", "Orders", new { id = Model.MovieID }, null))</span>
             }
-        </dd>
+        </dd>*@
 
         <dt>
             @Html.DisplayNameFor(model => model.MovieOverview)
@@ -97,12 +97,12 @@
             {
                 @Model.Ratings.ToList().Average(x => x.RatingScore).ToString("0.#")
             }*@
-             <dt>
+             @*<dt>
             @if ((User.IsInRole("Customer")) || (User.IsInRole("DisabledCustomer")))
             {
                 @Html.ActionLink("Review This Movie", "Create", "Review", new { id = Model.MovieID, name = "movieReview" }, null)
             }
-        </dt>
+        </dt>*@
         <dd>
             @ViewBag.ReviewError
         </dd>

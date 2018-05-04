@@ -61,6 +61,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         //}
 
         // GET: Tickets/Edit/5
+        [Authorize(Roles ="Customer")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -79,6 +80,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Customer")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "TicketID,TicketPrice,TicketSeat,TotalFees")] Ticket ticket, DateTime StartTime, Decimal TicketPrice, Order order)
         {
@@ -176,6 +178,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         // GET: Tickets/Delete/5
+        [Authorize(Roles = "Customer")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -192,6 +195,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
         // POST: Tickets/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Customer")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

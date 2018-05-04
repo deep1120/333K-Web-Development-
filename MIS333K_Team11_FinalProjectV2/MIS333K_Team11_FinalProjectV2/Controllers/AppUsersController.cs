@@ -20,12 +20,14 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         private AppDbContext db = new AppDbContext();
 
         // GET: AppUsers
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.Users.ToList());
         }
 
         //for managers and employees
+        [Authorize(Roles = "Manager,Employee")]
         public ActionResult ManagerIndex()
         {
             return View(db.Users.ToList());
@@ -107,6 +109,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         // POST: AppUsers/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "Id,FirstName,MiddleInitial,LastName,Street,ZipCode," +
             "City,State,Email,PhoneNumber,Birthday,PopcornPoints")] AppUser appUser)
         {
@@ -164,6 +167,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         // GET: Users/Delete/5
+        [Authorize(Roles = "Manager")]
         public ActionResult Delete(string id)
         {
             if (id == null)
@@ -180,6 +184,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
         // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Manager")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {

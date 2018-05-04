@@ -6,6 +6,21 @@
 
 <h2>AddToOrder</h2>
 
+<body align="center">
+    <div>
+        @*<img src="https://drive.google.com/file/d/1wvV3qbH2O1agfUjpgmJEbWSRugFwzi5v/view " />*@
+        <img src="@Url.Content("/Content/Images/seats.png")" />
+    </div>
+    <br />
+
+
+    @*@Html.ActionLink("Events", "Index", "Events", null, new { @class = "btn btn-success" })
+        @Html.ActionLink("Committees", "Index", "Committees", null, new { @class = "btn btn-danger" })*@
+</body>
+
+
+
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -25,11 +40,11 @@
             </div>*@
 
         @*<div class="form-group">
-            <label class="control-label col-md-2">Select a movie:</label>
-            <div class="col-md-10">
-                @Html.DropDownList("SelectedShowing", (SelectList)ViewBag.AllShowings, new { @class = "form-control" })
-            </div>
-        </div>*@
+                <label class="control-label col-md-2">Select a movie:</label>
+                <div class="col-md-10">
+                    @Html.DropDownList("SelectedShowing", (SelectList)ViewBag.AllShowings, new { @class = "form-control" })
+                </div>
+            </div>*@
 
 
         <div class="form-group">

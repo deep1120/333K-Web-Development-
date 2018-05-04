@@ -57,6 +57,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
         //[Authorize(Roles = "Manager")]
         // GET: Showings
+        [AllowAnonymous]
         public ActionResult Index()
         {
             if (User.IsInRole("Manager") || User.IsInRole("Employee"))
@@ -95,6 +96,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         // GET: Showings/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -267,9 +269,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         //    return View();
         //}
 
-        //[Authorize(Roles = "Manager")]
-        //[HttpGet]
-        //[Authorize(Roles = "Manager")]
+        [Authorize(Roles = "Manager")]
         //[HttpGet]
         public ActionResult Publish()
         {
@@ -634,12 +634,14 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         //    return View("Index", SelectedShowings);
         //}
 
+        [AllowAnonymous]
         public ActionResult DetailedSearch()
         {
             ViewBag.AllGenres = GetAllGenres();
             return View();
         }
 
+        [AllowAnonymous]
         public ActionResult DisplaySearchResults(DateTime? datSelectedDate, String SearchMovieTitle, String SearchTagline, 
             int[] SearchGenre, String SelectedYear, MPAArating SelectedMPAARating, String SearchActor, YearRank SelectedSortOrder,
             String StarCount, Option SelectedOption)
@@ -772,6 +774,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         // GET: Showings/Edit/5
+        [Authorize(Roles = "Manager")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -788,6 +791,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         // POST: Showings/Edit/5
+        [Authorize(Roles = "Manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ShowingID, Theatre, ShowDate")] Showing showing, int? SelectedMovies)
@@ -830,6 +834,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             EmailMessaging.SendEmail(user.Email, "Team 11 Movie Reschedule Confirmation", body);
         }
 
+        [Authorize(Roles = "Manager")]
         // GET: Showings/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -845,6 +850,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             return View(showing);
         }
 
+        [Authorize(Roles = "Manager")]
         // POST: Showings/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

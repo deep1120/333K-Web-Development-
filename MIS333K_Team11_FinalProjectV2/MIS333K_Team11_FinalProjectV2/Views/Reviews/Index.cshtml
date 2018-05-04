@@ -2,7 +2,7 @@
 @using MIS333K_Team11_FinalProjectV2.Models
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Reviews";
 }
 
 <h2>Index</h2>
@@ -35,7 +35,7 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.ReviewID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ReviewID }) |
+                @*@Html.ActionLink("Details", "Details", new { id = item.ReviewID }) |*@
                 @Html.ActionLink("Delete", "Delete", new { id = item.ReviewID })
             </td>
         </tr>

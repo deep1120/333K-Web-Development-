@@ -67,6 +67,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         // GET: /Roles/
+        [Authorize(Roles = "Manager")]
         public ActionResult Index()
         {
             var roles = db.Roles.ToList();
@@ -75,6 +76,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
         //
         // GET: /Roles/Create
+        [Authorize(Roles = "Manager")]
         public ActionResult Create()
         {
             return View();
@@ -83,6 +85,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         //
         // POST: /Roles/Create
         [HttpPost]
+        [Authorize(Roles = "Manager")]
         public ActionResult Create(FormCollection collection)
         {
             try
@@ -104,6 +107,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
         //
         // GET: /Roles/Edit/5
+        [Authorize(Roles = "Manager")]
         public ActionResult Edit(string roleName)
         {
             var thisRole = db.Roles.Where(r => r.Name.Equals(roleName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
@@ -115,6 +119,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         // POST: /Roles/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Manager")]
         public ActionResult Edit(Microsoft.AspNet.Identity.EntityFramework.IdentityRole role)
         {
             try
@@ -132,6 +137,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
         //
         // GET: /Roles/Delete/5
+        [Authorize(Roles = "Manager")]
         public ActionResult Delete(string RoleName)
         {
             var thisRole = db.Roles.Where(r => r.Name.Equals(RoleName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
@@ -140,6 +146,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Manager, Employee")]
         public ActionResult ManageUserRoles()
         {
             //for managers
@@ -155,6 +162,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Manager")]
         public ActionResult RoleAddToUser(string UserName, string RoleName)
         {
             if (String.IsNullOrEmpty(RoleName) || (String.IsNullOrEmpty(UserName)))
@@ -188,6 +196,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Manager, Employee")]
         public ActionResult GetRoles(string UserName)
         {
             if (!string.IsNullOrWhiteSpace(UserName))
@@ -220,6 +229,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Manager")]
         public ActionResult DeleteRoleForUser(string UserName, string RoleName)
         {
             if (String.IsNullOrEmpty(RoleName) || (String.IsNullOrEmpty(UserName)))

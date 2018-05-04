@@ -104,7 +104,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 AppUser userLoggingIn = db.Users.FirstOrDefault(x => x.Email == model.Email);
                 if(await UserManager.IsInRoleAsync(userLoggingIn.Id, "FiredEmployee"))
                 {
-                    return View("Error", new string[] { "Your employee account has been disabled." });
+                    return View("Error", new string[] { "Not Authorized (FE)" });
                 }
             }
             catch (NullReferenceException e)
@@ -218,6 +218,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         // POST: /Accounts/ChangePassword
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
         {
             if (!ModelState.IsValid)
@@ -239,6 +240,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         //GET: /Account/SetPassword
+        [Authorize]
         public ActionResult SetPassword(string id)
         {
             var userId = id;
@@ -256,6 +258,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
         //POST: /Account/SetPassword
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SetPassword(SetPasswordViewModel model)
         {
@@ -279,6 +282,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         //GET: /Account/Index
+        [Authorize]
         public ActionResult Index(string id, ManageMessageId? message)
         {
             ViewBag.StatusMessage =
@@ -336,7 +340,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         //GET: Edit Account Details
-        [Authorize(Roles = "Manager,Customer,Employee")]
+        [Authorize]
         public ActionResult Edit(string id)
         {
             var userId = id;
@@ -470,6 +474,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             return RedirectToAction("Index", new { id = User.Identity.GetUserId() });
         }
 
+        [Authorize]
         public ActionResult CardEdit()
         {
             var user = UserManager.FindById(User.Identity.GetUserId());

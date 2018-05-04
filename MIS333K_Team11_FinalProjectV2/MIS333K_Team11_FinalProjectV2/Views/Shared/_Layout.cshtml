@@ -55,8 +55,7 @@
                     @if (User.IsInRole("Manager") || User.IsInRole("Employee"))
     {
                 <li class="nav-item">@Html.ActionLink("Customer List", "Customers", "Accounts", null, new { @class = "nav-link" })</li>
-                <li class="nav-item">@Html.ActionLink("Reports", "Index", "Report", null, new { @class = "nav-link" })</li>
-                <li class="nav-item">@Html.ActionLink("Edit Reviews", "Index", "Reviews", null, new { @class = "nav-link" })</li>
+                <li class="nav-item">@Html.ActionLink("Reviews", "Index", "Reviews", null, new { @class = "nav-link" })</li>
                 <li class="nav-item">@Html.ActionLink("Orders", "Index", "Orders", null, new { @class = "nav-link" })</li>
 }
                 </ul>

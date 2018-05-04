@@ -21,7 +21,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             var model = new CustomerWelcomeVM();
             if (User.IsInRole("Customer"))
             {
-                //return Views(db.Showings.Where(s => s.IsPublished == PublishedStatus.IsPublished && s.ShowDate.Date == DateTime.Now.Date);
+                //return View(db.Showings.Where(s => s.IsPublished == PublishedStatus.IsPublished && s.ShowDate.Date == DateTime.Now.Date));
                 var userId = User.Identity.GetUserId();
                 var user = db.Users.SingleOrDefault(x => x.Id == userId);
                 model.CustomerName = user.FirstName;

@@ -18,6 +18,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         private AppDbContext db = new AppDbContext();
 
         // GET: Home
+        [Authorize]
         public ActionResult Index(String SearchString)
         {
             var query = from m in db.Movies
@@ -37,6 +38,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         // GET: Movies/Create
+        [Authorize(Roles = "Manager")]
         public ActionResult Create()
         {
             ViewBag.AllGenres = GetAllGenres();
@@ -48,6 +50,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Manager")]
         public ActionResult Create([Bind(Include = "MovieID,MovieNumber, MovieTitle, MovieOverview, RunningTime, Tagline, MPAARating, Actor, MovieRevenue, ReleaseDate, AverageUserRating, FeaturedMovie")] Movie movie, int[] SelectedGenres)
         {
 
@@ -83,8 +86,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             return selgenres;
         }
 
-
-
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -99,12 +101,14 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             return View(movie);
         }
 
+        [Authorize]
         public ActionResult DetailedSearch()
         {
             ViewBag.AllGenres = GetAllGenres();
             return View();
         }
 
+        [Authorize]
         public ActionResult DisplaySearchResults(String SearchMovieTitle, String SearchTagline, int[] SearchGenre, String SelectedYear, MPAArating SelectedMPAARating, String SearchActor, YearRank SelectedSortOrder)
         {
 

@@ -13,20 +13,21 @@
     <div class="form-horizontal">
         <h4>Review</h4>
 
-                <div class="form-group">
+        <div class="form-group">
             <label class="control-label col-md-2">Select a movie:</label>
             <div class="col-md-10">
+
                 @Html.DropDownList("SelectedMovie", (SelectList)ViewBag.MoviesToReview, new { @class = "form-control" })
             </div>
         </div>
 
-        </div>
-         <div class="form-group">
-            @Html.LabelFor(model => model.StarRating, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.StarRating, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.StarRating, "", new { @class = "text-danger" })
-                </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.StarRating, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.StarRating, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.StarRating, "", new { @class = "text-danger" })
+            </div>
         <div class="form-group">
             @Html.LabelFor(model => model.Comment, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">

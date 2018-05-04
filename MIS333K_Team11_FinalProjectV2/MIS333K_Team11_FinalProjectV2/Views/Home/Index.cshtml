@@ -33,26 +33,3 @@ else
     <h1>Welcome to Team 11's Movie Theater</h1>
 }
 
-
-@using (Html.BeginForm("Index", "Movies"))
-{
-    <p class="form-group">
-        @Html.TextBox("SearchString", null, new { @class = "form-control", Placeholder = "Search" }) <br />
-        <ng-form class="form-inline">
-            <input type="submit" name="btn1" value="Movies" class="btn btn-default" />
-            @*<input type="submit" name="btn1" value="Artists" class="btn btn-default" />
-            <input type="submit" name="btn1" value="Albums" class="btn btn-default" />*@
-        </ng-form><br /><br />
-    </p> <!––submit buttons for different search types-->
-}
-
-
-@*@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Team 11's Movie Theater</h2>*@
-
-@*@Html.ActionLink("Showings", "Index", "Showings", null, new { @class = "btn btn-primary" })
-@Html.ActionLink("Movies", "Index", "Movies", null, new { @class = "btn btn-success" })*@
-

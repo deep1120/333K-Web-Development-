@@ -24,12 +24,14 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         // GET: Genres
+        [Authorize(Roles = "Manager")]
         public ActionResult Index()
         {
             return View(db.Genres.ToList());
         }
 
         // GET: Genres/Details/5
+        [Authorize(Roles = "Manager")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -45,6 +47,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         // GET: Genres/Create
+        [Authorize(Roles = "Manager")]
         public ActionResult Create()
         {
             return View();
@@ -55,6 +58,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Manager")]
         public ActionResult Create([Bind(Include = "GenreID,GenreName")] Genre genre)
         {
             if (ModelState.IsValid)
@@ -68,6 +72,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         // GET: Genres/Edit/5
+        [Authorize(Roles = "Manager")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -87,6 +92,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Manager")]
         public ActionResult Edit([Bind(Include = "GenreID,GenreName")] Genre genre)
         {
             if (ModelState.IsValid)
@@ -99,6 +105,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         // GET: Genres/Delete/5
+        [Authorize(Roles = "Manager")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -116,6 +123,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         // POST: Genres/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Manager")]
         public ActionResult DeleteConfirmed(int id)
         {
             Genre genre = db.Genres.Find(id);

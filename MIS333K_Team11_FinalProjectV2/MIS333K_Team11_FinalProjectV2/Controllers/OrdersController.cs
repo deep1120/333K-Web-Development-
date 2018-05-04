@@ -57,6 +57,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         // GET: Orders
+        [Authorize(Roles = "Customer, Manager")]
         public ActionResult Index()
         {
             if (User.IsInRole("Manager"))
@@ -72,6 +73,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         // GET: Orders/Details/5
+        [Authorize(Roles = "Customer, Manager")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -94,6 +96,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         // GET: Orders/Create
+        [Authorize(Roles = "Customer")]
         public ActionResult Create()
         {
             return View();
@@ -102,6 +105,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         // POST: Orders/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Customer")]
         public ActionResult Create([Bind(Include = "OrderID,OrderNumber,OrderDate,Orderstatus")] Order order)
         {
             //Find next order number
@@ -122,6 +126,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         //GET
+        [Authorize(Roles = "Customer")]
         public ActionResult AddShowing(int OrderID)
         {
             //Ticket td = new Ticket();
@@ -132,6 +137,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Customer")]
         public ActionResult AddShowing([Bind(Include = "OrderID,OrderNumber,ConfirmationNumber,EarlyDiscount,SeniorDiscount,OrderDate,CardNumber,Orderstatus,OrderSubtotal,SalesTax,OrderTotal,Gift,GiftEmail")] Order ord, int SelectedShowing)
         {
             Showing showing = db.Showings.Find(SelectedShowing);
@@ -153,6 +159,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             return View(order);
         }
 
+        [Authorize(Roles = "Customer")]
         public ActionResult AddToOrder(int OrderID, int TicketID)
         {
 
@@ -166,6 +173,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Customer")]
         public ActionResult AddToOrder([Bind(Include = "TicketID,OrderID,MovieID,Quantity,Subtotal,TicketPrice,TicketSeat,TotalFees")] Ticket td, string SelectedTicket)
         {
             //Showing showing = db.Showings.Find(SelectedShowing);
@@ -256,6 +264,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
         }
 
+        [Authorize(Roles = "Customer")]
         public ActionResult Gift(Order order)
         {
             order.Gift = false;
@@ -263,6 +272,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Customer")]
         public ActionResult Gift(bool Gift, String GiftEmail)
         {
             var errorMessage = string.Empty;
@@ -285,6 +295,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             return RedirectToAction("Checkout");
         }
 
+        [Authorize(Roles = "Customer")]
         public ActionResult Checkout(int OrderID)
         {
             ViewBag.AllCards = GetAllCards();
@@ -294,6 +305,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Customer")]
         public ActionResult Checkout([Bind(Include = "OrderID,OrderNumber,ConfirmationNumber,EarlyDiscount,SeniorDiscount,OrderDate,CardNumber,Orderstatus,OrderSubtotal,SalesTax,OrderTotal,Gift,GiftEmail")] Order ord/*, int SelectedCards*/) //without bind...might not include stuff
         {
             //Order od = db.Orders.Include(OD => OD.Tickets)
@@ -343,12 +355,14 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             EmailMessaging.SendEmail(user.Email, "Team 11 Order Completed Confirmation", body);
         }
 
+        [Authorize(Roles = "Customer")]
         public ActionResult Confirm()
         {
             return View();
         }
 
         // GET: Orders/Edit/5
+        [Authorize(Roles = "Customer")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -366,6 +380,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         // POST: Orders/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Customer")]
         public ActionResult Edit([Bind(Include = "OrderID,OrderNumber,ConfirmationNumber,EarlyDiscount,SeniorDiscount,OrderDate,CardNumber,Orderstatus,OrderSubtotal,SalesTax,OrderTotal,Gift,GiftEmail")] Order order)
         {
             if (ModelState.IsValid)
@@ -377,6 +392,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             return View(order);
         }
 
+        [Authorize(Roles = "Customer")]
         public ActionResult RemoveFromOrder(int OrderID)
         {
             Order ord = db.Orders.Find(OrderID);
@@ -395,6 +411,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             return View(ord.Tickets);
         }
         // GET: Orders/Delete/5
+        [Authorize(Roles = "Customer")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -412,6 +429,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         // POST: Orders/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Customer")]
         public ActionResult DeleteConfirmed(int id)
         {
             Order order = db.Orders.Find(id);
@@ -428,12 +446,14 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             EmailMessaging.SendEmail(user.Email, "Team 11 Order Cancelled Confirmation", body);
         }
 
+        [Authorize(Roles = "Customer")]
         public ActionResult StatusSearch()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize(Roles = "Customer")]
         public ActionResult StatusSearch([Bind(Include = "OrderStatus,OrderID,OrderNumber,ConfirmationNumber,EarlyDiscount,SeniorDiscount,OrderDate,CardNumber,Total,Orderstatus,OrderSubtotal,SalesTax,OrderTotal,Gift,GiftEmail")] OrderStatus SelectOrderStatus)
         {
             var query = from o in db.Orders
@@ -457,13 +477,14 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
         }
 
+        [Authorize(Roles = "Manager")]
         public ActionResult Reports()
         {
             return View();
         }
 
         //GET: TicketReport
-        //[Authorize(Roles = "Manager, Admin")]
+        [Authorize(Roles = "Manager")]
         public ActionResult TicketReport() //this simply gives the overall report(total tickets sold and total revenue for all orders confirmed) 
         {
             List<Ticket> allTickets = db.Tickets.Where(t => t.Order.Orderstatus == OrderStatus.Completed).ToList();
@@ -479,12 +500,14 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             return View(tivm);
         }
 
+        [Authorize(Roles = "Manager")]
         public ActionResult ReportSearch()
         {
             ViewBag.AllShowingMovies = GetAllShowingMovies();
             return View();
         }
 
+        [Authorize(Roles = "Manager")]
         public ActionResult DisplaySearchResults(DateTime? FirstDate, DateTime? SecondDate, int[] SearchShowingMovies, 
                                                  MPAArating SelectedMPAARating/*, DateTime? FirsTime, DateTime? SecondTime*/)
         {
