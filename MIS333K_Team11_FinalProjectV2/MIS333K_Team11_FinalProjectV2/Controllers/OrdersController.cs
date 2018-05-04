@@ -243,11 +243,32 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         [HttpPost]
         public ActionResult Checkout([Bind(Include = "OrderID,OrderNumber,ConfirmationNumber,EarlyDiscount,SeniorDiscount,OrderDate,CardNumber,Orderstatus,OrderSubtotal,SalesTax,OrderTotal,Gift,GiftEmail")] Order ord/*, int SelectedCards*/) //without bind...might not include stuff
         {
-
             //Order od = db.Orders.Include(OD => OD.Tickets)
             //                    .FirstOrDefault(x => x.OrderID == ord.OrderID);
             Order od = db.Orders.Find(ord.OrderID);
             //do we add confirmation number here as well??
+
+            List<Ticket> TicketsInOrder = od.Tickets.ToList();
+            Int32 CheckoutCount = TicketsInOrder.Count();
+
+            if(CheckoutCount == 0)
+            {
+                ViewBag.EmptyCart = "You cannot checkout because you have no items in your cart";
+                return View(od);
+            }
+
+            var TicketArray = TicketsInOrder.ToArray();
+            for(int i = 0; i<TicketArray.Length - 1; i++)
+            {
+                String firstmovie = TicketArray[i].Movie.MovieTitle;
+                String secondmovie = TicketArray[i + 1].Movie.MovieTitle;
+
+                if(firstmovie == secondmovie)
+                {
+                    ViewBag.SameMovieError = "You cannot have duplicate movies in cart";
+                    return View(od);
+                }
+            }
 
             if (ModelState.IsValid)
             {
@@ -257,7 +278,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 db.Entry(od).State = EntityState.Modified;
                 db.SaveChanges();
                 //return RedirectToAction("Checkout", "Orders", new { id = od.OrderID }); //checkout gift, checkoutfinal view. 
-                return RedirectToAction("Index");
+                return RedirectToAction("Confirm");
             }
 
             //ticket.Order = td.Order;
@@ -487,7 +508,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         //method to get all courses for the ViewBag
         public SelectList GetAllShowings()
         {
-            List<Showing> allShowings = db.Showings/*.Where(s => s.PublishedStatus == PublishedStatus.IsPublished)*/.OrderBy(s => s.SponsoringMovie.MovieTitle).ToList();
+            List<Showing> allShowings = db.Showings.Where(s => s.IsPublished == PublishedStatus.IsPublished).OrderBy(s => s.SponsoringMovie.MovieTitle).ToList();
             SelectList selShowings = new SelectList(allShowings, "ShowingID", "ShowingNameAndDate");     
             return selShowings;
         }

@@ -18,7 +18,7 @@ namespace MIS333K_Team11_FinalProjectV2.Utilities
 
             if (db.Orders.Count() == 0) //there are no registrations in the database yet
             {
-                intMaxOrderNumber = 1000; //registration numbers start at 1001
+                intMaxOrderNumber = 10000; //registration numbers start at 1001
             }
             else
             {

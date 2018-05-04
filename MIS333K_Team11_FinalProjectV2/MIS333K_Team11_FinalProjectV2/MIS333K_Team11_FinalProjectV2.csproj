@@ -136,8 +136,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\CheckoutController.cs" />
-    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Migrations\201805010413178_NEW.cs" />
     <Compile Include="Migrations\201805010413178_NEW.Designer.cs">
       <DependentUpon>201805010413178_NEW.cs</DependentUpon>

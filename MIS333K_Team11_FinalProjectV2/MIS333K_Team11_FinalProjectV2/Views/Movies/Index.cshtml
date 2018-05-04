@@ -66,7 +66,7 @@
                 @Html.DisplayFor(modelItem => item.ReleaseDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Ratings.FirstOrDefault().RatingScore)
+                @Html.DisplayFor(modelItem => item.AverageUserRating)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.MovieID }) |
