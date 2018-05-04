@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<MIS333K_Team11_FinalProjectV2.Models.Order>
+@using MIS333K_Team11_FinalProjectV2.Models
 
 @{
     ViewBag.Title = "Index";
@@ -35,30 +36,50 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrderNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrderDate)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.)
-            </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.OrderTotal)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Orderstatus)
-            </td>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderDate)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderTotal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Orderstatus)
+        </td>
 
+        @if (item.Orderstatus == OrderStatus.Completed)
+        {
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.OrderID })
-                @Html.ActionLink("Details", "Details", new { id = item.OrderID })
-                @Html.ActionLink("Delete", "Delete", new { id = item.OrderID })
+            @Html.ActionLink("Edit", "Edit", new { id = item.OrderID })
+            @Html.ActionLink("Details", "Details", new { id = item.OrderID })
+            @Html.ActionLink("Cancel", "Delete", new { id = item.OrderID })
             </td>
+        }
 
-        </tr>
+        @if (item.Orderstatus == OrderStatus.Cancelled)
+        {
+            <td> 
+            @Html.ActionLink("Details", "Details", new { id = item.OrderID })
+            </td>
+        }
+
+        @if (item.Orderstatus == OrderStatus.Pending)
+        {
+            <td>
+            @Html.ActionLink("Continue", "Edit", new { id = item.OrderID })
+            @Html.ActionLink("Details", "Details", new { id = item.OrderID })
+            @Html.ActionLink("Cancel", "Delete", new { id = item.OrderID })
+            </td>
+        }
+
+
+    </tr>
     }
 
 
