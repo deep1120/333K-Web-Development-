@@ -214,13 +214,13 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             }
 
             //if customer is younger than 18, can't purchase a R movie
-            TimeSpan rating = DateTime.Today - ord.OrderAppUser.Birthday;
-            if (((rating.Days) / 365) < 18 && ticket.Movie.MPAAratings == MPAArating.R)
-            {
-                ViewBag.YoungErrorMessage = "You must be at least 18 years old to purchase an R-rated movie";
-                ViewBag.AllSeats = GetAllTicketSeats(ticket.Showing.ShowingID);
-                return View(ticket);
-            }
+            //TimeSpan rating = DateTime.Today - ord.OrderAppUser.Birthday;
+            //if ((((rating.Days) / 365) < 18) && ticket.Movie.MPAAratings == MPAArating.R)
+            //{
+            //    ViewBag.YoungErrorMessage = "You must be at least 18 years old to purchase an R-rated movie";
+            //    ViewBag.AllSeats = GetAllTicketSeats(ticket.Showing.ShowingID);
+            //    return View(ticket);
+            //}
 
             //cant purchase tickets that have already started
             if (ticket.Showing.ShowDate < DateTime.Now)
@@ -316,24 +316,24 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             List<Ticket> TicketsInOrder = od.Tickets.ToList();
             Int32 CheckoutCount = TicketsInOrder.Count();
 
-            if(CheckoutCount == 0)
-            {
-                ViewBag.EmptyCart = "You cannot checkout because you have no items in your cart";
-                return View(od);
-            }
+            //if(CheckoutCount == 0)
+            //{
+            //    ViewBag.EmptyCart = "You cannot checkout because you have no items in your cart";
+            //    return View(od);
+            //}
 
-            var TicketArray = TicketsInOrder.ToArray();
-            for(int i = 0; i<TicketArray.Length - 1; i++)
-            {
-                String firstmovie = TicketArray[i].Movie.MovieTitle;
-                String secondmovie = TicketArray[i + 1].Movie.MovieTitle;
+            //var TicketArray = TicketsInOrder.ToArray();
+            //for(int i = 0; i<TicketArray.Length - 1; i++)
+            //{
+            //    String firstmovie = TicketArray[i].Movie.MovieTitle;
+            //    String secondmovie = TicketArray[i + 1].Movie.MovieTitle;
 
-                if(firstmovie == secondmovie)
-                {
-                    ViewBag.SameMovieError = "You cannot have duplicate movies in cart";
-                    return View(od);
-                }
-            }
+            //    if(firstmovie == secondmovie)
+            //    {
+            //        ViewBag.SameMovieError = "You cannot have duplicate movies in cart";
+            //        return View(od);
+            //    }
+            //}
 
             if (ModelState.IsValid)
             {

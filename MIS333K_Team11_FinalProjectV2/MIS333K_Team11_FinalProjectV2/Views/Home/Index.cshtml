@@ -8,15 +8,32 @@
 
 @if (User.IsInRole("Customer"))
 {
-    <div class="jumbotron">
-        <h2>Welcome @Model.CustomerName! </h2>
-        <p>Featured Today:</p>
-        <br />
-        @if (Model.FeaturedMovie.MovieID != 0)
-        {
-            <a href="@Url.Action("Details", "Movies", new { id = Model.FeaturedMovie.MovieID })" class="well well-lg">@Model.FeaturedMovie.MovieTitle</a>
-        }
-        @*@if (Model.FeaturedAlbum.AlbumID != 0)
+<div class="jumbotron">
+    <h2>Welcome @Model.CustomerName! </h2>
+    <p>Featured Today:</p>
+
+    <p>Theater 1:</p>
+    <p>The Sting 9:05 AM</p>
+    <p>WarGames 11:45 AM</p>
+    <p>Office Space 2:10 PM</p>
+    <p>Diamonds are Forever 4:15 PM</p>
+    <p>West Side Story 6:40 PM</p>
+    <p>Psycho 9:55 PM</p>
+
+
+    <p>Theater 2</p>
+    <p>Mary Poppins 9:10 AM</p>
+    <p>The Muppet Movie 12:00 PM</p>
+    <p>The Princess Bride 2:20 PM</p>
+    <p>The Lego Movie 4:30 PM</p>
+    <p>Finding Nemo 6:45 PM</p>
+    <p>Harry Potter and the Goblet of Fire 8:55 PM</p>
+    <br />
+    @if (Model.FeaturedMovie.MovieID != 0)
+    {
+        <a href="@Url.Action("Details", "Movies", new { id = Model.FeaturedMovie.MovieID })" class="well well-lg">@Model.FeaturedMovie.MovieTitle</a>
+    }
+    @*@if (Model.FeaturedAlbum.AlbumID != 0)
         {
             <a href="@Url.Action("Details", "Albums", new { id = Model.FeaturedAlbum.AlbumID })" class="well well-lg">@Model.FeaturedAlbum.AlbumTitle</a>
         }
@@ -24,7 +41,7 @@
         {
             <a href="@Url.Action("Details", "Artists", new { id = Model.FeaturedArtist.ArtistID })" class="well well-lg">@Model.FeaturedArtist.ArtistName</a>
         }*@
-    </div>
+</div>
 }
 
 else
