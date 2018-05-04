@@ -108,7 +108,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,FirstName,MiddleInitial,LastName,Street,ZipCode," +
-            "City,State,Email,PhoneNumber,Birthday")] AppUser appUser)
+            "City,State,Email,PhoneNumber,Birthday,PopcornPoints")] AppUser appUser)
         {
             if (ModelState.IsValid)
             {
@@ -124,7 +124,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult ManagerEdit([Bind(Include = "Id,FirstName,MiddleInitial,LastName,Street,ZipCode," +
-            "City,State,Email,PhoneNumber,Birthday")] AppUser appUser)
+            "City,State,Email,PhoneNumber,Birthday,PopcornPoints")] AppUser appUser)
         {
             if(ModelState.IsValid)
             {

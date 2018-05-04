@@ -52,7 +52,10 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         //[Authorize(Roles = "Manager, Admin, Employee")]
         public ActionResult Index()
         {
-            return View(db.Reviews.ToList());
+            //return View(db.Reviews.ToList());
+            string UserID = User.Identity.GetUserId();
+            List<Review> Reviews = db.Reviews.Where(r => r.AppUser.Id == UserID).ToList();
+            return View(Reviews);
         }
 
         // GET: Ratings/Details/5
@@ -87,6 +90,9 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ReviewID,Comment,StarRating")] Review review)
         {
+            review.AppUser = db.Users.Find(User.Identity.GetUserId());
+            db.SaveChanges();
+    
             //Album RatedAlbum;
             if (ModelState.IsValid)
             {
@@ -170,14 +176,15 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         //    return selShowings;
         //}
 
-
-
-
         public SelectList GetAllMoviesToReview()
         {
             List<Movie> Movies = new List<Movie>();
 
-            List<Ticket> ReviewTickets = db.Tickets.Where(t => t.Order.Orderstatus == OrderStatus.Completed).ToList();
+            string currentUserId = User.Identity.GetUserId();
+            List<Order> Orders = db.Orders.Where(o => o.OrderAppUser.Id == currentUserId && o.Orderstatus == OrderStatus.Completed).ToList();
+      
+            //ApplicationUser currentUser = db.Users.FirstOrDefault(x => x.Id == currentUserId);
+            List<Ticket> ReviewTickets = db.Tickets.Where(t => t.TicketID == t.OrderID).ToList();
 
             foreach (Ticket rt in ReviewTickets)
             {
@@ -194,7 +201,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 }
             }
             SelectList MoviesToReview = new SelectList(Movies, "MovieID", "MovieTitle");
-             return MoviesToReview;
+            return MoviesToReview;
         }
 
         //private AppUserManager UserManager

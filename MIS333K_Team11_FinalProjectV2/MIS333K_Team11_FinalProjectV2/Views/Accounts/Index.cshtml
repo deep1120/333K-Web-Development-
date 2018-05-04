@@ -78,26 +78,6 @@
             @Html.DisplayFor(model => model.PopcornPoints)
         </dd>
 
-        <dt>Password:</dt>
-        <dd>
-            [
-            @if (Model.HasPassword)
-            {
-                if (User.Identity.GetUserId() != Model.UserModelID && Model.Role == "Customer")
-                {
-                    @Html.ActionLink("Set Password", "SetPassword")
-                }
-                else
-                {
-                    @Html.ActionLink("Change your password", "ChangePassword")
-                }
-            }
-            else
-            {
-                @Html.ActionLink("Set Password", "SetPassword")
-            }
-            ]
-        </dd>
         <dt> @Html.ActionLink("Edit", "Edit", new { id = Model.UserModelID })</dt>
     </dl>
     <br />

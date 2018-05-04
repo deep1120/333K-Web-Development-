@@ -18,81 +18,88 @@
         <hr />
         @Html.HiddenFor(model => model.UserModelID)
         <dl class="dl-horizontal">
-            @if (User.Identity.GetUserId() == Model.UserModelID && Model.Role == "Employee")
-    {
-        @Html.HiddenFor(model => model.FirstName)
-        @Html.HiddenFor(model => model.LastName)
-        @Html.HiddenFor(model => model.Email)
-}
-            @if (User.Identity.GetUserId() == Model.UserModelID && Model.Role == "Customer")
-    {
-        @Html.HiddenFor(model => model.FirstName)
-        @Html.HiddenFor(model => model.LastName)
-        @Html.HiddenFor(model => model.Email)
-}
+        @if (User.Identity.GetUserId() == Model.UserModelID && Model.Role == "Employee")
+        {
+            @Html.HiddenFor(model => model.FirstName)
+            @Html.HiddenFor(model => model.LastName)
+            @Html.HiddenFor(model => model.Email)
+        }
+        @if (User.Identity.GetUserId() == Model.UserModelID && Model.Role == "Customer")
+        {
+            @Html.HiddenFor(model => model.FirstName)
+            @Html.HiddenFor(model => model.LastName)
+            @Html.HiddenFor(model => model.Email)
+        }
             @if (User.Identity.GetUserId() == Model.UserModelID && Model.Role == "Manager")
-    {
-        @Html.HiddenFor(model => model.FirstName)
-        @Html.HiddenFor(model => model.LastName)
-        @Html.HiddenFor(model => model.Email)
-}
+        {
+            @Html.HiddenFor(model => model.FirstName)
+            @Html.HiddenFor(model => model.LastName)
+            @Html.HiddenFor(model => model.Email)
+        }
 
-        @*<dt>First Name:</dt>
-    <dd>
-        @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
-    </dd>
+        @if (User.Identity.GetUserId() == Model.UserModelID && Model.Role == "Manager")
+         {
+            <dt>First Name:</dt>
+            <dd>
+                @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            </dd>
 
-    <dt>Middle Initial:</dt>
-    <dd>
-        @Html.TextBoxFor(model => model.MiddleInitial, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.MiddleInitial, "", new { @class = "text-danger" })
-    </dd>
+            <dt>Middle Initial:</dt>
+            <dd>
+                @Html.TextBoxFor(model => model.MiddleInitial, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MiddleInitial, "", new { @class = "text-danger" })
+            </dd>
 
-    <dt>Last Name:</dt>
-    <dd>
-        @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
-    </dd>
+            <dt>Last Name:</dt>
+            <dd>
+                @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+            </dd>     
+         } 
+        
+         @if (User.IsInRole("Manager") && Model.Role == "Customer")
+         {
+            <dt>First Name:</dt>
+            <dd>
+                @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            </dd>
 
-    <dt>Email:</dt>
-    <dd>
-        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-    </dd>*@
+            <dt>Middle Initial:</dt>
+            <dd>
+                @Html.TextBoxFor(model => model.MiddleInitial, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MiddleInitial, "", new { @class = "text-danger" })
+            </dd>
 
-            @if (User.Identity.GetUserId() == Model.UserModelID && Model.Role == "Manager")
-            {
-            @Html.DisplayNameFor(model => model.FirstName)
-            @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            <dt>Last Name:</dt>
+            <dd>
+                @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+            </dd>     
+         } 
 
-            @Html.DisplayNameFor(model => model.MiddleInitial)
-            @Html.TextBoxFor(model => model.MiddleInitial, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.MiddleInitial, "", new { @class = "text-danger" })
+         @if (User.IsInRole("Manager") && Model.Role == "Employee")
+         {
+            <dt>First Name:</dt>
+            <dd>
+                @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            </dd>
 
-            @Html.DisplayNameFor(model => model.LastName)
-            @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
-            }
-            else
-            {
-                if (Model.UserModelID == "Manager" && Model.Role == "Customer,Employee")
-                {
-                    @Html.DisplayNameFor(model => model.FirstName)
-                    @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            <dt>Middle Initial:</dt>
+            <dd>
+                @Html.TextBoxFor(model => model.MiddleInitial, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MiddleInitial, "", new { @class = "text-danger" })
+            </dd>
 
-                    @Html.DisplayNameFor(model => model.MiddleInitial)
-                    @Html.TextBoxFor(model => model.MiddleInitial, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.MiddleInitial, "", new { @class = "text-danger" })
-
-                    @Html.DisplayNameFor(model => model.LastName)
-                    @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
-                }
-            }
-
+            <dt>Last Name:</dt>
+            <dd>
+                @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+            </dd>     
+         } 
+            
             <dt>Phone:</dt>
             <dd>
                 @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control" })
@@ -131,23 +138,21 @@
 
             <dt>Password:</dt>
             <dd>
-                [
-                @if (Model.HasPassword)
-                {          
-                    if (User.Identity.GetUserId() != Model.UserModelID && Model.Role == "Customer")
-                    {
-                        @Html.ActionLink("Set Password", "SetPassword")
-                    }
-                    else
-                    {
-                        @Html.ActionLink("Change your password", "ChangePassword")
-                    }
-                }
-                else
+           @if (Model.HasPassword == true)
+            {
+                if (User.Identity.GetUserId() == Model.UserModelID)
                 {
-                        @Html.ActionLink("Set Password", "SetPassword")
-                }
-                ]
+                    @Html.ActionLink("Change Password", "ChangePassword")
+               }
+               else
+               {
+                    @Html.ActionLink("Set Password", "SetPassword")
+               }
+           }
+           else
+           {
+               @Html.ActionLink("Set Password", "SetPassword")
+           }
             </dd>
         </dl>
     </div>

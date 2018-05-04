@@ -318,6 +318,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 ZipCode = user.ZipCode,
                 HasPassword = (user.PasswordHash != null),
                 Cards = user.Cards,
+                PopcornPoints = user.PopcornPoints,
                 Orders = user.Orders,
             };
 
