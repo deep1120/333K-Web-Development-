@@ -39,45 +39,51 @@
         <th>
             Genre(s)
         </th>
+        <th>
+            Publish Status
+        </th>
 
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.SponsoringMovie.MovieTitle)
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SponsoringMovie.MovieTitle)
 
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ShowDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Theatre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SponsoringMovie.RunningTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShowDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Theatre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SponsoringMovie.RunningTime)
 
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SponsoringMovie.MPAAratings)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SponsoringMovie.ReleaseDate)
-            </td>
-            <td>
-                @foreach (Genre gen in item.SponsoringMovie.Genres)
-                {
-                    @Html.DisplayFor(modelItem => gen.GenreName)<br/>
-                }
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ShowingID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ShowingID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ShowingID })
-            </td>
-        </tr>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SponsoringMovie.MPAAratings)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SponsoringMovie.ReleaseDate)
+        </td>
+        <td>
+            @foreach (Genre gen in item.SponsoringMovie.Genres)
+        {
+            @Html.DisplayFor(modelItem => gen.GenreName)<br />
+    }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsPublished)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ShowingID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ShowingID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ShowingID })
+        </td>
+    </tr>
     }
 
 </table>

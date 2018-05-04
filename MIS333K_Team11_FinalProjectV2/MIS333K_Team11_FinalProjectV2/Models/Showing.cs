@@ -14,7 +14,7 @@ namespace MIS333K_Team11_FinalProjectV2.Models
     {
         public class CustomDateRangeAttribute : RangeAttribute
         {
-            public CustomDateRangeAttribute() : base(typeof(DateTime), DateTime.Now.AddDays(7).ToString(), DateTime.Now.AddDays(14).ToString())
+            public CustomDateRangeAttribute() : base(typeof(DateTime), DateTime.Now.AddDays(7).Date.ToString(), DateTime.Now.AddDays(14).Date.ToString())
             { }
         }
 
@@ -38,27 +38,6 @@ namespace MIS333K_Team11_FinalProjectV2.Models
             get { return (SponsoringMovie.MovieTitle + " " + ShowDate); }
         }
 
-        //[Display(Name = "Showing Time")] //Use one of these
-        //[Display(Name = "Start Time")]
-        //[DataType(DataType.Time)]
-        //public DateTime StartTime { get; set; }
-
-        //[Display(Name = "End Time")] //a calculated value = start time + running time of movie
-        //[DataType(DataType.Time)]
-        //public DateTime EndTime
-        //{
-        //    //get { return ShowDate.AddMinutes(RunTime); }
-        //    get; set;
-        //}
-
-        //[Display(Name = "Running Time")]
-        //public Int32 RunTime
-        //{
-        //    //get { return SponsoringMovie.RunningTime;  }
-        //    //get { return SponsoringMovies.Sum(m=> m.RunningTime);}
-        //    get;set; 
-        //}
-
         [Display(Name = "Ticket Price")]
         public Decimal TicketPrice { get; set; }
 
@@ -66,6 +45,10 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [EnumDataType(typeof(Theatre))]
         [Display(Name = "Theatre")]
         public Theatre Theatre { get; set; }
+
+        [EnumDataType(typeof(PublishedStatus))]
+        [Display(Name = "Published Status")]
+        public PublishedStatus IsPublished { get; set; }
 
         //May insert "Future showing"
         public virtual Movie SponsoringMovie { get; set; }

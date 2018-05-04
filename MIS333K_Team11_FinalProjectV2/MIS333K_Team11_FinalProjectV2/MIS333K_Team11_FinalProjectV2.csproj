@@ -178,6 +178,10 @@
     <Compile Include="Migrations\201805030027207_deep.Designer.cs">
       <DependentUpon>201805030027207_deep.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805040243067_IsPublishedStatus.cs" />
+    <Compile Include="Migrations\201805040243067_IsPublishedStatus.Designer.cs">
+      <DependentUpon>201805040243067_IsPublishedStatus.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\CustomerData.cs" />
     <Compile Include="Migrations\EmployeeData.cs" />
     <Compile Include="Migrations\ManagerData.cs" />
@@ -411,6 +415,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805030027207_deep.resx">
       <DependentUpon>201805030027207_deep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805040243067_IsPublishedStatus.resx">
+      <DependentUpon>201805040243067_IsPublishedStatus.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
