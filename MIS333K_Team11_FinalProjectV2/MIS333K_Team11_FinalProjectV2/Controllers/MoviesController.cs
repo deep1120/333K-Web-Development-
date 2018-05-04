@@ -39,6 +39,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         // GET: Movies/Create
         public ActionResult Create()
         {
+            ViewBag.AllGenres = GetAllGenres();
             return View();
         }
 
@@ -47,17 +48,42 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MovieID,MovieName")] Movie movie)
+        public ActionResult Create([Bind(Include = "MovieID,MovieNumber, MovieTitle, MovieOverview, RunningTime, Tagline, MPAARating, Actor, MovieRevenue, ReleaseDate, AverageUserRating, FeaturedMovie")] Movie movie, int[] SelectedGenres)
         {
+
+            foreach (int i in SelectedGenres)
+            {
+                Genre g = db.Genres.Find(i);
+                movie.Genres.Add(g);
+            }
+
+
             if (ModelState.IsValid)
             {
                 db.Movies.Add(movie);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.AllGenres = GetAllGenres(movie);
             return View(movie);
         }
+
+        public MultiSelectList GetAllGenres(Movie movie)
+        {
+            List<Genre> allgenres = db.Genres.OrderBy(d => d.GenreName).ToList();
+            List<Int32> SelectedGenres = new List<Int32>();
+
+            foreach (Genre genre in movie.Genres)
+            {
+                SelectedGenres.Add(genre.GenreID);
+            }
+
+            MultiSelectList selgenres = new MultiSelectList(allgenres, "GenreID", "GenreName", SelectedGenres);
+
+            return selgenres;
+        }
+
+
 
         public ActionResult Details(int? id)
         {

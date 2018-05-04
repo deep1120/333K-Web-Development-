@@ -11,15 +11,12 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-//using MIS333K_Team11_FinalProjectV2.DAL;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-// Change this using statement to match your project
 using MIS333K_Team11_FinalProjectV2.Models;
 using static MIS333K_Team11_FinalProjectV2.Models.AppUser;
 
-// Change this namespace to match your project
 namespace MIS333K_Team11_FinalProjectV2.Controllers
 {
     [Authorize]
@@ -562,30 +559,6 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         {
             var body = $@"Dear {user.FirstName}, you have been registered as an employee";
             EmailMessaging.SendEmail(user.Email, "Team 11 Employee Registration Confirmation", body);
-        }
-
-        public void SendCompleteCheckoutEmail(AppUser user)
-        {
-            var body = $@"Dear {user.FirstName}, you have placed an order and completed checkout";
-            EmailMessaging.SendEmail(user.Email, "Team 11 Order Completed Confirmation", body);
-        }
-
-        public void SendOrderCancelEmail(AppUser user)
-        {
-            var body = $@"Dear {user.FirstName}, you have cancelled your order";
-            EmailMessaging.SendEmail(user.Email, "Team 11 Order Cancelled Confirmation", body);
-        }
-
-        public void SendMovieCancelEmail(AppUser user)
-        {
-            var body = $@"Dear {user.FirstName}, you have cancelled a movie";
-            EmailMessaging.SendEmail(user.Email, "Team 11 Movie Cancelled Confirmation", body);
-        }
-
-        public void SendMovieRescheduleEmail(AppUser user)
-        {
-            var body = $@"Dear {user.FirstName},  you have rescheduled a movie";
-            EmailMessaging.SendEmail(user.Email, "Team 11 Movie Reschedule Confirmation", body);
         }
 
         public ActionResult SendEmail()

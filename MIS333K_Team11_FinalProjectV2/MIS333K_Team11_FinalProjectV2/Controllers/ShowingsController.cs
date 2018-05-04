@@ -7,7 +7,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-//using MIS333K_Team11_FinalProjectV2.DAL;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using MIS333K_Team11_FinalProjectV2.Models;
 using static MIS333K_Team11_FinalProjectV2.Models.AppUser;
 
@@ -17,6 +18,42 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
     public class ShowingsController : Controller
     {
         private AppDbContext db = new AppDbContext();
+        private ApplicationSignInManager _signInManager;
+        private AppUserManager _userManager;
+
+        public ShowingsController()
+        {
+        }
+
+        public ShowingsController(AppUserManager userManager, ApplicationSignInManager signInManager)
+        {
+            UserManager = userManager;
+            SignInManager = signInManager;
+        }
+
+        public ApplicationSignInManager SignInManager
+        {
+            get
+            {
+                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+            }
+            private set
+            {
+                _signInManager = value;
+            }
+        }
+
+        public AppUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
 
         //[Authorize(Roles = "Manager")]
         // GET: Showings
@@ -232,6 +269,8 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
         //[Authorize(Roles = "Manager")]
         //[HttpGet]
+        //[Authorize(Roles = "Manager")]
+        //[HttpGet]
         public ActionResult Publish()
         {
             //somehow groupby day and then theater?? or do we need to loop through all of it??
@@ -247,9 +286,9 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             //List<Showing> Tuesday2 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Tuesday && s.Theatre == Theatre.Theatre2).OrderBy(m => m.ShowDate).ToList();
             //List<Showing> Wednesday1 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Wednesday && s.Theatre == Theatre.Theatre1).OrderBy(m => m.ShowDate).ToList();
             //List<Showing> Wednesday2 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Wednesday && s.Theatre == Theatre.Theatre2).OrderBy(m => m.ShowDate).ToList();
-            List<Showing> Thursday1 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Thursday && s.Theatre == Theatre.Theatre1).OrderBy(m => m.ShowDate).ToList();
+            //List<Showing> Thursday1 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Thursday && s.Theatre == Theatre.Theatre1).OrderBy(m => m.ShowDate).ToList();
             //List<Showing> Thursday2 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Thursday && s.Theatre == Theatre.Theatre2).OrderBy(m => m.ShowDate).ToList();
-            //List<Showing> Friday1 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Friday && s.Theatre == Theatre.Theatre1).OrderBy(m => m.ShowDate).ToList();
+            List<Showing> Friday1 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Friday && s.Theatre == Theatre.Theatre1).OrderBy(m => m.ShowDate).ToList();
             //List<Showing> Friday2 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Friday && s.Theatre == Theatre.Theatre2).OrderBy(m => m.ShowDate).ToList();
             //List<Showing> Saturday1 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Saturday && s.Theatre == Theatre.Theatre1).OrderBy(m => m.ShowDate).ToList();
             //List<Showing> Saturday2 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Saturday && s.Theatre == Theatre.Theatre2).OrderBy(m => m.ShowDate).ToList();
@@ -262,9 +301,9 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             //var Tuesday_2 = Tuesday2.ToArray(); if (Tuesday_2.Length == 0) { return RedirectToAction("Index"); }
             //var Wednesday_1 = Wednesday1.ToArray(); if (Wednesday_1.Length == 0) { return RedirectToAction("Index"); }
             //var Wednesday_2 = Wednesday2.ToArray(); if (Wednesday_2.Length == 0) { return RedirectToAction("Index"); }
-            var Thursday_1 = Thursday1.ToArray(); if (Thursday_1.Length == 0) { return RedirectToAction("Index"); }
+            //var Thursday_1 = Thursday1.ToArray(); if (Thursday_1.Length == 0) { return RedirectToAction("Index"); }
             //var Thursday_2 = Thursday2.ToArray(); if (Thursday_2.Length == 0) { return RedirectToAction("Index"); }
-            //var Friday_1 = Friday1.ToArray(); if (Friday_1.Length == 0) { return RedirectToAction("Index"); }
+            var Friday_1 = Friday1.ToArray(); if (Friday_1.Length == 0) { return RedirectToAction("Index"); }
             //var Friday_2 = Friday2.ToArray(); if (Friday_2.Length == 0) { return RedirectToAction("Index"); }
             //var Saturday_1 = Saturday1.ToArray(); if (Saturday_1.Length == 0) { return RedirectToAction("Index"); }
             //var Saturday_2 = Saturday2.ToArray(); if (Saturday_2.Length == 0) { return RedirectToAction("Index"); }
@@ -292,14 +331,14 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             //DateTime Wednesday_Last2 = Wednesday_2[Wednesday_2.Length - 1].ShowDate;
             //DateTime Wednesday_Last_2 = new DateTime(Wednesday_Last2.Year, Wednesday_Last2.Month, Wednesday_Last2.Day, 21, 30, 0);
 
-            DateTime Thursday_Last1 = Thursday_1[Thursday_1.Length - 1].ShowDate;
-            DateTime Thursday_Last_1 = new DateTime(Thursday_Last1.Year, Thursday_Last1.Month, Thursday_Last1.Day, 21, 30, 0);
+            //DateTime Thursday_Last1 = Thursday_1[Thursday_1.Length - 1].ShowDate;
+            //DateTime Thursday_Last_1 = new DateTime(Thursday_Last1.Year, Thursday_Last1.Month, Thursday_Last1.Day, 21, 30, 0);
 
             //DateTime Thursday_Last2 = Thursday_2[Thursday_2.Length - 1].ShowDate;
             //DateTime Thursday_Last_2 = new DateTime(Thursday_Last2.Year, Thursday_Last2.Month, Thursday_Last2.Day, 21, 30, 0);
 
-            //DateTime Friday_Last1 = Friday_1[Friday_1.Length - 1].ShowDate;
-            //DateTime Friday_Last_1 = new DateTime(Friday_Last1.Year, Friday_Last1.Month, Friday_Last1.Day, 21, 30, 0);
+            DateTime Friday_Last1 = Friday_1[Friday_1.Length - 1].ShowDate;
+            DateTime Friday_Last_1 = new DateTime(Friday_Last1.Year, Friday_Last1.Month, Friday_Last1.Day, 21, 30, 0);
 
             //DateTime Friday_Last2 = Friday_2[Friday_2.Length - 1].ShowDate;
             //DateTime Friday_Last_2 = new DateTime(Friday_Last2.Year, Friday_Last2.Month, Friday_Last2.Day, 21, 30, 0);
@@ -340,18 +379,18 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             //{
             //    earlyerror += 1;
             //}
-            if (Thursday_1[Thursday_1.Length - 1].ShowDate.AddMinutes(Thursday_1[Thursday_1.Length - 1].SponsoringMovie.RunningTime) <= Thursday_Last_1)
-            {
-                earlyerror += 1;
-            }
+            //if (Thursday_1[Thursday_1.Length - 1].ShowDate.AddMinutes(Thursday_1[Thursday_1.Length - 1].SponsoringMovie.RunningTime) <= Thursday_Last_1)
+            //{
+            //    earlyerror += 1;
+            //}
             //if (Thursday_2[Thursday_2.Length - 1].ShowDate.AddMinutes(Thursday_2[Thursday_2.Length - 1].SponsoringMovie.RunningTime) <= Thursday_Last_2)
             //{
             //    earlyerror += 1;
             //}
-            //if (Friday_1[Friday_1.Length - 1].ShowDate.AddMinutes(Friday_1[Friday_1.Length - 1].SponsoringMovie.RunningTime) <= Friday_Last_1)
-            //{
-            //    earlyerror += 1;
-            //}
+            if (Friday_1[Friday_1.Length - 1].ShowDate.AddMinutes(Friday_1[Friday_1.Length - 1].SponsoringMovie.RunningTime) <= Friday_Last_1)
+            {
+                earlyerror += 1;
+            }
             //if (Friday_2[Friday_2.Length - 1].ShowDate.AddMinutes(Friday_2[Friday_2.Length - 1].SponsoringMovie.RunningTime) <= Friday_Last_2)
             //{
             //    earlyerror += 1;
@@ -440,10 +479,32 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             //        errorcount += 1;
             //    }
             //}
-            for (int i = 0; i < Thursday_1.Length - 1; i++)
+            //for (int i = 0; i < Thursday_1.Length - 1; i++)
+            //{
+            //    DateTime firstend = Thursday_1[i].ShowDate.AddMinutes(Thursday_1[i].SponsoringMovie.RunningTime);
+            //    DateTime nextstart = Thursday_1[i + 1].ShowDate;
+
+            //    var gap = nextstart.Subtract(firstend).TotalMinutes;
+            //    if (gap < 25 || gap > 45)
+            //    {
+            //        errorcount += 1;
+            //    }
+            //}
+            //for (int i = 0; i < Thursday_2.Length - 1; i++)
+            //{
+            //    DateTime firstend = Thursday_2[i].ShowDate.AddMinutes(Thursday_2[i].SponsoringMovie.RunningTime);
+            //    DateTime nextstart = Thursday_2[i + 1].ShowDate;
+
+            //    var gap = nextstart.Subtract(firstend).TotalMinutes;
+            //    if (gap < 25 || gap > 45)
+            //    {
+            //        errorcount += 1;
+            //    }
+            //}
+            for (int i = 0; i < Friday_1.Length - 1; i++)
             {
-                DateTime firstend = Thursday_1[i].ShowDate.AddMinutes(Thursday_1[i].SponsoringMovie.RunningTime);
-                DateTime nextstart = Thursday_1[i + 1].ShowDate;
+                DateTime firstend = Friday_1[i].ShowDate.AddMinutes(Friday_1[i].SponsoringMovie.RunningTime);
+                DateTime nextstart = Friday_1[i + 1].ShowDate;
 
                 var gap = nextstart.Subtract(firstend).TotalMinutes;
                 if (gap < 25 || gap > 45)
@@ -451,34 +512,12 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                     errorcount += 1;
                 }
             }
-            //for (int i = 0; i < Thursday_2.Length - 1; i++)
-            //{
-            //    DateTime firstend = Thursday_2[i].ShowDate.AddMinutes(Thursday_2[i].SponsoringMovie.RunningTime);
-            //    DateTime nextstart = Thursday_2[i + 1].ShowDate;
-
-            //    var gap = firstend.Subtract(nextstart).TotalMinutes;
-            //    if (gap < 25 || gap > 45)
-            //    {
-            //        errorcount += 1;
-            //    }
-            //}
-            //for (int i = 0; i < Friday_1.Length - 1; i++)
-            //{
-            //    DateTime firstend = Friday_1[i].ShowDate.AddMinutes(Friday_1[i].SponsoringMovie.RunningTime);
-            //    DateTime nextstart = Friday_1[i + 1].ShowDate;
-
-            //    var gap = firstend.Subtract(nextstart).TotalMinutes;
-            //    if (gap < 25 || gap > 45)
-            //    {
-            //        errorcount += 1;
-            //    }
-            //}
             //for (int i = 0; i < Friday_2.Length - 1; i++)
             //{
             //    DateTime firstend = Friday_2[i].ShowDate.AddMinutes(Friday_2[i].SponsoringMovie.RunningTime);
             //    DateTime nextstart = Friday_2[i + 1].ShowDate;
 
-            //    var gap = firstend.Subtract(nextstart).TotalMinutes;
+            //    var gap = nextstart.Subtract(firstend).TotalMinutes;
             //    if (gap < 25 || gap > 45)
             //    {
             //        errorcount += 1;
@@ -489,7 +528,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             //    DateTime firstend = Saturday_1[i].ShowDate.AddMinutes(Saturday_1[i].SponsoringMovie.RunningTime);
             //    DateTime nextstart = Saturday_1[i + 1].ShowDate;
 
-            //    var gap = firstend.Subtract(nextstart).TotalMinutes;
+            //    var gap = nextstart.Subtract(firstend).TotalMinutes;
             //    if (gap < 25 || gap > 45)
             //    {
             //        errorcount += 1;
@@ -500,7 +539,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             //    DateTime firstend = Saturday_2[i].ShowDate.AddMinutes(Saturday_2[i].SponsoringMovie.RunningTime);
             //    DateTime nextstart = Saturday_2[i + 1].ShowDate;
 
-            //    var gap = firstend.Subtract(nextstart).TotalMinutes;
+            //    var gap = nextstart.Subtract(firstend).TotalMinutes;
             //    if (gap < 25 || gap > 45)
             //    {
             //        errorcount += 1;
@@ -511,7 +550,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             //    DateTime firstend = Sunday_1[i].ShowDate.AddMinutes(Sunday_1[i].SponsoringMovie.RunningTime);
             //    DateTime nextstart = Sunday_1[i + 1].ShowDate;
 
-            //    var gap = firstend.Subtract(nextstart).TotalMinutes;
+            //    var gap = nextstart.Subtract(firstend).TotalMinutes;
             //    if (gap < 25 || gap > 45)
             //    {
             //        errorcount += 1;
@@ -522,7 +561,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             //    DateTime firstend = Sunday_2[i].ShowDate.AddMinutes(Sunday_2[i].SponsoringMovie.RunningTime);
             //    DateTime nextstart = Sunday_2[i + 1].ShowDate;
 
-            //    var gap = firstend.Subtract(nextstart).TotalMinutes;
+            //    var gap = nextstart.Subtract(firstend).TotalMinutes;
             //    if (gap < 25 || gap > 45)
             //    {
             //        errorcount += 1;
@@ -550,8 +589,9 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                     ViewBag.ErrorCount = "The last scheduled movie of a day in each theater must NOT end before 9:30 PM. Please add in another showing to complete the full schedule";
                 }
                 return RedirectToAction("Index");
-            }          
+            }
         }
+
 
         //[HttpPost] 
         //public ActionResult Publish([Bind(Include = "ShowingID, Theatre, ShowDate, IsPublished")]List<Showing> CheckShowings)
@@ -708,16 +748,16 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                     return View("DetailedSearch");
                 }
 
-                switch (SelectedOption)
-                {
-                    case Option.GreaterThan:
-                        query = query.Where(r => r.SponsoringMovie.AverageUserRating > decStar);
-                        break;
+                //switch (SelectedOption)
+                //{
+                //    case Option.GreaterThan:
+                //        query = query.Where(r => r.SponsoringMovie.AverageUserRating > decStar);
+                //        break;
 
-                    case Option.LessThan:
-                        query = query.Where(r => r.SponsoringMovie.AverageUserRating <= decStar);
-                        break;
-                }
+                //    case Option.LessThan:
+                //        query = query.Where(r => r.SponsoringMovie.AverageUserRating <= decStar);
+                //        break;
+                //}
             }
 
 
@@ -748,8 +788,6 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         // POST: Showings/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ShowingID, Theatre, ShowDate")] Showing showing, int? SelectedMovies)
@@ -777,11 +815,19 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
                 db.Entry(showing).State = EntityState.Modified;
                 db.SaveChanges();
+                var user = UserManager.FindById(User.Identity.GetUserId());
+                SendMovieRescheduleEmail(user);
                 return RedirectToAction("Index");
             }
 
             ViewBag.AllMovies = GetAllMovies(showing);
             return View(showing);
+        }
+
+        private void SendMovieRescheduleEmail(AppUser user)
+        {
+            var body = $@"Dear {user.FirstName},  you have rescheduled a movie";
+            EmailMessaging.SendEmail(user.Email, "Team 11 Movie Reschedule Confirmation", body);
         }
 
         // GET: Showings/Delete/5
@@ -807,7 +853,15 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             Showing showing = db.Showings.Find(id);
             db.Showings.Remove(showing);
             db.SaveChanges();
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            SendMovieCancelEmail(user);
             return RedirectToAction("Index");
+        }
+
+        private void SendMovieCancelEmail(AppUser user)
+        {
+            var body = $@"Dear {user.FirstName}, you have cancelled a movie";
+            EmailMessaging.SendEmail(user.Email, "Team 11 Movie Cancelled Confirmation", body);
         }
 
         public MultiSelectList GetAllGenres()

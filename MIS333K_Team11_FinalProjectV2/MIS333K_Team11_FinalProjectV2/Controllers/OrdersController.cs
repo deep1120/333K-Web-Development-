@@ -6,7 +6,6 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-//using MIS333K_Team11_FinalProjectV2.DAL;
 using MIS333K_Team11_FinalProjectV2.Models;
 using MIS333K_Team11_FinalProjectV2.Utilities;
 using MIS333K_Team11_FinalProjectV2.ViewModel;
@@ -20,11 +19,46 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
     public class OrdersController : Controller
     {
         private AppDbContext db = new AppDbContext();
+        private ApplicationSignInManager _signInManager;
+        private AppUserManager _userManager;
+
+        public OrdersController()
+        {
+        }
+
+        public OrdersController(AppUserManager userManager, ApplicationSignInManager signInManager)
+        {
+            UserManager = userManager;
+            SignInManager = signInManager;
+        }
+
+        public ApplicationSignInManager SignInManager
+        {
+            get
+            {
+                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+            }
+            private set
+            {
+                _signInManager = value;
+            }
+        }
+
+        public AppUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
 
         // GET: Orders
         public ActionResult Index()
         {
-            //Maybe make this the order history page???
             if (User.IsInRole("Manager"))
             {
                 return View(db.Orders.ToList());
@@ -66,8 +100,6 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         // POST: Orders/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "OrderID,OrderNumber,OrderDate,Orderstatus")] Order order)
@@ -117,7 +149,6 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             }
 
             //model state is not valid; repopulate viewbags and return
-            //ViewBag.AllSeats = GetAllTicketSeats(/*SelectedShowing*/);
             ViewBag.AllShowings = GetAllShowings();
             return View(order);
         }
@@ -175,10 +206,39 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             }
 
             //if customer is younger than 18, can't purchase a R movie
-            //TimeSpan rating = DateTime.Today - ord.OrderAppUser.Birthday;
-            //if (((rating.Days) / 365) < 18 && ticket.Movie.MPAAratings == )
+            TimeSpan rating = DateTime.Today - ord.OrderAppUser.Birthday;
+            if (((rating.Days) / 365) < 18 && ticket.Movie.MPAAratings == MPAArating.R)
+            {
+                ViewBag.YoungErrorMessage = "You must be at least 18 years old to purchase an R-rated movie";
+                ViewBag.AllSeats = GetAllTicketSeats(ticket.Showing.ShowingID);
+                return View(ticket);
+            }
+
+            //cant purchase tickets that have already started
+            if (ticket.Showing.ShowDate < DateTime.Now)
+            {
+                ViewBag.ShowingAlreadyStarted = "You cannot purchase a ticket to this showing. The showing has already started";
+                ViewBag.AllSeats = GetAllTicketSeats(ticket.Showing.ShowingID);
+                return View(ticket);
+            }
+
+            //cant purchase tickets that have overlap with another ticket in the order
+            List<Ticket> TicketsInOrder = db.Tickets.Where(t => t.Order.OrderID == ord.OrderID).ToList();
+            DateTime ticket_start = ticket.Showing.ShowDate;
+            DateTime ticket_end = ticket.Showing.ShowDate.AddMinutes(ticket.Showing.SponsoringMovie.RunningTime);
+
+            //foreach (Ticket tick in TicketsInOrder)
             //{
-            //    return RedirectToAction("AddToOrder");
+            //    DateTime tick_start = tick.Showing.ShowDate;
+            //    DateTime tick_end = tick.Showing.ShowDate.AddMinutes(tick.Showing.SponsoringMovie.RunningTime);
+
+            //    //showing_start >= sh_end || showing_end <= sh_start
+            //    if (ticket_start <= tick_end || tick_start >= ticket_end)     //I think it might be diff/other way around 
+            //    {
+            //        ViewBag.Overlap = "You cannot purchase tickets that have overlapping times";
+            //        ViewBag.AllSeats = GetAllTicketSeats(ticket.Showing.ShowingID);
+            //        return View(ticket);
+            //    }
             //}
 
 
@@ -193,13 +253,6 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             //model state is not valid; repopulate viewbags and return
             ViewBag.AllSeats = GetAllTicketSeats(ticket.Showing.ShowingID);
             return View(ticket);
-
-            //    //PUT THIS TICKETPRICE IN SHOWINGS CONTROLLER WHEN CREATING A SHOWING
-            //    //PUT validation in here for 48 hour discount
-            //    //other discounts with age, etc.
-
-            //    DateTime weekday = Convert.ToDateTime("12:00");
-            //    DateTime tuesday = Convert.ToDateTime("5:00");
 
         }
 
@@ -277,21 +330,23 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 od.Orderstatus = OrderStatus.Completed;
                 db.Entry(od).State = EntityState.Modified;
                 db.SaveChanges();
-                //return RedirectToAction("Checkout", "Orders", new { id = od.OrderID }); //checkout gift, checkoutfinal view. 
+                var user = UserManager.FindById(User.Identity.GetUserId());
+                SendCompleteCheckoutEmail(user);
                 return RedirectToAction("Confirm");
             }
-
-            //ticket.Order = td.Order;
             return View(od);
+        }
 
+        private void SendCompleteCheckoutEmail(AppUser user)
+        {
+            var body = $@"Dear {user.FirstName}, you have placed an order and completed checkout";
+            EmailMessaging.SendEmail(user.Email, "Team 11 Order Completed Confirmation", body);
         }
 
         public ActionResult Confirm()
         {
-            //TODO: Add generate confirmation number
             return View();
         }
-
 
         // GET: Orders/Edit/5
         public ActionResult Edit(int? id)
@@ -309,8 +364,6 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         // POST: Orders/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "OrderID,OrderNumber,ConfirmationNumber,EarlyDiscount,SeniorDiscount,OrderDate,CardNumber,Orderstatus,OrderSubtotal,SalesTax,OrderTotal,Gift,GiftEmail")] Order order)
@@ -364,7 +417,15 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             Order order = db.Orders.Find(id);
             order.Orderstatus = OrderStatus.Cancelled;
             db.SaveChanges();
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            SendOrderCancelEmail(user);
             return RedirectToAction("Index");
+        }
+
+        private void SendOrderCancelEmail(AppUser user)
+        {
+            var body = $@"Dear {user.FirstName}, you have cancelled your order";
+            EmailMessaging.SendEmail(user.Email, "Team 11 Order Cancelled Confirmation", body);
         }
 
         public ActionResult StatusSearch()
@@ -408,16 +469,6 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             List<Ticket> allTickets = db.Tickets.Where(t => t.Order.Orderstatus == OrderStatus.Completed).ToList();
             List<Order> allOrders = db.Orders.Where(o => o.Orderstatus == OrderStatus.Completed).ToList();
             MovieReportVM tivm = new MovieReportVM();
-
-            //foreach (Order od in allOrders)
-            //{
-            //    tivm.Revenue += od.OrderTotal;
-            //    foreach (Ticket td in allTickets)
-            //    {
-            //        tivm.NumberOfPurchase += 1;
-            //        tivm.Revenue += (td.TicketPrice * tax);
-            //    }
-            //}
 
             Decimal tax = 0.0825m;
             foreach (Ticket td in allTickets)
@@ -526,15 +577,6 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             SelectList selcards = new SelectList(allCards, "CardID", "CardNumber");
             return selcards;
         }
-
-        private AppUserManager UserManager
-        {
-            get
-            {
-                return HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
-            }
-        }
-
 
         protected override void Dispose(bool disposing)
         {

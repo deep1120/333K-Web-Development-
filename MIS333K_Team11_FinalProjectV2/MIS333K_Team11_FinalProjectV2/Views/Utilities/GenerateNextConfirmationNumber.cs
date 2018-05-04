@@ -6,7 +6,7 @@ using MIS333K_Team11_FinalProjectV2.Models;
 
 namespace MIS333K_Team11_FinalProjectV2.Utilities
 {
-    public class GenerateNextConfirmationNumber
+    public static class GenerateNextConfirmationNumber
     {
         public static Int32 GetNextConfirmation()
         {

@@ -13,12 +13,14 @@
 <h3>Thank you for purchasing a Ticket</h3>
 
 <h3>Your confirmation number is: 25632641   </h3>
+<div>
+    @Html.DisplayNameFor(model => model.ConfirmationNumber)
+</div>
+<div>
+    @Html.DisplayFor(model => model.ConfirmationNumber)
+</div>
 
 @Html.ActionLink("Back to Home", "Index", "Home")
 
-@*<div>
-        <dt>@Html.DisplayNameFor(model => model.ConfirmationNumber)</dt>
-        <dd>@Html.DisplayFor(model => model.ConfirmationNumber)</dd>
-    </div>*@
 
 

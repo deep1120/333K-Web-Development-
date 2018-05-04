@@ -180,6 +180,10 @@
     <Compile Include="Migrations\201805040243067_IsPublishedStatus.Designer.cs">
       <DependentUpon>201805040243067_IsPublishedStatus.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805040953084_AddingShowingTable.cs" />
+    <Compile Include="Migrations\201805040953084_AddingShowingTable.Designer.cs">
+      <DependentUpon>201805040953084_AddingShowingTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\CustomerData.cs" />
     <Compile Include="Migrations\EmployeeData.cs" />
     <Compile Include="Migrations\ManagerData.cs" />
@@ -255,7 +259,6 @@
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\ShowingsController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
-    <Compile Include="DAL\AppDbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -416,6 +419,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805040243067_IsPublishedStatus.resx">
       <DependentUpon>201805040243067_IsPublishedStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805040953084_AddingShowingTable.resx">
+      <DependentUpon>201805040953084_AddingShowingTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

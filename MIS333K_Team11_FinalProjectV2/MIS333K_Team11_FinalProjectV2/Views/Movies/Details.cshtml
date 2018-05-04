@@ -89,14 +89,14 @@
             @Html.DisplayFor(model => model.ReleaseDate)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.Ratings)
-        </dt>
+        </dt>*@
         <dd>
-            @if (Model.Ratings.ToList().Any())
+            @*@if (Model.Ratings.ToList().Any())
             {
                 @Model.Ratings.ToList().Average(x => x.RatingScore).ToString("0.#")
-            }
+            }*@
              <dt>
             @if ((User.IsInRole("Customer")) || (User.IsInRole("DisabledCustomer")))
             {

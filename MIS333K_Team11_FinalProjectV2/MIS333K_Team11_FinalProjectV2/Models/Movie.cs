@@ -58,11 +58,11 @@ namespace MIS333K_Team11_FinalProjectV2.Models
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime ReleaseDate { get; set; }
 
-        [Display(Name = "Average User Rating")]
-        public Decimal AverageUserRating
-        {
-            get { return Convert.ToDecimal(Reviews.Average(r => r.StarRating)); }
-        }
+        //[Display(Name = "Average User Rating")]
+        //public Decimal AverageUserRating
+        //{
+        //    get { return Convert.ToDecimal(Reviews.Average(r => r.StarRating)); }
+        //}
 
         [Display(Name = "Featured Movie")]
         public bool FeaturedMovie { get; set; }
