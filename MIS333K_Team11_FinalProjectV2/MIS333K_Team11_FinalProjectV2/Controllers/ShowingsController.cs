@@ -35,10 +35,11 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         //    return View(CheckShowings);
         //}
 
+        //[AllowAnonymous]
         public ActionResult Published(List<Showing> CheckShowings)
         {
-            ViewBag.SelectedShowings = CheckShowings.Count();
-            ViewBag.AllShowings = CheckShowings.Count();
+            //ViewBag.SelectedShowings = CheckShowings.Count();
+            //ViewBag.AllShowings = CheckShowings.Count();
             return View(CheckShowings);
         }
 
@@ -157,6 +158,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
                 if (showingsDays.Count() == 0)
                 {
+                    //showing.PublishedStatus = PublishedStatus.NotPublished;
                     //need to put logic in here to set showing price
                     db.Showings.Add(showing);
                     db.SaveChanges();
@@ -196,6 +198,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 //will have gone through entire while loop with success and will then be added to showing database!
                 if (boolean == true)
                 {
+                    //showing.PublishedStatus = PublishedStatus.NotPublished;
                     db.Showings.Add(showing);
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -213,8 +216,8 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         //    return View();
         //}
 
-        [Authorize(Roles = "Manager")]
-        [HttpGet]
+        //[Authorize(Roles = "Manager")]
+        //[HttpGet]
         public ActionResult Publish()
         {
             //somehow groupby day and then theater?? or do we need to loop through all of it??
@@ -222,11 +225,11 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             //make sure that there is no big or small gap
             //and then make sure last showing doesn't before 9:30 PM       
 
-            List<Showing> CheckShowings = db.Showings.ToList();
+            List<Showing> CheckShowings = db.Showings/*.Where(s => s.PublishedStatus == PublishedStatus.NotPublished)*/.ToList();
 
             //List<Showing> Monday1 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Monday && s.Theatre == Theatre.Theatre1).OrderBy(m => m.ShowDate).ToList();
             //List<Showing> Monday2 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Monday && s.Theatre == Theatre.Theatre2).OrderBy(m => m.ShowDate).ToList();
-            List<Showing> Tuesday1 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Tuesday && s.Theatre == Theatre.Theatre1).OrderBy(m => m.ShowDate).ToList();
+            List<Showing> Tuesday1 = CheckShowings./*Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Tuesday && s.Theatre == Theatre.Theatre1).*/OrderBy(m => m.ShowDate).ToList();
             //List<Showing> Tuesday2 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Tuesday && s.Theatre == Theatre.Theatre2).OrderBy(m => m.ShowDate).ToList();
             //List<Showing> Wednesday1 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Wednesday && s.Theatre == Theatre.Theatre1).OrderBy(m => m.ShowDate).ToList();
             //List<Showing> Wednesday2 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Wednesday && s.Theatre == Theatre.Theatre2).OrderBy(m => m.ShowDate).ToList();
@@ -381,10 +384,10 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             //}
             for (int i = 0; i < Tuesday_1.Length - 1; i++)
             {
-                DateTime firstend = Tuesday_1[i].ShowDate.AddMinutes(Tuesday_1[i + 1].SponsoringMovie.RunningTime);
+                DateTime firstend = Tuesday_1[i].ShowDate.AddMinutes(Tuesday_1[i].SponsoringMovie.RunningTime);
                 DateTime nextstart = Tuesday_1[i + 1].ShowDate;
 
-                var gap = firstend.Subtract(nextstart).TotalMinutes;
+                var gap = nextstart.Subtract(firstend).TotalMinutes;
                 if (gap < 25 || gap > 45)
                 {
                     errorcount += 1;
@@ -513,7 +516,8 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             //}
             if (errorcount == 0 && earlyerror == 0)
             {
-                return RedirectToAction("Published", CheckShowings);
+                return View("Published", CheckShowings);
+                //return View(CheckShowings);
             }
             else
             {
@@ -528,35 +532,47 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 return RedirectToAction("Index");
             }          
         }
+
+        [HttpPost] 
+        public ActionResult Publish(List<Showing> CheckShowings)
+        {
+            foreach(Showing publishing in CheckShowings)
+            {
+                //publishing.PublishedStatus = PublishedStatus.IsPublished;
+                db.Entry(publishing).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            return View("Publish", CheckShowings);
+        }
         
         //GET
-        public ActionResult DateSearch()
-        {
-            return View();
-        }
+        //public ActionResult DateSearch()
+        //{
+        //    return View();
+        //}
 
-        [HttpPost]
-        public ActionResult DateSearch([Bind(Include = "ShowingID, Theatre, ShowDate")]DateTime? datSelectedDate)
-        {
+        //[HttpPost]
+        //public ActionResult DateSearch([Bind(Include = "ShowingID, Theatre, ShowDate")]DateTime? datSelectedDate)
+        //{
 
-            var query = from s in db.Showings
-                        select s;
+        //    var query = from s in db.Showings
+        //                select s;
 
-            if (datSelectedDate != null)
-            {
-                //needed truncate time method because we were comparing a showdate with a specific time compared to one without just a date
-                query = query.Where(m => DbFunctions.TruncateTime(m.ShowDate) == datSelectedDate);
-            }
+        //    if (datSelectedDate != null)
+        //    {
+        //        //needed truncate time method because we were comparing a showdate with a specific time compared to one without just a date
+        //        query = query.Where(m => DbFunctions.TruncateTime(m.ShowDate) == datSelectedDate);
+        //    }
 
-            List<Showing> SelectedShowings = query.ToList();
-            //order list
-            SelectedShowings.OrderByDescending(m => m.SponsoringMovie.MovieTitle);
+        //    List<Showing> SelectedShowings = query.ToList();
+        //    //order list
+        //    SelectedShowings.OrderByDescending(m => m.SponsoringMovie.MovieTitle);
 
-            ViewBag.AllShowings = db.Showings.Count();
-            ViewBag.SelectedShowings = SelectedShowings.Count();
-            //send list to view
-            return View("Index", SelectedShowings);
-        }
+        //    ViewBag.AllShowings = db.Showings.Count();
+        //    ViewBag.SelectedShowings = SelectedShowings.Count();
+        //    //send list to view
+        //    return View("Index", SelectedShowings);
+        //}
 
         public ActionResult DetailedSearch()
         {
@@ -564,13 +580,19 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             return View();
         }
 
-        public ActionResult DisplaySearchResults(String SearchMovieTitle, String SearchTagline, int[] SearchGenre, String SelectedYear, MPAArating SelectedMPAARating, String SearchActor, YearRank SelectedSortOrder)
+        public ActionResult DisplaySearchResults(DateTime? datSelectedDate, String SearchMovieTitle, String SearchTagline, int[] SearchGenre, String SelectedYear, MPAArating SelectedMPAARating, String SearchActor, YearRank SelectedSortOrder)
         {
 
             //if they selected a search string, limit results to only repos that meet the criteria
             //create query
             var query = from m in db.Showings
                         select m;
+
+            if (datSelectedDate != null)
+            {
+                //needed truncate time method because we were comparing a showdate with a specific time compared to one without just a date
+                query = query.Where(m => DbFunctions.TruncateTime(m.ShowDate) == datSelectedDate);
+            }
 
             //check to see if they selected something
             if (SearchMovieTitle != null)

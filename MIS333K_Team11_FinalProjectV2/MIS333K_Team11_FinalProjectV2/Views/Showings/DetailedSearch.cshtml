@@ -9,44 +9,49 @@
 @using (Html.BeginForm("DisplaySearchResults", "Showings", FormMethod.Get))
 {
 
-    <p class="form-group">
-        <div class="form-group">
-            Movie: @Html.TextBox("SearchMovieTitle", null, new { @class = "form-control" }) <br />
-        </div>
+<p class="form-group">
+    <div class="form-group">
+        Movie Date: <input type="date" name="datSelectedDate" class="form-control" />
+        <br />
+    </div>
 
-        <div class="form-group">
-            Tagline: @Html.TextBox("SearchTagline", null, new { @class = "form-control" }) <br />
-        </div>
+    <div class="form-group">
+        Movie: @Html.TextBox("SearchMovieTitle", null, new { @class = "form-control" }) <br />
+    </div>
 
-        <div class="form-group">
-            Year: @Html.TextBox("SelectedYear", null, new { @class = "form-control" }) <br />
-        </div>
+    <div class="form-group">
+        Tagline: @Html.TextBox("SearchTagline", null, new { @class = "form-control" }) <br />
+    </div>
 
-        <div class="form-group">
-            <label class="radio">@Html.RadioButton("SelectedSortOrder", YearRank.GreaterThan, true) Greater Than</label>
-            <label class="radio">@Html.RadioButton("SelectedSortOrder", YearRank.LesserThan)Lesser Than </label>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-md-2">Genres</label>
-            <div class="col-md-10">
-                @Html.ListBox("SearchGenre", (MultiSelectList)ViewBag.AllGenres, new { @class = "form-control" })
-            </div>
-        </div>
+    <div class="form-group">
+        Year: @Html.TextBox("SelectedYear", null, new { @class = "form-control" }) <br />
+    </div>
 
-        <div class="form-group">
-            MPAA Rating:
-            <label class="radio">@Html.RadioButton("SelectedMPAARating", MPAArating.Unrated) Unrated</label>
-            <label class="radio">@Html.RadioButton("SelectedMPAARating", MPAArating.PG) PG</label>
-            <label class="radio">@Html.RadioButton("SelectedMPAARating", MPAArating.PG13) PG-13</label>
-            <label class="radio">@Html.RadioButton("SelectedMPAARating", MPAArating.G) G </label>
-            <label class="radio">@Html.RadioButton("SelectedMPAARating", MPAArating.R) R</label>
-            <label class="radio">@Html.RadioButton("SelectedMPAARating", MPAArating.All) All</label>
+    <div class="form-group">
+        <label class="radio">@Html.RadioButton("SelectedSortOrder", YearRank.GreaterThan, true) Greater Than</label>
+        <label class="radio">@Html.RadioButton("SelectedSortOrder", YearRank.LesserThan)Lesser Than </label>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Genres</label>
+        <div class="col-md-10">
+            @Html.ListBox("SearchGenre", (MultiSelectList)ViewBag.AllGenres, new { @class = "form-control" })
         </div>
+    </div>
 
-        <div class="form-group">
-            Actor: @Html.TextBox("SearchActor", null, new { @class = "form-control" }) <br />
-        </div>
-        <input type="submit" value="Search" class="btn btn-default" />
+    <div class="form-group">
+        MPAA Rating:
+        <label class="radio">@Html.RadioButton("SelectedMPAARating", MPAArating.Unrated) Unrated</label>
+        <label class="radio">@Html.RadioButton("SelectedMPAARating", MPAArating.PG) PG</label>
+        <label class="radio">@Html.RadioButton("SelectedMPAARating", MPAArating.PG13) PG-13</label>
+        <label class="radio">@Html.RadioButton("SelectedMPAARating", MPAArating.G) G </label>
+        <label class="radio">@Html.RadioButton("SelectedMPAARating", MPAArating.R) R</label>
+        <label class="radio">@Html.RadioButton("SelectedMPAARating", MPAArating.All) All</label>
+    </div>
 
-    </p>
+    <div class="form-group">
+        Actor: @Html.TextBox("SearchActor", null, new { @class = "form-control" }) <br />
+    </div>
+    <input type="submit" value="Search" class="btn btn-default" />
+
+</p>
 }

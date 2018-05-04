@@ -1,0 +1,13 @@
+﻿@using MIS333K_Team11_FinalProjectV2.Controllers
+@using MIS333K_Team11_FinalProjectV2.Models
+
+@{
+    ViewBag.Title = "Reports";
+}
+
+<h2>Reports</h2>
+
+<div>
+    @Html.ActionLink("Ticket Report", "TicketReport", "Orders", new { @class = "btn btn-success" })
+    @Html.ActionLink("Ticket Report by Search", "ReportSearch", "Orders", new { @class = "btn btn-success" })
+</div>

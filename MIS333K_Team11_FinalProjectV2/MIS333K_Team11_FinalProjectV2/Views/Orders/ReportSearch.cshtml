@@ -1,0 +1,44 @@
+﻿@using MIS333K_Team11_FinalProjectV2.Controllers
+@using MIS333K_Team11_FinalProjectV2.Models
+
+@{
+    ViewBag.Title = "Report Search";
+}
+
+<h2>DetailedSearch</h2>
+@using (Html.BeginForm("DisplaySearchResults", "Orders", FormMethod.Get))
+{
+
+<p class="form-group">
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Genres</label>
+        <div class="col-md-10">
+            @Html.ListBox("SearchShowingMovies", (MultiSelectList)ViewBag.AllShowingMovies, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        MPAA Rating:
+        <label class="radio">@Html.RadioButton("SelectedMPAARating", MPAArating.Unrated) Unrated</label>
+        <label class="radio">@Html.RadioButton("SelectedMPAARating", MPAArating.PG) PG</label>
+        <label class="radio">@Html.RadioButton("SelectedMPAARating", MPAArating.PG13) PG-13</label>
+        <label class="radio">@Html.RadioButton("SelectedMPAARating", MPAArating.G) G </label>
+        <label class="radio">@Html.RadioButton("SelectedMPAARating", MPAArating.R) R</label>
+        <label class="radio">@Html.RadioButton("SelectedMPAARating", MPAArating.All) All</label>
+    </div>
+
+    <div class="form-group">
+        Select First Date Range: <input type="date" name="FirstDate" class="form-control" />
+        <br />
+    </div>
+
+    <div class="form-group">
+        Select Second Date Range: <input type="date" name="SecondDate" class="form-control" />
+        <br />
+    </div>
+
+    <input type="submit" value="Search" class="btn btn-default" />
+
+</p>
+}

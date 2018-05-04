@@ -9,6 +9,7 @@ using System.Web.Mvc;
 //using MIS333K_Team11_FinalProjectV2.DAL;
 using MIS333K_Team11_FinalProjectV2.Models;
 using MIS333K_Team11_FinalProjectV2.Utilities;
+using MIS333K_Team11_FinalProjectV2.ViewModel;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -35,37 +36,6 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                 return View(Orders);
             }
         }
-
-        public ActionResult StatusSearch()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult StatusSearch([Bind(Include = "OrderStatus,OrderID,OrderNumber,ConfirmationNumber,EarlyDiscount,SeniorDiscount,OrderDate,CardNumber,Total,Orderstatus,OrderSubtotal,SalesTax,OrderTotal,Gift,GiftEmail")] OrderStatus SelectOrderStatus)
-        {
-            var query = from o in db.Orders
-                        select o;
-
-            switch (SelectOrderStatus)
-            {
-                case OrderStatus.Pending:
-                    query = query.Where(o => o.Orderstatus == OrderStatus.Pending);
-                    break;
-                case OrderStatus.Completed:
-                    query = query.Where(o => o.Orderstatus == OrderStatus.Completed);
-                    break;
-                case OrderStatus.Cancelled:
-                    query = query.Where(o => o.Orderstatus == OrderStatus.Cancelled);
-                    break;
-            }
-
-            List<Order> SelectedOrders = query.ToList();
-
-            return View("Index", SelectedOrders);
-
-        }
-
 
         // GET: Orders/Details/5
         public ActionResult Details(int? id)
@@ -180,25 +150,9 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             ticket.Order.Orderstatus = OrderStatus.Pending;
             ticket.TicketPrice = ticket.Showing.TicketPrice;
 
-            //PUT THIS TICKETPRICE IN SHOWINGS CONTROLLER WHEN CREATING A SHOWING
-            //PUT validation in here for 48 hour discount
-            //other discounts with age, etc.
-            TimeSpan diff = ticket.Showing.ShowDate - ord.OrderDate;
-            if (diff.Days >= 2)
-            {
-                ord.EarlyDiscount = 1.00m;
-                ticket.TicketPrice = ticket.Showing.TicketPrice - ord.EarlyDiscount;
-            }
-            else ord.EarlyDiscount = 0;
-
-
-            //senior discount
-            var UserId = User.Identity.GetUserId();
-
             if (ModelState.IsValid)
             {
                 db.Entry(ticket).State = EntityState.Modified;
-                //db.Entry(ord).State = EntityState.Modified;
                 db.SaveChanges();
                 //redirect to edit so that they can continue adding to cart if they want to 
                 return RedirectToAction("Edit", "Orders", new { id = ord.OrderID });
@@ -208,8 +162,9 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             ViewBag.AllSeats = GetAllTicketSeats(ticket.Showing.ShowingID);
             return View(ticket);
 
-
-
+            //    //PUT THIS TICKETPRICE IN SHOWINGS CONTROLLER WHEN CREATING A SHOWING
+            //    //PUT validation in here for 48 hour discount
+            //    //other discounts with age, etc.
 
             //    DateTime weekday = Convert.ToDateTime("12:00");
             //    DateTime tuesday = Convert.ToDateTime("5:00");
@@ -242,8 +197,6 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
                     ViewBag.ErrorMessage = errorMessage;
                 }
             }
-
-
             return RedirectToAction("Checkout");
         }
 
@@ -256,7 +209,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         }
 
         [HttpPost]
-        public ActionResult Checkout([Bind(Include = "OrderID,OrderNumber,ConfirmationNumber,EarlyDiscount,SeniorDiscount,OrderDate,CardNumber,Orderstatus,OrderSubtotal,SalesTax,OrderTotal,Gift,GiftEmail")] Order ord, int? SelectedCard) //without bind...might not include stuff
+        public ActionResult Checkout([Bind(Include = "OrderID,OrderNumber,ConfirmationNumber,EarlyDiscount,SeniorDiscount,OrderDate,CardNumber,Orderstatus,OrderSubtotal,SalesTax,OrderTotal,Gift,GiftEmail")] Order ord/*, int SelectedCards*/) //without bind...might not include stuff
         {
 
             //Order od = db.Orders.Include(OD => OD.Tickets)
@@ -266,36 +219,23 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
             if (ModelState.IsValid)
             {
-                //TODO: Add generate confirmation number
-                od.ConfirmationNumber = Utilities.GenerateNextConfirmationNumber.GetNextConfirmation();
+                od.ConfirmationNumber = Utilities.GenerateNextConfirmationNumber.GetNextConfirmation(); 
                 //od.Tickets = ord.Tickets;
-                ViewBag.ConfirmationNumber = od.ConfirmationNumber;
                 od.Orderstatus = OrderStatus.Completed;
                 db.Entry(od).State = EntityState.Modified;
                 db.SaveChanges();
                 //return RedirectToAction("Checkout", "Orders", new { id = od.OrderID }); //checkout gift, checkoutfinal view. 
-                return RedirectToAction("Confirm");
+                return RedirectToAction("Index");
             }
 
             //ticket.Order = td.Order;
             return View(od);
 
-            //ord.ListOfCards = new List<SelectListItem>();
-            //var userID = User.Identity.GetUserID();
-            //var user = db.Users.Include(x => x.Cards).Single(x => x.Id == userId);
-
-            //if(user != null)
-            //{
-            //    foreach(var card in user.Cards)
-            //    {
-            //        ord.ListOfCards.Add(new SelectListItem { Text = $"{card.CardNumber} {card.Type.ToString()}", Value = $"{card.CardNumber} {card.Type.ToString()}" });
-            //    }
-            //}
         }
 
         public ActionResult Confirm()
         {
-
+            //TODO: Add generate confirmation number
             return View();
         }
 
@@ -369,42 +309,178 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Order order = db.Orders.Find(id);
-            //db.Orders.Remove(order);
             order.Orderstatus = OrderStatus.Cancelled;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
 
+        public ActionResult StatusSearch()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult StatusSearch([Bind(Include = "OrderStatus,OrderID,OrderNumber,ConfirmationNumber,EarlyDiscount,SeniorDiscount,OrderDate,CardNumber,Total,Orderstatus,OrderSubtotal,SalesTax,OrderTotal,Gift,GiftEmail")] OrderStatus SelectOrderStatus)
+        {
+            var query = from o in db.Orders
+                        select o;
+
+            switch (SelectOrderStatus)
+            {
+                case OrderStatus.Pending:
+                    query = query.Where(o => o.Orderstatus == OrderStatus.Pending);
+                    break;
+                case OrderStatus.Completed:
+                    query = query.Where(o => o.Orderstatus == OrderStatus.Completed);
+                    break;
+                case OrderStatus.Cancelled:
+                    query = query.Where(o => o.Orderstatus == OrderStatus.Cancelled);
+                    break;
+            }
+
+            List<Order> SelectedOrders = query.ToList();
+            return View("Index", SelectedOrders);
+
+        }
+
+        public ActionResult Reports()
+        {
+            return View();
+        }
+
+        //GET: TicketReport
+        //[Authorize(Roles = "Manager, Admin")]
+        public ActionResult TicketReport() //this simply gives the overall report(total tickets sold and total revenue for all orders confirmed) 
+        {
+            List<Ticket> allTickets = db.Tickets.Where(t => t.Order.Orderstatus == OrderStatus.Completed).ToList();
+            List<Order> allOrders = db.Orders.Where(o => o.Orderstatus == OrderStatus.Completed).ToList();
+            MovieReportVM tivm = new MovieReportVM();
+
+            //foreach (Order od in allOrders)
+            //{
+            //    tivm.Revenue += od.OrderTotal;
+            //    foreach (Ticket td in allTickets)
+            //    {
+            //        tivm.NumberOfPurchase += 1;
+            //        tivm.Revenue += (td.TicketPrice * tax);
+            //    }
+            //}
+
+            Decimal tax = 0.0825m;
+            foreach (Ticket td in allTickets)
+            {
+                tivm.NumberOfPurchase += 1;
+                tivm.Revenue += (td.TicketPrice + (td.TicketPrice * tax));
+            }
+            return View(tivm);
+        }
+
+        public ActionResult ReportSearch()
+        {
+            ViewBag.AllShowingMovies = GetAllShowingMovies();
+            return View();
+        }
+
+        public ActionResult DisplaySearchResults(DateTime? FirstDate, DateTime? SecondDate, int[] SearchShowingMovies, 
+                                                 MPAArating SelectedMPAARating/*, DateTime? FirsTime, DateTime? SecondTime*/)
+        {
+            var query = from t in db.Tickets
+                        where t.Order.Orderstatus == OrderStatus.Completed
+                        select t;
+
+            if (SearchShowingMovies != null)
+            {
+                foreach (int MovieID in SearchShowingMovies)
+                {
+                    Movie MovieToFind = db.Movies.Find(MovieID);
+                    query = query.Where(t => t.Showing.SponsoringMovie.MovieID == MovieToFind.MovieID);
+                }
+            }
+
+            switch (SelectedMPAARating)
+            {
+                case MPAArating.G:
+                    query = query.Where(t => t.Movie.MPAAratings == MPAArating.G);
+                    break;
+
+                case MPAArating.PG:
+                    query = query.Where(t => t.Movie.MPAAratings == MPAArating.PG);
+                    break;
+
+                case MPAArating.PG13:
+                    query = query.Where(t => t.Movie.MPAAratings == MPAArating.PG13);
+                    break;
+
+                case MPAArating.R:
+                    query = query.Where(t => t.Movie.MPAAratings == MPAArating.R);
+                    break;
+
+                case MPAArating.Unrated:
+                    query = query.Where(t => t.Movie.MPAAratings == MPAArating.Unrated);
+                    break;
+
+                case MPAArating.All:
+                    break;
+            }
+
+            if (FirstDate != null && SecondDate != null)
+            {
+                query = query.Where(t => DbFunctions.TruncateTime(t.Showing.ShowDate) >= FirstDate && DbFunctions.TruncateTime(t.Showing.ShowDate) <= SecondDate);
+            }
+
+            List<Ticket> SelectedTickets = query.ToList();
+
+            //List<Ticket> allTickets = db.Tickets.Where(t => t.Order.Orderstatus == OrderStatus.Completed).ToList();
+            List<Order> allOrders = db.Orders.Where(o => o.Orderstatus == OrderStatus.Completed).ToList();
+            MovieReportVM tivm = new MovieReportVM();
+
+            foreach (Order od in allOrders)
+            {
+                tivm.Revenue += od.OrderTotal;
+                foreach (Ticket td in SelectedTickets)
+                {
+                    tivm.NumberOfPurchase += 1;
+                }
+            }
+
+            Decimal tax = 0.825m;
+            foreach(Ticket td in SelectedTickets)
+            {
+                tivm.NumberOfPurchase += 1;
+                tivm.Revenue += (td.TicketPrice * tax);
+            }
+            //return View(tivm);
+            return View("DisplaySearchResults", tivm);
+
+        }
+
         public SelectList GetAllTicketSeats(int SelectedShowing)
         {
             Showing showing = db.Showings.Find(SelectedShowing);
-
             List<Ticket> tickets = db.Tickets.Where(t => t.Order.Orderstatus == OrderStatus.Completed && t.Showing.ShowingID == showing.ShowingID).ToList();
-
             SelectList selSeats = SeatHelper.FindAvailableSeats(tickets);
-
             return selSeats;
         }
 
         //method to get all courses for the ViewBag
         public SelectList GetAllShowings()
         {
-            //Get the list of showings in order by showing name 
-            List<Showing> allShowings = db.Showings.OrderBy(s => s.SponsoringMovie.MovieTitle).ToList();
-
-            //convert the list to a select list
-            SelectList selShowings = new SelectList(allShowings, "ShowingID", "ShowingNameAndDate");
-
-            //return the select list        
+            List<Showing> allShowings = db.Showings/*.Where(s => s.PublishedStatus == PublishedStatus.IsPublished)*/.OrderBy(s => s.SponsoringMovie.MovieTitle).ToList();
+            SelectList selShowings = new SelectList(allShowings, "ShowingID", "ShowingNameAndDate");     
             return selShowings;
+        }
+
+        public MultiSelectList GetAllShowingMovies()
+        {
+            List<Movie> allShowingMovies = db.Movies.ToList();
+            MultiSelectList ShowingsReport = new MultiSelectList(allShowingMovies, "MovieID", "MovieTitle");
+            return ShowingsReport;
         }
 
         public SelectList GetAllCards()
         {
             List<Card> allCards = db.Cards.ToList();  //TODO: sepecific for each user
-
             SelectList selcards = new SelectList(allCards, "CardID", "CardNumber");
-
             return selcards;
         }
 

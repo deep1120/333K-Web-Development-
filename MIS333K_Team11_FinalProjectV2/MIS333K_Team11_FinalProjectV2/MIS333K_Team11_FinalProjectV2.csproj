@@ -361,6 +361,10 @@
     <Content Include="Views\Orders\AddShowing.cshtml" />
     <Content Include="Views\Orders\Confirm.cshtml" />
     <Content Include="Views\Orders\StatusSearch.cshtml" />
+    <Content Include="Views\Orders\ReportSearch.cshtml" />
+    <Content Include="Views\Orders\Reports.cshtml" />
+    <Content Include="Views\Orders\TicketReport.cshtml" />
+    <Content Include="Views\Orders\DisplaySearchResults.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

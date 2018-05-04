@@ -1,0 +1,32 @@
+﻿@using MIS333K_Team11_FinalProjectV2.Controllers
+@using MIS333K_Team11_FinalProjectV2.ViewModel
+@model MovieReportVM
+
+@{
+    ViewBag.Title = "Ticket Report";
+}
+
+<h2>Ticket Report</h2>
+
+<div>
+    <h4>Report Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Total Tickets
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfPurchase)
+        </dd>
+
+        <dt>
+            Total Revenue
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Revenue)
+        </dd>
+
+    </dl>
+</div>
