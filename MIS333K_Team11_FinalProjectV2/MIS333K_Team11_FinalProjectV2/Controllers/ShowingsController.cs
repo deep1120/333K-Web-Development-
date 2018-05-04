@@ -229,7 +229,7 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
 
             //List<Showing> Monday1 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Monday && s.Theatre == Theatre.Theatre1).OrderBy(m => m.ShowDate).ToList();
             //List<Showing> Monday2 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Monday && s.Theatre == Theatre.Theatre2).OrderBy(m => m.ShowDate).ToList();
-            List<Showing> Tuesday1 = CheckShowings./*Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Tuesday && s.Theatre == Theatre.Theatre1).*/OrderBy(m => m.ShowDate).ToList();
+            List<Showing> Tuesday1 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Tuesday && s.Theatre == Theatre.Theatre1).OrderBy(m => m.ShowDate).ToList();
             //List<Showing> Tuesday2 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Tuesday && s.Theatre == Theatre.Theatre2).OrderBy(m => m.ShowDate).ToList();
             //List<Showing> Wednesday1 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Wednesday && s.Theatre == Theatre.Theatre1).OrderBy(m => m.ShowDate).ToList();
             //List<Showing> Wednesday2 = CheckShowings.Where(s => s.ShowDate.DayOfWeek == DayOfWeek.Wednesday && s.Theatre == Theatre.Theatre2).OrderBy(m => m.ShowDate).ToList();

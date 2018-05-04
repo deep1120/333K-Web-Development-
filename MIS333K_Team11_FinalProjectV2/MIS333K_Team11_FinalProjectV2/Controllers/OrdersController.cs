@@ -150,6 +150,38 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             ticket.Order.Orderstatus = OrderStatus.Pending;
             ticket.TicketPrice = ticket.Showing.TicketPrice;
 
+            TimeSpan diff = ticket.Showing.ShowDate - ord.OrderDate;
+            if (diff.Days >= 2)
+            {
+                ord.EarlyDiscount = 1.00m;
+                ticket.TicketPrice = ticket.Showing.TicketPrice - ord.EarlyDiscount;
+            }
+            else ord.EarlyDiscount = 0;
+
+            TimeSpan diff2 = DateTime.Today - ord.OrderAppUser.Birthday;
+            if (((diff2.Days) / 365) >= 60)
+            {
+                ord.SeniorDiscount = 2.00m;
+                ticket.TicketPrice = ticket.Showing.TicketPrice - ord.SeniorDiscount;
+            }
+            else ord.SeniorDiscount = 0;
+
+            //both senior discount and early discount
+            if (diff.Days >= 2 && ((diff2.Days) / 365) >= 60)
+            {
+                ord.EarlyDiscount = 1.00m;
+                ord.SeniorDiscount = 2.00m;
+                ticket.TicketPrice = ticket.Showing.TicketPrice - ord.SeniorDiscount - ord.EarlyDiscount;
+            }
+
+            //if customer is younger than 18, can't purchase a R movie
+            //TimeSpan rating = DateTime.Today - ord.OrderAppUser.Birthday;
+            //if (((rating.Days) / 365) < 18 && ticket.Movie.MPAAratings == )
+            //{
+            //    return RedirectToAction("AddToOrder");
+            //}
+
+
             if (ModelState.IsValid)
             {
                 db.Entry(ticket).State = EntityState.Modified;
@@ -434,24 +466,14 @@ namespace MIS333K_Team11_FinalProjectV2.Controllers
             List<Order> allOrders = db.Orders.Where(o => o.Orderstatus == OrderStatus.Completed).ToList();
             MovieReportVM tivm = new MovieReportVM();
 
-            foreach (Order od in allOrders)
-            {
-                tivm.Revenue += od.OrderTotal;
-                foreach (Ticket td in SelectedTickets)
-                {
-                    tivm.NumberOfPurchase += 1;
-                }
-            }
-
-            Decimal tax = 0.825m;
+            Decimal tax = 0.0825m;
             foreach(Ticket td in SelectedTickets)
             {
                 tivm.NumberOfPurchase += 1;
-                tivm.Revenue += (td.TicketPrice * tax);
+                tivm.Revenue += (td.TicketPrice + (td.TicketPrice * tax));
             }
             //return View(tivm);
             return View("DisplaySearchResults", tivm);
-
         }
 
         public SelectList GetAllTicketSeats(int SelectedShowing)
